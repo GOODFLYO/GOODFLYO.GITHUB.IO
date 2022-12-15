@@ -1,132 +1,567 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>mysql入门</title>
-    <url>/2021/10/05/mysql%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>零、零散知识点</p>
-<p>层次数据库是按记录来存取数据的；</p>
-<p>网状数据库是采用网状原理和方法来存储数据；</p>
+    <title>前端路线</title>
+    <url>/2022/12/15/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<p>[toc]</p>
+<blockquote>
+<p><strong>学习方式各有不同，我只整理的自己的侧重点</strong></p>
+</blockquote>
 <span id="more"></span>
 
-<p>关系型数据库是以行和列的形式存储数据。</p>
-<p>规范化是为了解决数据库中数据的插入、删除、修改异常等问题的一组规则<br>关系数据库管理系统应能实现的专门关系运算包括 选择、投影、连接<br>属于数据完整性约束的是：实体完整性、参照完整性、用户定义的完整性<br>DML是数据操纵语言，包括select、insert、delete、update，后三个动作会改变数据，可以创建触发器来捕获动作。 DDL是数据定义语言，创建库、表、触发器、存储过程、视图等命令，均属于此范畴。 综上，创建触发器是DDL，触发器工作依靠DML。<br>一、SQL简介</p>
-<p>SQL<strong>介绍</strong></p>
-<p>SQL全称是 Structured Query Language（结构化查询语言）是用于访问和操作数据库中的数据的标准数据库编程语言<br>SQL 是一种 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言<br>1.SQL 能做什么？</p>
-<p>SQL可以创建新的数据库及其对象（表，索引，视图，存储过程，函数和触发器）<br>SQL可以TRUNCATE（删除）表中的所有记录<br>SQL可以在数据库中设置用户的GRANT和REVOKE权限<br>注意：<br>虽然 SQL 是一门 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言，但是仍然存在着多种不同版本的 SQL 语言。<br>然而，为了与 ANSI 标准相兼容，它们必须以相似的方式共同地来支持一些主要的命令（比如 SELECT、UPDATE、DELETE、INSERT、WHERE 等等）。</p>
-<p>注释： 除SQL标准之外，大多数SQL数据库程序还具有自己的专有扩展名！</p>
-<p>2.<strong>在您的网站中使用 SQL</strong></p>
-<p>要创建一个显示数据库中数据的网站，您需要：</p>
-<p>一个RDBMS数据库程序（即MS Access，SQL Server，MySQL）。<br>使用服务器端脚本语言，如PHP或ASP。<br>使用SQL来获取所需的数据。<br>使用HTML / CSS来设置页面的样式<br>3.RDBMS</p>
-<p>RDBMS 指关系型数据库管理系统，全称 Relational Database Management System。</p>
-<p>RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础，比如 MS SQL Server、IBM DB2、Oracle、MySQL 以及 Microsoft Access。</p>
-<p>RDBMS 中的数据存储在被称为表的数据库对象中。</p>
-<p>表是相关的数据项的集合，它由列和行组成。</p>
-<p>代码示例：</p>
-<p>SELECT * FROM Customers;</p>
-<p>2<strong>、</strong>SQL 语法</p>
-<p>1.SQL<strong>语法规则</strong></p>
-<p>SQL语句总是以关键字开始。<br>SQL语句以分号结尾。<br>SQL不区分大小写，意味着更新与UPDATE相同<br>2.<strong>一些最重要的 SQL 命令</strong></p>
-<p>CREATE DATABASE - 创建新数据库<br>ALTER DATABASE - 修改数据库<br>CREATE TABLE - 创建新表<br>ALTER TABLE - 变更（改变）数据库表<br>DROP TABLE - 删除表//删除一列<br>SELECT - 从数据库中提取数据<br>UPDATE - 更新数据库中的数据<br>DELETE - 从数据库中删除数据//删除一行<br>INSERT INTO - 向数据库中插入新数据<br>CREATE INDEX - 创建索引（搜索键）<br>DROP INDEX - 删除索引<br>3.SQL Select<strong>（选择） 语法</strong></p>
-<p>SELECT 语法用于从数据库中选择数据。</p>
-<p>返回的数据存储在结果表中，称为结果集。</p>
-<p>4.SQL WHERE Clause<strong>（查询子句）</strong></p>
-<p>WHERE 子句用于过滤记录。</p>
-<p>注意： WHERE子句不仅用于SELECT语法，还用于UPDATE，DELETE语法等！</p>
-<p>5.WHERE 子句中的运算符</p>
-<p>WHERE子句中可以使用以下运算符：</p>
-<p>运算符    描述<br>=    等于<br>&lt;&gt;    不等于。 注意 ：在某些版本的SQL中，这个操作符可能写成！=</p>
-<blockquote>
-<p>   大于<br>&lt;    小于<br>=    大于等于<br>&lt;=    小于等于<br>BETWEEN    在某个范围内<br>LIKE    搜索某种模式<br>IN    为列指定多个可能的值<br>6.SQL AND, OR and NOT<strong>（与，或不是运算符）</strong></p>
+<h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> html、css 核心基础</li>
+<li><input checked="" disabled="" type="checkbox"> html5 语义化标签</li>
+<li><input checked="" disabled="" type="checkbox"> html5 新增标签属性</li>
+<li><input checked="" disabled="" type="checkbox"> 表单项新增属性</li>
+<li><input checked="" disabled="" type="checkbox"> css 选择器</li>
+<li><input checked="" disabled="" type="checkbox"> css3 伪类</li>
+<li><input checked="" disabled="" type="checkbox"> css 伪元素</li>
+<li><input disabled="" type="checkbox"> css 过渡</li>
+<li><input disabled="" type="checkbox"> 线性渐变、径向渐变</li>
+<li><input disabled="" type="checkbox"> css 都规划 animation</li>
+<li><input checked="" disabled="" type="checkbox"> 弹性盒模型</li>
+<li><input disabled="" type="checkbox"> 响应式布局</li>
+</ul>
+<hr>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> 基本语法</li>
+<li><input disabled="" type="checkbox"> 版本</li>
+<li><input checked="" disabled="" type="checkbox"> 对象</li>
+<li><input checked="" disabled="" type="checkbox"> 函数</li>
+<li><input disabled="" type="checkbox"> 类</li>
+<li><input checked="" disabled="" type="checkbox"> DOM</li>
+<li><input checked="" disabled="" type="checkbox"> BOM</li>
+<li><input disabled="" type="checkbox"> Web API</li>
+<li><input disabled="" type="checkbox"> AJAX</li>
+<li><input checked="" disabled="" type="checkbox"> JSON</li>
+<li><input checked="" disabled="" type="checkbox"> jQuery</li>
+</ul>
+<hr>
+<h1 id="ES6-Node-工程化"><a href="#ES6-Node-工程化" class="headerlink" title="ES6+Node+工程化"></a>ES6+Node+工程化</h1><ul>
+<li><input disabled="" type="checkbox"> ES6/7/8</li>
+<li><input checked="" disabled="" type="checkbox"> npm 常用命令</li>
+<li><input checked="" disabled="" type="checkbox"> git 基础</li>
+<li><input disabled="" type="checkbox"> git 高级</li>
+<li><input disabled="" type="checkbox"> http 协议 &amp; cookie &amp; session</li>
+<li><input disabled="" type="checkbox"> ES6+Node+工程化 MongoDB</li>
+<li><input disabled="" type="checkbox"> 模块化</li>
+<li><input disabled="" type="checkbox"> 构建工具 gulp</li>
+<li><input disabled="" type="checkbox"> webpack</li>
+<li><input disabled="" type="checkbox"> promise</li>
+<li><input checked="" disabled="" type="checkbox"> Node.js 基础</li>
+</ul>
+<hr>
+<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> React 基础语法</li>
+<li><input disabled="" type="checkbox"> react-router</li>
+<li><input disabled="" type="checkbox"> React React Antd 使用</li>
+<li><input disabled="" type="checkbox"> Redux</li>
+<li><input disabled="" type="checkbox"> React 移动端项目</li>
+</ul>
+<hr>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> Vue 基础</li>
+<li><input disabled="" type="checkbox"> VueRouter</li>
+<li><input disabled="" type="checkbox"> Vuex</li>
+<li><input disabled="" type="checkbox"> Vue</li>
+<li><input disabled="" type="checkbox"> Vue 源码</li>
+<li><input disabled="" type="checkbox"> VuePC 项目</li>
+<li><input disabled="" type="checkbox"> Vue 后台管理</li>
+</ul>
+<hr>
+<h1 id="参考提供"><a href="#参考提供" class="headerlink" title="参考提供"></a>参考提供</h1><p><a href="https://objtube.github.io/front-end-roadmap/#/">前端学习路线</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>与我相关</title>
+    <url>/2030/12/31/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>[]</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>一个普普通通的大学生 爱好前端 知识分享<br>希望我们能一起进步 一起为前端添砖加瓦！</p>
 </blockquote>
-<p>AND&amp;OR运算符用于根据一个以上的条件过滤记录。</p>
-<p>NOT<strong>语法</strong></p>
-<p>SELECT column1, column2, …<br>FROM table_name<br>WHERE NOT condition;</p>
-<p>以下SQL语句选择来自”Customers” 的国家不是 “Germany” 且不是 “USA”的所有字段：</p>
-<p>代码示例：</p>
-<p>SELECT * FROM Customers<br>WHERE NOT Country=’Germany’ AND NOT Country=’USA’;</p>
-<p>7.SQL ORDER BY Keyword<strong>（按关键字排序）</strong></p>
-<p>ORDER BY 关键字用于对结果集进行排序。关键字默认情况下按升序排序记录。</p>
-<p>SQL ORDER BY 语法</p>
-<p>SELECT column1, column2, …<br>FROM table_name<br>ORDER BY column1, column2, … ASC|DESC;</p>
-<p>8.SQL INSERT INTO 语句（在表中插入）</p>
-<p>INSERT INTO 语句用于向表中插入新记录。</p>
-<p>9.<strong>什么是SQL NULL值？</strong></p>
-<p>SQL 中， NULL 用于表示缺失的值。数据表中的 NULL 值表示该值所处的字段为空。</p>
-<p>具有NULL值的字段是没有值的字段。</p>
-<p>如果表中的字段是可选的，则可以插入新记录或更新记录而不向该字段添加值。然后，该字段将被保存为NULL值。</p>
-<p>值为 NULL 的字段没有值。尤其要明白的是，NULL 值与 0 或者包含空白（spaces）的字段是不同的。</p>
-<p>10.<strong>如何测试NULL值？</strong></p>
-<p>使用比较运算符（例如=，&lt;或&lt;&gt;）来测试NULL值是不可行的。</p>
-<p>我们将不得不使用IS NULL和IS NOT NULL运算符。</p>
-<p>IS NULL<strong>语法</strong></p>
-<p>SELECT column_names<br>FROM table_name<br>WHERE column_name IS NULL;</p>
-<p>IS NOT NULL<strong>语法</strong></p>
-<p>SELECT column_names<br>FROM table_name<br>WHERE column_name IS NOT NULL;</p>
-<p>创建表的时候，NULL 的基本语法如下：</p>
-<p>SQL&gt; CREATE TABLE CUSTOMERS(<br>ID INT NOT NULL,<br>NAME VARCHAR (20) NOT NULL,<br>AGE INT NOT NULL,<br>ADDRESS CHAR (25) ,<br>SALARY DECIMAL (18, 2),<br>PRIMARY KEY (ID)<br>);</p>
-<p>11.SQL UPDATE 语句（更新表中的记录）</p>
-<p>UPDATE 语句用于更新表中的现有记录。</p>
-<p>12.SQL UPDATE 语句</p>
-<p>UPDATE 语句用于更新表中已存在的记录。</p>
-<p>SQL UPDATE 语法</p>
-<p>UPDATE table_name<br>SET column1 = value1, column2 = value2, …<br>WHERE condition;</p>
-<p>请注意</p>
-<p>更新表中的记录时要小心！ 要注意SQL UPDATE 语句中的 WHERE 子句！ WHERE子句指定哪些记录需要更新。如果省略WHERE子句，所有记录都将更新！</p>
-<p>13.SQL Delete 语句（删除表中的记录）</p>
-<p>DELETE语句用于删除表中现有记录。</p>
-<p>14.SQL DELETE 语句</p>
-<p>DELETE 语句用于删除表中的行。</p>
-<p>SQL DELETE 语法</p>
-<p>DELETE FROM table_name<br>WHERE condition;</p>
-<p>请注意 删除表格中的记录时要小心！ 注意SQL DELETE 语句中的 WHERE 子句！ WHERE子句指定需要删除哪些记录。如果省略了WHERE子句，表中所有记录都将被删除！</p>
-<p>删除所有数据</p>
-<p>您可以删除表中的所有行，而不需要删除该表。这意味着表的结构、属性和索引将保持不变：</p>
-<p>DELETE FROM table_name;</p>
-<p>或者</p>
-<p>DELETE * FROM table_name;</p>
-<p>注意： 在没有备份的情况下，删除记录要格外小心！因为你删除了不能重复！</p>
-<p>15.SQL SELECT TOP, LIMIT, ROWNUM(<strong>一样的效果</strong>)</p>
-<p>SELECT TOP 子句用于指定要返回的记录数量。<br>SELECT TOP子句在包含数千条记录的大型表上很有用。返回大量记录会影响性能。<br>注： 并不是所有的数据库系统都支持SELECT TOP子句。MySQL支持LIMIT子句来选择有限数量的记录，而Oracle使用ROWNUM。</p>
-<p>SQL SELECT TOP PERCENT 实例</p>
-<p>以下SQL语句从 “Customers” 表中选择前50%的记录：</p>
-<p>实例</p>
-<p>SELECT TOP 50 PERCENT * FROM Customers;</p>
-<p>SQL TOP<strong>，LIMIT和ROWNUM示例</strong></p>
-<p>以下SQL语句从”Customers”表中选择前三个记录：</p>
-<p>SELECT TOP 3 * FROM Customers;</p>
-<p>以下SQL语句显示了使用LIMIT子句的等效示例：</p>
-<p>SELECT * FROM Customers<br>LIMIT 3;</p>
-<p>以下SQL语句显示了使用ROWNUM的等效示例：</p>
-<p>SELECT * FROM Customer<br>WHERE ROWNUM &lt;= 3;</p>
-<p>16.SQL LIKE 运算符</p>
-<p>在WHERE子句中使用LIKE运算符来搜索列中的指定模式。</p>
-<p>SQL LIKE 操作符</p>
-<p>LIKE 操作符用于在 WHERE 子句中搜索列中的指定模式。</p>
-<p>有两个通配符与LIKE运算符一起使用：</p>
-<p>％ - 百分号表示零个，一个或多个字符<br>_ - 下划线表示单个字符<br>注意： MS Access使用问号（?）而不是下划线（_）。</p>
-<p>百分号和下划线也可以组合使用！</p>
-<p>17.SQL LIKE 语法</p>
-<p>SELECT column1, column2, …<br>FROM table_name<br>WHERE columnN LIKE pattern;</p>
-<p>提示 ：您还可以使用AND或OR运算符组合任意数量的条件。</p>
-<p>下面是一些使用’％’和’_’通配符显示不同LIKE运算符的例子：</p>
-<p>LIKE 运算符    描述<br>WHERE CustomerName LIKE ‘a%’    查找以“a”开头的任何值<br>WHERE CustomerName LIKE ‘%a’    查找以“a”结尾的任何值<br>WHERE CustomerName LIKE ‘%or%’    在任何位置查找任何具有“or”的值<br>WHERE CustomerName LIKE ‘_r%’    在第二个位置查找任何具有“r”的值<br>WHERE CustomerName LIKE ‘a%%’    查找以“a”开头且长度至少为3个字符的值<br>WHERE ContactName LIKE ‘a%o’    找到以”a”开头，以”o”结尾的值<br>18.<strong>使用 SQL [charlist] 通配符</strong></p>
-<p>以下SQL语句选择所有客户City以”b”、”s”或”p”开头：</p>
-<p>实例</p>
-<p>SELECT * FROM Customers<br>WHERE City LIKE ‘[bsp]%’;</p>
-<p>以下SQL语句选择“City”以“a”、“b”或“c”开头的所有客户：</p>
-<p>实例</p>
-<p>SELECT * FROM Customers<br>WHERE City LIKE ‘[a-c]%’;</p>
-<p>以下SQL语句选择所有客户City不以”b”、”s”或”p”开头：</p>
-<p>实例</p>
-<p>SELECT * FROM Customers<br>WHERE City LIKE ‘[!bsp]%’;</p>
-<p>19.SQL IN 运算符</p>
-<p>IN运算符允许您在WHERE子句中指定多个值。</p>
-<p>IN运算符是多个OR条件的简写。</p>
-<p>SQL IN 语法</p>
-<p>SELECT column_name(s)<br>FROM table_name<br>WHERE column_name IN (value1, value2, …);</p>
-<p>或者</p>
-<p>SELECT column_name(s)<br>FROM table_name<br>WHERE column_name IN (SELECT STATEMENT);</p>
-<p>20.IN 操作符实例</p>
+<span id="more"></span>
+<hr>
+<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><table>
+<thead>
+<tr>
+<th>QQ</th>
+<th>WecChat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://github.com/GOODFLYO/CDN/blob/main/blogConfig/self/ADDQQ.jpg?raw=true" style="height:200px" /></td>
+<td><img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/blogConfig/self/ADDWECHAT.jpg?raw=true" style="height:200px" /></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="个人推荐"><a href="#个人推荐" class="headerlink" title="个人推荐"></a>个人推荐</h3><p><strong>科学上网</strong></p>
+<ol>
+<li><a href="https://latiao.club/#/register?code=1qAt6V3N">点击此处注册账号</a></li>
+<li>填入我的邀请码:1qAt6V3N  优惠码 8888</li>
+<li>随便选择一个即可购买 <img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/images/techonline/image-20220501210419771.png"></li>
+<li>一定要看<a href="https://latiao.club/#/knowledge">使用文档</a>哟 </li>
+<li>使用 <strong>clash</strong> 的一定要勾选 <strong>system proxy</strong> <img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/images/techonline/image-20220501210921927.png"></li>
+<li>当然，你有不会的地方 ，可以加我的联系方式询问</li>
+<li>因为输入我的邀请码可以让我<strong>获得部分佣金</strong>且<strong>购买更便宜</strong> 介意的话可以输入别人的哟</li>
+</ol>
+]]></content>
+      <categories>
+        <category>与我相关</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+        <tag>联系方式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>APPilike</title>
+    <url>/2022/12/14/APPilike/</url>
+    <content><![CDATA[<p>[toc]</p>
+<hr>
+<h3 id="Clash"><a href="#Clash" class="headerlink" title="Clash"></a>Clash</h3><p>💕 科学上网必备💕<br>💕 <a href="https://goodflyo.github.io/2021/05/26/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/#more">clash详细信息</a>💕</p>
+<hr>
+<h3 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h3><span id="more"></span>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>介绍</th>
+<th>图标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>win 自带画图工具</td>
+<td>简洁的面板 多种工具</td>
+<td><img src="https://img.onlinedown.net/download/202110/141352-6167caa016630.jpg" style="height:55px;" /></td>
+</tr>
+<tr>
+<td>oCam</td>
+<td>录屏软件 体积小 录屏质量高</td>
+<td><img src="https://img2.baidu.com/it/u=1891138054,3556825058&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>快剪辑</td>
+<td>剪辑方便基础功能丰富</td>
+<td><img src="https://img2.baidu.com/it/u=708818509,1951590481&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>洛雪音乐</td>
+<td>千万音乐随便下载 非常无敌</td>
+<td><img src="https://img0.baidu.com/it/u=2973469365,2346081691&fm=253&fmt=auto&app=138&f=PNG?w=220&h=150" style="height:55px" /></td>
+</tr>
+<tr>
+<td>IDM 绿色版</td>
+<td>超高速下载+配合百度网盘使用</td>
+<td><img src="https://img2.baidu.com/it/u=3696265634,1526834780&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>蓝奏云客户端</td>
+<td>批量传输+批量转移</td>
+<td><img src="https://img1.baidu.com/it/u=2073188427,2824667698&fm=253&fmt=auto&app=138&f=PNG?w=243&h=132" style="height:55px" /></td>
+</tr>
+<tr>
+<td>阿里云盘</td>
+<td>上传和下载都很快 可是不能自由分享</td>
+<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fq_70%2Fimages03%2F20211009%2F59c75745d3524163b9277c4006020ac0.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673668758&t=5447eeb39099d7ebac4d8ab57621b747" style="height:55px" /></td>
+</tr>
+<tr>
+<td>typora</td>
+<td>简直无敌了 markdown编辑器—当然也支持各种格式</td>
+<td><img src="https://img0.baidu.com/it/u=2788885325,377457777&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>Fiddler Classic</td>
+<td>电脑抓包工具 可以监听https</td>
+<td><img src="https://img2.baidu.com/it/u=1346851621,972883484&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>electerm</td>
+<td>开源的远程连接工具</td>
+<td><img src="https://img1.baidu.com/it/u=2723696682,2115268521&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>vsode</td>
+<td>超级无敌宇宙噼里啪啦IDE</td>
+<td><img src="https://img1.baidu.com/it/u=1636506776,3169403695&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>GOOGLE</td>
+<td>配上各类插件和脚本 无敌的存在</td>
+<td><img src="https://img1.baidu.com/it/u=1785270759,3943942543&fm=253&fmt=auto&app=120&f=JPEG?w=816&h=487" style="height:55px" /></td>
+</tr>
+<tr>
+<td>网易云音乐</td>
+<td>个人喜欢 不介绍</td>
+<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg3.downza.cn%2Fxueyuan%2F202111%2F5fa12703a4057330ee5cc1512d159377.png&refer=http%3A%2F%2Fimg3.downza.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673669014&t=bd5155d51f678d78e94cbb5c16d9e5ff" style="height:55px" /></td>
+</tr>
+<tr>
+<td>小丸工具箱</td>
+<td>处理视频的好工具–解码转换等等</td>
+<td><img src="https://img1.baidu.com/it/u=1574076885,3181424076&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>腾讯会议</td>
+<td>通讯效果好 容量大</td>
+<td><img src="https://img0.baidu.com/it/u=2387743273,1319507866&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=267" style="height:55px" /></td>
+</tr>
+<tr>
+<td>格式工厂</td>
+<td>视频格式转化 功能很多 比较耗费gpu</td>
+<td><img src="https://img0.baidu.com/it/u=2605668262,354975190&fm=253&fmt=auto&app=138&f=JPEG?w=170&h=170" style="height:55px" /></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="Android端"><a href="#Android端" class="headerlink" title="Android端"></a>Android端</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>介绍</th>
+<th>图标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bilibili</td>
+<td>视频质量较高 奈何老板作死</td>
+<td><img src="https://img2.baidu.com/it/u=3444794441,3761663944&fm=253&fmt=auto&app=120&f=JPEG?w=669&h=604" style="height:55px" /></td>
+</tr>
+<tr>
+<td>豆果美食</td>
+<td>各种原创食谱</td>
+<td><img src="https://img1.baidu.com/it/u=2547362733,133834015&fm=253&fmt=auto&app=138&f=PNG?w=192&h=192" style="height:55px" /></td>
+</tr>
+<tr>
+<td>listen1</td>
+<td>必不可少的音乐神器</td>
+<td><img src="https://img0.baidu.com/it/u=1569927342,4215404422&fm=253&fmt=auto&app=138&f=JPEG?w=766&h=386" style="height:55px" /></td>
+</tr>
+<tr>
+<td>解压缩全能王</td>
+<td>可以破解压缩密码 解压能力超强–7z rar</td>
+<td><img src="https://img2.baidu.com/it/u=499996747,2707825643&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>小红书</td>
+<td>找到自己的爱好 拒绝孤单</td>
+<td><img src="https://img1.baidu.com/it/u=1943371915,3584795604&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>云闪付</td>
+<td>集成各大银行 优惠活动多且大</td>
+<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.sj33.cn%2Fuploads%2F202102%2F7-21022G32225U9.jpg&refer=http%3A%2F%2Fimg.sj33.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673670193&t=e2f5288abd3a86a1e61210151e10b4fe" style="height:55px" /></td>
+</tr>
+</tbody></table>
+]]></content>
+  </entry>
+  <entry>
+    <title>mysql入门</title>
+    <url>/2021/10/05/mysql%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h2 id="零散知识点"><a href="#零散知识点" class="headerlink" title="零散知识点"></a>零散知识点</h2><p><strong>层次数据库</strong>是按记录来存取数据的；</p>
+<p><strong>网状数据库</strong>是采用网状原理和方法来存储数据；</p>
+<span id="more"></span>
+
+<p><strong>关系型数据库</strong>是以行和列的形式存储数据。</p>
+<ol>
+<li> 规范化是为了解决数据库中数据的插入、删除、修改异常等问题的一组规则</li>
+<li> 关系数据库管理系统应能实现的专门关系运算包括 选择、投影、连接</li>
+<li> 属于数据完整性约束的是：实体完整性、参照完整性、用户定义的完整性</li>
+<li> DML是数据操纵语言，包括select、insert、delete、update，后三个动作会改变数据，可以创建触发器来捕获动作。 DDL是数据定义语言，创建库、表、触发器、存储过程、视图等命令，均属于此范畴。 综上，创建触发器是DDL，触发器工作依靠DML。</li>
+</ol>
+<hr>
+<h2 id="一、SQL简介"><a href="#一、SQL简介" class="headerlink" title="一、SQL简介"></a>一、SQL简介</h2><p>SQL<strong>介绍</strong></p>
+<blockquote>
+<p>SQL全称是 Structured Query Language（结构化查询语言）是用于访问和操作数据库中的数据的标准数据库编程语言<br>SQL 是一种 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言</p>
+</blockquote>
+<ol>
+<li> SQL 能做什么？</li>
+</ol>
+<p>   SQL可以创建新的数据库及其对象（表，索引，视图，存储过程，函数和触发器）<br>   SQL可以TRUNCATE（删除）表中的所有记录<br>   SQL可以在数据库中设置用户的GRANT和REVOKE权限<br>   注意：<br>   虽然 SQL 是一门 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言，但是仍然存在着多种不同版本的 SQL 语言。<br>   然而，为了与 ANSI 标准相兼容，它们必须以相似的方式共同地来支持一些主要的命令（比如 SELECT、UPDATE、DELETE、INSERT、WHERE 等等）。</p>
+<p><strong>注释</strong>： 除SQL标准之外，大多数SQL数据库程序还具有自己的专有扩展名！</p>
+<ol start="2">
+<li> <strong>在您的网站中使用 SQL</strong></li>
+</ol>
+<p>   要创建一个显示数据库中数据的网站，您需要：</p>
+<p>   一个RDBMS数据库程序（即MS Access，SQL Server，MySQL）。<br>   使用服务器端脚本语言，如PHP或ASP。<br>   使用SQL来获取所需的数据。<br>   使用HTML / CSS来设置页面的样式</p>
+<ol start="3">
+<li> RDBMS</li>
+</ol>
+<p>   RDBMS 指关系型数据库管理系统，全称 Relational Database Management System。</p>
+<p>   RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础，比如 MS SQL Server、IBM DB2、Oracle、MySQL 以及 Microsoft Access。</p>
+<p>   RDBMS 中的数据存储在被称为表的数据库对象中。</p>
+<p>   表是相关的数据项的集合，它由列和行组成。</p>
+<p>   代码示例：</p>
+<p>   SELECT * FROM Customers;</p>
+<h2 id="二、SQL-语法"><a href="#二、SQL-语法" class="headerlink" title="二、SQL 语法"></a>二、SQL 语法</h2><ol>
+<li> SQL<strong>语法规则</strong></li>
+</ol>
+<p>   SQL语句总是以关键字开始。<br>   SQL语句以分号结尾。<br>   SQL不区分大小写，意味着更新与UPDATE相同</p>
+<ol start="2">
+<li> <strong>一些最重要的 SQL 命令</strong></li>
+</ol>
+<p>   CREATE DATABASE - 创建新数据库<br>   ALTER DATABASE - 修改数据库<br>   CREATE TABLE - 创建新表<br>   ALTER TABLE - 变更（改变）数据库表<br>   DROP TABLE - 删除表//删除一列<br>   SELECT - 从数据库中提取数据<br>   UPDATE - 更新数据库中的数据<br>   DELETE - 从数据库中删除数据//删除一行<br>   INSERT INTO - 向数据库中插入新数据<br>   CREATE INDEX - 创建索引（搜索键）<br>   DROP INDEX - 删除索引<br>3.  SQL Select <strong>（选择） 语法</strong></p>
+<p>   SELECT 语法用于从数据库中选择数据。</p>
+<p>   返回的数据存储在结果表中，称为结果集。</p>
+<ol start="4">
+<li> SQL WHERE Clause <strong>（查询子句）</strong></li>
+</ol>
+<p>   WHERE 子句用于过滤记录。</p>
+<p>   注意： WHERE子句不仅用于SELECT语法，还用于UPDATE，DELETE语法等！</p>
+<ol start="5">
+<li> WHERE 子句中的运算符</li>
+</ol>
+<p>   WHERE子句中可以使用以下运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于。 注意 ：在某些版本的SQL中，这个操作符可能写成！=</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>在某个范围内</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>搜索某种模式</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>为列指定多个可能的值</td>
+</tr>
+<tr>
+<td>6.  SQL AND, OR and NOT <strong>（与，或非运算符）</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>   AND&amp;OR运算符用于根据一个以上的条件过滤记录。</p>
+<p>   NOT<strong>语法</strong></p>
+<p>   SELECT column1, column2, …<br>   FROM table_name<br>   WHERE NOT condition;</p>
+<p>   以下SQL语句选择来自”Customers” 的国家不是 “Germany” 且不是 “USA”的所有字段：</p>
+<p>   代码示例：</p>
+<p>   SELECT * FROM Customers<br>   WHERE NOT Country=’Germany’ AND NOT Country=’USA’;</p>
+<ol start="7">
+<li> SQL ORDER BY Keyword<strong>（按关键字排序）</strong></li>
+</ol>
+<p>   ORDER BY 关键字用于对结果集进行排序。关键字默认情况下按升序排序记录。</p>
+<p>   SQL ORDER BY 语法</p>
+<p>   SELECT column1, column2, …<br>   FROM table_name<br>   ORDER BY column1, column2, … ASC|DESC;</p>
+<ol start="8">
+<li> SQL INSERT INTO 语句（在表中插入）</li>
+</ol>
+<p>   INSERT INTO 语句用于向表中插入新记录。</p>
+<ol start="9">
+<li> <strong>什么是SQL NULL值？</strong></li>
+</ol>
+<p>   SQL 中， NULL 用于表示缺失的值。数据表中的 NULL 值表示该值所处的字段为空。</p>
+<p>   具有NULL值的字段是没有值的字段。</p>
+<p>   如果表中的字段是可选的，则可以插入新记录或更新记录而不向该字段添加值。然后，该字段将被保存为NULL值。</p>
+<p>   值为 NULL 的字段没有值。尤其要明白的是，NULL 值与 0 或者包含空白（spaces）的字段是不同的。</p>
+<ol start="10">
+<li> <strong>如何测试NULL值？</strong></li>
+</ol>
+<pre><code>使用比较运算符（例如=，&lt;或&lt;&gt;）来测试NULL值是不可行的。
+
+我们将不得不使用IS NULL和IS NOT NULL运算符。
+
+IS NULL**语法**
+
+SELECT column_names
+FROM table_name
+WHERE column_name IS NULL;
+
+IS NOT NULL**语法**
+
+SELECT column_names
+FROM table_name
+WHERE column_name IS NOT NULL;
+
+创建表的时候，NULL 的基本语法如下：
+
+SQL&gt; CREATE TABLE CUSTOMERS(
+ID INT NOT NULL,
+NAME VARCHAR (20) NOT NULL,
+AGE INT NOT NULL,
+ADDRESS CHAR (25) ,
+SALARY DECIMAL (18, 2),
+PRIMARY KEY (ID)
+);
+</code></pre>
+<ol start="11">
+<li> SQL UPDATE 语句（更新表中的记录）</li>
+</ol>
+<pre><code>UPDATE 语句用于更新表中的现有记录。
+</code></pre>
+<ol start="12">
+<li> SQL UPDATE 语句</li>
+</ol>
+<pre><code>UPDATE 语句用于更新表中已存在的记录。
+
+SQL UPDATE 语法
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, …
+WHERE condition;
+
+请注意
+
+更新表中的记录时要小心！ 要注意SQL UPDATE 语句中的 WHERE 子句！ WHERE子句指定哪些记录需要更新。如果省略WHERE子句，所有记录都将更新！
+</code></pre>
+<ol start="13">
+<li> SQL Delete 语句（删除表中的记录）</li>
+</ol>
+<pre><code>DELETE语句用于删除表中现有记录。
+</code></pre>
+<ol start="14">
+<li> SQL DELETE 语句</li>
+</ol>
+<pre><code>DELETE 语句用于删除表中的行。
+
+SQL DELETE 语法
+
+DELETE FROM table_name
+WHERE condition;
+
+请注意 删除表格中的记录时要小心！ 注意SQL DELETE 语句中的 WHERE 子句！ WHERE子句指定需要删除哪些记录。如果省略了WHERE子句，表中所有记录都将被删除！
+
+删除所有数据
+
+您可以删除表中的所有行，而不需要删除该表。这意味着表的结构、属性和索引将保持不变：
+
+DELETE FROM table_name;
+
+或者
+
+DELETE * FROM table_name;
+
+注意： 在没有备份的情况下，删除记录要格外小心！因为你删除了不能重复！
+</code></pre>
+<ol start="15">
+<li> SQL SELECT TOP, LIMIT, ROWNUM(<strong>一样的效果</strong>)</li>
+</ol>
+<pre><code>SELECT TOP 子句用于指定要返回的记录数量。
+SELECT TOP子句在包含数千条记录的大型表上很有用。返回大量记录会影响性能。
+注： 并不是所有的数据库系统都支持SELECT TOP子句。MySQL支持LIMIT子句来选择有限数量的记录，而Oracle使用ROWNUM。
+
+SQL SELECT TOP PERCENT 实例
+
+以下SQL语句从 “Customers” 表中选择前50%的记录：
+
+实例
+
+SELECT TOP 50 PERCENT * FROM Customers;
+
+SQL TOP**，LIMIT和ROWNUM示例**
+
+以下SQL语句从”Customers”表中选择前三个记录：
+
+SELECT TOP 3 * FROM Customers;
+
+以下SQL语句显示了使用LIMIT子句的等效示例：
+
+SELECT * FROM Customers
+LIMIT 3;
+
+以下SQL语句显示了使用ROWNUM的等效示例：
+
+SELECT * FROM Customer
+WHERE ROWNUM &lt;= 3;
+</code></pre>
+<ol start="16">
+<li> SQL LIKE 运算符</li>
+</ol>
+<pre><code>在WHERE子句中使用LIKE运算符来搜索列中的指定模式。
+
+SQL LIKE 操作符
+
+LIKE 操作符用于在 WHERE 子句中搜索列中的指定模式。
+
+有两个通配符与LIKE运算符一起使用：
+
+％ - 百分号表示零个，一个或多个字符
+_ - 下划线表示单个字符
+注意： MS Access使用问号（?）而不是下划线（_）。
+
+百分号和下划线也可以组合使用！
+</code></pre>
+<ol start="17">
+<li> SQL LIKE 语法</li>
+</ol>
+<pre><code>SELECT column1, column2, …
+FROM table_name
+WHERE columnN LIKE pattern;
+
+提示 ：您还可以使用AND或OR运算符组合任意数量的条件。
+
+下面是一些使用’％’和’_’通配符显示不同LIKE运算符的例子：
+
+LIKE 运算符    描述
+WHERE CustomerName LIKE ‘a%’    查找以“a”开头的任何值
+WHERE CustomerName LIKE ‘%a’    查找以“a”结尾的任何值
+WHERE CustomerName LIKE ‘%or%’    在任何位置查找任何具有“or”的值
+WHERE CustomerName LIKE ‘_r%’    在第二个位置查找任何具有“r”的值
+WHERE CustomerName LIKE ‘a%%’    查找以“a”开头且长度至少为3个字符的值
+WHERE ContactName LIKE ‘a%o’    找到以”a”开头，以”o”结尾的值
+</code></pre>
+<ol start="18">
+<li> <strong>使用 SQL [charlist] 通配符</strong></li>
+</ol>
+<pre><code>以下SQL语句选择所有客户City以”b”、”s”或”p”开头：
+
+实例
+
+SELECT * FROM Customers
+WHERE City LIKE ‘[bsp]%’;
+
+以下SQL语句选择“City”以“a”、“b”或“c”开头的所有客户：
+
+实例
+
+SELECT * FROM Customers
+WHERE City LIKE ‘[a-c]%’;
+
+以下SQL语句选择所有客户City不以”b”、”s”或”p”开头：
+
+实例
+
+SELECT * FROM Customers
+WHERE City LIKE ‘[!bsp]%’;
+</code></pre>
+<ol start="19">
+<li><p>SQL IN 运算符</p>
+<p> IN运算符允许您在WHERE子句中指定多个值。</p>
+<p> IN运算符是多个OR条件的简写。</p>
+<p> SQL IN 语法</p>
+<p> SELECT column_name(s)<br> FROM table_name<br> WHERE column_name IN (value1, value2, …);</p>
+<p> 或者</p>
+<p> SELECT column_name(s)<br> FROM table_name<br> WHERE column_name IN (SELECT STATEMENT);</p>
+</li>
+<li><p>IN 操作符实例</p>
 <p>以下SQL语句选择位于“Germany”，“France”和“UK”的所有客户：</p>
 <p>代码示例：</p>
 <p>SELECT * FROM Customers<br>WHERE Country IN (‘Germany’, ‘France’, ‘UK’);</p>
@@ -136,12 +571,17 @@
 <p>以下SQL语句选择来自同一国家的所有客户作为供应商：</p>
 <p>代码示例：</p>
 <p>SELECT * FROM Customers<br>WHERE Country IN (SELECT Country FROM Suppliers);</p>
-<p>21.SQL BETWEEN<strong>运算符</strong></p>
+</li>
+<li><p>SQL BETWEEN<strong>运算符</strong></p>
+</li>
+</ol>
 <p>BETWEEN 操作符用于选取介于两个值之间的数据范围内的值。</p>
 <p>BETWEEN运算符选择给定范围内的值。值可以是数字，文本或日期。</p>
 <p>BETWEEN运算符是包含性的：包括开始和结束值。</p>
 <p>SELECT column_name(s)<br>FROM table_name<br>WHERE column_name BETWEEN value1 AND value2;</p>
-<p>22.NOT BETWEEN 操作符实例</p>
+<ol start="22">
+<li>NOT BETWEEN 操作符实例</li>
+</ol>
 <p>要显示前面示例范围之外的产品，请使用NOT BETWEEN：</p>
 <p>实例</p>
 <p>SELECT * FROM Products<br>WHERE Price NOT BETWEEN 10 AND 20;</p>
@@ -153,60 +593,71 @@
 <p>SELECT * FROM Orders<br>WHERE OrderDate BETWEEN #07/04/1996# AND #07/09/1996#;</p>
 <p>**请注意，在不同的数据库中，BETWEEN 操作符会产生不同的结果！</p>
 <p>在一些数据库中，BETWEEN 选取介于两个值之间但不包括两个测试值的字段。 在一些数据库中，BETWEEN 选取介于两个值之间且包括两个测试值的字段。 在一些数据库中，BETWEEN 选取介于两个值之间且包括第一个测试值但不包括最后一个测试值的字段</p>
-<p>23.SQL 通用数据类型</p>
+<ol start="23">
+<li>SQL 通用数据类型</li>
+</ol>
 <p>数据库表中的每一列都需要有一个名称和数据类型。</p>
 <p>SQL 开发人员必须在创建 SQL 表时决定表中的每个列将要存储的数据的类型。数据类型是一个标签，是便于 SQL 了解每个列期望存储什么类型的数据的指南，它也标识了 SQL 如何与存储的数据进行交互。</p>
 <p>下面的表格列出了 SQL 中通用的数据类型：</p>
-<p>数据类型    描述<br>CHARACTER(n)    字符/字符串。固定长度 n。<br>VARCHAR(n) 或 CHARACTER VARYING(n)    字符/字符串。可变长度。最大长度 n。<br>BINARY(n)    二进制串。固定长度 n。<br>BOOLEAN    存储 TRUE 或 FALSE 值<br>VARBINARY(n) 或 BINARY VARYING(n)    二进制串。可变长度。最大长度 n。<br>INTEGER(p)    整数值（没有小数点）。精度 p。<br>SMALLINT    整数值（没有小数点）。精度 5。<br>INTEGER    整数值（没有小数点）。精度 10。<br>BIGINT    整数值（没有小数点）。精度 19。<br>DECIMAL(p,s)    精确数值，精度 p，小数点后位数 s。例如：decimal(5,2) 是一个小数点前有 3 位数小数点后有 2 位数的数字。<br>NUMERIC(p,s)    精确数值，精度 p，小数点后位数 s。（与 DECIMAL 相同）<br>FLOAT(p)    近似数值，尾数精度 p。一个采用以 10 为基数的指数计数法的浮点数。该类型的 size 参数由一个指定最小精度的单一数字组成。<br>REAL    近似数值，尾数精度 7。<br>FLOAT    近似数值，尾数精度 16。<br>DOUBLE PRECISION    近似数值，尾数精度 16。<br>DATE    存储年、月、日的值。<br>TIME    存储小时、分、秒的值。<br>TIMESTAMP    存储年、月、日、小时、分、秒的值。<br>INTERVAL    由一些整数字段组成，代表一段时间，取决于区间的类型。<br>ARRAY    元素的固定长度的有序集合<br>MULTISET    元素的可变长度的无序集合<br>XML    存储 XML 数据<br>CREATE INDEX    \CREATE INDEX index_name ON table_name (column_name) or CREATE UNIQUE INDEX index_name ON table_name (column_name)**<br>CREATE VIEW    \CREATE VIEW view_name AS SELECT column_name(s) FROM table_name WHERE condition**<br>DROP INDEX    ALTER TABLE table_name DROP INDEX index_name (MySQL)`<br>INNER JOIN    \SELECT column_name(s) FROM table_name1 INNER JOIN table_name2 ON table_name1.column_name=table_name2.column_name**<br>LEFT JOIN    SELECT column_name(s) FROM table_name1 LEFT JOIN table_name2 ON table_name1.column_name=table_name2.column_name<br>RIGHT JOIN    SELECT column_name(s) FROM table_name1 RIGHT JOIN table_name2 ON table_name1.column_name=table_name2.column_name<br>FULL JOIN    SELECT column_name(s) FROM table_name1 FULL JOIN table_name2 ON table_name1.column_name=table_name2.column_name<br>LIKE    SELECT column_name(s) FROM table_name WHERE column_nameLIKE pattern<br>TRUNCATE TABLE    \TRUNCATE TABLE table_name**<br>UNION    SELECT column_name(s) FROM table_name1 UNION SELECT column_name(s) FROM table_name2<br>UNION ALL    SELECT column_name(s) FROM table_name1 UNION ALL SELECT column_name(s) FROM table_name2<br>三、<strong>SQL 连接（Joins）</strong></p>
-<p>SQL join 用于把来自两个或多个表的行结合起来。</p>
-<p>1.SQL JOIN</p>
+<p>数据类型    描述<br>CHARACTER(n)    字符/字符串。固定长度 n。<br>VARCHAR(n) 或 CHARACTER VARYING(n)    字符/字符串。可变长度。最大长度 n。<br>BINARY(n)    二进制串。固定长度 n。<br>BOOLEAN    存储 TRUE 或 FALSE 值<br>VARBINARY(n) 或 BINARY VARYING(n)    二进制串。可变长度。最大长度 n。<br>INTEGER(p)    整数值（没有小数点）。精度 p。<br>SMALLINT    整数值（没有小数点）。精度 5。<br>INTEGER    整数值（没有小数点）。精度 10。<br>BIGINT    整数值（没有小数点）。精度 19。<br>DECIMAL(p,s)    精确数值，精度 p，小数点后位数 s。例如：decimal(5,2) 是一个小数点前有 3 位数小数点后有 2 位数的数字。<br>NUMERIC(p,s)    精确数值，精度 p，小数点后位数 s。（与 DECIMAL 相同）<br>FLOAT(p)    近似数值，尾数精度 p。一个采用以 10 为基数的指数计数法的浮点数。该类型的 size 参数由一个指定最小精度的单一数字组成。<br>REAL    近似数值，尾数精度 7。<br>FLOAT    近似数值，尾数精度 16。<br>DOUBLE PRECISION    近似数值，尾数精度 16。<br>DATE    存储年、月、日的值。<br>TIME    存储小时、分、秒的值。<br>TIMESTAMP    存储年、月、日、小时、分、秒的值。<br>INTERVAL    由一些整数字段组成，代表一段时间，取决于区间的类型。<br>ARRAY    元素的固定长度的有序集合<br>MULTISET    元素的可变长度的无序集合<br>XML    存储 XML 数据<br>CREATE INDEX    \CREATE INDEX index_name ON table_name (column_name) or CREATE UNIQUE INDEX index_name ON table_name (column_name)**<br>CREATE VIEW    \CREATE VIEW view_name AS SELECT column_name(s) FROM table_name WHERE condition**<br>DROP INDEX    ALTER TABLE table_name DROP INDEX index_name (MySQL)`<br>INNER JOIN    \SELECT column_name(s) FROM table_name1 INNER JOIN table_name2 ON table_name1. column_name=table_name2. column_name**<br>LEFT JOIN    SELECT column_name(s) FROM table_name1 LEFT JOIN table_name2 ON table_name1. column_name=table_name2. column_name<br>RIGHT JOIN    SELECT column_name(s) FROM table_name1 RIGHT JOIN table_name2 ON table_name1. column_name=table_name2. column_name<br>FULL JOIN    SELECT column_name(s) FROM table_name1 FULL JOIN table_name2 ON table_name1. column_name=table_name2. column_name<br>LIKE    SELECT column_name(s) FROM table_name WHERE column_nameLIKE pattern<br>TRUNCATE TABLE    \TRUNCATE TABLE table_name**<br>UNION    SELECT column_name(s) FROM table_name1 UNION SELECT column_name(s) FROM table_name2<br>UNION ALL    SELECT column_name(s) FROM table_name1 UNION ALL SELECT column_name(s) FROM table_name2</p>
+<hr>
+<h2 id="三、SQL-连接（Joins）"><a href="#三、SQL-连接（Joins）" class="headerlink" title="三、SQL 连接（Joins）"></a>三、<strong>SQL 连接（Joins）</strong></h2><p>SQL join 用于把来自两个或多个表的行结合起来。</p>
+<ol>
+<li>SQL JOIN</li>
+</ol>
 <p>SQL JOIN 子句用于把来自两个或多个表的行结合起来，基于这些表之间的共同字段。</p>
 <p>最常见的 JOIN 类型： SQL INNER JOIN<strong>（简单的 JOIN</strong>） 。 SQL INNER JOIN 从多个表中返回满足 JOIN 条件的所有行。</p>
-<p>2.<strong>不同的 SQL JOIN</strong></p>
+<ol start="2">
+<li><strong>不同的 SQL JOIN</strong></li>
+</ol>
 <p>在我们继续讲解实例之前，我们先列出您可以使用的不同的 SQL JOIN 类型：</p>
 <p>INNER JOIN ：如果表中有至少一个匹配，则返回行<br>LEFT JOIN ：即使右表中没有匹配，也从左表返回所有的行<br>RIGHT JOIN ：即使左表中没有匹配，也从右表返回所有的行<br>FULL JOIN ：只要其中一个表中存在匹配，则返回行<br>注释： INNER JOIN 与 JOIN 是相同的。<br>以下是 “Customers” 表中的数据：</p>
-<p>CustomerID    CustomerName    ContactName    Address    City    PostalCode    Country<br>1    Alfreds Futterkiste    Maria Anders    Obere Str. 57    Berlin    12209    Germany<br>2    Ana Trujillo Emparedados y helados    Ana Trujillo    Avda. de la Constitución 2222    México D.F.    05021    Mexico<br>3    Antonio Moreno Taquería    Antonio Moreno    Mataderos 2312    México D.F.    05023    Mexico<br>选自 “Orders” 表的数据：</p>
+<p>CustomerID    CustomerName    ContactName    Address    City    PostalCode    Country<br>1    Alfreds Futterkiste    Maria Anders    Obere Str.  57    Berlin    12209    Germany<br>2    Ana Trujillo Emparedados y helados    Ana Trujillo    Avda.  de la Constitución 2222    México D. F.     05021    Mexico<br>3    Antonio Moreno Taquería    Antonio Moreno    Mataderos 2312    México D. F.     05023    Mexico<br>选自 “Orders” 表的数据：</p>
 <p>OrderID    CustomerID    EmployeeID    OrderDate    ShipperID<br>10308    2    7    1996-09-18    3<br>10309    37    3    1996-09-19    1<br>10310    77    8    1996-09-20    2<br>SQL INNER JOIN 实例</p>
 <p>以下SQL语句将返回所有下订单的客户：</p>
 <p>示例</p>
-<p>SELECT Customers.CustomerName, Orders.OrderID<br>FROM Customers<br>INNER JOIN Orders<br>ON Customers.CustomerID=Orders.CustomerID<br>ORDER BY Customers.CustomerName;</p>
+<p>SELECT Customers. CustomerName, Orders. OrderID<br>FROM Customers<br>INNER JOIN Orders<br>ON Customers. CustomerID=Orders. CustomerID<br>ORDER BY Customers. CustomerName;</p>
 <p>注释： 如果表中至少有一个匹配项，INNER JOIN 关键字将返回一行。如果 “Customers” 表中的行与”Orders” 不匹配，则不会列出行。</p>
 <p>以下SQL语句选择包含客户和货运单信息的所有订单：</p>
 <p>示例：</p>
-<p>SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName<br>FROM ((Orders<br>INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)<br>INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);</p>
+<p>SELECT Orders. OrderID, Customers. CustomerName, Shippers. ShipperName<br>FROM ((Orders<br>INNER JOIN Customers ON Orders. CustomerID = Customers. CustomerID)<br>INNER JOIN Shippers ON Orders. ShipperID = Shippers. ShipperID);</p>
 <p>让我们看看选自 “Orders” 表的数据：</p>
 <p>OrderID    CustomerID    OrderDate<br>10308    2    1996-09-18<br>10309    37    1996-09-19<br>10310    77    1996-09-20<br>然后，看看选自 “Customers” 表的数据：</p>
 <p>CustomerID    CustomerName    ContactName    Country<br>1    Alfreds Futterkiste    Maria Anders    Germany<br>2    Ana Trujillo Emparedados y helados    Ana Trujillo    Mexico<br>3    Antonio Moreno Taquería    Antonio Moreno    Mexico<br>请注意，”Orders” 表中的 “CustomerID” 列指向 “Customers” 表中的客户。上面这两个表是通过 “CustomerID” 列联系起来的。</p>
 <p>然后，如果我们运行下面的 SQL 语句（包含 INNER JOIN）：</p>
 <p>实例</p>
-<p>SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate<br>FROM Orders<br>INNER JOIN Customers<br>ON Orders.CustomerID=Customers.CustomerID;</p>
+<p>SELECT Orders. OrderID, Customers. CustomerName, Orders. OrderDate<br>FROM Orders<br>INNER JOIN Customers<br>ON Orders. CustomerID=Customers. CustomerID;</p>
 <p>运行结果如下所示：</p>
 <p>OrderID    CustomerName    OrderDate<br>10308    Ana Trujillo Emparedados y helados    1996-09-18<br>SQL LEFT JOIN 实例</p>
 <p>以下SQL语句将选择所有客户以及他们可能拥有的任何订单：</p>
 <p>实例</p>
-<p>SELECT Customers.CustomerName, Orders.OrderID<br>FROM Customers<br>LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID<br>ORDER BY Customers.CustomerName;</p>
+<p>SELECT Customers. CustomerName, Orders. OrderID<br>FROM Customers<br>LEFT JOIN Orders ON Customers. CustomerID = Orders. CustomerID<br>ORDER BY Customers. CustomerName;</p>
 <p>注释： LEFT JOIN 关键字返回左表（Customers）中的所有行，即使在右边表（Orders）中没有匹配。</p>
 <p><em>结果只会显示符合</em><em><strong>where</strong>子句的数据，只要没有符合的都不会显示，因为它是筛选连接后的临时表中的数据，而</em><em>on</em> <em>只是连接，如果右边没有符合的数据，就显示<strong>null</strong>，而左边的数据都会显示，不会被过滤，这就是<strong>where</strong>和<strong>on</strong>最大的区别**</em></p>
 <p>SQL RIGHT JOIN 实例</p>
 <p>以下SQL语句将返回所有雇员以及他们可能已经放置的任何订单：</p>
 <p>实例</p>
-<p>SELECT Orders.OrderID, Employees.LastName, Employees.FirstName<br>FROM Orders<br>RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID<br>ORDER BY Orders.OrderID;</p>
+<p>SELECT Orders. OrderID, Employees. LastName, Employees. FirstName<br>FROM Orders<br>RIGHT JOIN Employees ON Orders. EmployeeID = Employees. EmployeeID<br>ORDER BY Orders. OrderID;</p>
 <p>注释： RIGHT JOIN 关键字返回右表（Employees）的所有行，即使在左表（Orders）中没有匹配。</p>
 <p>以下是”Customers” 表中的数据：</p>
-<p>CustomerID    CustomerName    ContactName    Address    City    PostalCode    Country<br>1    Alfreds Futterkiste    Maria Anders    Obere Str. 57    Berlin    12209    Germany<br>2    Ana Trujillo Emparedados y helados    Ana Trujillo    Avda. de la Constitución 2222    México D.F.    05021    Mexico<br>3    Antonio Moreno Taquería    Antonio Moreno    Mataderos 2312    México D.F.    05023    Mexico<br>选自 “Orders” 表的数据：</p>
+<p>CustomerID    CustomerName    ContactName    Address    City    PostalCode    Country<br>1    Alfreds Futterkiste    Maria Anders    Obere Str.  57    Berlin    12209    Germany<br>2    Ana Trujillo Emparedados y helados    Ana Trujillo    Avda.  de la Constitución 2222    México D. F.     05021    Mexico<br>3    Antonio Moreno Taquería    Antonio Moreno    Mataderos 2312    México D. F.     05023    Mexico<br>选自 “Orders” 表的数据：</p>
 <p>OrderID    CustomerID    EmployeeID    OrderDate    ShipperID<br>10308    2    7    1996-09-18    3<br>10309    3    3    1996-09-19    1<br>10310    77    8    1996-09-20    2<br>SQL FULL OUTER JOIN 实例</p>
 <p>当左（表1）或右（表2）表记录匹配时，FULL OUTER JOIN关键字将返回所有记录。</p>
 <p>注意： FULL OUTER JOIN可能会返回非常大的结果集！</p>
 <p>以下SQL语句选择所有客户和所有订单：</p>
-<p>SELECT Customers.CustomerName, Orders.OrderID<br>FROM Customers<br>FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID<br>ORDER BY Customers.CustomerName;</p>
+<p>SELECT Customers. CustomerName, Orders. OrderID<br>FROM Customers<br>FULL OUTER JOIN Orders ON Customers. CustomerID=Orders. CustomerID<br>ORDER BY Customers. CustomerName;</p>
 <p>从这套结果中选择的数据如下：</p>
 <p>CustomerName    OrderID<br>Alfreds Futterkiste<br>Ana Trujillo Emparedados y helados    10308<br>Antonio Moreno Taquería    10365<br>10382<br>10351<br>注意 ： FULL OUTER JOIN关键字返回左表（Customers）中的所有行，以及右表（Orders）中的所有行。如果 “Customers”中的行中没有”Orders”中的匹配项，或者”Orders”中的行中没有 “Customers”中的匹配项，那么这些行也会列出。</p>
-<p>3.SQL<strong>自联接</strong></p>
+<ol start="3">
+<li>SQL<strong>自联接</strong></li>
+</ol>
 <p>自联接是一种常规联接，但表本身是连接的。</p>
 <p>就是可以把一张表看成两张表 取不同的名字暂时使用</p>
 <p>Self JOIN<strong>语法</strong></p>
 <p>SELECT column_name(s)<br>FROM table1 T1, table1 T2<br>WHERE condition;</p>
-<p>4.SQL UNION 运算符</p>
+<ol start="4">
+<li>SQL UNION 运算符</li>
+</ol>
 <p>UNION运算符用于组合两个或更多SELECT语句的结果集。</p>
 <p>UNION中的每个SELECT语句必须具有相同的列数<br>这些列也必须具有相似的数据类型<br>每个SELECT语句中的列也必须以相同的顺序排列<br>SQL UNION 语法</p>
 <p>SELECT column_name(s) FROM table1<br>UNION<br>SELECT column_name(s) FROM table2;</p>
@@ -214,7 +665,9 @@
 <p>SQL UNION ALL 语法</p>
 <p>SELECT column_name(s) FROM table1<br>UNION ALL<br>SELECT column_name(s) FROM table2;</p>
 <p>注释： UNION结果集中的列名总是等于UNION中第一个SELECT语句中的列名。</p>
-<p>5.SQL SELECT INTO 语句（这是列的插入复制）</p>
+<ol start="5">
+<li>SQL SELECT INTO 语句（这是列的插入复制）</li>
+</ol>
 <p>SELECT INTO 语句从一个表复制数据，然后把数据插入到另一个新表中。***</p>
 <p>我们可以把所有的列都复制到新表中：</p>
 <p>SELECT *<br>INTO newtable [IN externaldb ]<br>FROM table1;</p>
@@ -224,10 +677,12 @@
 <p>创建 Customers 的备份复件：</p>
 <p>SELECT *<br>INTO CustomersBackup2013<br>FROM Customers;</p>
 <p>请使用 IN 子句来复制表到另一个数据库中：</p>
-<p>SELECT *<br>INTO CustomersBackup2013 IN ‘Backup.mdb’<br>FROM Customers;</p>
+<p>SELECT *<br>INTO CustomersBackup2013 IN ‘Backup. mdb’<br>FROM Customers;</p>
 <p>只复制一些列插入到新表中：</p>
 <p>SELECT CustomerName, ContactName<br>INTO CustomersBackup2013<br>FROM Customers;</p>
-<p>6.SQL INSERT INTO SELECT 语句（这是列的插入复制）</p>
+<ol start="6">
+<li>SQL INSERT INTO SELECT 语句（这是列的插入复制）</li>
+</ol>
 <p>INSERT INTO SELECT 语句从表中复制数据，并将数据插入现有的表中。目标表中的任何现有行都不会受到影响</p>
 <p>我们可以将所有列从一个表中复制到另一个已经存在的表中：</p>
 <p>INSERT INTO table2<br>SELECT * FROM table1;</p>
@@ -236,22 +691,23 @@
 <p>把 “Suppliers” 一栏复制到 “Customers” 一栏：</p>
 <p>实例</p>
 <p>INSERT INTO Customers (CustomerName, Country)<br>SELECT SupplierName, Country FROM Suppliers;</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>四、<strong>SQL 子查询</strong></p>
-<p>子查询（Sub Query）或者说内查询（Inner Query），也可以称作嵌套查询（Nested Query），是一种嵌套在其他 SQL 查询的 WHERE 子句中的查询。</p>
+<hr>
+<h2 id="四、SQL-子查询"><a href="#四、SQL-子查询" class="headerlink" title="四、SQL 子查询"></a>四、<strong>SQL 子查询</strong></h2><p>子查询（Sub Query）或者说内查询（Inner Query），也可以称作嵌套查询（Nested Query），是一种嵌套在其他 SQL 查询的 WHERE 子句中的查询。</p>
 <p>子查询用于为主查询返回其所需数据，或者对检索数据进行进一步的限制。</p>
 <p>子查询可以在 SELECT、INSERT、UPDATE 和 DELETE 语句中，同 =、&lt;、&gt;、&gt;=、&lt;=、IN、BETWEEN 等运算符一起使用。</p>
 <p>使用子查询必须遵循以下几个规则：</p>
-<p>子查询必须括在圆括号中。<br>子查询的 SELECT 子句中只能有一个列，除非主查询中有多个列，用于与子查询选中的列相比较。<br>子查询不能使用 ORDER BY，不过主查询可以。在子查询中，GROUP BY 可以起到同 ORDER BY 相同的作用。<br>返回多行数据的子查询只能同多值操作符一起使用，比如 IN 操作符。<br>SELECT 列表中不能包含任何对 BLOB、ARRAY、CLOB 或者 NCLOB 类型值的引用。<br>子查询不能直接用在集合函数中。<br>BETWEEN 操作符不能同子查询一起使用，但是 BETWEEN 操作符可以用在子查询中。<br>五、<strong>SQL</strong>函数</p>
-<p>一、创建函数 语法：</p>
+<p>子查询必须括在圆括号中。<br>子查询的 SELECT 子句中只能有一个列，除非主查询中有多个列，用于与子查询选中的列相比较。<br>子查询不能使用 ORDER BY，不过主查询可以。在子查询中，GROUP BY 可以起到同 ORDER BY 相同的作用。<br>返回多行数据的子查询只能同多值操作符一起使用，比如 IN 操作符。<br>SELECT 列表中不能包含任何对 BLOB、ARRAY、CLOB 或者 NCLOB 类型值的引用。<br>子查询不能直接用在集合函数中。<br>BETWEEN 操作符不能同子查询一起使用，但是 BETWEEN 操作符可以用在子查询中。</p>
+<hr>
+<h2 id="五、SQL函数"><a href="#五、SQL函数" class="headerlink" title="五、SQL函数"></a>五、<strong>SQL</strong>函数</h2><p>一、创建函数 语法：</p>
 <p>create function 函数名(参数列表**)</p>
 <p>retrurns 返回类型</p>
 <p>begin 函数体 end</p>
 <p>注意： 参数列表包含两部分： 参数名 参数类型函数体：肯定会有return语句，如果没有会报错 如果return语句没有放在函数体的最后也不会报错，但不建议 return值；（建议放最后）函数体中仅有一句话，则可以省略begin end使用delimiter语句设置结束标记 学过的函数：LENGTH、SUBSTR、CONCAT等 二、调用语法 语法：</p>
 <p>SELECT 函数名（参数列表） 即执行函数中的所有语句，并显示返回值 #函数的使用（案例演示） 无参有返回 #返回公司的员工个数</p>
 <p>注：mysql的设置默认是不允许创建函数 这是我们开启了bin-log, 我们就必须指定我们的函数是否是</p>
-<p>1 .DETERMINISTIC 不确定的</p>
-<p>2 .NO SQL 没有SQl语句，当然也不会修改数据</p>
-<p>3 .READS SQL DATA 只是读取数据，当然也不会修改数据</p>
+<p>1 . DETERMINISTIC 不确定的</p>
+<p>2 . NO SQL 没有SQl语句，当然也不会修改数据</p>
+<p>3 . READS SQL DATA 只是读取数据，当然也不会修改数据</p>
 <p>MODIFIES SQL DATA 要修改数据<br>CONTAINS SQL 包含了SQL语句 其中在function里面，只有 DETERMINISTIC, NO SQL 和 READS SQL DATA 被支持。<br>如果我们开启了 bin-log, 我们就必须为我们的function指定一个参数。</p>
 <p>在MySQL中创建函数时出现这种错误的解决方法：</p>
 <p>set global log_bin_trust_function_creators=TRUE;</p>
@@ -261,7 +717,7 @@
 <p>SELECT func_年龄(‘2001-08-11’) 年龄;</p>
 <p>顺序结构</p>
 <p>先来一个简单的，创建一个函数将’2009-06-23 00:00:00’这样格式的datetime时间转化为‘2009年6月23日0时0分0秒’这样的格式：</p>
-<h2 id="创建一个叫getdate的自定义函数"><a href="#创建一个叫getdate的自定义函数" class="headerlink" title="创建一个叫getdate的自定义函数"></a>创建一个叫getdate的自定义函数</h2><p>DELIMITER $$ DROP FUNCTION IF EXISTS testdb.fn_getdate$$ CREATE FUNCTION testdb.fn_getdate(gdate datetime)</p>
+<h2 id="创建一个叫getdate的自定义函数"><a href="#创建一个叫getdate的自定义函数" class="headerlink" title="创建一个叫getdate的自定义函数"></a>创建一个叫getdate的自定义函数</h2><p>DELIMITER $$ DROP FUNCTION IF EXISTS testdb. fn_getdate$$ CREATE FUNCTION testdb. fn_getdate(gdate datetime)</p>
 <p>RETURNS varchar(255) BEGIN DECLARE dt VARCHAR(255) DEFAULT ‘’; SET dt = date_format(gdate, ‘%Y年%m月%d日%h时%i分%s秒’); RETURN dt; END $$ DELIMITER ;</p>
 <p>解析：</p>
 <p>第一句DELIMITER 是定义一个结束标识符$$，因为MySQL默认是以分号作为SQL语句的结束符的，而函数体内部要用到分号，所以会跟默认的SQL结束符发生冲突，所以需要先定义一个其他的符号作为SQL的结束符；</p>
@@ -272,29 +728,38 @@
 <p>RETURN 是返回值，这里把变量x返回，x的类型必须与第三句中定义的返回类型一致。</p>
 <p>调用：<strong>SELECT</strong> fn_getdate(‘2009-06-23 00:00:00’）; //返回 ‘2009年06月23日00时00分00秒’</p>
 <p>自定义函数分为二种，一种是标量值函数，另一种是表格值函数</p>
-<p>一**. 标量值函数 ：返回一个标量值**</p>
+<p>一**.  标量值函数 ：返回一个标量值**</p>
 <p>语法：</p>
 <p>Create function 函数名（参数）<br>Returns 返回值数据类型<br>as<br>begin<br>SQL语句(必须有return 变量或值)<br>End</p>
 <p>例子：</p>
-<p>1.创建函数：</p>
+<ol>
+<li>创建函数：</li>
+</ol>
 <p>CREATE FUNCTION MySTR(@strs VARCHAR(50))<br>RETURNS VARCHAR(50)<br>AS<br>BEGIN<br>DECLARE @str2 VARCHAR(30)<br>SET @str2=@strs<br>RETURN @str2<br>END</p>
-<p>2.执行函数：</p>
-<p>SELECT dbo.MySTR(‘aa’) AS result</p>
+<ol start="2">
+<li>执行函数：</li>
+</ol>
+<p>SELECT dbo. MySTR(‘aa’) AS result</p>
 <p>在sql语句中执行：</p>
-<p>DECLARE @str3 VARCHAR(30)<br>SET @str3=(select name from userinfo where huji=dbo.MySTR(‘邯郸’) and id=23 )<br>select @str3</p>
+<p>DECLARE @str3 VARCHAR(30)<br>SET @str3=(select name from userinfo where huji=dbo. MySTR(‘邯郸’) and id=23 )<br>select @str3</p>
 <p>函数的调用：</p>
 <p>直接使用函数名()就可以调用【虽然这么说，但返回的是一个结果，<strong>sql中不使用select</strong>的话任何结果都无法显示出来（所以单纯调用会报错），】<br>如果想要传入参数可以使用函数名(参数)<br>调用方式【下面调用的函数都是上面中创建的。】：<br>– 无参调用<br>select myselect3();<br>– 传参调用<br>select myselect5(“python”);<br>select * from class where id=myselect5(“python”);</p>
 <p>经典例子：</p>
-<p>– 最简单的仅有一条sql的函数<br>create function myselect2() returns int return 666;<br>select myselect2(); – 调用函数<br>–<br>create function myselect3() returns int<br>begin<br>declare c int;<br>select id from class where cname=”python” into c;<br>return c;<br>end;<br>select myselect3();<br>– 带传参的函数<br>create function myselect5(name varchar(15)) returns int<br>begin<br>declare c int;<br>select id from class where cname=name into c;<br>return c;<br>end;<br>select myselect5(“python”);</p>
+<p>最简单的仅有一条sql的函数<br>create function myselect2() returns int return 666;<br>select myselect2(); – 调用函数</p>
+<p>–<br>create function myselect3() returns int<br>begin<br>declare c int;<br>select id from class where cname=”python” into c;<br>return c;<br>end;<br>select myselect3();<br>– 带传参的函数<br>create function myselect5(name varchar(15)) returns int<br>begin<br>declare c int;<br>select id from class where cname=name into c;<br>return c;<br>end;<br>select myselect5(“python”);</p>
 <p>二、 表格值函数 ，表格值函数有二种（内联表格值函数，多句表格值函数）</p>
 <p>A<strong>、</strong>内联表格值函数：返回一个表格<br>语法：</p>
 <p>create function 函数名（参数）<br>returns table<br>as<br>return(一条SQL语句)</p>
 <p>例子：</p>
-<p>1.创建函数：</p>
+<ol>
+<li>创建函数：</li>
+</ol>
 <p>CREATE FUNCTION tabcmess(@title VARCHAR(10))<br>RETURNS TABLE<br>AS<br>return(select title,des from product where title like ‘%‘+@title+’%’)</p>
-<p>2.执行：</p>
+<ol start="2">
+<li>执行：</li>
+</ol>
 <p>SELECT * FROM tabcmess(‘aaa’)</p>
-<p>B.<strong>多句表格值函数</strong><br>语法：</p>
+<p>B. <strong>多句表格值函数</strong><br>语法：</p>
 <p>create function 函数名（参数）<br>returns 表格变量名table (表格变量定义)<br>as<br>begin<br>SQL语句<br>end</p>
 <p>例子：</p>
 <p>CREATE function tabcmessalot (@title varchar(10))<br>Returns @ctable table(title varchar(10) null,des varchar(100) null)<br>As<br>Begin<br>Insert @ctable Select title,des from product WHERE title LIKE ‘%‘+@title+’%’<br>return<br>End<br>–执行<br>SELECT * FROM tabcmessalot(‘aaa’)</p>
@@ -307,21 +772,21 @@
 <p>１、<strong>MySQL</strong>触发器的创建语法：</p>
 <p>CREATE[DEFINER = {‘user’| CURRENT_USER}]　<br>TRIGGER trigger_name<br>trigger_time trigger_event<br>ON table_name<br>FOR EACH ROW<br>[trigger_order]<br>trigger_body</p>
 <p>2<strong>、MySQL创建语法中的关键词解释：</strong></p>
-<p>字段    含义    可能的值<br>DEFINER=    可选参数，指定创建者，默认为当前登录用户（CURRENT_USER）； 该触发器将以此参数指定的用户执行，所以需要考虑权限问题；    DEFINER=‘root@%’ DEFINER=CURRENT_USER<br>trigger_name    触发器名称，最好由表名+触发事件关键词+触发时间关键词组成；<br>trigger_time    触发时间，在某个事件之前还是之后；    BEFORE、AFTER<br>trigger_event    触发事件，如插入时触发、删除时触发； 　　INSERT：插入操作触发器，INSERT、LOAD DATA、REPLACE时触发； 　　UPDATE：更新操作触发器，UPDATE操作时触发； 　　DELETE：删除操作触发器，DELETE、REPLACE操作时触发；    INSERT、UPDATE、DELETE<br>table_name    触发操作时间的表名；<br>trigger_order    可选参数，如果定义了多个具有相同触发事件和触法时间的触发器时（ 如：BEFORE UPDATE），默认触发顺序与触发器的创建顺序一致，可以 使用此参数来改变它们触发顺序。mysql 5.7.2起开始支持此参数。 　　FOLLOWS：当前创建触发器在现有触发器之后激活； 　　PRECEDES：当前创建触发器在现有触发器之前激活；    FOLLOWS、PRECEDES<br>trigger_body    触发执行的SQL语句内容，一般以begin开头，end结尾    begin .. end<br>３、触发执行语句内容（<strong>trigger_body）中的OLD，NEW</strong>：</p>
+<p>字段    含义    可能的值<br>DEFINER=    可选参数，指定创建者，默认为当前登录用户（CURRENT_USER）； 该触发器将以此参数指定的用户执行，所以需要考虑权限问题；    DEFINER=‘root@%’ DEFINER=CURRENT_USER<br>trigger_name    触发器名称，最好由表名+触发事件关键词+触发时间关键词组成；<br>trigger_time    触发时间，在某个事件之前还是之后；    BEFORE、AFTER<br>trigger_event    触发事件，如插入时触发、删除时触发； 　　INSERT：插入操作触发器，INSERT、LOAD DATA、REPLACE时触发； 　　UPDATE：更新操作触发器，UPDATE操作时触发； 　　DELETE：删除操作触发器，DELETE、REPLACE操作时触发；    INSERT、UPDATE、DELETE<br>table_name    触发操作时间的表名；<br>trigger_order    可选参数，如果定义了多个具有相同触发事件和触法时间的触发器时（ 如：BEFORE UPDATE），默认触发顺序与触发器的创建顺序一致，可以 使用此参数来改变它们触发顺序。mysql 5. 7. 2起开始支持此参数。 　　FOLLOWS：当前创建触发器在现有触发器之后激活； 　　PRECEDES：当前创建触发器在现有触发器之前激活；    FOLLOWS、PRECEDES<br>trigger_body    触发执行的SQL语句内容，一般以begin开头，end结尾    begin . .  end<br>３、触发执行语句内容（<strong>trigger_body）中的OLD，NEW</strong>：</p>
 <p>　　在trigger_body中，我们可以使用NEW表示将要插入的新行（相当于MS SQL的INSERTED），OLD表示将要删除的旧行（相当于MS SQL的DELETED）。通过OLD，NEW中获取它们的字段内容，方便在触发操作中使用，下面是对应事件是否支持OLD、NEW的对应关系：</p>
 <p>事件    OLD    NEW<br>INSERT    ×    √<br>DELETE    √    ×<br>UPDATE    √    √<br>　　由于UPDATE相当于删除旧行（OLD），然后插入新行（NEW），所以UPDATE同时支持OLD、NEW；</p>
 <p>４、<strong>MySQL分隔符（DELIMITER</strong>）：</p>
 <p>　　MySQL默认使用“;”作为分隔符，SQL语句遇到“;”就会提交。而我们的触发器中可能会有多个“;”符，为了防止触发器创建语句过早的提交，我们需要临时修改MySQL分隔符，创建完后，再将分隔符改回来。使用DELIMITER可以修改分隔符，如下：</p>
-<p>DELIMITER $…–触发器创建语句；$–提交创建语句；DELIMITER ;</p>
+<p>DELIMITER $. . . –触发器创建语句；$–提交创建语句；DELIMITER ;</p>
 <p>二、<strong>MySQL</strong>触发器创建进阶：</p>
 <p>1<strong>、MySQL触发器中使用变量：</strong></p>
 <p>　　MySQL触发器中变量变量前面加‘@’，无需定义，可以直接使用：</p>
 <p>– 变量直接赋值set<code> </code>@num=999; – 使用select语句查询出来的数据方式赋值，需要加括号：set<code> </code>@name=(select<code> </code>name<code> </code>from<code> </code>table);</p>
 <p>2<strong>、MySQL触发器中使用if语做条件判断：</strong></p>
-<p>– 简单的if语句：set<code> </code>sex = if (new.sex=1,‘男’,‘女’); – 多条件if语句：if old.type=1thenupdatetable…;elseif old.type=2thenupdatetable…;endif;</p>
+<p>– 简单的if语句：set<code> </code>sex = if (new. sex=1,‘男’,‘女’); – 多条件if语句：if old. type=1thenupdatetable…;elseif old. type=2thenupdatetable…;endif;</p>
 <p>三、Ｍｙ<strong>SQL</strong>查看触发器：</p>
 <p>　　可以使用“show triggers;”查看触发器。由于MySQL创建的触发器保存在“information_schema库中的triggers表中，所以还可以通过查询此表查看触发器：</p>
-<p>– 通过information_schema.triggers表查看触发器：select<code> </code>*frominformation_schema.triggers;<code> </code>– mysql 查看当前数据库的触发器show triggers;<code> </code>– mysql 查看指定数据库”aiezu”的触发器show triggers fromaiezu;</p>
+<p>– 通过information_schema. triggers表查看触发器：select<code> </code>*frominformation_schema. triggers;<code> </code>– mysql 查看当前数据库的触发器show triggers;<code> </code>– mysql 查看指定数据库”aiezu”的触发器show triggers fromaiezu;</p>
 <p>四、<strong>MySQL</strong>删除触发器：</p>
 <p>1<strong>、可以使用drop trigger删除触发器：</strong></p>
 <p>droptriggertrigger_name;</p>
@@ -331,9 +796,9 @@
 <p>1<strong>、MySQL触发器Insert触发更新同一张表：</strong></p>
 <p>　　下面我们有一个表“tmp1”，tmp1表有两个整型字段：n1、n2。我们要通过触发器实现，在tmp插入记录时，自动将n2字段的值设置为n1字段的5倍。</p>
 <p>　创建测试表和触发器：</p>
-<p>– 创建测试表drop<code> </code>table<code> </code>if exists tmp1;createtabletmp1 (n1 int, n2 int);<code> </code>– 创建触发器DELIMITER $drop<code> </code>trigger<code> </code>if exists tmp1_insert$createtriggertmp1_insertbeforeinsertontmp1for<code> </code>each rowbeginsetnew.n2 = new.n1*5;end$DELIMITER ;</p>
+<p>– 创建测试表drop<code> </code>table<code> </code>if exists tmp1;createtabletmp1 (n1 int, n2 int);<code> </code>– 创建触发器DELIMITER $drop<code> </code>trigger<code> </code>if exists tmp1_insert$createtriggertmp1_insertbeforeinsertontmp1for<code> </code>each rowbeginsetnew. n2 = new. n1*5;end$DELIMITER ;</p>
 <p>测试触发更新效果：</p>
-<p>mysql&gt; insert<code> </code>tmp1(n1)values(18);Query OK, 1 row affected (0.01 sec)<code> </code>mysql&gt;inserttmp1(n1) values(99);Query OK, 1 row affected (0.00 sec)<br>mysql&gt; select<code> </code>*fromtmp1;+——+——+| n1 | n2 |+——+——+| 18 | 90 || 99 | 495 |+——+——+2 rowsinset(0.00 sec)</p>
+<p>mysql&gt; insert<code> </code>tmp1(n1)values(18);Query OK, 1 row affected (0. 01 sec)<code> </code>mysql&gt;inserttmp1(n1) values(99);Query OK, 1 row affected (0. 00 sec)<br>mysql&gt; select<code> </code>*fromtmp1;+——+——+| n1 | n2 |+——+——+| 18 | 90 || 99 | 495 |+——+——+2 rowsinset(0. 00 sec)</p>
 <p>多个执行语句的触发器语法结构：</p>
 <p>CREATE TRIGGER 触发器名称,触发时机(before,after),触发事件(INSERT,UPDATE和DELETE)</p>
 <p>ON 建立触发器的表名 FOR EACH ROW</p>
@@ -342,25 +807,31 @@
 <p>END;</p>
 <p>使用触发器</p>
 <p>八、复制表</p>
-<p>1.<strong>复制表结构及其数据</strong></p>
+<ol>
+<li><strong>复制表结构及其数据</strong></li>
+</ol>
 <p>下面这个语句会拷贝数据到新表中。</p>
 <p>注意：这个语句其实只是把select语句的结果建一个表，所以新表不会有主键，索引。</p>
 <p>create table table_name_new as (select * from table_name_old);</p>
-<p>2.<strong>只复制表结构</strong></p>
+<ol start="2">
+<li><strong>只复制表结构</strong></li>
+</ol>
 <p>create table table_name_new as select * from table_name_old where 1=2;</p>
 <p>或者</p>
 <p>create table table_name_new like table_name_old;</p>
 <p>注意：前一种方式是不会复制主键类型，索引的，而后一种方式是把旧表的所有字段类型都复制到新表。</p>
-<p>3.<strong>只复制表数据</strong></p>
+<ol start="3">
+<li><strong>只复制表数据</strong></li>
+</ol>
 <p>如果两个表结构一样</p>
 <p>insert into table_name_new select * from table_name_old;</p>
 <p>如果两个表结构不一样</p>
 <p>insert into table_name_new(column1,column2…) select column1,column2… from table_name_old;</p>
 <p>注意：很多文章说可以通过如下语句进行数据复制，table_name_new表可以不存在，会在执行的过程中自动创建。其实该SELECT … INTO形式是使查询结果存储在变量或将其写入文件，即table_name_new是一个变量或者文件。</p>
-<p>select column1,column2,…. into table_name_new from table_name_old;</p>
+<p>select column1,column2,….  into table_name_new from table_name_old;</p>
 <p>需求：我有个表 table1，当我向 table1 insert 数据 xx,xx,5555,xx 的时候，触发建立一个新表 t5555</p>
 <p>不能做到在TRIGGER中建立表，会提示</p>
-<p>Explicit or implicit commit is not allowed in stored function or trigger.</p>
+<p>Explicit or implicit commit is not allowed in stored function or trigger. </p>
 <p>存储函数中不允许有DDL语句，这样会导致隐式的 commit;</p>
 <p>由于上面的原因，因此也不能在事务中使用DLL语言，因为他会隐式的commit;</p>
 <p>——解决方案——————–</p>
@@ -382,11 +853,11 @@
 <p>COMMIT;</p>
 <p>示例：</p>
 <p>考虑 CUSTOMERS 表，表中的记录如下所示：</p>
-<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000.00 |<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+</p>
+<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000. 00 |<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+</p>
 <p>下面的示例将会删除表中 age=25 的记录，然后将更改提交（COMMIT）到数据库中。</p>
 <p>SQL&gt; DELETE FROM CUSTOMERS<br>WHERE AGE = 25;<br>SQL&gt; COMMIT;</p>
 <p>上述语句将会从表中删除两行记录，再执行 SELECT 语句将会得到如下结果：</p>
-<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+</p>
+<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+</p>
 <p>ROLLBACK 命令：</p>
 <p>ROLLBACK 命令用于撤销尚未保存到数据库中的事务。</p>
 <p>ROLLBACK 命令只能撤销自上次 COMMIT 命令或者 ROLLBACK 命令执行以来的事务。</p>
@@ -394,11 +865,11 @@
 <p>ROLLBACK;</p>
 <p>示例：</p>
 <p>考虑 CUSTOMERS 表，表中的记录如下所示：</p>
-<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000.00 |<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+</p>
+<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000. 00 |<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+</p>
 <p>下面的示例将会从表中删除所有 age=25 的记录，然后回滚（ROLLBACK）对数据库所做的更改。</p>
 <p>SQL&gt; DELETE FROM CUSTOMERS<br>WHERE AGE = 25;<br>SQL&gt; ROLLBACK;</p>
 <p>结果是删除操作并不会对数据库产生影响。现在，执行 SELECT 语句将会得到如下结果：</p>
-<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000.00 |<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+</p>
+<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000. 00 |<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+</p>
 <p>SAVEPOINT 命令：</p>
 <p>SAVEPOINT 是事务中的一个状态点，使得我们可以将事务回滚至特定的点，而不是将整个事务都撤销。</p>
 <p>SAVEPOINT 命令的记录如下所示：</p>
@@ -409,13 +880,13 @@
 <p>下面的示例中，你计划从 CUSTOMERS 表中删除三条不同的记录，并在每次删除之前创建一个保存点（SAVEPOINT），从而使得你可以在任何任何时候回滚到任意的保存点，以恢复数据至其原始状态。</p>
 <p>示例：</p>
 <p>考虑 CUSTOMERS 表，表中的记录如下所示：</p>
-<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000.00 |<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+</p>
+<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000. 00 |<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+</p>
 <p>操作序列如下所示：</p>
-<p>SQL&gt; SAVEPOINT SP1;<br>Savepoint created.<br>SQL&gt; DELETE FROM CUSTOMERS WHERE ID=1;<br>1 row deleted.<br>SQL&gt; SAVEPOINT SP2;<br>Savepoint created.<br>SQL&gt; DELETE FROM CUSTOMERS WHERE ID=2;<br>1 row deleted.<br>SQL&gt; SAVEPOINT SP3;<br>Savepoint created.<br>SQL&gt; DELETE FROM CUSTOMERS WHERE ID=3;<br>1 row deleted.</p>
+<p>SQL&gt; SAVEPOINT SP1;<br>Savepoint created.<br>SQL&gt; DELETE FROM CUSTOMERS WHERE ID=1;<br>1 row deleted.<br>SQL&gt; SAVEPOINT SP2;<br>Savepoint created.<br>SQL&gt; DELETE FROM CUSTOMERS WHERE ID=2;<br>1 row deleted.<br>SQL&gt; SAVEPOINT SP3;<br>Savepoint created.<br>SQL&gt; DELETE FROM CUSTOMERS WHERE ID=3;<br>1 row deleted. </p>
 <p>现在，三次删除操作已经生效了，如果此时你改变主意决定回滚至名字为 SP2 的保存点，由于 SP2 于第一次删除操作之后创建，所以后两次删除操作将会被撤销。</p>
-<p>SQL&gt; ROLLBACK TO SP2;<br>Rollback complete.</p>
+<p>SQL&gt; ROLLBACK TO SP2;<br>Rollback complete. </p>
 <p>注意，由于你将数据库回滚至 SP2，所以只有第一次删除真正起效了：</p>
-<p>SQL&gt; SELECT * FROM CUSTOMERS;<br>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+<br>6 rows selected.</p>
+<p>SQL&gt; SELECT * FROM CUSTOMERS;<br>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+<br>6 rows selected. </p>
 <p>RELEASE SAVEPOINT 命令：</p>
 <p>RELEASE SAVEPOINT 命令用于删除先前创建的保存点。</p>
 <p>RELEASE SAVEPOINT 的语法如下所示：</p>
@@ -452,22 +923,24 @@
 <p>SELECT column1, column2<br>FROM table1, table2<br>WHERE [ conditions ]<br>GROUP BY column1, column2<br>HAVING [ conditions ]<br>ORDER BY column1, column2</p>
 <p>示例：</p>
 <p>考虑 CUSTOMERS 表，表中的记录如下所示：</p>
-<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000.00 |<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>| 3 | kaushik | 23 | Kota | 2000.00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500.00 |<br>| 5 | Hardik | 27 | Bhopal | 8500.00 |<br>| 6 | Komal | 22 | MP | 4500.00 |<br>| 7 | Muffy | 24 | Indore | 10000.00 |<br>+—-+———-+—–+———–+———-+</p>
+<p>+—-+———-+—–+———–+———-+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+———-+—–+———–+———-+<br>| 1 | Ramesh | 32 | Ahmedabad | 2000. 00 |<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>| 3 | kaushik | 23 | Kota | 2000. 00 |<br>| 4 | Chaitali | 25 | Mumbai | 6500. 00 |<br>| 5 | Hardik | 27 | Bhopal | 8500. 00 |<br>| 6 | Komal | 22 | MP | 4500. 00 |<br>| 7 | Muffy | 24 | Indore | 10000. 00 |<br>+—-+———-+—–+———–+———-+</p>
 <p>下面是一个有关 HAVING 子句使用的实例，该实例将会筛选出出现次数大于或等于 2 的所有记录。</p>
 <p>SQL &gt; SELECT ID, NAME, AGE, ADDRESS, SALARY<br>FROM CUSTOMERS<br>GROUP BY age<br>HAVING COUNT(age) &gt;= 2;</p>
 <p>其执行结果如下所示：</p>
-<p>+—-+——–+—–+———+———+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+——–+—–+———+———+<br>| 2 | Khilan | 25 | Delhi | 1500.00 |<br>+—-+——–+—–+———+———+</p>
+<p>+—-+——–+—–+———+———+<br>| ID | NAME | AGE | ADDRESS | SALARY |<br>+—-+——–+—–+———+———+<br>| 2 | Khilan | 25 | Delhi | 1500. 00 |<br>+—-+——–+—–+———+———+</p>
 <p>十一、<strong>MYSQL</strong>用户管理</p>
 <p>MySQL 是一个多用户数据库，具有功能强大的访问控制系统，可以为不同用户指定不同权限。在前面的章节中我们使用的是 root 用户，该用户是超级管理员，拥有所有权限，包括创建用户、删除用户和修改用户密码等管理权限。</p>
 <p>为了实际项目的需要，可以创建拥有不同权限的普通用户。</p>
 <p>通过本章的学习，读者可以了解到 MySQL 中的各种权限表、登录数据库的详细内容、用户管理和密码管理等。本章内容涉及到了数据库的安全，是数据库管理中非常重要的内容。</p>
-<p>1.MySQL user<strong>权限表详解</strong></p>
+<ol>
+<li>MySQL user<strong>权限表详解</strong></li>
+</ol>
 <p>MySQL 在安装时会自动创建一个名为 mysql 的数据库，mysql 数据库中存储的都是用户权限表。用户登录以后，MySQL 会根据这些权限表的内容为每个用户赋予相应的权限。</p>
 <p>user 表是 MySQL 中最重要的一个权限表，用来记录允许连接到服务器的账号信息。需要注意的是，在 user 表里启用的所有权限都是全局级的，适用于所有数据库。</p>
 <p>user 表中的字段大致可以分为 4 类，分别是用户列、权限列、安全列和资源控制列，下面主要介绍这些字段的含义。</p>
 <p>用户列</p>
-<p>用户列存储了用户连接 MySQL 数据库时需要输入的信息。需要注意的是 MySQL 5.7 版本不再使用 Password 来作为密码的字段，而改成了 authentication_string。</p>
-<p>MySQL 5.7 版本的用户列如表 1 所示。</p>
+<p>用户列存储了用户连接 MySQL 数据库时需要输入的信息。需要注意的是 MySQL 5. 7 版本不再使用 Password 来作为密码的字段，而改成了 authentication_string。</p>
+<p>MySQL 5. 7 版本的用户列如表 1 所示。</p>
 <p>字段名    字段类型    是否为空    默认值    说明<br>Host    char(60)    NO    无    主机名<br>User    char(32)    NO    无    用户名<br>authentication_string    text    YES    无    密码<br>用户登录时，如果这 3 个字段同时匹配，MySQL 数据库系统才会允许其登录。创建新用户时，也是设置这 3 个字段的值。修改用户密码时，实际就是修改 user 表的 authentication_string 字段的值。因此，这 3 个字段决定了用户能否登录。</p>
 <p>权限列</p>
 <p>权限列的字段决定了用户的权限，用来描述在全局范围内允许对数据和数据库进行的操作。</p>
@@ -481,7 +954,9 @@
 <p>资源控制列</p>
 <p>资源控制列的字段用来限制用户使用的资源，user 表中的资源控制列如表 4 所示。</p>
 <p>字段名    字段类型    是否为空    默认值    说明<br>max_questions    int(11) unsigned    NO    0    规定每小时允许执行查询的操作次数<br>max_updates    int(11) unsigned    NO    0    规定每小时允许执行更新的操作次数<br>max_connections    int(11) unsigned    NO    0    规定每小时允许执行的连接操作次数<br>max_user_connections    int(11) unsigned    NO    0    规定允许同时建立的连接次数<br>以上字段的默认值为 0，表示没有限制。一个小时内用户查询或者连接数量超过资源控制限制，用户将被锁定，直到下一个小时才可以在此执行对应的操作。可以使用 GRANT 语句更新这些字段的值。</p>
-<p>2.MYSQL<strong>其他权限表</strong></p>
+<ol start="2">
+<li>MYSQL<strong>其他权限表</strong></li>
+</ol>
 <p>db<strong>表</strong></p>
 <p>db 表比较常用，是 MySQL 数据库中非常重要的权限表，表中存储了用户对某个数据库的操作权限。表中的字段大致可以分为两类，分别是用户列和权限列。</p>
 <p>用户列</p>
@@ -494,13 +969,13 @@
 <p>字段名    字段类型    是否为空    默认值    说明<br>Host    char(60)    NO    无    主机<br>Db    char(64)    NO    无    数据库名<br>User    char(32)    NO    无    用户名<br>Table_name    char(64)    NO    无    表名<br>Grantor    char(93)    NO    无    修改该记录的用户<br>Timestamp    timestamp    NO    CURRENT_TIMESTAMP    修改该记录的时间<br>Table_priv    set(‘Select’,’Insert’,’Update’,’Delete’,’ Create’,’Drop’,’Grant’,’References’, ‘Index’,’Alter’,’Create View’,’Show view’,’Trigger’)    NO    无    表示对表的操作权限，包括 Select、Insert、Update、Delete、Create、Drop、Grant、References、Index 和 Alter 等<br>Column_priv    set(‘Select’,’Insert’,’Update’,’References’)    NO    无    表示对表中的列的操作权限，包括 Select、Insert、Update 和 References<br>columns_priv 表结构如下表所示：</p>
 <p>字段名    字段类型    是否为空    默认值    说明<br>Host    char(60)    NO    无    主机<br>Db    char(64)    NO    无    数据库名<br>User    char(32)    NO    无    用户名<br>Table_name    char(64)    NO    无    表名<br>Column_name    char(64)    NO    无    数据列名称，用来指定对哪些数据列具有操作权限<br>Timestamp    timestamp    NO    CURRENT_TIMESTAMP    修改该记录的时间<br>Column_priv    set(‘Select’,’Insert’,’Update’,’References’)    NO    无    表示对表中的列的操作权限，包括 Select、Insert、Update 和 References<br>procs_priv<strong>表</strong></p>
 <p>procs_priv 表可以对存储过程和存储函数进行权限设置，procs_priv 的表结构如表所示：</p>
-<p>字段名    字段类型    是否为空    默认值    说明<br>Host    char(60)    NO    无    主机名<br>Db    char(64)    NO    无    数据库名<br>User    char(32)    NO    无    用户名<br>Routine_name    char(64)    NO    无    表示存储过程或函数的名称<br>Routine_type    enum(‘FUNCTION’,’PROCEDURE’)    NO    无    表示存储过程或函数的类型，Routine_type 字段有两个值，分别是 FUNCTION 和 PROCEDURE。FUNCTION 表示这是一个函数；PROCEDURE 表示这是一个 存储过程。<br>Grantor    char(93)    NO    无    插入或修改该记录的用户<br>Proc_priv    set(‘Execute’,’Alter Routine’,’Grant’)    NO    无    表示拥有的权限，包括 Execute、Alter Routine、Grant 3种<br>Timestamp    timestamp    NO    CURRENT_TIMESTAMP    表示记录更新时间<br>3.MySQL<strong>创建用户（3种方式）</strong></p>
+<p>字段名    字段类型    是否为空    默认值    说明<br>Host    char(60)    NO    无    主机名<br>Db    char(64)    NO    无    数据库名<br>User    char(32)    NO    无    用户名<br>Routine_name    char(64)    NO    无    表示存储过程或函数的名称<br>Routine_type    enum(‘FUNCTION’,’PROCEDURE’)    NO    无    表示存储过程或函数的类型，Routine_type 字段有两个值，分别是 FUNCTION 和 PROCEDURE。FUNCTION 表示这是一个函数；PROCEDURE 表示这是一个 存储过程。<br>Grantor    char(93)    NO    无    插入或修改该记录的用户<br>Proc_priv    set(‘Execute’,’Alter Routine’,’Grant’)    NO    无    表示拥有的权限，包括 Execute、Alter Routine、Grant 3种<br>Timestamp    timestamp    NO    CURRENT_TIMESTAMP    表示记录更新时间<br>3. MySQL<strong>创建用户（3种方式）</strong></p>
 <p>MySQL 在安装时，会默认创建一个名为 root 的用户，该用户拥有超级权限，可以控制整个 MySQL 服务器。</p>
 <p>在对 MySQL 的日常管理和操作中，为了避免有人恶意使用 root 用户控制数据库，我们通常创建一些具有适当权限的用户，尽可能地不用或少用 root 用户登录系统，以此来确保数据的安全访问。</p>
 <p>MySQL 提供了以下 3 种方法创建用户。</p>
-<p>使用 CREATE USER 语句创建用户<br>在 mysql.user 表中添加用户<br>使用 GRANT 语句创建用户<br>下面根据实例详细讲解这 3 种方法。</p>
+<p>使用 CREATE USER 语句创建用户<br>在 mysql. user 表中添加用户<br>使用 GRANT 语句创建用户<br>下面根据实例详细讲解这 3 种方法。</p>
 <ol>
-<li>使用<strong>CREATE USER</strong>语句创建用户</li>
+<li> 使用<strong>CREATE USER</strong>语句创建用户</li>
 </ol>
 <p>可以使用 CREATE USER 语句来创建 MySQL 用户，并设置相应的密码。其基本语法格式如下：</p>
 <p>CREATE USER &lt;用户&gt; [ IDENTIFIED BY [ PASSWORD ] ‘password’ ] [ ,用户 [ IDENTIFIED BY [ PASSWORD ] ‘password’ ]]</p>
@@ -521,44 +996,46 @@
 <p>CREATE USER 语句可以不指定初始密码。但是从安全的角度来说，不推荐这种做法。<br>使用 CREATE USER 语句必须拥有 mysql 数据库的 INSERT 权限或全局 CREATE USER 权限。<br>使用 CREATE USER 语句创建一个用户后，MySQL 会在 mysql 数据库的 user 表中添加一条新记录。<br>CREATE USER 语句可以同时创建多个用户，多个用户用逗号隔开。<br>新创建的用户拥有的权限很少，它们只能执行不需要权限的操作。如登录 MySQL、使用 SHOW 语句查询所有存储引擎和字符集的列表等。如果两个用户的用户名相同，但主机名不同，MySQL 会将它们视为两个用户，并允许为这两个用户分配不同的权限集合。</p>
 <p>例 1</p>
 <p>使用 CREATE USER 创建一个用户，用户名是 test1，密码是 test1，主机名是 localhost。SQL 语句和执行过程如下。</p>
-<p>mysql&gt; CREATE USER ‘test1‘@’localhost’ IDENTIFIED BY ‘test1’;<br>Query OK, 1 rows affected (0.06 sec)</p>
+<p>mysql&gt; CREATE USER ‘test1‘@’localhost’ IDENTIFIED BY ‘test1’;<br>Query OK, 1 rows affected (0. 06 sec)</p>
 <p>结果显示，创建 test1 用户成功。</p>
 <p>在实际应用中，我们应避免明文指定密码，可以通过 PASSWORD 关键字使用密码的哈希值设置密码。</p>
 <p>例 2</p>
 <p>在 MySQL 中，可以使用 password() 函数获取密码的哈希值，查看 test1 哈希值的 SQL 语句和执行过程如下：</p>
-<p>mysql&gt; SELECT password(‘test1’);<br>+——————————————-+<br>| password(‘test1’) |<br>+——————————————-+<br>| *06C0BF5B64ECE2F648B5F048A71903906BA08E5C |<br>+——————————————-+<br>1 row in set, 1 warning (0.00 sec)</p>
+<p>mysql&gt; SELECT password(‘test1’);<br>+——————————————-+<br>| password(‘test1’) |<br>+——————————————-+<br>| *06C0BF5B64ECE2F648B5F048A71903906BA08E5C |<br>+——————————————-+<br>1 row in set, 1 warning (0. 00 sec)</p>
 <p>“*06C0BF5B64ECE2F648B5F048A71903906BA08E5C”就是 test1 的哈希值。下面创建用户 test1，SQL 语句和执行过程如下：</p>
-<p>mysql&gt; CREATE USER ‘test1‘@’localhost’IDENTIFIED BY PASSWORD ‘*06C0BF5B64ECE2F648B5F048A71903906BA08E5C’;<br>Query OK, 0 rows affected, 1 warning (0.00 sec)</p>
+<p>mysql&gt; CREATE USER ‘test1‘@’localhost’IDENTIFIED BY PASSWORD ‘*06C0BF5B64ECE2F648B5F048A71903906BA08E5C’;<br>Query OK, 0 rows affected, 1 warning (0. 00 sec)</p>
 <p>执行成功后就可以使用密码“test1”登录了。</p>
 <ol start="2">
-<li>使用 INSERT 语句新建用户</li>
+<li> 使用 INSERT 语句新建用户</li>
 </ol>
-<p>可以使用 INSERT 语句将用户的信息添加到 mysql.user 表中，但必须拥有对 mysql.user 表的 INSERT 权限。通常 INSERT 语句只添加 Host、User 和 authentication_string 这 3 个字段的值。</p>
-<p>MySQL 5.7 的 user 表中的密码字段从 Password 变成了 authentication_string，如果你使用的是 MySQL 5.7 之前的版本，将 authentication_string 字段替换成 Password 即可。</p>
+<p>可以使用 INSERT 语句将用户的信息添加到 mysql. user 表中，但必须拥有对 mysql. user 表的 INSERT 权限。通常 INSERT 语句只添加 Host、User 和 authentication_string 这 3 个字段的值。</p>
+<p>MySQL 5. 7 的 user 表中的密码字段从 Password 变成了 authentication_string，如果你使用的是 MySQL 5. 7 之前的版本，将 authentication_string 字段替换成 Password 即可。</p>
 <p>使用 INSERT 语句创建用户的代码如下：</p>
-<p>INSERT INTO mysql.user(Host, User, authentication_string, ssl_cipher, x509_issuer, x509_subject) VALUES (‘hostname’, ‘username’, PASSWORD(‘password’), ‘’, ‘’, ‘’);</p>
+<p>INSERT INTO mysql. user(Host, User, authentication_string, ssl_cipher, x509_issuer, x509_subject) VALUES (‘hostname’, ‘username’, PASSWORD(‘password’), ‘’, ‘’, ‘’);</p>
 <p>由于 mysql 数据库的 user 表中，ssl_cipher、x509_issuer 和 x509_subject 这 3 个字段没有默认值，所以向 user 表插入新记录时，一定要设置这 3 个字段的值，否则 INSERT 语句将不能执行。</p>
 <p>例 3</p>
 <p>下面使用 INSERT 语句创建名为 test2 的用户，主机名是 localhost，密码也是 test2。SQL 语句和执行过程如下：</p>
-<p>mysql&gt; INSERT INTO mysql.user(Host, User, authentication_string, ssl_cipher, x509_issuer, x509_subject) VALUES (‘localhost’, ‘test2’, PASSWORD(‘test2’), ‘’, ‘’, ‘’);<br>Query OK, 1 row affected, 1 warning (0.02 sec)</p>
+<p>mysql&gt; INSERT INTO mysql. user(Host, User, authentication_string, ssl_cipher, x509_issuer, x509_subject) VALUES (‘localhost’, ‘test2’, PASSWORD(‘test2’), ‘’, ‘’, ‘’);<br>Query OK, 1 row affected, 1 warning (0. 02 sec)</p>
 <p>结果显示，新建用户成功。但是这时如果通过该账户登录 MySQL 服务器，不会登录成功，因为 test2 用户还没有生效。</p>
 <p>可以使用 FLUSH 命令让用户生效，命令如下：</p>
 <p>FLUSH PRIVILEGES;</p>
 <p>使用以上命令可以让 MySQL 刷新系统权限相关表。执行 FLUSH 命令需要 RELOAD 权限。</p>
 <p>注意：user 表中的 User 和 Host 字段区分大小写，创建用户时要指定正确的用户名称或主机名。</p>
 <ol start="3">
-<li>使用<strong>GRANT</strong>语句新建用户</li>
+<li> 使用<strong>GRANT</strong>语句新建用户</li>
 </ol>
 <p>虽然 CREATE USER 和 INSERT INTO 语句都可以创建普通用户，但是这两种方式不便授予用户权限。于是 MySQL 提供了 GRANT 语句。</p>
 <p>使用 GRANT 语句创建用户的基本语法形式如下:</p>
-<p>GRANT priv_type ON database.table TO user [IDENTIFIED BY [PASSWORD] ‘password’]</p>
+<p>GRANT priv_type ON database. table TO user [IDENTIFIED BY [PASSWORD] ‘password’]</p>
 <p>其中：</p>
-<p>priv_type 参数表示新用户的权限；<br>database.table 参数表示新用户的权限范围，即只能在指定的数据库和表上使用自己的权限；<br>user 参数指定新用户的账号，由用户名和主机名构成；<br>IDENTIFIED BY 关键字用来设置密码；<br>password 参数表示新用户的密码。<br>例 4</p>
+<p>priv_type 参数表示新用户的权限；<br>database. table 参数表示新用户的权限范围，即只能在指定的数据库和表上使用自己的权限；<br>user 参数指定新用户的账号，由用户名和主机名构成；<br>IDENTIFIED BY 关键字用来设置密码；<br>password 参数表示新用户的密码。<br>例 4</p>
 <p>下面使用 GRANT 语句创建名为 test3 的用户，主机名为 localhost，密码为 test3。该用户对所有数据库的所有表都有 SELECT 权限。SQL 语句和执行过程如下：</p>
-<p>mysql&gt; GRANT SELECT ON. TO ‘test3‘@localhost IDENTIFIED BY ‘test3’;<br>Query OK, 0 rows affected, 1 warning (0.01 sec)</p>
-<p>其中，“.” 表示所有数据库下的所有表。结果显示创建用户成功，且 test3 用户对所有表都有查询（SELECT）权限。</p>
+<p>mysql&gt; GRANT SELECT ON.  TO ‘test3‘@localhost IDENTIFIED BY ‘test3’;<br>Query OK, 0 rows affected, 1 warning (0. 01 sec)</p>
+<p>其中，“. ” 表示所有数据库下的所有表。结果显示创建用户成功，且 test3 用户对所有表都有查询（SELECT）权限。</p>
 <p>技巧：GRANT 语句是 MySQL 中一个非常重要的语句，它可以用来创建用户、修改用户密码和设置用户权限。教程后面会详细介绍如何使用 GRANT 语句修改密码、更改权限。</p>
-<p>4.MySQL<strong>修改用户（RENAME USER）</strong></p>
+<ol start="4">
+<li>MySQL<strong>修改用户（RENAME USER）</strong></li>
+</ol>
 <p>在 MySQL 中，我们可以使用 RENAME USER 语句修改一个或多个已经存在的用户账号。</p>
 <p>语法格式如下：</p>
 <p>RENAME USER &lt;旧用户&gt; TO &lt;新用户&gt;</p>
@@ -566,47 +1043,21 @@
 <p>&lt;旧用户&gt;：系统中已经存在的 MySQL 用户账号。<br>&lt;新用户&gt;：新的 MySQL 用户账号。<br>使用 RENAME USER 语句时应注意以下几点：</p>
 <p>RENAME USER 语句用于对原有的 MySQL 用户进行重命名。<br>若系统中旧账户不存在或者新账户已存在，该语句执行时会出现错误。<br>使用 RENAME USER 语句，必须拥有 mysql 数据库的 UPDATE 权限或全局 CREATE USER 权限。<br>例 1</p>
 <p>使用 RENAME USER 语句将用户名 test1 修改为 testUser1，主机是 localhost。SQL 语句和执行过程如下。</p>
-<p>mysql&gt; RENAME USER ‘test1‘@’localhost’<br>-&gt; TO ‘testUser1‘@’localhost’;<br>Query OK, 0 rows affected (0.03 sec)</p>
+<p>mysql&gt; RENAME USER ‘test1‘@’localhost’<br>-&gt; TO ‘testUser1‘@’localhost’;<br>Query OK, 0 rows affected (0. 03 sec)</p>
 <p>在 cmd 命令行工具中，使用 testUser1 用户登录数据库服务器，如下所示。</p>
-<p>C:\Users\USER&gt;mysql -h localhost -u testUser1 -p<br>Enter password: *<br>Welcome to the MySQL monitor. Commands end with ; or \g.<br>Your MySQL connection id is 7<br>Server version: 5.7.20-log MySQL Community Server (GPL)<br>Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.<br>Oracle is a registered trademark of Oracle Corporation and/or its<br>affiliates. Other names may be trademarks of their respective<br>owners.<br>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement.</p>
-<p>十二、数据库三大模式</p>
-<p>人们为数据库设计了一个严谨的体系结构，数据库领域公认的标准结构是三级模式结构，它包括外模式、概念模式、内模式，有效地组织、管理数据，提高了数据库的逻辑独立性和物理独立性。用户级对应外模式，概念级对应概念模式，物理级对应内模式，使不同级别的用户对数据库形成不同的视图。所谓视图，就是指观察、认识和理解数据的范围、角度和方法，是数据库在用户“眼中”的反映，很显然，不同层次（级别）用户所“看到”的数据库是不相同的。</p>
+<p>C:\Users\USER&gt;mysql -h localhost -u testUser1 -p<br>Enter password: *<br>Welcome to the MySQL monitor.  Commands end with ; or \g.<br>Your MySQL connection id is 7<br>Server version: 5. 7. 20-log MySQL Community Server (GPL)<br>Copyright (c) 2000, 2017, Oracle and/or its affiliates.  All rights reserved.<br>Oracle is a registered trademark of Oracle Corporation and/or its<br>affiliates.  Other names may be trademarks of their respective<br>owners.<br>Type ‘help;’ or ‘\h’ for help.  Type ‘\c’ to clear the current input statement. </p>
+<hr>
+<h2 id="十二、数据库三大模式"><a href="#十二、数据库三大模式" class="headerlink" title="十二、数据库三大模式"></a>十二、数据库三大模式</h2><p>人们为数据库设计了一个严谨的体系结构，数据库领域公认的标准结构是三级模式结构，它包括外模式、概念模式、内模式，有效地组织、管理数据，提高了数据库的逻辑独立性和物理独立性。用户级对应外模式，概念级对应概念模式，物理级对应内模式，使不同级别的用户对数据库形成不同的视图。所谓视图，就是指观察、认识和理解数据的范围、角度和方法，是数据库在用户“眼中”的反映，很显然，不同层次（级别）用户所“看到”的数据库是不相同的。</p>
 <p>外模式 外模式又称子模式或用户模式，对应于用户级。它是某个或某几个用户所看到的数据库的数据视图，是与某一应用有关的数据的逻辑表示。外模式是从模式导出的一个子集，包含模式中允许特定用户使用的那部分数据。用户可以通过外模式描述语言来描述、定义对应于用户的数据记录(外模式)，也可以利用数据操纵语言(Data Manipulation Language，DML)对这些数据记录进行操作。外模式反映了数据库系统的用户观。</p>
 <p>概念模式 概念模式又称模式或逻辑模式，对应于概念级。它是由数据库设计者综合所有用户的数据，按照统一的观点构造的全局逻辑结构，是对数据库中全部数据的逻辑结构和特征的总体描述，是所有用户的公共数据视图(全局视图)。它是由数据库管理系统提供的数据模式描述语言(Data Description Language，DDL)来描述、定义的。概念模式反映了数据库系统的整体观。</p>
 <p>内模式 内模式又称存储模式，对应于物理级。它是数据库中全体数据的内部表示或底层描述，是数据库最低一级的逻辑描述，它描述了数据在存储介质上的存储方式和物理结构，对应着实际存储在外存储介质上的数据库。内模式由内模式描述语言来描述、定义的。内模式反映了数据库系统的存储观。 在一个数据库系统中，只有唯一的数据库， 因而作为定义 、描述数据库存储结构的内模式和定义、描述数据库逻辑结构的模式，也是唯一的，但建立在数据库系统之上的应用则是非常广泛、多样的，所以对应的外模式不是唯一的，也不可能是唯一的。</p>
 ]]></content>
   </entry>
   <entry>
-    <title>与我相关</title>
-    <url>/2021/05/26/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
-<p>一个普普通通的大学生 爱好前端 知识分享<br>希望我们能一起进步 一起为前端添砖加瓦！</p>
-</blockquote>
-<span id="more"></span>
-<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><p>qq</p>
-<p>Wechat</p>
-<h3 id="个人分享"><a href="#个人分享" class="headerlink" title="个人分享"></a>个人分享</h3><p><strong>科学上网</strong></p>
-<ol>
-<li>点击此处注册账号</li>
-<li>填入我的邀请码:<strong>gozu1ZbN</strong>或者<strong>A3sqWcMW</strong></li>
-<li>随便选择一个即可购买（依照自己需求，优惠码 8888）</li>
-<li>一定要看使用文档</li>
-<li>使用 clash 的一定要勾选 system proxy</li>
-<li>当然，你有不会的地方 ，可以加我的联系方式询问。谢谢观看！！</li>
-</ol>
-]]></content>
-      <categories>
-        <category>与我相关</category>
-      </categories>
-      <tags>
-        <tag>科学上网</tag>
-        <tag>联系方式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>加密货币</title>
     <url>/2022/05/20/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</url>
-    <content><![CDATA[<h1 id="加密货币复习"><a href="#加密货币复习" class="headerlink" title="加密货币复习"></a>加密货币复习</h1><h2 id="区块链发展历程"><a href="#区块链发展历程" class="headerlink" title="区块链发展历程"></a>区块链发展历程</h2><h3 id="区块链1-0-可编程货币"><a href="#区块链1-0-可编程货币" class="headerlink" title="区块链1.0 可编程货币"></a>区块链1.0 可编程货币</h3><span id="more"></span>
+    <content><![CDATA[<p>[toc]</p>
+<h1 id="加密货币复习"><a href="#加密货币复习" class="headerlink" title="加密货币复习"></a>加密货币复习</h1><h2 id="区块链发展历程"><a href="#区块链发展历程" class="headerlink" title="区块链发展历程"></a>区块链发展历程</h2><h3 id="区块链1-0-可编程货币"><a href="#区块链1-0-可编程货币" class="headerlink" title="区块链1.0 可编程货币"></a>区块链1.0 可编程货币</h3><span id="more"></span>
 
 <p><strong>比特币为代表的货币区块链技术为1.0</strong></p>
 <p>08年，中本聪详细描述了如何创建一套去中心化的电子交易体系，且这种体系不需要创建在交易双方相互信任的基础之上。分布式账本技术的实施导致其第一个明显的应用：加密货币。比特币用作“互联网现金”，一种数字支付系统，可以被视为“货币互联网”的推动者。相关数字货币：比特币BTC、莱特币LTC、</p>
@@ -718,10 +1169,11 @@
   <entry>
     <title>股票入门</title>
     <url>/2022/05/03/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h1 id="股票入门知识-原创：狂神"><a href="#股票入门知识-原创：狂神" class="headerlink" title="股票入门知识(原创：狂神)"></a>股票入门知识(原创：狂神)</h1><h2 id="01技术分析与基本分析"><a href="#01技术分析与基本分析" class="headerlink" title="01技术分析与基本分析"></a>01技术分析与基本分析</h2><h3 id="1、基础分析、技术分析"><a href="#1、基础分析、技术分析" class="headerlink" title="1、基础分析、技术分析"></a>1、基础分析、技术分析</h3><p>预测市场价格趋势的人士可分为两派：一为基础分析派，另一为技术分析派。</p>
+    <content><![CDATA[<p>[toc]</p>
+<h1 id="股票入门知识-原创：狂神"><a href="#股票入门知识-原创：狂神" class="headerlink" title="股票入门知识(原创：狂神)"></a>股票入门知识(原创：狂神)</h1><hr>
+<h2 id="01技术分析与基本分析"><a href="#01技术分析与基本分析" class="headerlink" title="01技术分析与基本分析"></a>01技术分析与基本分析</h2><h3 id="1、基础分析、技术分析"><a href="#1、基础分析、技术分析" class="headerlink" title="1、基础分析、技术分析"></a>1、基础分析、技术分析</h3><p>预测市场价格趋势的人士可分为两派：一为基础分析派，另一为技术分析派。</p>
 <span id="more"></span>
 <p>技术分析者认为：一切外在影响市场的因素，已经全部或大部分反映在市场价格走势上。其特点是通过对市场过去和现在的行为，应用数学和逻辑上的方法，归纳总结一些典型的行为，从而预测市场的未来的变化趋势。市场行为包括价格的高低、价格的变化、生这些变化所伴随的成交量，以及完成这些变化所经过的时间。技术分析是一种广泛应用在证券市场中的分析工具，是一种技巧，也是一门学问。可以说，如果没有技术分析的帮助，投资者要想在证券市场上取得成功是不可想象的。</p>
-<!-- more -->
 <p>技术分析主要根据k线图及一些技术指标，比如rsi，macd等来判断股票的下一步走势，技术分析的主要假设是历史是会重复的，相同的原因产生相同的结果，所以研究历史上股票变化的各种形态，用于预测其将来的变化，这就是技术分析。</p>
 <p>而基本面分析则是指对于宏观经济的分析以及行业的分析，具体到公司的经营状况，赢利前景等。</p>
 <p>目前很多基金经理都很推崇所谓的价值投资，其实也就是去现那些目前的股票市值〈公司价值的股票，这应该属于基本面分析，然而何时去购买这些股票，则根据技术分析来决定，因为影响股票价格的一个重要因素是人的心理，而人性是不会变的。</p>
@@ -732,6 +1184,7 @@
 <p>关于技术分析，技术分析的基础是“因为过去这样那样的图形或技术资料展成这样那样的结果，所以现在的这样那样的图形也可能展到过去的结果一样的“理论上。甚至有的技术分析派还相信一qiē都在反映在价格里，不用研究别的，只要研究价格和图形或某些指标就行。在汇市这种投资者占绝大部分。(问题是在市场的绝大部分是永远是输的一方？)。技术分析的重点是要彻底熟悉各种各样的过去的图形和别的技术资料，把他们应用在现实的情况。有多少命中率，那要看每个人的造化。</p>
 <p>无论怎样的分析都预测不到的就是短期/中期/长期的突事件。例如，日本生大地震，情况严zhòng。或911事件。或台湾海峡突战争。或央行的干预。数jù的表等等。有些大户专门靠情报对付这些突事件的。小户就没这个能耐，只能跟着市场走。只能随机应变的东西。</p>
 <p>无论怎样，在投资市场永远要跟着趋势走才可以赚到钱。跟哪一个时间框的趋势那要看每个投资者的选择。简单得说，基本分析指明方向，技术分析指明跟基本方向前进的路上的曲曲弯弯的路程。基本分析和技术分析的结合才可以提高看准趋势方面的命中率。</p>
+<hr>
 <h2 id="02盘口语言（交易技巧）"><a href="#02盘口语言（交易技巧）" class="headerlink" title="02盘口语言（交易技巧）"></a>02盘口语言（交易技巧）</h2><h3 id="盘口语言的逻辑解读"><a href="#盘口语言的逻辑解读" class="headerlink" title="盘口语言的逻辑解读"></a>盘口语言的逻辑解读</h3><p>对一个职业投资者而言,看盘水平的高低会直接影响其操作效果,即使是中线投资者也不能忽视其存zài价值(如果中线投资者在较高位介入,却不懂利用高抛低吸降低成本,即使获利,也不能称其为合格的职业投资者.</p>
 <p>透过盘中的股指及个股走势,研判出多空双方力量的强弱,决定了其对股票的炒作节奏的把握,也是其是否盈利或盈利高低的关键.职业投资者区别于学院派的最大区别在于他们往往能从变化莫测的股市中的细微之处,见微知著,洞烛先机.而他们之所以能看出盘中诸多变化所传递的信息,主要是一种经验的积累,这种积累往往是通guò多年对其自身操作失败经历的反复总结而得,但现在许多投资者入市多年也是散户(不论其资金量多大),即是其不善于总结之故.因此,看盘水平成功衡量一个职业投资者水平的重要依据.看盘主要应着眼于股指及个股的未来趋向的判断,大盘的研判一般从以下三方面来考量:</p>
 <p>一、股指与个股方面选择的研判（观察股指与大部分个股运行趋向是否一致）</p>
@@ -853,6 +1306,7 @@
 <p>8.突破后。股价无法快升高形成价平量增或价微升量激增</p>
 <p>9支撑位量能思考：股价打到此位有无大买盘？还是卖盘出现</p>
 <p>10、主动买盘：是主动买{追买还是被动买}</p>
+<hr>
 <h2 id="03影响股价的因素"><a href="#03影响股价的因素" class="headerlink" title="03影响股价的因素"></a>03影响股价的因素</h2><h3 id="1、影响股市行情变动的主要因素"><a href="#1、影响股市行情变动的主要因素" class="headerlink" title="1、影响股市行情变动的主要因素"></a>1、影响股市行情变动的主要因素</h3><p>(一)、经济因素</p>
 <p>经济周期：国家的财政状况，金融环境，国际收支状况，行业经济地位的变化，国家汇率的调整，都将影响股价的沉浮。</p>
 <p>经济周期是由经济运行内在矛盾引的经济波动，是一种不以人们意志为转移的客观规律。股市直接受经济状况的影响，必然也会呈现一种周期性的波动。经济衰退时，股市行情必然随之疲软下跌；经济复苏繁荣时，股价也会上升或呈现坚挺的上涨走势。根据以往的经验，股票市场往往也是经济状况的晴雨表。</p>
@@ -884,6 +1338,7 @@
 <p>从需求方面看：投资者数量则呈减趋势。据证监会布的资料显示，1998年6月―2oo1年6月，股民开户增长率为72.96%，2oo1年6月―2oo4年6月，股民开户增长率下降为11.6%，并且据一些券商营业部人员反映众多账户已变成空壳账户，因此，股民开户增长率实际已为负数。随着股民数量的锐减，资金则以更快的度撒离股市，因为股民不会只带1.oo元钱入市。为什么会出现这种状况呢？这是因为股票价格与其价值极不相称，投资者难以获取预期的收益，甚至于亏损惨重。笔者对深市代码ooooo1－oo1896共484家上市公司的资料进行了统计。2oo4年度这484家公司平均每股现金分红为o.o56元，现金分红率仅为1.o5%，远低于一年期银行储蓄存款利率，即是说用钱购买股票还不如存zài银行划算。股市的低回报率是场内投资者不断撒离和场外投资者不敢涉足的根本原因。</p>
 <p>可见，一方面股票供给正在急剧增加，而另一方面股票的需求又不断减少，股票价格不下降、指数不下跌，那才令人难以思议。刘纪鹏、张卫星作为经济学领域的“家”，不可能不懂经济学的最基本规律，也不可能对上述事实不了解，那他们又为什么坚认“要以股价涨跌论成败”呢？笔者百思不得其解！</p>
 <p>综上所述，股价的升降是制度因素、股票价值和市场供求综合作用的结果，指数的涨跌也是市场规律作用的结果。股权分置改革，从实质上来讲，只不过是在股市制度变化即由股权分置变为股票全流通的情况下，对两类股东的股份予以重新确认，它既没有革除退市机制，也没有改变公司的质量，更何况全流通的推行加剧了市场供求力量的对比，因此，股权分置改革无论如何都难以推动股价的上涨。于是，我们可以得出结论：“成功的股改就是一定要把股价拉起来”是一个天大的谬论。</p>
+<hr>
 <h2 id="04什么是a股、B股、h股、n股、s股？"><a href="#04什么是a股、B股、h股、n股、s股？" class="headerlink" title="04什么是a股、B股、h股、n股、s股？"></a>04什么是a股、B股、h股、n股、s股？</h2><p>我国上市公司的股票有a股、B股、h股、n股和s股等的区分。这一区分主要依据股票的上市地点和所面对的投资者而定。</p>
 <h3 id="A-股"><a href="#A-股" class="headerlink" title="A 股"></a>A 股</h3><p>a股的正式名称是人民币普通股票。它是由我同境内的公司行，供境内机构、组织或个人（不含台、港、澳投资者）以人民币认购和交易的普通股股票，1990年，我国a股股票一共仅有1o只至1997年年底，a股股票增加到72o只，a股总股本为1646亿股，总市值17529亿元人民币，与国内生产总值的比率为22．7％。1997年a股年成交量为4471亿股，年成交金额为30295亿元人民币，我国a股股票市场经过几年快展，已经初具规模。</p>
 <h3 id="B股"><a href="#B股" class="headerlink" title="B股"></a>B股</h3><p>B股的正式名称是人民币特种股票，它是以人民币标明面值，以外币认购和买卖，在境内（sh、深圳）证券交易所上市交易的。它的投资人限于：外国的自然人、法人和其他组织，香港、澳门、台湾地区的自然人、法人和其他组织，定居在国外的中国公民。中国证监会规定的其他投资人。现阶段日股的投资人，主要是上述几类中的机构投资者。B股公司的注册地和上市地都在境内。只不过投资者在境外或在中国香港，澳门及台湾。</p>
@@ -891,230 +1346,247 @@
 <h3 id="H股"><a href="#H股" class="headerlink" title="H股"></a>H股</h3><p>h股，即注册地在内地、上市地在香港的外资股。香港的英文是hongkong，取其字，在港上市外资股就叫做h股。依此类推，纽约的第一个英文字母是n，新加坡的第一个英文字母是s纽约和新加坡上市的股票就分别叫做n股和s股。</p>
 <h3 id="N股"><a href="#N股" class="headerlink" title="N股"></a>N股</h3><p>n股，是指那些在中国大6注册、在纽约（neyork）上市的外资股。在我国股市中，当股票名称前出现了n字，表示这只股是当日新上市的股票，字母n是英语ne(新)的缩写。看到带有n字头的股票时，投资者除了知道它是新股，还应认识到这只股票的股价当日在市场上是不受涨跌幅限制的，涨幅可以高于10％，跌幅也可深于10％。这样就较容易控zhì风险和把握投资机会。如n北化、n建行、n石油等。</p>
 <p>自1993年在港行青岛啤酒h股以来，我网先后挑选了4批共77家境外上市预选企业，这些企业部处于各行业领先地位在一定程dù上体现厂中国经济的整体展水平和增长潜力。到1997年底。已经有42家境外上市预选企业经过改制在境外上市，包括sh石化、镇海化工、庆铃汽车、BJ大唐电力、南方航空等。其中有31家在香港上市，6家在香港和纽约同时上市，2家在香港和伦敦同时上中，2家单独在纽约k市（n股），1家单独在新加坡上市s股）。42家境外上市企业累计筹集外资95．6亿美元。</p>
+<hr>
 <h2 id="05什么是sT、pT股票？"><a href="#05什么是sT、pT股票？" class="headerlink" title="05什么是sT、pT股票？"></a>05什么是sT、pT股票？</h2><p>“T”类股票包括sT股和pT股。</p>
 <p>1998年4月22日,沪深证券交易所宣布将对财务状况和其他财务状况异常的上市公司的股票交易进行特别处理（英文为spenett,缩写为“sT”）。其中异常主要指两种情况：一是上市公司经审计两个会计年度的净利润均为负值,二是上市公司最近一个会计年度经审计的每股净资产低于股票面值。在上市公司的股票交易被实行特别处理期间,其股票交易应遵循下列规则：（1）股票报价日涨跌幅限制为5%；（2）股票名称改为原股票名前加“sT”,例如“sT钢管”；（3）上市公司的中期报告必须经过审计。</p>
 <p>pT股是基于为暂停上市流通的股票提供流通渠道的特别转让服务所产生的股票品种（pT是英文partinetsfer〈特别转让〉的缩写）,这是根据《公司法》及《证券法》的有关规定,上市公司出现连续三年亏损等情况,其股票将暂停上市。沪深证券交易所从1999年7月9日起,对这类暂停上市的股票实施“特别转让服务”。pT股的交易价格及竞价方式与正常交易股票有所不同：（1）交易时间不同。pT股只在每周五的开市时间内进行,一周只有一个交易日可以进行买卖。（2）涨跌幅限制不同。据最新规定,pT股只有5%的涨幅限制,没有跌幅限制,风险相应增大。（3）撮合方式不同。正常股票交易是在每交易日9：15－9：25之间进行集合竞价,集合竞价未成交的申报则进入9：3o以后连续竞价排队成交。而pT股是交易所在周五15：oo收市后一次性对当天所有有效申报委托以集合竞价方式进行撮合,产生唯一的成交价格,所有符合条件的委托申报均按此价格成交。（4）pT股作为一种特别转让服务,其所交易的股票并不是真正意义上的上市交易股票,因此股票不计入指数计算,转让信息只能在当天收盘行情中看到。</p>
+<hr>
 <h2 id="06什么是指定交易？"><a href="#06什么是指定交易？" class="headerlink" title="06什么是指定交易？"></a>06什么是指定交易？</h2><p>所谓指定交易，是指投资者与某一证券经营机构签订协议后，指定该机构为自己买卖证券的惟一交易点。指定交易有几大好处：</p>
 <p>（1）有助于防止投资者股票被盗卖；</p>
 <p>（2）自动领取红利，由证券交易系统直接将现金红利资金记入投资者的账户内；</p>
 <p>（3）可按月按季度收到证券经营机构提供的对账服务。</p>
 <p>目前沪市实行的就是指定交易制度，使沪市投资者的投资相对过去更为安全、便利。</p>
+<hr>
 <h2 id="07委比是什么意思？"><a href="#07委比是什么意思？" class="headerlink" title="07委比是什么意思？"></a>07委比是什么意思？</h2><p>委比是衡量一段时间内场内买、卖盘强弱的技术指标。它的计算公式为：委比=（委买手数－委卖手数）／（委买手数＋委卖手数）x1oo％。从公式中可以看出，“委比”的取值范围从－1oo％至＋1oo％。若“委比”为正值，说明场内买盘较强，且数值越大，买盘就越强劲。反之，若“委比”为负值，则说明市道较弱。</p>
 <p>上述公式中的“委买手数”是指即时向下三档的委托买入的总手数，“委卖手数”是指即时向上三档的委托卖出总手数。如：某股即时最高买入委托报价及委托量为15．oo元、13o手，向下两档分别为14．99元、15o手，14．98元、2o5手；最低卖出委托报价及委托量分别为15．o1元、27o手，向上两档分别为15．o2元、475手，15．o3元、655手，则此时的即时委比为－48．54％。显然，此时场内抛压很大。</p>
 <p>通guò“委比”指标，投资者可以及时了解场内的即时买卖盘强弱情况。</p>
 <p>委差：某品种当前买量之和减去卖量之和。反映买卖双方的力量对比。正数为买方较强，负数为抛压较重。委差=委买手数－委卖手数</p>
+<hr>
 <h2 id="08深综指与深成指的区别"><a href="#08深综指与深成指的区别" class="headerlink" title="08深综指与深成指的区别"></a>08深综指与深成指的区别</h2><p>股价指数是运用统计学中的指数方法编制而成的，反映股市总体价格或某类股价变动和走势的指标。根据股价指数反映的价格走势所涵盖的范围，可以将股价指数划分为反映整个市场走势的综合性指数和反映某一行业或某一类股票价格走势的分类指数。</p>
 <p>深证综合指数，是深圳证券交易所编制的，以深圳证券交易所挂牌上市的全部股票为计算范围，以行量为权数的加权综合股价指数。该指数以1991年4月3日为基日，基日指数定为1oo点。深证综合指数综合反映深交所全部a股和B股上市股票的股价走势。此外还编制了分别反映全部a股和全部B股股价走势的深证a股指数和深证B股指数。深证a股指数以1991年4月3日为基日，1992年1o月4日开始布，基日指数定为1oo点。深证B股指数以1992年2月28日为基日，1992年1o月6日开始布，基日指数定为1oo点。</p>
 <p>深证成份股指数，是从上市的所有股票中抽取具有市场代表性的4o家上市公司的股票作为计算对象，并以流通股为权数计算得出的加权股价指数，综合反映深交所上市a、B股的股价走势。该指数取1994年7月2o日为基日，基日指数定为1ooo点。成份股指数于1995年1月23日开始试布，1995年5月5日正式启用。4o家上市公司的a股用于计算成份a股指数及行业分类指数，4o家上市公司中有B股的公司，其B股用于计算成份B股指数。深证成份股指数，还就a股编制分类指数，包括工业分类指数、商业分类指数、金融分类指数、地产分类指数、公用事业分类指数、综合企业分类指数。深证成份股指数选取样本时考虑的因素有：1.上市交易日期的长短；2.上市规模，按每家公司一段时期内的平均总市值和平均可流通股市值计；3.交易活跃程dù，按每家公司一段时期总成交金额计。确定初步名单后，再结合以下各因素评选出4o家上市公司作为成份股：1.公司股票在一段时期内的平均市盈率；2.公司的行业代表性及所属行业的展前景；3.公司近年的财务状况、盈利记录、展前景及管理素zhì等；4.公司的地区、板块代表性等。为保证指数的代表性，必须视上市公司的变动更换成份股，深圳证券交易所定于每年1、5、9月对成份股的代表性进行考察，讨论是否需要更换。</p>
+<hr>
 <h2 id="09开放式基金与封闭式基金的区别"><a href="#09开放式基金与封闭式基金的区别" class="headerlink" title="09开放式基金与封闭式基金的区别"></a>09开放式基金与封闭式基金的区别</h2><p>根据基金是否可以赎回，证券投资基金可分为开放式基金和封闭式基金。开放式基金，是指基金规模不是固定不变的，而是可以随时根据市场供求情况行新份额或被投资人赎回的投资基金。封闭式基金，是相对于开放式基金而言的，是指基金规模在行前已确定，在行完毕后和规定的期限内，基金规模固定不变的投资基金。</p>
 <p>开放式基金和封闭式基金主要区别如下：</p>
 <p>（1）基金规模的可变性不同。封闭式基金均有明确的存续期限，在此期限内已行的基金单位不能被赎回。虽然特殊情况下此类基金可进行扩募，但扩募应具备严格的法定条件。因此，在正常情况下，基金规模是固定不变的。而开放式基金所行的基金单位是可赎回的，而且投资者在基金的存续期间内也可随意申购基金单位，导zhì基金的资金总额每日均不断地变化。换言之，它始终处于“开放”的状态。这是封闭式基金与开放式基金的根本差别。</p>
 <p>（2）基金单位的买卖方式不同。封闭式基金起设立时，投资者可以向基金管理公司或销售机构认购；当封闭式基金上市交易时，投资者又可委托券商在证券交易所按市价买卖。而投资者投资于开放式基金时，他们则可以随时向基金管理公司或销售机构申购或赎回。</p>
 <p>（3）基金单位的买卖价格形成方式不同。封闭式基金因在交易所上市，其买卖价格受市场供求关系影响较大。当市场供小于求时，基金单位买卖价格可能高于每份基金单位资产净值，这时投资者拥有的基金资产就会增加；当市场供大于求时，基金价格则可能低于每份基金单位资产净值。而开放式基金的买卖价格是以基金单位的资产净值为基础计算的，可直接反映基金单位资产净值的高低。在基金的买卖费用方面，投资者在买卖封闭式基金时与买卖上市股票一样，也要在价格之外付出一定比例的证券交易税和手续费；而开放式基金的投资者需缴纳的相关费用（如次认购费、赎回费）则包含于基金价格之中。一般而言，买卖封闭式基金的费用要高于开放式基金。</p>
 <p>（4）基金的投资策略不同。由于封闭式基金不能随时被赎回，其募集得到的资金可全部用于投资，这样基金管理公司便可据以制定长期的投资策略，取得长期经营绩效。而开放式基金则必须保留一部分现金，以便投资者随时赎回，而不能尽数地用于长期投资，一般投资于变现能力强的资产。</p>
+<hr>
 <h2 id="10什么是集合竞价？"><a href="#10什么是集合竞价？" class="headerlink" title="10什么是集合竞价？"></a>10什么是集合竞价？</h2><p>每一交易日中，任一证券的竞价分为集合竞价与连续竞价两部分，集合竞价是指对所有有效委托进行集中处理，深、沪两市的集合竞价时间为交易日上午9：15至9：25。集合竞价分四步完成：</p>
-<p>第一步：确定有效委托在有涨跌幅限制的情况下，有效委托是这样确定的：根据该只证券上一交易日收盘价以及确定的涨跌幅度来计算当日的最高限价、最低限价。有效价格范围就是该只证券最高限价、最低限价之间的所有价位。限价出此范围的委托为无效委托，系统作自动撤单处理。</p>
-<p>第二步：选取成交价位。先，在有效价格范围内选取使所有委托产生最大成交量的价位。如有两个以上这样的价位，则依以下规则选取成交价位：</p>
+<p><strong>第一步</strong>：确定有效委托在有涨跌幅限制的情况下，有效委托是这样确定的：根据该只证券上一交易日收盘价以及确定的涨跌幅度来计算当日的最高限价、最低限价。有效价格范围就是该只证券最高限价、最低限价之间的所有价位。限价出此范围的委托为无效委托，系统作自动撤单处理。</p>
+<p><strong>第二步</strong>：选取成交价位。先，在有效价格范围内选取使所有委托产生最大成交量的价位。如有两个以上这样的价位，则依以下规则选取成交价位：</p>
 <p>（1）高于选取价格的所有买委托和低于选取价格的所有卖委托能够全部成交。</p>
 <p>（2）与选取价格相同的委托的一方必须全部成交。如满足以上条件的价位仍有多个，则选取离昨市价最近的价位。</p>
-<p>第三步：集中撮合处理所有的买委托按照委托限价由高到低的顺序排列，限价相同者按照进入系统的时间先后排列；所有卖委托按委托限价由低到高的顺序排列，限价相同者按照进入系统的时间先后排列。依序逐笔将排在前面的买委托与卖委托配对成交，即按照“价格优先，同等价格下时间优先”的成交顺序依次成交，直至成交条件不满足为止，即不存zài限价高于等于成交价的叫买委托、或不存zài限价低于等于成交价的叫卖委托。所有成交都以同一成交价成交。</p>
-<p>第四步：行情揭示</p>
+<p><strong>第三步</strong>：集中撮合处理所有的买委托按照委托限价由高到低的顺序排列，限价相同者按照进入系统的时间先后排列；所有卖委托按委托限价由低到高的顺序排列，限价相同者按照进入系统的时间先后排列。依序逐笔将排在前面的买委托与卖委托配对成交，即按照“价格优先，同等价格下时间优先”的成交顺序依次成交，直至成交条件不满足为止，即不存zài限价高于等于成交价的叫买委托、或不存zài限价低于等于成交价的叫卖委托。所有成交都以同一成交价成交。</p>
+<p><strong>第四步</strong>：行情揭示</p>
 <p>（1）如该只证券的成交量为零，则将成交价位揭示为开盘价、最近成交价、最高价、最低价，并揭示出成交量、成交金额。</p>
 <p>（2）剩余有效委托中，实际的最高叫买价揭示为叫买揭示价，若最高叫买价不存zài，则叫买揭示价揭示为空；实际的最低叫卖价揭示为叫卖揭示价，若最低叫卖价不存zài，则叫卖揭示价揭示为空。集合竞价中未能成交的委托，自动进入连续竞价。</p>
-<p>11哪些情况属于交易异常波动需临时停牌？<br>根据沪深交易所的规定，以下情况属于交易异常波动，交易所有权对该股实施临时停牌，直至有关当事人作出公告后的当天下午开市时复牌。</p>
-<p>1某只股票的价格连续三个交易日达到涨幅限制或跌幅限制；</p>
-<p>2某只股票连续五个交易日列入“股票、基金公开信息”；</p>
-<p>3某只股票价格的振幅连续3个交易日达到15％；</p>
-<p>⒋某只股票的日成交量与上月日均成交量相比连续5个交易日放大1o倍；</p>
-<p>⒌交易所或中国证监会认为属于异常波动的其它情况。经中国证监会认可的特殊情况不受此限制。基金不受此限制。</p>
+<hr>
+<h2 id="11哪些情况属于交易异常波动需临时停牌？"><a href="#11哪些情况属于交易异常波动需临时停牌？" class="headerlink" title="11哪些情况属于交易异常波动需临时停牌？"></a>11哪些情况属于交易异常波动需临时停牌？</h2><p>根据沪深交易所的规定，以下情况属于交易异常波动，交易所有权对该股实施临时停牌，直至有关当事人作出公告后的当天下午开市时复牌。</p>
+<ol>
+<li><p>某只股票的价格连续三个交易日达到涨幅限制或跌幅限制；</p>
+</li>
+<li><p>某只股票连续五个交易日列入“股票、基金公开信息”；</p>
+</li>
+<li><p>某只股票价格的振幅连续3个交易日达到15％；</p>
+</li>
+<li><p>某只股票的日成交量与上月日均成交量相比连续5个交易日放大1o倍；</p>
+</li>
+<li><p>交易所或中国证监会认为属于异常波动的其它情况。经中国证监会认可的特殊情况不受此限制。基金不受此限制。</p>
+</li>
+</ol>
+<hr>
 <h2 id="12证券辞典"><a href="#12证券辞典" class="headerlink" title="12证券辞典"></a>12证券辞典</h2><p>开盘：在证券交易所证券交易中，每天开市的次交易为开盘，按开盘价的不同分为高开，低开和平开。</p>
 <p>开盘价：开盘是指某种证券在证券交易所每个营业日的第一笔交易，第一笔交易的成交价即为当日开盘价。按sh证券交易所规定，如开市后半小时内某证券无成交，则以前一天的盘价为当日开盘价。有时某证券连续几天无成交，则由证券交易所根据客户对该证券买卖委托的价格走势，提出指导价格，促使其成交后作为开盘价。日上市买卖的证券经上市前一日柜台转让平均价或平均售价为开盘价。</p>
 <p>收盘价：收盘价是指某种证券在证券交易所一天交易活动结束前最后一笔交易的成交价格。如当日没有成交，则采用最近一次的成交价格作为收盘价，因为收盘价是当日行情的标准，又是下一个交易日开盘价的依据，可据以预测未来证券市场行情；所以投资者对行情分析时，一般采用收盘价作为计算依据。</p>
-<p>成交数量：指当天成交的股票数量。</p>
-<p>最高价：指当天股票成交的各种不同价格是最高的成交价格。</p>
-<p>最低价：指当天成交的不同价格中最低成交价格。</p>
-<p>升高盘：是指开盘价比前一天收盘价高出许多。</p>
-<p>开低盘：是指开盘价比前一天收盘价低出许多。</p>
-<p>盘档：是指投资者不积极买卖，多采取观望态度，使当天股价的变动幅度很小，这种情况称为盘档。</p>
-<p>整理：是指股价经过一段急剧上涨或下跌后，开始小幅度波动，进入稳dìng变动阶段，这种现象称为整理，整理是下一次大变动的准备阶段。</p>
-<p>盘坚：股价缓慢上涨，称为盘坚。</p>
-<p>盘软：股价缓慢下跌，称为盘软。</p>
-<p>跳空：指受强烈利多或利空消息刺激，股价开始大幅度跳动。跳空通常在股价大变动的开始或结束前出现。</p>
-<p>回档：是指股价上升过程中，因上涨过而暂时回跌的现象。</p>
-<p>反弹：是指在下跌的行情中，股价有时由于下跌度太快，受到买方支撑面暂时回升的现象。反弹幅度较下跌幅度小，反弹后恢fù下跌趋势。</p>
-<p>成交笔数：是指当天各种股票交易的次数。</p>
-<p>成交额：是指当天每种股票成交的价格总额。</p>
-<p>最后喊进价：是指当天收盘后，买者欲买进的价格。</p>
-<p>最后喊出价：是指当天收盘后，卖者的要价。</p>
-<p>多头：对股票后市看好，先行买进股票，等股价涨至某个价位，卖出股票赚取差价的人。</p>
-<p>空头：是指变为股价已上涨到了最高点，很快便会下跌，或当股票已开始下跌时，变为还会继续下跌，趁高价时卖出的投资者。</p>
-<p>涨跌：以每天的收盘价与前一天的收盘价相比较，来决定股票价格是涨还是跌。一般在交易台上方的公告牌上用“+”“－”号表示。</p>
-<p>价位：指喊价的升降单位。价位的高低随股票的每股市价的不同而异。以sh证券交易所为例：每股市价末满1oo元价位是o.1o元；每股市价1oo－2oo元价位是o.2o元；每股市价2oo－3oo元价位是o.3o元；每股市价3oo－4oo元价位是o.5o元；每股市价4oo元以上价位是1.oo元；</p>
-<p>盘整：指股市上经常会出现股价徘徊缓滞的局面，在一定时期内既上不去，也下不来，sh投资者们称此为僵牢。</p>
-<p>配股：公司行新股时，按股东所有人参份数，以特价（低于市价）分配给股东认购。</p>
-<p>要价、报价：股票交易中卖方愿出售股票的最低价格。</p>
-<p>行情牌：一些大银行和经纪公司，证券交易所设置的大型电子屏幕，可随时向客户提供股票行情。</p>
-<p>盈亏临界点：交易所股票交易量的基数点，过这一点就会实现盈利，反之则亏损。</p>
-<p>填息：除息前，股票市场价格大约等于没有宣布除息前的市场价格加将分派的股息。因而在宣布除息后股价将上涨。除息完成后，股价往往会下降到低于除息前的股价。二者之差约等于股息。如果除息完成后，股价上涨接近或过除息前的股价，二者的差额被弥补，就叫填息。</p>
-<p>票面价值：指公司最初所定股票票面值。</p>
-<p>法定资本：例如一家公司的法定资本是2ooo万元，但开业时只需1ooo万元便足够，持股人缴足1ooo万元便是缴足资本。</p>
-<p>蓝筹股：指资本雄厚，信誉优良的挂牌公司行的股票。</p>
-<p>经纪人佣金：经纪人执行客户的指令所收取的报酬，通常以成交金额的百分比计算。</p>
-<p>多头市场：也称牛市，就是股票价格普遍上涨的市场。</p>
-<p>空头市场：股价呈长期下降趋势的市场，空头市场中，股价的变动情况是大跌小涨。亦称熊市。</p>
-<p>股本：所有代表企业所有权的股票，包括普通股和优先股。</p>
-<p>资本化证券：根据普通股股东持股股份的比例，免费提供的新股，亦称临时股或红利股。</p>
-<p>现卖：证券交易所中交易成交后，要求在当天交付证券的行为称为现卖。</p>
-<p>多翻空：原本看好行情的多头，看法改变，不但卖出手中的股票，还借股票卖出，这种行为称为翻空或多翻空。</p>
-<p>空翻多：原本作空头者，改变看法，不但把卖出的股票买回，还买进更多的股票，这种行为称为空翻多。</p>
-<p>买空：预计股价将上涨，因而买入股票，在实际交割前，再将买入的股票卖掉，实际交割时收取差价或补足差价的一种投机行为。</p>
-<p>卖空：预计股价将下跌，因而卖出股票，在生实际交割前，将卖出股票如数补进，交割时，只结清差价的投机行为。</p>
-<p>利空：促使股价下跌，以空头有利的因素和消息。</p>
-<p>利多：是刺激股价上涨，对多头有利的因素和消息。</p>
-<p>长空：是对股价前景看坏，借来股票卖，或卖出股票期货，等相当长一段时间后才买回的行为。</p>
-<p>短空：变为股价短期内看跌，借来股票卖出，短时间内即补回的行为。</p>
-<p>长多：是对股价远期看好，认为股价会长期不断上涨，因而买进股票长期持有，等股价上涨相当长时间后再卖出，赚取差价收益的行为。</p>
-<p>短多：是对股价短期内看好，买进股票，如果股价略有不涨即卖出的行为。</p>
-<p>补空：是空关买回以前卖出的股票的行为。</p>
-<p>吊空：是指抢空头帽子，卖空股票，不料当天股价末下跌，只好高价赔钱补进。多杀多：是普遍认为当天股价将上涨，于是市场上抢多头帽子的特别多，然而股价却没有大幅度上涨，等交易快结束时，竞相卖出，造成收盘价大幅度下跌的情况。轧空：是普遍认为当天股价将下跌，于是都抢空头帽子，然而股价并末大幅度下跌，无法低价买进，收盘前只好竞相补进，反而使收盘价大幅度升高的情况。</p>
-<p>死多：是看好股市前景，买进股票后，如果股价下跌，宁愿放上几年，不嫌钱绝不脱手。</p>
-<p>套牢：是指预期股价上涨，不料买进后，股价一路下跌；或是预期股价下跌，卖出股票后，股价却一路上涨，前者称多头套牢，后者是空头套牢。</p>
-<p>抢帽子：指当天低买再高卖，或高卖再低买，买卖股票的种类和数量都相同，从中赚取差价的行为。</p>
-<p>帽客：从事抢帽子行为的人，称为帽客。</p>
-<p>断头：是指抢多头帽子，买进股票，不料当天股价末上涨，反而下跌，只好低价</p>
-<h2 id="13股市常用术语"><a href="#13股市常用术语" class="headerlink" title="13股市常用术语"></a>13股市常用术语</h2><p>[股票指数期货]股票指数期货是一种以股市指数为买卖基础的期货。它是一种远期合约的买卖，采用保证金交易的方式，保证金的比例一般是合约面值的5％至15％。它采用现金交割方式，即合约到期时以股票市场的收市指数作为结算的准则，合约持有人只需交付或收取股市与期市两个指数的现金差额，就可完成交割手续。</p>
-<p>[零股交易]不到一个成交单位(1手=1oo股)的股票，如1股、1o股，称为零股。在卖出股票时，可以用零股进行委托；但买进股票时不能以零股进行委托，最小单位是1手，即1oo股。</p>
-<p>[集合竞价]每早9：15－9：25，通guò计算机撮合配对，以价格优先，时间优先为指标确定价格。</p>
-<p>[轧空]指做空头买卖的投资人在卖出股票之后，股票的价格却一路上涨，在不得已的情况下以比卖出价更高的价格重新买进已卖出的股票。</p>
-<p>[箱型走势]指股价走势的一种形状。将最高价、最低价分别连成直线，便可得到一个箱型的价格趋势图，故称“箱型走势”。由于像一个通道，又称“通道”。</p>
-<p>[除息]指股份公司向投资者以现金股利形式放红利。除息前，股份公司需要事先召开股东会议确定方案、核对股东名册，除息时以规定某日在册股东名单为准，并公告在此日以后一段时期为停止股东过户期。除息同样会造成股价下跌，投资者应谨慎判断。</p>
-<p>[除权]股份公司在向投资者放股利时，除去交易中股票配股或送股的权利称为除权。与除息一样，除权时也以规定日的在册股东名单为准，并公告在此日以后一段时期为停止股东过户期。除权一般会造成股价的下跌，投资者不能轻yì就此做出股价处于低位的判断，而应根据股价的走势，做出正确的判断。</p>
-<p>[反转]指股价由多头行情转为空头行情，或由空头行情转为多头行情。大势来讲，就是由牛市转变为熊市，或是由熊市转变为牛市，从个股来讲，从下跌趋势转向上升趋势，投资者应积极参与，股票的形态看好。从上升趋势转为下跌趋势，投资者应尽kuài出局或远离该股票。</p>
-<p>[承销]指将股票销售业务委托给专门的股票承销机构代理。按照行风险的承担、所筹资金的划拨及手续费高低等因素划分，承销方式有包销和代销两种。</p>
-<p>[成长股]是指这样一些公司所行的股票，它们的销售额和利润额持续增长，而且其度快于整个国家和本行业的增长。这些公司通常有宏图伟略，注重科研，留有大利润作为再投资以促进其扩张。</p>
-<p>[绩优股]是指过去几年业绩和盈余较佳,展望未来几年仍可看好，只是不会再有高度成长的可能的股票。该行业远景尚佳，投资报酬率也能维持一定的高水平。</p>
-<p>[投机股]是指那些从事开性或冒险性的公司的股票。这些股票有时在几天内上涨许多倍，因而能够吸引一些投机者。这种股票的风险性很大。</p>
-<p>[多头]投资者对股市前景看好，认为股价将上涨，于是先用低价买进，特价而沽。这种先买后卖的人称为多头。</p>
-<p>[空头]投资者对股市前景看跌,认为股价现在太高,先卖掉股票，和以股价跌到预期程dù时再买进，以赚以差价。这种先卖后买的人称为空头。</p>
-<p>[牛市]指较长一段时间里处于上涨趋势的股票市场。牛市中，求过于供，股价上涨，对多头有利。</p>
-<p>[熊市]指较长一段时间里处于下跌趋势的股票市场。熊市中，供过于求，股价下跌，对空头有利。</p>
-<p>[牛皮市]走势波动小，陷入盘整，成交及低。</p>
-<p>[买空]投资人预期股价将要上涨，以提交保证金方式融资购买股票，然后待股价上涨后卖出，以赚取差价。这种方式称为买空。</p>
-<p>[卖空]投资人预期股价将要下跌，以提交保证金方式借到股票，先卖出，而后待到股价下跌到预期程dù时，再买进，赚取差价。这种方式称为卖空。</p>
-<p>[长多]长线投资人，买进股票持有较长的时间。</p>
-<p>[短多]善作短线，通常三两天有赚就卖。</p>
-<p>[死多]指总是看好股市前景，买进股票，如果股价下跌，宁愿放上几年抱定一个原则，不赚钱不卖的投资人。</p>
-<p>[扎空]卖出股票后，股价不跌反涨，称为扎空行情。</p>
-<p>[多翻空]原本为多头，但见势不对卖出持股获利了结转为做空。</p>
-<p>[空翻多]原本为空头，但见大势变好，买入持股转为做多。</p>
-<p>[套牢]本书中的套牢实际上是指多头套牢。是指投资者买进股票后，股价下跌而卖不出去。</p>
-<p>[抢短线]预期股价上涨，先低价买进后再在短期内以高价卖出。预期股价下跌，先高价卖出再伺机在短期内以低价再回购。</p>
-<p>[利好(利多)]凡对多头有利，刺激股价上涨的因素或信息称为利好(利多)</p>
-<p>[利空]凡对空头有利，促使股价下跌的因素或信息称为利空。</p>
-<p>[大户]手中持有大股票或资本，做大额交易的客户，一般是资金雄厚的人，他们吞吐量大、能影响市场股价。</p>
-<p>[散户]进行零星小额买卖的投资者，一般指小额投资者，或个人投资者。</p>
-<p>[死多头]认定股市前景看好，只买进而不卖出，即使股价下跌，宁愿套牢而抱定不获利决不卖出的人。</p>
-<p>[盘整]股价经过一段快捷上升或下降后，遭遇阻力或支撑而呈小幅涨跌变动，做换手整理。</p>
-<p>[跳空]股市受到利好或利空消息的强刺激，股指开始大幅度跳动。当天开盘价在上涨时高于前一天收盘价数个单位；在下跌时低于前一天收盘价数个单位；而在一天交易中，涨跌幅度过数个单位。</p>
-<p>[反弹]在空头市场上，股价处于下跌趋势中，会因股价下跌过快而出现回升，以调整价位，这种现象称为反弹。</p>
-<p>[抬拉]抬拉是用非常方法，将股价大幅度抬起。通常大户在抬拉之后便大抛出以牟取暴利。</p>
-<p>[打压]打是用非常方法，将股价大幅度压低。通常大户在打压之后便大量买进以取暴利。</p>
-<p>[涨(跌)停板]交易所规定的股价一天中涨（跌）最大幅度为前一日收盘价的百分数，不能过此限，否则自动停止交易。</p>
-<p>[黑马]是指股价在一定时间内，上涨一倍或数倍的股票。</p>
-<p>[白马]是指股价已形成慢慢涨的长升通道，还有一定的上涨空间。</p>
-<p>[热门股]是指交易量大、流通性强、股价变动幅度较大的股票。</p>
-<p>[骗线]大户利用股民们迷信技术分析数jù、图表的心理，故意抬拉、打压股指，致使技术图表形成一定线型，引诱股民大买进或卖出，从而达到他们大其财的目的。这种期骗性造成的技术图表线型称为骗钱。</p>
-<p>[成交量]某种证券或整个市场在一定时期内完成交易的股数。</p>
-<p>[技术分析]以供求关系为基础对市场和股票进行的分析研究。技术分析研究价格动向、交易量、交易趋势和形式,并制图表示上述因素,为图预测当前市场行为对未来证券的供求关系和个人持有的证券可能生的影响。</p>
-<p>[基本分析]根据销售额、资产、收益、产品或服务、市场和管理等因素对企业进行分析。亦指对宏观政zhì、经济、军事动态的分析,以预测它们对股市的影响。</p>
-<p>[经纪人]执行客户命令，买卖证券、商品或其他财产，并为此收取佣金者。</p>
-<p>[非上市股票]不在证券交易所注册挂牌的股票。</p>
-<p>[委托书]股东委托他人(其他股东)代表自己在股东大会上行使投票权的书面证明。</p>
-<p>[周转率]股票交易的股数占交易所上市流通的股票股数的百分比。</p>
+<p><strong>成交数量</strong>：指当天成交的股票数量。</p>
+<p><strong>最高价</strong>：指当天股票成交的各种不同价格是最高的成交价格。</p>
+<p><strong>最低价</strong>：指当天成交的不同价格中最低成交价格。</p>
+<p><strong>升高盘</strong>：是指开盘价比前一天收盘价高出许多。</p>
+<p><strong>开低盘</strong>：是指开盘价比前一天收盘价低出许多。</p>
+<p><strong>盘档</strong>：是指投资者不积极买卖，多采取观望态度，使当天股价的变动幅度很小，这种情况称为盘档。</p>
+<p><strong>整理</strong>：是指股价经过一段急剧上涨或下跌后，开始小幅度波动，进入稳dìng变动阶段，这种现象称为整理，整理是下一次大变动的准备阶段。</p>
+<p><strong>盘坚</strong>：股价缓慢上涨，称为盘坚。</p>
+<p><strong>盘软</strong>：股价缓慢下跌，称为盘软。</p>
+<p><strong>跳空</strong>：指受强烈利多或利空消息刺激，股价开始大幅度跳动。跳空通常在股价大变动的开始或结束前出现。</p>
+<p><strong>回档</strong>：是指股价上升过程中，因上涨过而暂时回跌的现象。</p>
+<p><strong>反弹</strong>：是指在下跌的行情中，股价有时由于下跌度太快，受到买方支撑面暂时回升的现象。反弹幅度较下跌幅度小，反弹后恢fù下跌趋势。</p>
+<p><strong>成交笔数</strong>：是指当天各种股票交易的次数。</p>
+<p><strong>成交额</strong>：是指当天每种股票成交的价格总额。</p>
+<p><strong>最后喊进价</strong>：是指当天收盘后，买者欲买进的价格。</p>
+<p><strong>最后喊出价</strong>：是指当天收盘后，卖者的要价。</p>
+<p><strong>多头</strong>：对股票后市看好，先行买进股票，等股价涨至某个价位，卖出股票赚取差价的人。</p>
+<p><strong>空头</strong>：是指变为股价已上涨到了最高点，很快便会下跌，或当股票已开始下跌时，变为还会继续下跌，趁高价时卖出的投资者。</p>
+<p><strong>涨跌</strong>：以每天的收盘价与前一天的收盘价相比较，来决定股票价格是涨还是跌。一般在交易台上方的公告牌上用“+”“－”号表示。</p>
+<p><strong>价位</strong>：指喊价的升降单位。价位的高低随股票的每股市价的不同而异。以sh证券交易所为例：每股市价末满1oo元价位是o.1o元；每股市价1oo－2oo元价位是o.2o元；每股市价2oo－3oo元价位是o.3o元；每股市价3oo－4oo元价位是o.5o元；每股市价4oo元以上价位是1.oo元；</p>
+<p><strong>盘整</strong>：指股市上经常会出现股价徘徊缓滞的局面，在一定时期内既上不去，也下不来，sh投资者们称此为僵牢。</p>
+<p><strong>配股</strong>：公司行新股时，按股东所有人参份数，以特价（低于市价）分配给股东认购。</p>
+<p><strong>要价、报价</strong>：股票交易中卖方愿出售股票的最低价格。</p>
+<p><strong>行情牌</strong>：一些大银行和经纪公司，证券交易所设置的大型电子屏幕，可随时向客户提供股票行情。</p>
+<p><strong>盈亏临界点</strong>：交易所股票交易量的基数点，过这一点就会实现盈利，反之则亏损。</p>
+<p><strong>填息</strong>：除息前，股票市场价格大约等于没有宣布除息前的市场价格加将分派的股息。因而在宣布除息后股价将上涨。除息完成后，股价往往会下降到低于除息前的股价。二者之差约等于股息。如果除息完成后，股价上涨接近或过除息前的股价，二者的差额被弥补，就叫填息。</p>
+<p><strong>票面价值</strong>：指公司最初所定股票票面值。</p>
+<p><strong>法定资本</strong>：例如一家公司的法定资本是2ooo万元，但开业时只需1ooo万元便足够，持股人缴足1ooo万元便是缴足资本。</p>
+<p><strong>蓝筹股</strong>：指资本雄厚，信誉优良的挂牌公司行的股票。</p>
+<p><strong>经纪人佣金</strong>：经纪人执行客户的指令所收取的报酬，通常以成交金额的百分比计算。</p>
+<p><strong>多头市场</strong>：也称牛市，就是股票价格普遍上涨的市场。</p>
+<p><strong>空头市场</strong>：股价呈长期下降趋势的市场，空头市场中，股价的变动情况是大跌小涨。亦称熊市。</p>
+<p><strong>股本</strong>：所有代表企业所有权的股票，包括普通股和优先股。</p>
+<p><strong>资本化证券</strong>：根据普通股股东持股股份的比例，免费提供的新股，亦称临时股或红利股。</p>
+<p><strong>现卖</strong>：证券交易所中交易成交后，要求在当天交付证券的行为称为现卖。</p>
+<p><strong>多翻空</strong>：原本看好行情的多头，看法改变，不但卖出手中的股票，还借股票卖出，这种行为称为翻空或多翻空。</p>
+<p><strong>空翻多</strong>：原本作空头者，改变看法，不但把卖出的股票买回，还买进更多的股票，这种行为称为空翻多。</p>
+<p><strong>买空</strong>：预计股价将上涨，因而买入股票，在实际交割前，再将买入的股票卖掉，实际交割时收取差价或补足差价的一种投机行为。</p>
+<p><strong>卖空</strong>：预计股价将下跌，因而卖出股票，在生实际交割前，将卖出股票如数补进，交割时，只结清差价的投机行为。</p>
+<p><strong>利空</strong>：促使股价下跌，以空头有利的因素和消息。</p>
+<p><strong>利多</strong>：是刺激股价上涨，对多头有利的因素和消息。</p>
+<p><strong>长空</strong>：是对股价前景看坏，借来股票卖，或卖出股票期货，等相当长一段时间后才买回的行为。</p>
+<p><strong>短空</strong>：变为股价短期内看跌，借来股票卖出，短时间内即补回的行为。</p>
+<p><strong>长多</strong>：是对股价远期看好，认为股价会长期不断上涨，因而买进股票长期持有，等股价上涨相当长时间后再卖出，赚取差价收益的行为。</p>
+<p><strong>短多</strong>：是对股价短期内看好，买进股票，如果股价略有不涨即卖出的行为。</p>
+<p><strong>补空</strong>：是空关买回以前卖出的股票的行为。</p>
+<p><strong>吊空</strong>：是指抢空头帽子，卖空股票，不料当天股价末下跌，只好高价赔钱补进。多杀多：是普遍认为当天股价将上涨，于是市场上抢多头帽子的特别多，然而股价却没有大幅度上涨，等交易快结束时，竞相卖出，造成收盘价大幅度下跌的情况。轧空：是普遍认为当天股价将下跌，于是都抢空头帽子，然而股价并末大幅度下跌，无法低价买进，收盘前只好竞相补进，反而使收盘价大幅度升高的情况。</p>
+<p><strong>死多</strong>：是看好股市前景，买进股票后，如果股价下跌，宁愿放上几年，不嫌钱绝不脱手。</p>
+<p><strong>套牢</strong>：是指预期股价上涨，不料买进后，股价一路下跌；或是预期股价下跌，卖出股票后，股价却一路上涨，前者称多头套牢，后者是空头套牢。</p>
+<p><strong>抢帽子</strong>：指当天低买再高卖，或高卖再低买，买卖股票的种类和数量都相同，从中赚取差价的行为。</p>
+<p><strong>帽客</strong>：从事抢帽子行为的人，称为帽客。</p>
+<p><strong>断头</strong>：是指抢多头帽子，买进股票，不料当天股价末上涨，反而下跌，只好低价</p>
+<hr>
+<h2 id="13股市常用术语"><a href="#13股市常用术语" class="headerlink" title="13股市常用术语"></a>13股市常用术语</h2><p>[<strong>股票指数期货</strong>]股票指数期货是一种以股市指数为买卖基础的期货。它是一种远期合约的买卖，采用保证金交易的方式，保证金的比例一般是合约面值的5％至15％。它采用现金交割方式，即合约到期时以股票市场的收市指数作为结算的准则，合约持有人只需交付或收取股市与期市两个指数的现金差额，就可完成交割手续。</p>
+<p>[<strong>零股交易</strong>]不到一个成交单位(1手=1oo股)的股票，如1股、1o股，称为零股。在卖出股票时，可以用零股进行委托；但买进股票时不能以零股进行委托，最小单位是1手，即1oo股。</p>
+<p>[<strong>集合竞价</strong>]每早9：15－9：25，通guò计算机撮合配对，以价格优先，时间优先为指标确定价格。</p>
+<p>[<strong>轧空</strong>]指做空头买卖的投资人在卖出股票之后，股票的价格却一路上涨，在不得已的情况下以比卖出价更高的价格重新买进已卖出的股票。</p>
+<p>[<strong>箱型走势</strong>]指股价走势的一种形状。将最高价、最低价分别连成直线，便可得到一个箱型的价格趋势图，故称“箱型走势”。由于像一个通道，又称“通道”。</p>
+<p>[<strong>除息</strong>]指股份公司向投资者以现金股利形式放红利。除息前，股份公司需要事先召开股东会议确定方案、核对股东名册，除息时以规定某日在册股东名单为准，并公告在此日以后一段时期为停止股东过户期。除息同样会造成股价下跌，投资者应谨慎判断。</p>
+<p>[<strong>除权</strong>]股份公司在向投资者放股利时，除去交易中股票配股或送股的权利称为除权。与除息一样，除权时也以规定日的在册股东名单为准，并公告在此日以后一段时期为停止股东过户期。除权一般会造成股价的下跌，投资者不能轻yì就此做出股价处于低位的判断，而应根据股价的走势，做出正确的判断。</p>
+<p>[<strong>反转</strong>]指股价由多头行情转为空头行情，或由空头行情转为多头行情。大势来讲，就是由牛市转变为熊市，或是由熊市转变为牛市，从个股来讲，从下跌趋势转向上升趋势，投资者应积极参与，股票的形态看好。从上升趋势转为下跌趋势，投资者应尽kuài出局或远离该股票。</p>
+<p>[<strong>承销</strong>]指将股票销售业务委托给专门的股票承销机构代理。按照行风险的承担、所筹资金的划拨及手续费高低等因素划分，承销方式有包销和代销两种。</p>
+<p>[<strong>成长股</strong>]是指这样一些公司所行的股票，它们的销售额和利润额持续增长，而且其度快于整个国家和本行业的增长。这些公司通常有宏图伟略，注重科研，留有大利润作为再投资以促进其扩张。</p>
+<p>[<strong>绩优股</strong>]是指过去几年业绩和盈余较佳,展望未来几年仍可看好，只是不会再有高度成长的可能的股票。该行业远景尚佳，投资报酬率也能维持一定的高水平。</p>
+<p>[<strong>投机股</strong>]是指那些从事开性或冒险性的公司的股票。这些股票有时在几天内上涨许多倍，因而能够吸引一些投机者。这种股票的风险性很大。</p>
+<p>[<strong>多头</strong>]投资者对股市前景看好，认为股价将上涨，于是先用低价买进，特价而沽。这种先买后卖的人称为多头。</p>
+<p>[<strong>空头</strong>]投资者对股市前景看跌,认为股价现在太高,先卖掉股票，和以股价跌到预期程dù时再买进，以赚以差价。这种先卖后买的人称为空头。</p>
+<p>[<strong>牛市</strong>]指较长一段时间里处于上涨趋势的股票市场。牛市中，求过于供，股价上涨，对多头有利。</p>
+<p>[<strong>熊市</strong>]指较长一段时间里处于下跌趋势的股票市场。熊市中，供过于求，股价下跌，对空头有利。</p>
+<p>[<strong>牛皮市</strong>]走势波动小，陷入盘整，成交及低。</p>
+<p>[<strong>买空</strong>]投资人预期股价将要上涨，以提交保证金方式融资购买股票，然后待股价上涨后卖出，以赚取差价。这种方式称为买空。</p>
+<p>[<strong>卖空</strong>]投资人预期股价将要下跌，以提交保证金方式借到股票，先卖出，而后待到股价下跌到预期程dù时，再买进，赚取差价。这种方式称为卖空。</p>
+<p>[<strong>长多</strong>]长线投资人，买进股票持有较长的时间。</p>
+<p>[<strong>短多</strong>]善作短线，通常三两天有赚就卖。</p>
+<p>[<strong>死多</strong>]指总是看好股市前景，买进股票，如果股价下跌，宁愿放上几年抱定一个原则，不赚钱不卖的投资人。</p>
+<p>[<strong>扎空</strong>]卖出股票后，股价不跌反涨，称为扎空行情。</p>
+<p>[<strong>多翻空</strong>]原本为多头，但见势不对卖出持股获利了结转为做空。</p>
+<p>[<strong>空翻多</strong>]原本为空头，但见大势变好，买入持股转为做多。</p>
+<p>[<strong>套牢</strong>]本书中的套牢实际上是指多头套牢。是指投资者买进股票后，股价下跌而卖不出去。</p>
+<p>[<strong>抢短线</strong>]预期股价上涨，先低价买进后再在短期内以高价卖出。预期股价下跌，先高价卖出再伺机在短期内以低价再回购。</p>
+<p>[<strong>利好(利多)</strong>]凡对多头有利，刺激股价上涨的因素或信息称为利好(利多)</p>
+<p>[<strong>利空</strong>]凡对空头有利，促使股价下跌的因素或信息称为利空。</p>
+<p>[<strong>大户</strong>]手中持有大股票或资本，做大额交易的客户，一般是资金雄厚的人，他们吞吐量大、能影响市场股价。</p>
+<p>[<strong>散户</strong>]进行零星小额买卖的投资者，一般指小额投资者，或个人投资者。</p>
+<p>[<strong>死多头</strong>]认定股市前景看好，只买进而不卖出，即使股价下跌，宁愿套牢而抱定不获利决不卖出的人。</p>
+<p>[<strong>盘整</strong>]股价经过一段快捷上升或下降后，遭遇阻力或支撑而呈小幅涨跌变动，做换手整理。</p>
+<p>[<strong>跳空</strong>]股市受到利好或利空消息的强刺激，股指开始大幅度跳动。当天开盘价在上涨时高于前一天收盘价数个单位；在下跌时低于前一天收盘价数个单位；而在一天交易中，涨跌幅度过数个单位。</p>
+<p>[<strong>反弹</strong>]在空头市场上，股价处于下跌趋势中，会因股价下跌过快而出现回升，以调整价位，这种现象称为反弹。</p>
+<p>[<strong>抬拉</strong>]抬拉是用非常方法，将股价大幅度抬起。通常大户在抬拉之后便大抛出以牟取暴利。</p>
+<p>[<strong>打压</strong>]打是用非常方法，将股价大幅度压低。通常大户在打压之后便大量买进以取暴利。</p>
+<p>[<strong>涨(跌)停板</strong>]交易所规定的股价一天中涨（跌）最大幅度为前一日收盘价的百分数，不能过此限，否则自动停止交易。</p>
+<p>[<strong>黑马</strong>]是指股价在一定时间内，上涨一倍或数倍的股票。</p>
+<p>[<strong>白马</strong>]是指股价已形成慢慢涨的长升通道，还有一定的上涨空间。</p>
+<p>[<strong>热门股</strong>]是指交易量大、流通性强、股价变动幅度较大的股票。</p>
+<p>[<strong>骗线</strong>]大户利用股民们迷信技术分析数jù、图表的心理，故意抬拉、打压股指，致使技术图表形成一定线型，引诱股民大买进或卖出，从而达到他们大其财的目的。这种期骗性造成的技术图表线型称为骗钱。</p>
+<p>[<strong>成交量</strong>]某种证券或整个市场在一定时期内完成交易的股数。</p>
+<p>[<strong>技术分析</strong>]以供求关系为基础对市场和股票进行的分析研究。技术分析研究价格动向、交易量、交易趋势和形式,并制图表示上述因素,为图预测当前市场行为对未来证券的供求关系和个人持有的证券可能生的影响。</p>
+<p>[<strong>基本分析</strong>]根据销售额、资产、收益、产品或服务、市场和管理等因素对企业进行分析。亦指对宏观政zhì、经济、军事动态的分析,以预测它们对股市的影响。</p>
+<p>[<strong>经纪人</strong>]执行客户命令，买卖证券、商品或其他财产，并为此收取佣金者。</p>
+<p>[<strong>非上市股票</strong>]不在证券交易所注册挂牌的股票。</p>
+<p>[<strong>委托书</strong>]股东委托他人(其他股东)代表自己在股东大会上行使投票权的书面证明。</p>
+<p>[<strong>周转率</strong>]股票交易的股数占交易所上市流通的股票股数的百分比。</p>
 <p>股市常用术语3</p>
-<p>[除权]股票除权前一日收盘价减去所含权的差价，即为除权。</p>
-<p>[派息]股票前一日收盘价减去上市公司放的股息称为派息。</p>
-<p>[含权]凡是有股票有权未送配的均称含权。</p>
-<p>[填权]除权后股价上升，将除权差价补回，称为填权。</p>
-<p>[增资]上市公司为业务需求经常会办理增资（有偿配股）或资本公积新增资（无偿配股）。</p>
-<p>[配股]公司行新股时按股东所持股份数以持价(低于市价)分配认股。</p>
-<p>[坐轿子]预测股价将涨，抢在众人前以低价先行买进，待众多散户跟进、股价节节升高后，卖出获利。</p>
-<p>[抬轿子]在别人早已买进后才醒悟，也跟着买进，结果是把股价抬高让他人获利，而自己买进的股价已非低价，无利可图。</p>
-<p>[下轿子]坐轿客逢高获利了结算为下轿子。</p>
-<p>[掼压]利用大卖出将股价打压下来，主要想压低进货。</p>
-<p>[拉抬]利用大量买入将股价拉起来，主要想拉高出货。</p>
-<p>[长空]指对股市远景看坏，借来股票卖出，俟股票跌落一段相当长时期以后才买回。</p>
-<p>[短空]指对股市前途看跌，借来股票卖出，但于短时间内即买回</p>
-<p>[补空]指空头买回以前借来卖出的股票。</p>
-<p>[空手]指手中无股票，即不是空头，也不是多头，观望股势，等待股价低时买进，高时借股放空的人。</p>
-<p>[套牢]指预测股价将上涨，买进后却一路下跌，或是预测股价将下跌，于是借股放空后，却一路上涨，前者称为多头套牢，后者称为宽头套牢。</p>
-<p>[扎空头]资金雄厚的股票投机者看中某种股票看涨，便大量买入，并暗中控zhì其来源，使空头于交割时无法获得其应交数量，多头趁机抬高价格，空头不得不忍痛按多头要求的价格成交。</p>
-<p>[扎多头]到期股票价格疲软，原来做多头的商人急于脱手，如果实力雄厚的投机家控zhì各方面股票需求，成为寡头购买者，迫使多头削价出售。</p>
-<p>[抢帽子]指当天先低价买进股票，然后高价再卖出相同种类、相同数量的股票，或当天先卖出股票，然后以低价买进相同种类、相同数量的股票，以求赚取差价利益。</p>
-<p>[断头]指抢多头帽子，买进股票，股票当天未上涨，反而下跌，只好低价赔钱卖出。</p>
-<p>[吊空]指抢空头帽子，卖出股票，股价当天未下跌，反而上涨，只好高价赔钱买回。</p>
-<p>[多杀多]普遍认为当天股价将上涨，于是抢多头帽子的人持多，然而股价却没有大幅上涨，无法高价卖出，等到交易快要结束时，竟相卖出，因而造成收盘时股价大幅下挫的情形。</p>
-<p>[空杀空]普遍认为当天股价将下跌，于是都抢空头帽子，然而股价却没有大幅下跌，无法低价买进，交割前，只好纷纷补进，因而反使股价在收盘时，大幅度升高的情形。</p>
-<p>[实多]指在自有资金能力范围之内，买进股票，即使被套牢，亦不必赶忙杀出的人。</p>
-<p>[实空]指以自己手中持有的股票放空，股价反弹时并不需要着急补回的人。</p>
-<p>[浮多]看好股市前景，认为将会上涨，想大捞一笔，而自己财力有限，于是向别人借来资金，买进股票，放款人若要收回，买股票的多头，即需卖出股票，归还借款，此时，即使股价上涨，亦不敢长期持有，一旦获得相当利润即卖出，一股价下跌，更心慌意乱，赶紧赔钱了结，以防套牢。</p>
-<p>[浮空]其情形与浮多相同，只是认为股价将下跌，借股放空，因所放空的股票，时有被收回的顾虑，所以称为“浮空”。</p>
-<p>[阻力线]股价上涨到达某一价位附近，如有大量的卖出情形，使股价停止上扬，甚至回跌的价位。</p>
-<p>[支撑线]股价下跌到在某一价位附近，如有大量买进情形，使股价停止下跌甚至回升的价位。</p>
-<p>[盘挡]指当天的股价变动幅度小，显得十分稳dìng。</p>
-<p>[盘坚]指当天股价缓慢盘旋上升。</p>
-<p>[盘软]指当天股价缓慢盘旋下跌。</p>
-<p>[盘整]指股价经过一段急的上涨或下跌后，遇到阻力或支撑，因而开始小幅度上下变动，其幅度大约在15%左右。</p>
-<p>[跳空]股市受到强烈利多或利空消息的刺激,股价开始大幅跳动,在上涨时,当天的开盘或最低价，高于前一天的收盘价两个申报单位以上，称“跳空而上”；下跌时，当天的天盘或最高价低于前一天的收盘价两个申报单位，而于一天的交易中，上涨或下跌过一个申报单位，称“跳空而下”。</p>
-<p>[填空]指将跳空出现时没有交易的空价位补回来，也就是股价跞空后，过一段时间将回到跳空前价位，以填补跳空价位。</p>
-<p>[拔档]持有股票的多头遇到股价下跌，并预期可能还要下跌，于是卖出股票，等待股价跌落一段差距以后，再补回，期望少赔一段差距。</p>
-<p>[回档]上升趋势中，因股价上涨过而回跌，以调整价位的现象。</p>
-<p>[打底]股价由最低点回升，随后遭到空头压卖而再度跌落，但在最低点附近又获得多头支撑，如此来回多次后，便迅脱离最低点而一路上涨。</p>
-<p>[打开]股价由涨跌停板滑落或翻升。</p>
-<p>[天价]个别股票由多头市场转为空头市场时的最高价。</p>
-<p>[突破]指股价经过一段盘档时间后，产生的一种价格波动。</p>
-<p>[探底]股价持续跌挫至某价位时便止跌回升，如此一次或数次。</p>
-<p>[头部]股价上涨至某价位时便遇阻力而下滑。</p>
-<p>[挂进]买进股票的意思。</p>
-<p>[挂出]卖出股票的意思</p>
-<p>[关卡]指股价上升至某一价位时，由于供求关系转变，导股价停滞不前，此一敏感价位区即谓“关卡”。</p>
-<p>[开平盘]指今日的开盘价与前一营业日的收盘价相同。</p>
-<p>[近期趋势]2o～3o天为近期趋势。</p>
-<p>[绩优股]指过去业绩与盈余有良好表xiàn的股票。</p>
-<p>[全额交割]是证券主管机关对重整公司或生重dà问题的上市公司之股票，特别制定的买卖交割力法。</p>
-<p>[全盘尽黑]指所有的股票均下跌，亦称“长黑”。</p>
-<p>[趋势]指股价在一段期间内的变动方向。</p>
-<p>[抢搭车]指股资人于股价稍微上涨时立即买进的行为。</p>
-<p>[做手]指以炒作股票为业的大、中户。</p>
-<p>[洗盘]做手为达妙作目的，必须于途中让低价买进，意志不坚的轿客下轿，以减轻上档压力，同时让持股者的平均价位升高，以利于施行养、套、杀的手段。</p>
-<p>[新多]指新进场的多头投资人。</p>
-<p>[线仙]指精于以路线图分析和研判大势的老手。</p>
-<p>[中短期趋势]5o～6o天为中短期趋势。</p>
-<p>[中长期趋势]8o～1oo天为中长期趋势。</p>
-<p>[震盘]指股价一天之内呈现忽高忽低之大幅度变化。</p>
-<p>[中户]指投资额较大的投资人。</p>
-<p>[差价]股票在买进和卖出的两种价格之间所获得之利润或亏损，前者称差价利得，后者称差价损失。</p>
-<p>[上档]指在市价以上的价位。</p>
-<p>[下档]指在当时股价以下的价位。</p>
-<p>[走势牛皮]形容股票价格变动蹒跚。</p>
-<p>[做头]过程与“打底”一样，只是形状恰好相反，在高价位处有两个以上的峰顶并排，形成上涨压力。</p>
-<p>[业内]证券业的以业人员。</p>
-<p>[溢价行]指新上市公司以高于面值的价格办理公开行或已上市公司以高于面值的价格办理现金增资。</p>
-<p>[折价行]指以低于面前的价格行。</p>
-<p>[中间价行]即以时价和面值的中间价作为行价格。</p>
-<p>[时价行]即以旧股票的现行市价作为新股票的行价格。</p>
-<p>[股票行]指符合条件的行人依照法定程序向投资者募集股份的行为。</p>
-<p>[股票行价格]指股份有限公司将股票公开售给特定或非特定投资者所采用的价格。根据我国有关法规规定，股票不得以低于股票票面金额的价格行。根据行价与票面金额的不同差异，股票行可以分为面值行与溢价行。</p>
-<p>[行费用]指行公司在筹备和行股票过程中生的费用。该费用可在股票行溢价收入中扣除，主要包括中介机构费、上网费和其他费用。</p>
-<p>[多头]股票后市看好，先行买进股票，等股价涨至某个价位，卖出股票赚取差价的人。</p>
-<p>[空头]是指认为股价已上涨到了最高点，很快便会下跌，或当股票已开始下跌时，认为还会继续下跌，趁高价时卖出的投资者。</p>
-<p>[多头市场]也称牛市，就是股票价格普遍上涨的市场。</p>
-<p>[空头市场]股价呈长期下降趋势的市场，空头市场中，股价的变动情况是大跌小涨。亦称熊市。</p>
-<p>[多翻空]原本看好行情的多头，看法改变，卖出手中的股票，有时还借股票卖出，这种行为称为翻空或多翻空。</p>
-<p>[空翻多]原本作空头者，改变看法，把卖出的股票买回，有时还买进更多的股票，这种行为称为空翻多。</p>
-<p>[买空]预计股价将上涨，因而买入股票，在实际交割前，再将买入的股票卖掉，实际交割时收取差价或补足差价的一种投机行为。</p>
-<p>[卖空]预计股价将下跌，因而卖出股票，在生实际交割前，将卖出股票如数补进，交割时，只结清差价的投机行为。</p>
-<p>[骗线]大户利用股民们迷信技术分析数jù、图表的心理，故意抬拉、打压股指，致使技术图表形成一定线型，引诱股民大量买进或卖出，从而达到他们大其财的目的</p>
+<p>[<strong>除权</strong>]股票除权前一日收盘价减去所含权的差价，即为除权。</p>
+<p>[<strong>派息</strong>]股票前一日收盘价减去上市公司放的股息称为派息。</p>
+<p>[<strong>含权</strong>]凡是有股票有权未送配的均称含权。</p>
+<p>[<strong>填权</strong>]除权后股价上升，将除权差价补回，称为填权。</p>
+<p>[<strong>增资</strong>]上市公司为业务需求经常会办理增资（有偿配股）或资本公积新增资（无偿配股）。</p>
+<p>[<strong>配股</strong>]公司行新股时按股东所持股份数以持价(低于市价)分配认股。</p>
+<p>[<strong>坐轿子</strong>]预测股价将涨，抢在众人前以低价先行买进，待众多散户跟进、股价节节升高后，卖出获利。</p>
+<p>[<strong>抬轿子</strong>]在别人早已买进后才醒悟，也跟着买进，结果是把股价抬高让他人获利，而自己买进的股价已非低价，无利可图。</p>
+<p>[<strong>下轿子</strong>]坐轿客逢高获利了结算为下轿子。</p>
+<p>[<strong>掼压</strong>]利用大卖出将股价打压下来，主要想压低进货。</p>
+<p>[<strong>拉抬</strong>]利用大量买入将股价拉起来，主要想拉高出货。</p>
+<p>[<strong>长空</strong>]指对股市远景看坏，借来股票卖出，俟股票跌落一段相当长时期以后才买回。</p>
+<p>[<strong>短空</strong>]指对股市前途看跌，借来股票卖出，但于短时间内即买回</p>
+<p>[<strong>补空</strong>]指空头买回以前借来卖出的股票。</p>
+<p>[<strong>空手</strong>]指手中无股票，即不是空头，也不是多头，观望股势，等待股价低时买进，高时借股放空的人。</p>
+<p>[<strong>套牢</strong>]指预测股价将上涨，买进后却一路下跌，或是预测股价将下跌，于是借股放空后，却一路上涨，前者称为多头套牢，后者称为宽头套牢。</p>
+<p>[<strong>扎空头</strong>]资金雄厚的股票投机者看中某种股票看涨，便大量买入，并暗中控zhì其来源，使空头于交割时无法获得其应交数量，多头趁机抬高价格，空头不得不忍痛按多头要求的价格成交。</p>
+<p>[<strong>扎多头</strong>]到期股票价格疲软，原来做多头的商人急于脱手，如果实力雄厚的投机家控zhì各方面股票需求，成为寡头购买者，迫使多头削价出售。</p>
+<p>[<strong>抢帽子</strong>]指当天先低价买进股票，然后高价再卖出相同种类、相同数量的股票，或当天先卖出股票，然后以低价买进相同种类、相同数量的股票，以求赚取差价利益。</p>
+<p>[<strong>断头</strong>]指抢多头帽子，买进股票，股票当天未上涨，反而下跌，只好低价赔钱卖出。</p>
+<p>[<strong>吊空</strong>]指抢空头帽子，卖出股票，股价当天未下跌，反而上涨，只好高价赔钱买回。</p>
+<p>[<strong>多杀多</strong>]普遍认为当天股价将上涨，于是抢多头帽子的人持多，然而股价却没有大幅上涨，无法高价卖出，等到交易快要结束时，竟相卖出，因而造成收盘时股价大幅下挫的情形。</p>
+<p>[<strong>空杀空</strong>]普遍认为当天股价将下跌，于是都抢空头帽子，然而股价却没有大幅下跌，无法低价买进，交割前，只好纷纷补进，因而反使股价在收盘时，大幅度升高的情形。</p>
+<p>[<strong>实多</strong>]指在自有资金能力范围之内，买进股票，即使被套牢，亦不必赶忙杀出的人。</p>
+<p>[<strong>实空</strong>]指以自己手中持有的股票放空，股价反弹时并不需要着急补回的人。</p>
+<p>[<strong>浮多</strong>]看好股市前景，认为将会上涨，想大捞一笔，而自己财力有限，于是向别人借来资金，买进股票，放款人若要收回，买股票的多头，即需卖出股票，归还借款，此时，即使股价上涨，亦不敢长期持有，一旦获得相当利润即卖出，一股价下跌，更心慌意乱，赶紧赔钱了结，以防套牢。</p>
+<p>[<strong>浮空</strong>]其情形与浮多相同，只是认为股价将下跌，借股放空，因所放空的股票，时有被收回的顾虑，所以称为“浮空”。</p>
+<p>[<strong>阻力线</strong>]股价上涨到达某一价位附近，如有大量的卖出情形，使股价停止上扬，甚至回跌的价位。</p>
+<p>[<strong>支撑线</strong>]股价下跌到在某一价位附近，如有大量买进情形，使股价停止下跌甚至回升的价位。</p>
+<p>[<strong>盘挡</strong>]指当天的股价变动幅度小，显得十分稳dìng。</p>
+<p>[<strong>盘坚</strong>]指当天股价缓慢盘旋上升。</p>
+<p>[<strong>盘软</strong>]指当天股价缓慢盘旋下跌。</p>
+<p>[<strong>盘整</strong>]指股价经过一段急的上涨或下跌后，遇到阻力或支撑，因而开始小幅度上下变动，其幅度大约在15%左右。</p>
+<p>[<strong>跳空</strong>]股市受到强烈利多或利空消息的刺激,股价开始大幅跳动,在上涨时,当天的开盘或最低价，高于前一天的收盘价两个申报单位以上，称“跳空而上”；下跌时，当天的天盘或最高价低于前一天的收盘价两个申报单位，而于一天的交易中，上涨或下跌过一个申报单位，称“跳空而下”。</p>
+<p>[<strong>填空</strong>]指将跳空出现时没有交易的空价位补回来，也就是股价跞空后，过一段时间将回到跳空前价位，以填补跳空价位。</p>
+<p>[<strong>拔档</strong>]持有股票的多头遇到股价下跌，并预期可能还要下跌，于是卖出股票，等待股价跌落一段差距以后，再补回，期望少赔一段差距。</p>
+<p>[<strong>回档</strong>]上升趋势中，因股价上涨过而回跌，以调整价位的现象。</p>
+<p>[<strong>打底</strong>]股价由最低点回升，随后遭到空头压卖而再度跌落，但在最低点附近又获得多头支撑，如此来回多次后，便迅脱离最低点而一路上涨。</p>
+<p>[<strong>打开</strong>]股价由涨跌停板滑落或翻升。</p>
+<p>[<strong>天价</strong>]个别股票由多头市场转为空头市场时的最高价。</p>
+<p>[<strong>突破</strong>]指股价经过一段盘档时间后，产生的一种价格波动。</p>
+<p>[<strong>探底</strong>]股价持续跌挫至某价位时便止跌回升，如此一次或数次。</p>
+<p>[<strong>头部</strong>]股价上涨至某价位时便遇阻力而下滑。</p>
+<p>[<strong>挂进</strong>]买进股票的意思。</p>
+<p>[<strong>挂出</strong>]卖出股票的意思</p>
+<p>[<strong>关卡</strong>]指股价上升至某一价位时，由于供求关系转变，导股价停滞不前，此一敏感价位区即谓“关卡”。</p>
+<p>[<strong>开平盘</strong>]指今日的开盘价与前一营业日的收盘价相同。</p>
+<p>[<strong>近期趋势</strong>]2o～3o天为近期趋势。</p>
+<p>[<strong>绩优股</strong>]指过去业绩与盈余有良好表xiàn的股票。</p>
+<p>[<strong>全额交割</strong>]是证券主管机关对重整公司或生重dà问题的上市公司之股票，特别制定的买卖交割力法。</p>
+<p>[<strong>全盘尽黑</strong>]指所有的股票均下跌，亦称“长黑”。</p>
+<p>[<strong>趋势</strong>]指股价在一段期间内的变动方向。</p>
+<p>[<strong>抢搭车</strong>]指股资人于股价稍微上涨时立即买进的行为。</p>
+<p>[<strong>做手</strong>]指以炒作股票为业的大、中户。</p>
+<p>[<strong>洗盘</strong>]做手为达妙作目的，必须于途中让低价买进，意志不坚的轿客下轿，以减轻上档压力，同时让持股者的平均价位升高，以利于施行养、套、杀的手段。</p>
+<p>[<strong>新多</strong>]指新进场的多头投资人。</p>
+<p>[<strong>线仙</strong>]指精于以路线图分析和研判大势的老手。</p>
+<p>[<strong>中短期趋势</strong>]5o～6o天为中短期趋势。</p>
+<p>[<strong>中长期趋势</strong>]8o～1oo天为中长期趋势。</p>
+<p>[<strong>震盘</strong>]指股价一天之内呈现忽高忽低之大幅度变化。</p>
+<p>[<strong>中户</strong>]指投资额较大的投资人。</p>
+<p>[<strong>差价</strong>]股票在买进和卖出的两种价格之间所获得之利润或亏损，前者称差价利得，后者称差价损失。</p>
+<p>[<strong>上档</strong>]指在市价以上的价位。</p>
+<p>[<strong>下档</strong>]指在当时股价以下的价位。</p>
+<p>[<strong>走势牛皮</strong>]形容股票价格变动蹒跚。</p>
+<p>[<strong>做头</strong>]过程与“打底”一样，只是形状恰好相反，在高价位处有两个以上的峰顶并排，形成上涨压力。</p>
+<p>[<strong>业内</strong>]证券业的以业人员。</p>
+<p>[<strong>溢价行</strong>]指新上市公司以高于面值的价格办理公开行或已上市公司以高于面值的价格办理现金增资。</p>
+<p>[<strong>折价行</strong>]指以低于面前的价格行。</p>
+<p>[<strong>中间价行</strong>]即以时价和面值的中间价作为行价格。</p>
+<p>[<strong>时价行</strong>]即以旧股票的现行市价作为新股票的行价格。</p>
+<p>[<strong>股票行</strong>]指符合条件的行人依照法定程序向投资者募集股份的行为。</p>
+<p>[<strong>股票行价格</strong>]指股份有限公司将股票公开售给特定或非特定投资者所采用的价格。根据我国有关法规规定，股票不得以低于股票票面金额的价格行。根据行价与票面金额的不同差异，股票行可以分为面值行与溢价行。</p>
+<p>[<strong>行费用</strong>]指行公司在筹备和行股票过程中生的费用。该费用可在股票行溢价收入中扣除，主要包括中介机构费、上网费和其他费用。</p>
+<p>[<strong>多头</strong>]股票后市看好，先行买进股票，等股价涨至某个价位，卖出股票赚取差价的人。</p>
+<p>[<strong>空头</strong>]是指认为股价已上涨到了最高点，很快便会下跌，或当股票已开始下跌时，认为还会继续下跌，趁高价时卖出的投资者。</p>
+<p>[<strong>多头市场</strong>]也称牛市，就是股票价格普遍上涨的市场。</p>
+<p>[<strong>空头市场</strong>]股价呈长期下降趋势的市场，空头市场中，股价的变动情况是大跌小涨。亦称熊市。</p>
+<p>[<strong>多翻空</strong>]原本看好行情的多头，看法改变，卖出手中的股票，有时还借股票卖出，这种行为称为翻空或多翻空。</p>
+<p>[<strong>空翻多</strong>]原本作空头者，改变看法，把卖出的股票买回，有时还买进更多的股票，这种行为称为空翻多。</p>
+<p>[<strong>买空</strong>]预计股价将上涨，因而买入股票，在实际交割前，再将买入的股票卖掉，实际交割时收取差价或补足差价的一种投机行为。</p>
+<p>[<strong>卖空</strong>]预计股价将下跌，因而卖出股票，在生实际交割前，将卖出股票如数补进，交割时，只结清差价的投机行为。</p>
+<p>[<strong>骗线</strong>]大户利用股民们迷信技术分析数jù、图表的心理，故意抬拉、打压股指，致使技术图表形成一定线型，引诱股民大量买进或卖出，从而达到他们大其财的目的</p>
+<hr>
 <h2 id="14股票的你需要知道的基本概念"><a href="#14股票的你需要知道的基本概念" class="headerlink" title="14股票的你需要知道的基本概念"></a>14股票的你需要知道的基本概念</h2><h3 id="1、什么是股票？"><a href="#1、什么是股票？" class="headerlink" title="1、什么是股票？"></a>1、什么是股票？</h3><p>股票就是股份公司给股东作为已投资入股的证书与索取股息的凭证。股票像一般的商品一样，有价格，能买卖，可以作抵押品。股份公司借助行股票来筹集资金。投资者通过购买股票获取一定的股息收入。股票具有以下特性：</p>
 <p>权责性。股票作为产权或股权的凭证，是股份的证券表现，代表股东对行股票的公司所拥有的一定权责。股东的权益与其所持股票占公司股本的比例成正比。<br>无期性。股票投资是一种无确定期限的长期投资，只要公司存zài，投资者一般不能中途退股。<br>流通性。股票作为一种有价证券可作为抵押品，并可随时在股票市场上通guò转让卖出而换成现金，因而成为一种流通性很强的流动资产和融资工具。<br>风险性。股票投资者除获取一定的股息外，还可能在股市中赚取买卖差价利润。但投资收益的不确定性又使股票投资具有较大的风险，其预期收益越高风险也越大。行股票公司的经营状况欠佳，甚至破产，股市的大幅度波动和投资者自身的决策失误都可能给投资者带来不同程度的风险。<br>法定性。股票须经有关机构批准和登记注册，进行签证后才能行，并必须以法定形式，记载法定事项。购买股票是一种金融投资行为，与银行储蓄存款及购买债券相比较，它是一种高风险行为，但同时它也能给人们带来更大的收益。<br>购买股票能带来哪些好处呢？由于现在人们投资股票的主要目的并非在于充当企业的股东，享有股东权利,所以购买股票的好处主要体现在以下几个方面：</p>
 <p>1、每年有得到上市公司回报，如分红利、送红股。</p>
@@ -1221,7 +1693,8 @@
 <p>6、在下跌行情中，股价在移动平均线的下方，呈空头排列的移动平均线可以视为空方的防线，当股价反弹到移动平均线附近时，便会遇到阻力，卖盘涌出，促使股价进一步下跌，这就是移动平均线的助跌作用。</p>
 <p>7、移动平均线由上升转为下降出现最高点，和由下降转为上升出现最低点时，是移动平均线的转折点。预示股价走势将生反转。</p>
 <p>这里主要是针对技术指标，均线和k线的，看不明白就看下面的技术指标。</p>
-<h2 id="17报表的研读方法"><a href="#17报表的研读方法" class="headerlink" title="17报表的研读方法"></a>17报表的研读方法</h2><p>研读报表的基本原则及方法<br>益展的证券市场正逐渐表明：对上市公司的财务报表进行综合分析，全面研究上市公司的基本面，对于选准股票，取得良好的投资收益是非常重要的。具体来讲，对上市公司的研究就是要做好两个“三结合”。</p>
+<hr>
+<h2 id="15报表的研读方法"><a href="#15报表的研读方法" class="headerlink" title="15报表的研读方法"></a>15报表的研读方法</h2><p>研读报表的基本原则及方法<br>益展的证券市场正逐渐表明：对上市公司的财务报表进行综合分析，全面研究上市公司的基本面，对于选准股票，取得良好的投资收益是非常重要的。具体来讲，对上市公司的研究就是要做好两个“三结合”。</p>
 <p>第一个“三结合”就是：将财务数jù的分析与上市公司所处行业的展趋势相结合；将财务数jù的分析与上市公司所生产商品的竞争能力、供求状况相结合；将财务数jù的分析与个股的市场资金流向相结合。</p>
 <p>第二个“三结合”是：在分析财务报表时要做到把趋势分析法、结构分析法、比率分析法相结合；将总量变动与比率变动相结合；把分析的量比指标与所分析问题的性质结合起来。这两个“三结合”的实质就是要求我们不能仅仅关注上市公司的过去和目前经营结果，而是更要善于通guò有关数jù的变化来预测公司未来的展趋势。</p>
 <h3 id="一、货币资金和债务分析"><a href="#一、货币资金和债务分析" class="headerlink" title="一、货币资金和债务分析"></a>一、货币资金和债务分析</h3><p>货币资金是公司各类现金、银行存款和其他货币资金的总称。它不仅能反映企业的即时支付能力、周转度的快慢，也是企业是否具有增长潜力的重要标志之一。而在分析货币资金时，可从两方面着手；其一是上市公司的资金总量，其二是每股股票在扣除债务后所能拥有的货币资金。假如一家上市公司既没有新的项目投产又没有充足的资金，那么它的投资价值就颇值得商榷了。在宏观环境趋紧时，企业的债务状况往往决定它自身的展趋向。如果一家公司在产品大量积压的同时，又债务缠身，并且筹资无门，那么这家企业的前景就不甚乐观了。一般来说，分析企业的债务状况主要是看负债金额占企业总资产的比重，即资产负债率，生产经营状态正常的上市公司，其资产负债率大致在25%左右。如果小于此比例，就表明该公司财力较雄厚。与之相反，流动资金短缺，债务负担沉重的企业，其资产负债率往往在8o%以上，这类企业稍有不慎，就可能跌入破产的深渊。当然，在企业面临需求扩张的时期，也还是可以扩大负债经营的。不过其前提条件是：企业负债经营所产生的利润率应高于借款的平均利息率，并且两者之间的差额不能小于社会平均盈利率。因此，这种扩张必须适度，不能过多。</p>
@@ -1245,19 +1718,19 @@
 <p>2、公司投资情况。特别是一些新股、次新股，要注意其投资项目的进展状况。</p>
 <p>3、新年度的展计划，寻找公司的展计划中是否存zài与市场热点吻合的地方。</p>
 <p>第八部分“财务会计报告”，主要包括三张报表：利润表、资产负债表、现金流量表。其中的利润表中会列出营业费用、管理费用、财务费用（即通常所说的三费）。通guò三费可以考察出公司的内部管理能力，可以把三费的同比变化与第五部分中的净利润增长率加以对比，如三费的增幅高于净利润的增幅则说明公司的管理尚待加强。以上述的方法读年报，一份报表15分钟即可观其大略，一些基本的要素也都包括了，投资者不妨一试。</p>
-<h2 id="15开户与交易规则"><a href="#15开户与交易规则" class="headerlink" title="15开户与交易规则"></a>15开户与交易规则</h2><h3 id="1、开户流程"><a href="#1、开户流程" class="headerlink" title="1、开户流程"></a>1、开户流程</h3><p>证券市场分sh、深圳，一般先办理两个交易所的证券帐户，任意一个合法的券商都办，费用一般9o元左右；然后在自己满意的券商开立资金户，办理指定、网上交易等手续，存入资金（如何存入资金请咨询券商营业员）。</p>
+<h2 id="16开户与交易规则"><a href="#16开户与交易规则" class="headerlink" title="16开户与交易规则"></a>16开户与交易规则</h2><h3 id="1、开户流程"><a href="#1、开户流程" class="headerlink" title="1、开户流程"></a>1、开户流程</h3><p>证券市场分sh、深圳，一般先办理两个交易所的证券帐户，任意一个合法的券商都办，费用一般9o元左右；然后在自己满意的券商开立资金户，办理指定、网上交易等手续，存入资金（如何存入资金请咨询券商营业员）。</p>
 <p>建议：</p>
 <p>1先选择好一个社会信誉较好的大券商的营业部；</p>
 <p>2须本人亲自办理，持有效合法证件（身份证、军官证、护照）；</p>
 <p>3开户手续要求比较严格、项目较多，办理前请详细咨询券商营业人员。</p>
 <p>根据有关规定，下列人员不得开户：</p>
-<p>[1]证券管理机关工作人员（不得开立股票帐户）；</p>
-<p>[2]证券交易所管理人员（不得开立股票帐户）；</p>
-<p>[3]证券从业人员（不得开立股票帐户）；</p>
-<p>[4]未成年人未经法定监护人的代理或允许者；</p>
-<p>[5]未经授权代理法人开户者；</p>
-<p>[6]因违反证券法规，经有权机关认定为市场禁入者且期限未满者；</p>
-<p>[7]其他法规规定不得拥有证券或参加证券交易的自然人。</p>
+<p>[<strong>1</strong>]证券管理机关工作人员（不得开立股票帐户）；</p>
+<p>[<strong>2</strong>]证券交易所管理人员（不得开立股票帐户）；</p>
+<p>[<strong>3</strong>]证券从业人员（不得开立股票帐户）；</p>
+<p>[<strong>4</strong>]未成年人未经法定监护人的代理或允许者；</p>
+<p>[<strong>5</strong>]未经授权代理法人开户者；</p>
+<p>[<strong>6</strong>]因违反证券法规，经有权机关认定为市场禁入者且期限未满者；</p>
+<p>[<strong>7</strong>]其他法规规定不得拥有证券或参加证券交易的自然人。</p>
 <p>炒股需要先开户，开户的话可以找证券公司的营业部柜台办理，柜台营业员会帮助办理相关事宜；现在一些开通银证通的银行柜台也可以代理开户。具体流程可参考下面步骤：</p>
 <p>（1）填写开户申请表</p>
 <p>客户填写《开户申请表》（一式两份）、《证券交易委托代理协议书》、sh帐户的《指定交易协议书》，同时签字确认。对交易或存取款有代理人的客户开户，除必须填写上述协议外，还要求客户本人和代理人同时临柜签署《授权委托书》（一式三份）。若证券帐户卡本人不能到场的，由开户代理人办理**户时，开户代理人还须出示经公证机关依法公证的《授权委托书》，帐户本人应承诺承担由此代理而产生的一qiē法律责任。</p>
@@ -1300,6 +1773,82 @@
       </categories>
       <tags>
         <tag>股票</tag>
+        <tag>金融</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>股票入门</title>
+    <url>/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h1 id="计算机网络复习资料"><a href="#计算机网络复习资料" class="headerlink" title="计算机网络复习资料"></a>计算机网络复习资料</h1><h2 id="一-计算机网络概述"><a href="#一-计算机网络概述" class="headerlink" title="一.计算机网络概述"></a>一.计算机网络概述</h2><h3 id="计算机网络的概念："><a href="#计算机网络的概念：" class="headerlink" title="计算机网络的概念："></a>计算机网络的概念：</h3><h4 id="1-计算机网络的定义："><a href="#1-计算机网络的定义：" class="headerlink" title="1.计算机网络的定义："></a>1.计算机网络的定义：</h4><p>计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路链接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。</p>
+<span id="more"></span>
+
+<h4 id="2-计算机网络的组成："><a href="#2-计算机网络的组成：" class="headerlink" title="2.计算机网络的组成："></a>2.计算机网络的组成：</h4><p><strong>终端系统/资源子网</strong>：提供共享的软件资源和硬件资源<br><strong>通信子网</strong>：提供信息交换的网络结点和通信线路。</p>
+<h4 id="3-计算机网络的类型："><a href="#3-计算机网络的类型：" class="headerlink" title="3.计算机网络的类型："></a>3.计算机网络的类型：</h4><p><strong>按照拓朴分类</strong>： 星型结构 树形结构 总线型结构 环形结构 网状结构<br><strong>按照范围分类</strong>：局域网 LAN 城域网 MAN 广域网 WAN 补充：个人区域网 PAN 互联网 Internet<br><strong>按照传输方式分类</strong>：有线网络（IEEE802.3） 无线网络：（ IEEE802.11 WLAN 无线局域网（wireless） WPAN 无线个域网）</p>
+<h3 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h3><h4 id="1-传输方式："><a href="#1-传输方式：" class="headerlink" title="1.传输方式："></a>1.传输方式：</h4><p><strong>按照传输的方向分</strong>：<br><strong>单工</strong>：只能单方向传输的工作模式<br><strong>双工</strong>：在同一时间，线路上只能允许一个方向的数据通过<br><strong>全双工</strong>：双方可以同时进行数据通信<br><strong>按照传输对象（方式）分</strong>：<br><strong>单播</strong>： 1 对 1<br><strong>多播</strong>：1 对多<br><strong>广播</strong>：1 对 all</p>
+<h4 id="2-数据交换："><a href="#2-数据交换：" class="headerlink" title="2.数据交换："></a>2.数据交换：</h4><p><strong>电路交换</strong>：整个报文从源头到终点连续的传输<br><strong>报文交换</strong>：整个报文先传达到相邻节点，全部存储下来查找转发表，再转发到下一个节点<br><strong>分组交换</strong>：将一个报文分成多个分组，传送到相邻结点，在查找转发表，在转发到下一个结点</p>
+<h4 id="3-通信协议和体系结构："><a href="#3-通信协议和体系结构：" class="headerlink" title="3.通信协议和体系结构："></a>3.通信协议和体系结构：</h4><p><strong>网络协议三要素</strong>：语法 语义 时序<br><strong>OSI 参考模型</strong>：<br><strong>应用层</strong>：使用应用程序通过网络服务。<br><strong>表示层</strong>：表示层用于处理交互数据的表示方式，例如格式转换，数据的加密和解密，数据压缩和回复等功能<br><strong>会话层</strong>：负责维护通信中两个结点之间的会话建立维护和断开，以及数据的交换<br><strong>传输层</strong>：提供端到端之间的数据传输服务，实现对数据进行控制和操作的功能。<br><strong>网络层</strong>：单位 分组，在数据链路层的基础之上，提供点到点之间的通信，提供路由功能，实现拥塞控制，网络互联等功能。<br><strong>数据链路层</strong>：单位 帧，在物理层的基础之上，提供结点到结点之间的服务，采取差错控制和流量控制的方法实现网路互联<br><strong>物理层</strong>：单位 bit，利用传输介质为通信的网络节点之间的建立<br>TCP/<strong>IP 参考模型</strong>：<br><strong>网络接口层</strong>：物理层和数据链路层<br><strong>网际层</strong>：网络层<br><strong>传输层</strong><br><strong>应用层</strong>：会话层，表示层，应用层</p>
+<hr>
+<h2 id="二-物理层"><a href="#二-物理层" class="headerlink" title="二.物理层"></a>二.物理层</h2><h3 id="1-物理层的基本概念："><a href="#1-物理层的基本概念：" class="headerlink" title="1.物理层的基本概念："></a>1.物理层的基本概念：</h3><h4 id="1-1-四大特性："><a href="#1-1-四大特性：" class="headerlink" title="1.1 四大特性："></a>1.1 四大特性：</h4><p>机械特性：接口是怎么样的<br>电气特性：用多少伏的电<br>功能特性：线路上电平电压的特性<br>过程特性：实现不同功能所发射信号的顺序</p>
+<h4 id="1-2-两种信号："><a href="#1-2-两种信号：" class="headerlink" title="1.2 两种信号："></a>1.2 两种信号：</h4><p>模拟信号—特定频段的信号—有更加丰富的表现形式——抗干扰能力弱<br>数字信号—不是 1 就是 0——–抗干扰能力强</p>
+<h4 id="1-3-调制和编码："><a href="#1-3-调制和编码：" class="headerlink" title="1.3 调制和编码："></a>1.3 调制和编码：</h4><p>调制：模拟信号转换<br>编码：<br>数字信号转换<br>编码的步骤：采样 量化 编码<br>区别：<br>数据可以通过编码手段转成数字信号，也可以通过调制手段将数据转成模拟型号。<br>数字数据可以通过数字发送器转化为数字信号（编码），也可以通过调制器转化为模拟信号。<br>模拟信号可以通过 PCM 编码器转化为数字信号（编码），也可以通过放大器调制器转化为模拟型号（调制）。</p>
+<h4 id="1-4-传输介质："><a href="#1-4-传输介质：" class="headerlink" title="1.4 传输介质："></a>1.4 传输介质：</h4><p>双绞线：<br>传输距离 100-500（集线器 最多四个，超过就失真了）<br>屏蔽双绞线 STP：抗干扰强，贵一些<br>非屏蔽双绞线：便宜，抗干扰差<br>制作标准：<br>568B：橙白，橙，绿白，蓝，蓝白，绿，棕白，棕 ：八种<br>568A：12，26 调换—绿白，绿，绿白，蓝，蓝白，橙，棕白，棕<br>光纤：<br>多模光纤：<br>芯较粗（50 或 62.5）。可以传多种模式的光。但其模间色散较大，这就限制了传输数字信号的频率，而且随距离的增加会更加的严重。例如：600MB/KM 的光纤在 2KM 时只有 300MB 的宽带了。因此多模光纤传输距离就比较的近，一般只有几公里。<br>距离：2KM<br>单模光纤：<br>单模光纤：中间纤芯很细（芯径一般是 8-10），只能传一种模式的光，因此。其模间色散很小，适合语远程通讯，但还存在着材料色散和波导色散，这样单模光纤对光源的谱宽和稳定性有较高的要求，即谱宽要窄。稳定性要好。<br>距离：100KM<br>同轴电缆：淘汰了<br>无线：无线信号频率 IEEE802.11</p>
+<h4 id="1-5-三大部分："><a href="#1-5-三大部分：" class="headerlink" title="1.5 三大部分："></a>1.5 三大部分：</h4><p>源系统：发送数据的一端<br>传输系统：传输过程中的各种传输介质<br>目的系统：接收数据的电脑</p>
+<h3 id="2-物理层的基本通信技术"><a href="#2-物理层的基本通信技术" class="headerlink" title="2.物理层的基本通信技术"></a>2.物理层的基本通信技术</h3><h4 id="2-1-四种信道复用技术"><a href="#2-1-四种信道复用技术" class="headerlink" title="2.1 四种信道复用技术"></a>2.1 四种信道复用技术</h4><h5 id="2-1-1-复用技术"><a href="#2-1-1-复用技术" class="headerlink" title="2.1.1 复用技术"></a>2.1.1 复用技术</h5><p>复用技术是指一种在传输路径上综合多路道信道，然后恢复原机制或则解除终端各信道复用技术的过程<br>将多种不同的信号在同一信道上进行传输，复用技术主要是用来解决不同信号传输时应该如何区分。</p>
+<h5 id="2-1-2-频分复用-FDM"><a href="#2-1-2-频分复用-FDM" class="headerlink" title="2.1.2 频分复用 FDM"></a>2.1.2 频分复用 FDM</h5><p>频分多路复用，是在适于某种传输媒介的传输频带内，若干个频谱互不重叠的信号一并传输的方式，简称 FDM。在每路信号进入传输频带前，先要以此搬移频率（调制），而在接收端，在搬回到原来的频段，恢复每路的原信号，从而使传输频带得到多路信号的复用。<br>划分不同频率来并行传输信号</p>
+<h5 id="2-1-3-时分复用-TDM"><a href="#2-1-3-时分复用-TDM" class="headerlink" title="2.1.3 时分复用 TDM"></a>2.1.3 时分复用 TDM</h5><p>时分复用 TDM 是采用同一物理连接的不同时段来传输不同的信号，也能达到多路传输的此目的。时分多路复用以时间作为信号分割的参量，故必须使各路信号在时间轴上互不重叠。时分复用 TDM 就是将提供给整个信道传输信息的时间划分为若干时间片（简称时隙），并将这些时隙分给每一个信号源使用<br>划分不同的时间段来传输信号</p>
+<h5 id="2-1-4-波分复用-WDM（波）"><a href="#2-1-4-波分复用-WDM（波）" class="headerlink" title="2.1.4 波分复用 WDM（波）"></a>2.1.4 波分复用 WDM（波）</h5><p>是将两种或多种不 i 同波长的光载波信号（携带各种信息）在发送端经复用器（亦称合波器）汇合在一起，并耦合到光线路的同一根光纤中进行传输技术<br>根据光波的波长进行传输（合波器耦合）</p>
+<h5 id="2-1-5-码分复用"><a href="#2-1-5-码分复用" class="headerlink" title="2.1.5 码分复用"></a>2.1.5 码分复用</h5><p>码分复用 CDM 是靠不同的编码来区分各路原始信号的一种复用方式，主要和各种多址技术结合产生了各种接入技术，包括无线和有线接入。<br>在同一时间同一频率根据传输的数据码进行区分</p>
+<h4 id="2-2-数据传输方式"><a href="#2-2-数据传输方式" class="headerlink" title="2.2 数据传输方式"></a>2.2 数据传输方式</h4><h5 id="2-2-1-通过同时间传输数量分为"><a href="#2-2-1-通过同时间传输数量分为" class="headerlink" title="2.2.1 通过同时间传输数量分为"></a>2.2.1 通过同时间传输数量分为</h5><p>串行传输<br>使用一条数据线，将数据一位一位的依次输入，每一位数据占据一个固定的时间长度。只需要少数几条先就可以在系统间交换信息，特别适用于计算机语计算机，外设之间的远距离通信。<br>并行传输<br>并行传输指的是数据以成组的方式，在多条并行信道上同时进行传输，是在传输中有多个数据位同时在设备之间进行的传输。</p>
+<h5 id="2-2-2-通过数据报文的双方的行为分为"><a href="#2-2-2-通过数据报文的双方的行为分为" class="headerlink" title="2.2.2 通过数据报文的双方的行为分为"></a>2.2.2 通过数据报文的双方的行为分为</h5><p>同步传输<br>同步：在计算机网络中，定时的因素称为位同步。同步是要接收按照发送放放送的每个位的起止时刻和速率来接受数据，否则会产生误差。<br>同步传输的比特分组要大得多。他不会独立的发送每个字符，每个字符都有自己的开始位和停止位，而是把他们组合起来发送。我们将这些组合称为数据帧，或简称帧<br>异步传输：<br>异步传输将比特分成小组进行传输，小组可以是 8 位的 1 个字符或更长。发送方可以在任何时刻发送这些比特组，而接受方从不知道它们会在什么时候到达。</p>
+<h4 id="3-3-通过传输的信号分"><a href="#3-3-通过传输的信号分" class="headerlink" title="3.3 通过传输的信号分"></a>3.3 通过传输的信号分</h4><p>基带传输：传输数字信号叫做基带传输<br>频带传输：传输模拟信号叫做频带传输（300-3400HZ）</p>
+<h4 id="3-4-通过传输方向分"><a href="#3-4-通过传输方向分" class="headerlink" title="3.4 通过传输方向分"></a>3.4 通过传输方向分</h4><p>单工 半双工 全双工</p>
+<h4 id="3-5-通过传输对象分"><a href="#3-5-通过传输对象分" class="headerlink" title="3.5 通过传输对象分"></a>3.5 通过传输对象分</h4><p>单播 组播 广播</p>
+<hr>
+<h2 id="三-数据链路层"><a href="#三-数据链路层" class="headerlink" title="三.数据链路层"></a>三.数据链路层</h2><h3 id="1-数据链路层的基础概念"><a href="#1-数据链路层的基础概念" class="headerlink" title="1.数据链路层的基础概念"></a>1.数据链路层的基础概念</h3><h4 id="1-1-数据链路层的概念"><a href="#1-1-数据链路层的概念" class="headerlink" title="1.1 数据链路层的概念"></a>1.1 数据链路层的概念</h4><p>数据链路层是在物理层和网际层之间的协议，提供相邻结点的可靠数据传输</p>
+<h4 id="1-2-帧的概念"><a href="#1-2-帧的概念" class="headerlink" title="1.2 帧的概念"></a>1.2 帧的概念</h4><p>数据链路层的协议数据单元<br>组成：<br>帧头：源 MAC 地址，目的 MAC 地址，类型（MAC 地址用于在网络中唯一标示一个网卡，一台设备若有一或多个网卡，则每个网卡都需要并会有一个唯一的 MAC 地址）<br>数据<br>帧尾：校验</p>
+<p>1.3 以太网数据帧中的 MAC 和 LLC<br>MAC（一种协议，对接物理层）<br>MAC 介质控制访问<br>作用：数据帧的封装/卸载，帧的寻址和识别，帧的接收语发送，链路的管理，帧的差错控制等。MAC 子层的存在屏蔽了不同的物理链路层种类的差异性<br>LLC（对接网络层）<br>LLC 逻辑控制访问<br>作用：LLC 子层的主要功能为传输可靠性保障和控制，数据包的分段与重组。数据包的顺序传播。<br>注解：<br>该协议位于 OSI 七层协议中数据链路层，数据链路层分为上层 LLC（逻辑链路控制），和下层的 MAC（媒体访问控制），MAC 主要负责控制与链接物理层的物理介质。在发送数据的时候，MAC 协议可以事先判断是否发送数据，如果可以发送将给数据加上一些控制信息，最终将数据以及控制信息以规定的格式发送到物理层；在接收数据的时候，MAC 协议首先判断输入的信息并是否发生传输错误，如果没有错误，则去掉控制信息发送至 LLC（逻辑链路控制）层。</p>
+<p>1.4 数据链路层的两种传输方式<br>单播 广播<br>1.5 数据链路层的三个基本问题（***）<br>封装成帧（PPP）<br>封装成帧就是在一段数据的前后分别添加首部和尾部，这样就构成了一个帧，接收端在收到物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束。<br>透明传输<br>透明传输是指不管所传数据是什么样的比特组合，都应当能够在链路上传输<br>差错检测（奇数校验 偶数校验 CRC：需要计算）<br>收到正确的帧就要向发送端发送确认，发送算在一定的期限内若没有收到对方的确认，就认为出现了差错，因而就进行重传，直到收到对方的确认为止，<br>1.6 局域网中的设备<br>网桥（在物理层和数据链路层之间）<br>两个端口的交换机<br>集线器（在物理层 共享带宽）<br>集线器的英文为：“HUB”是“中心”的意思，集线器的主要功能是对接受的信号进行再生整形放大，以扩大网络的传输距离，同时把所有结点集中在以它为中心的结点上。<br>交换机（数据链路层 独享带宽）<br>交换机（Switch）意为“开关”是一种用于电（光）信号转发的网络设备。它可以为接入交换机的任意两个网络结点提供独享的电信号通路。最常见的交换机式以太网交换机。<br>2 数据链路层的通信协议<br>2.1 冲突域和广播域<br>冲突域<br>交换机的每一个端口都是一个冲突域；冲突域只能发生在一个网段<br>广播域<br>交换机的所有端口都在一个广播域；广播域在一个或多个网段内发生<br>区别<br>广播域可以跨网段<br>冲突域是基于第一层（物理层），而广播域是基于第二层（数据链路层）<br>HUB 所有端口都在同一个广播域，冲突域内，Switch 所有端口都在同意广播域内，而每一个端口就是一个冲突域。<br>同一冲突域共享宽带<br>2.2 虚拟局域网（实验）VLAN<br>VLAN（Virtual local Area Network）即虚拟局域网，是将一个物理的 LAN 在逻辑上划分成多个广播域的通信技术。VLAN 间不能直接通信，而 VLAN 间不能直接通信，从而将广播报文限制在一个 VLAN 内。<br>优点和目的<br>划分广播域：减少垃圾数据<br>增强局域网的安全性<br>提高健壮性<br>灵活构建工作组<br>划分 VLAN 的方式<br>基于端口<br>给交换机的每个接口配置不同的 PVID，当一个数据帧进入交换机接口时，如果没有带 VLAN 标签，且该接口上配置了 PVID。如果进入的帧已经带有 VLAN 标签，那么交换机不会在增加 VLAN 标签，即使接口已经配置了 PVID<br>Access：只允许通过一个 VLAN<br>Trunk：允许通过多个 VLAN<br>Hybird<br>基于子网<br>配置好子网域 VLAN 映射表，如果交换设备收到的是 untagged（不带 VLAN 标签）帧，交换设备根据报文中的源 IP 地址信息，确认添加的 VLAN iD。将指定网段或 IP 地址发出的报文在指定的 VLAN 中传输，减轻了网络管理着的任务量，且有利于管理<br>基于 MAC 地址<br>先配置好 MAC 地址和 VLAN 映射关系表，当终端用户的物理位置发生改变，不需要重新配置 VLAN。提高了终端用户的安全性和接入的灵活性<br>基于协议<br>将网络中提供的服务类型域 VLAN 相绑定，方便管理和维护。需要对网络中所有的协议类型和 VLAN ID 的映射关系表进行初始配置。需要分析各种协议的地址格式并进行相应的转换，消耗交换机较多的资源，速度上稍具劣势。<br>基于匹配策略<br>先在交换机上配置好终端的 MAC 地址和 IP 地址，并与 VLAN 并联。只有符合条件的终端才能加入指定 VLAN。符合策略的终端加入指定 VLAN 后，严禁修改 IP 地址和 MAC 地址，否则会导致终端从指定 VLAN 中退出。<br>2.3：CSMA/CD（总线型）<br>CSDN/CD 即载波侦听多路访问/冲突检测，是广播信道中采用一种随机访问技术的竞争型访问方法，具有多目标地址的特点，总线型网络传输数据<br>四大特点（重要）<br>先听再发<br>边听边发<br>冲突停止<br>延迟后发<br>2.4：PPP（单播）<br>点对点通信是一对一通道，因此不会发生碰撞，因此比较简单，采用 PPP 协议；其中 PPP 协议就是用户计算机和 ISP（互联网服务提供商）进行通信时使用的数据链路层的协议<br>PPP 最初设计是为两个对等节点之间的 IP 流量传输提供一种封装协议。<br>2.5：CRC（需要单独的深入学习）<br>循环冗余校验<br>是数据通信领域中最常用的一种查错校验码，其特征是信息字段和校验字段的长度可以任意选定。循环冗余检查（CRC）是一种数据传输检错功能。l<br>例题：要发送的数据为 1101011011，采用 CRC 的生成多项式是 P（x）=x^4+x+1.求余数。</p>
+<h2 id="四-网络层"><a href="#四-网络层" class="headerlink" title="四.网络层"></a>四.网络层</h2><p>1.网络层的作用<br>提供端到端的服务 单位：分组<br>网络层的目的是实现两个端系统之间的数据透明传输，具体功能包括寻址和路由选择，连接的建立，保持和终止等。它提供的服务使传输层不需要了解网络中的数据传输和交换技术。 2.网际层协议 IP<br>ARP 地址解析协议<br>根据 IP 地址获取物理地址<br>RARP 反地址解析协议<br>ICMP 网际控制报文协议<br>通过 ICMP 传输控制消息，控制消息是指网络通不通，主机是否可达，路由是否可用等网络本身的消息。<br>IGMP 网际组管理协议<br>适用于管理协议多播组成员的一种通信协议。IP 主机和相邻路由器利用 IGMP 来创建多播组的组成员。组播方式解决了单播情况下数据的重复拷贝及带宽的重复占用，也解决了广播方式下带宽资源的浪费<br>3.IP 地址<br>3.1IP 地址的概念<br>IP 地址使 IP 协议提供的一种统一的地址格式，他为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。<br>组成：一个 IP 地址由 4 个字节，32 位组成，一般用点分十进制的方式表现，<br>IP 地址和 MAC 地址的区别<br>IP 地址是一个逻辑地址，MAC 地址是物理地址<br>MAC 地址是唯一的但是 IP 地址不受唯一的<br>MAC 地址主要是工作在第二层，IP 地址在网际层<br>MAC 地址是 48 位，IP 地址一般是 32 位（v6 是 128 位）<br>IP 地址的分配取决于网络拓扑，MAC 地址分配取决于制造商<br>3.2IP 地址的组成<br>主机地址和网络地址组成的<br>主机地址/主机号<br>标识某一台设备的地址<br>网络地址/网络号<br>标识某一网段的地址<br>子网掩码<br>子网掩码用于区分网络号和主机号<br>它是一种用来指明一个 IP 地址的哪些位标识的是主机所在的子网，以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合 IP 地址一起使用。子网掩码只能有一个作用，就是将某一个 IP 地址划分成为网络地址和主机地址两部分<br>3.3IP 地址的分类<br>3.3.1A 类<br>一个 A 类 IP 地址是指，在 IP 地址的四段号码中，第一段号为网络号码，剩下的三段号码为本地计算机的号码。A 类 IP 地址中网络的标识长度为 8 位，主机标识的长度为 24 位，A 类网络地址数量较少，有 126 个网络，每一个网络可以容纳主机数量高达 1600 多万台. A 类 IP 地址 地址范围 1.0.0.1 到 127.255.255.254<br>第一个字节为网络号，第一个字节第一位为 0<br>3.3.2B 类<br>一个 B 类地址是指，在 IP 地址的四段号码中，前两段号码为网络号码。B 类 IP 地址中网络的标识长度为 16 位，主机标识的长度为 16 位，B 类网络地址适用于中等规模的网络，有 16384 个网络，每个网络所能容纳的计算机数 6 万多台。 B 类 IP 地址 地址范围 128.0.01-191.255.255.254<br>前两个字节为网络号，第一个字节前两位是 10<br>3.3.3C 类<br>一个 C 类 IP 地址是指，在 IP 地址的四段号码中，前三段号码为网络号码，剩下的一段号码为本地计算机的号码。C 类 IP 地址中网络的标识长度为 24 位，主机标识的长度为 8 位，C 网络地址数量较多，有 209 万余个网络。适用于小规模的局域网络，每个网络最多只能包含 254 台计算机。C 类 IP 地址范围 192.0.0.1-223.255.255.254<br>前三个字节为网络号，第一个字节前两位是 110<br>3.3.4D 类<br>D 类 IP 地址在历史上呗叫做多播地址，及组播地址。在以太网中，多播地址命名了一组应该在这个网络中应用接收到一个分组的站点。多播地址的最高位必须是“1110”，范围从 224.0.0.0 到 239.255.255.255<br>3.3.5E 类<br>保留<br>3.3.6 特殊地址<br>网络地址：主机号全为 0 的地址不可用<br>广播地址：主机号全为 1 的地址不可用<br>回环地址：127.0.0.0 测试使用<br>4.IPv6<br>因为 IPv4 地址满足不了需求，出现匮乏的情况，所以就诞生了 IPv6 地址继续使用。v6 地址由 128 位，16 字节组成，一般表现形式为十六进制。 4.网络层的路由<br>4.1 路由<br>路由是什么？<br>路由是指分组从源到目的地时，决定端到端路径的网络范围的进程。路由是指导报文转发的路径信息，通过路由可以确认转发 IP 报文的路径<br>路由是网络层最主要的工作任务<br>路由器<br>网络层的基础设备<br>数据转发<br>一个端口代表一个网段，路由器中存放着通往各个网段的表格，叫做路由表<br>路由表<br>又称路由择域信息库，是一个存储在路由器或者联网计算机中的电子表格（文件）或者类数据库。路由表存储着指向特定网络地址的路径<br>网关<br>又称网间连接器，协议转换器。用于两个高层协议不同的网络互连。网关既可以用于广域网互连，也可以用于局域网互连<br>路由获取方式<br>直连路由<br>静态路由<br>动态路由<br>4.2 路由的配置方式<br>静态路由<br>静态路由：由管理员手工配置，配置方便，对系统要求低，适用于拓扑结构简单稳定的小型网络<br>缺省路由：是一种特殊的路由，当报文没有在路由表中找到匹配的具体表项时才能使用的路由<br>动态路由<br>动态路由<br>通过动态路由协议来实现不同网段的路由互通<br>动态路由协议有自己的路由算法，能够自动适应网络拓扑的变化，适用于具有一定数量的三层设备的网络<br>动态路由协议<br>RPI<br>RPI：路由信息协议<br>基于矢量的动态路由协议<br>适用于中小规模的网络拓扑，最大跳数为 15<br>OSPF<br>OSPF:开放式最短路径优先<br>基于链路状态的路由<br>使用 SPF 算法，计算最短路径。树形协议<br>BGP<br>BGP 是自治系统间的路由协议。自治系统之间的路由协议<br>自治系统间的路由协议<br>IS-IS<br>IS-IS：中间系统到中间系统<br>与 OSPF 类似，IS-IS 是基于路由路划分区域，OSPF 利用接口划分<br>内部网关协议<br>RIP 和 OSPF 的区别<br>RIP 是基于矢量的协议，OSPF 是基于链路状态<br>RIP 适用于中小型网络拓扑，OSPF 适用于较大规模的网络<br>OSPF 支持可变长度子网掩码（VLSM）。RIP 不支持<br>ODPF 的收敛速度比 RIP 更加的迅速</p>
+<h2 id="五-传输层"><a href="#五-传输层" class="headerlink" title="五.传输层"></a>五.传输层</h2><p>1.传输层概念<br>1.1 传输层<br>传输层提供端到端服务<br>从通信和信息处理的角度看，传输层向上层应用层提供通信服务<br>所谓的端口，就好像是门牌号一样，客户端可以通过 IP 地址找到对应的服务器端，但是服务器端是有很多的端口的，每个应用程序对应一个端口号，通过类似门牌号的端口号，客户端才能真正的访问到该服务器。为了对端口号进行区分，将每个端口进行编号，这就是端口号<br>1.2 端口号<br>FTP：21（20）_<br>FTP（文件传输协议）<br>21 连接；20 传输数据<br>TELNET：23_：TELNET(远程登录)<br>SMTP：25*<br>SMTP(电子邮件传输协议)<br>POP3（邮局协议版本 3）：110<br>DNS：53<em>：DNS（域名系统）<br>TFTP：69：TFTP（简单文件传输协议）<br>HTTP：80</em>：HTTP（超文本传输协议）<br>SNMP：161：SNMP（简单网络管理协议）<br>HTTPS：443*：HTTPS（超文本传输安全协议） 2.传输层的两个重要协议<br>3.1TCP<br>传输控制协议：TCP<br>TCP 是 TCP/IP 体系中较为复杂的协议，是传输层中最重要的协议<br>TCP 的主要特点是：<br>TCP 是面向连接的传输层协议<br>TCP 提供可靠的交付服务<br>TCP 提供全双工通信<br>TCP 是面向字节流<br>窗口<br>固定窗口：如果窗口过小，当传输比较大的数据的时候需要不停的对数据进行确认，这个时候就会造成很大的延迟<br>滑动窗口：滑动窗口通俗的讲就是一种流量控制技术。它本质上是描述接收方 TCP 数据报缓冲区大小的数据，发送根据这个数据来计算自己最多能发送所长的数据，如果发送方收到接收方的窗口大小为 0 的 TCP 数据报，那么发送方将停止发送数据，等到接受方发送窗口大小不为 0 的数据报的到来<br>拥塞处理和流量控制<br>TCP 的三次握手和流量控制<br>3.2UDP<br>用户数据报协议：UDP<br>UDP 是在 IP 数据报服务之上增加了一些功能，增加了复用和分用的功能以及差错检测的功能<br>UDP 的主要特点是：<br>UDP 是无连接的<br>UDP 尽最大努力交付<br>UDP 面向报文且没有拥塞控制<br>UDP 开销较小传输效率较高<br>UDP 首部的概念<br>个人认为的复习重点(超级重要的 tcp)</p>
+<p>※传输层中的 TCP 和 UDP<br>TCP/IP 中有两个具有代表性的传输层协议，分别是 TCP 和 UDP。</p>
+<p>TCP 是面向连接的、可靠的流协议。流就是指不间断的数据结构，当应用程序采用 TCP 发送消息时，虽然可以保证发送的顺序，但还是犹如没有任何间隔的数据流发送给接收端。TCP 为提供可靠性传输，实行“顺序控制”或“重发控制”机制。此外还具备“流控制（流量控制）”、“拥塞控制”、提高网络利用率等众多功能。<br>UDP 是不具有可靠性的数据报协议。细微的处理它会交给上层的应用去完成。在 UDP 的情况下，虽然可以确保发送消息的大小，却不能保证消息一定会到达。因此，应用有时会根据自己的需要进行重发处理。<br>TCP 和 UDP 的优缺点无法简单地、绝对地去做比较：TCP 用于在传输层有必要实现可靠传输的情况；而在一方面，UDP 主要用于那些对高速传输和实时性有较高要求的通信或广播通信。TCP 和 UDP 应该根据应用的目的按需使用。</p>
+<ol>
+<li>端口号<br>数据链路和 IP 中的地址，分别指的是 MAC 地址和 IP 地址。前者用来识别同一链路中不同的计算机，后者用来识别 TCP/IP 网络中互连的主机和路由器。在传输层也有这种类似于地址的概念，那就是端口号。端口号用来识别同一台计算机中进行通信的不同应用程序。因此，它也被称为程序地址。</li>
+</ol>
+<p>1.1 根据端口号识别应用<br>一台计算机上同时可以运行多个程序。传输层协议正是利用这些端口号识别本机中正在进行通信的应用程序，并准确地将数据传输。</p>
+<p>1.2 通过 IP 地址、端口号、协议号进行通信识别<br>仅凭目标端口号识别某一个通信是远远不够的。</p>
+<p>① 和 ② 的通信是在两台计算机上进行的。它们的目标端口号相同，都是 80。这里可以根据源端口号加以区分。<br>③ 和 ① 的目标端口号和源端口号完全相同，但它们各自的源 IP 地址不同。<br>此外，当 IP 地址和端口号全都一样时，我们还可以通过协议号来区分（TCP 和 UDP）。<br>1.3 端口号的确定<br>标准既定的端口号：这种方法也叫静态方法。它是指每个应用程序都有其指定的端口号。但并不是说可以随意使用任何一个端口号。例如 HTTP、FTP、TELNET 等广为使用的应用协议中所使用的端口号就是固定的。这些端口号被称为知名端口号，分布在 0<del>1023 之间；除知名端口号之外，还有一些端口号被正式注册，它们分布在 1024</del>49151 之间，不过这些端口号可用于任何通信用途。<br>时序分配法：服务器有必要确定监听端口号，但是接受服务的客户端没必要确定端口号。在这种方法下，客户端应用程序完全可以不用自己设置端口号，而全权交给操作系统进行分配。动态分配的端口号范围在 49152~65535 之间。<br>1.4 端口号与协议<br>端口号由其使用的传输层协议决定。因此，不同的传输层协议可以使用相同的端口号。<br>此外，那些知名端口号与传输层协议并无关系。只要端口一致都将分配同一种应用程序进行处理。 2. UDP<br>UDP 不提供复杂的控制机制，利用 IP 提供面向无连接的通信服务。<br>并且它是将应用程序发来的数据在收到的那一刻，立即按照原样发送到网络上的一种机制。即使是出现网络拥堵的情况，UDP 也无法进行流量控制等避免网络拥塞行为。<br>此外，传输途中出现丢包，UDP 也不负责重发。<br>甚至当包的到达顺序出现乱序时也没有纠正的功能。<br>如果需要以上的细节控制，不得不交由采用 UDP 的应用程序去处理。<br>UDP 常用于一下几个方面：1.包总量较少的通信（DNS、SNMP 等）；2.视频、音频等多媒体通信（即时通信）；3.限定于 LAN 等特定网络中的应用通信；4.广播通信（广播、多播）。 3. TCP<br>TCP 与 UDP 的区别相当大。它充分地实现了数据传输时各种控制功能，可以进行丢包时的重发控制，还可以对次序乱掉的分包进行顺序控制。而这些在 UDP 中都没有。<br>此外，TCP 作为一种面向有连接的协议，只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。<br>根据 TCP 的这些机制，在 IP 这种无连接的网络上也能够实现高可靠性的通信（ 主要通过检验和、序列号、确认应答、重发控制、连接管理以及窗口控制等机制实现）。<br>3.1 三次握手（重点）<br>TCP 提供面向有连接的通信传输。面向有连接是指在数据通信开始之前先做好两端之间的准备工作。<br>所谓三次握手是指建立一个 TCP 连接时需要客户端和服务器端总共发送三个包以确认连接的建立。在 socket 编程中，这一过程由客户端执行 connect 来触发。<br>下面来看看三次握手的流程图：</p>
+<p>第一次握手：客户端将标志位 SYN 置为 1，随机产生一个值 seq=J，并将该数据包发送给服务器端，客户端进入 SYN_SENT 状态，等待服务器端确认。<br>第二次握手：服务器端收到数据包后由标志位 SYN=1 知道客户端请求建立连接，服务器端将标志位 SYN 和 ACK 都置为 1，ack=J+1，随机产生一个值 seq=K，并将该数据包发送给客户端以确认连接请求，服务器端进入 SYN_RCVD 状态。<br>第三次握手：客户端收到确认后，检查 ack 是否为 J+1，ACK 是否为 1，如果正确则将标志位 ACK 置为 1，ack=K+1，并将该数据包发送给服务器端，服务器端检查 ack 是否为 K+1，ACK 是否为 1，如果正确则连接建立成功，客户端和服务器端进入 ESTABLISHED 状态，完成三次握手，随后客户端与服务器端之间可以开始传输数据了。<br>3.2 四次挥手（重点）<br>四次挥手即终止 TCP 连接，就是指断开一个 TCP 连接时，需要客户端和服务端总共发送 4 个包以确认连接的断开。在 socket 编程中，这一过程由客户端或服务端任一方执行 close 来触发。<br>由于 TCP 连接是全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个 FIN 来终止这一方向的连接，收到一个 FIN 只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个 TCP 连接上仍然能够发送数据，直到这一方向也发送了 FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。<br>下面来看看四次挥手的流程图：</p>
+<p>中断连接端可以是客户端，也可以是服务器端。<br>第一次挥手：客户端发送一个 FIN=M，用来关闭客户端到服务器端的数据传送，客户端进入 FIN_WAIT_1 状态。意思是说”我客户端没有数据要发给你了”，但是如果你服务器端还有数据没有发送完成，则不必急着关闭连接，可以继续发送数据。<br>第二次挥手：服务器端收到 FIN 后，先发送 ack=M+1，告诉客户端，你的请求我收到了，但是我还没准备好，请继续你等我的消息。这个时候客户端就进入 FIN_WAIT_2 状态，继续等待服务器端的 FIN 报文。<br>第三次挥手：当服务器端确定数据已发送完成，则向客户端发送 FIN=N 报文，告诉客户端，好了，我这边数据发完了，准备好关闭连接了。服务器端进入 LAST_ACK 状态。<br>第四次挥手：客户端收到 FIN=N 报文后，就知道可以关闭连接了，但是他还是不相信网络，怕服务器端不知道要关闭，所以发送 ack=N+1 后进入 TIME_WAIT 状态，如果 Server 端没有收到 ACK 则可以重传。服务器端收到 ACK 后，就知道可以断开连接了。客户端等待了 2MSL 后依然没有收到回复，则证明服务器端已正常关闭，那好，我客户端也可以关闭连接了。最终完成了四次握手。<br>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，<br>具体流程如下图：</p>
+<p>3.3 通过序列号与确认应答提高可靠性<br>在 TCP 中，当发送端的数据到达接收主机时，接收端主机会返回一个已收到消息的通知。这个消息叫做确认应答（ACK）。当发送端将数据发出之后会等待对端的确认应答。如果有确认应答，说明数据已经成功到达对端。反之，则数据丢失的可能性很大。<br>在一定时间内没有等待到确认应答，发送端就可以认为数据已经丢失，并进行重发。由此，即使产生了丢包，仍然能够保证数据能够到达对端，实现可靠传输。<br>未收到确认应答并不意味着数据一定丢失。也有可能是数据对方已经收到，只是返回的确认应答在途中丢失。这种情况也会导致发送端误以为数据没有到达目的地而重发数据。<br>此外，也有可能因为一些其他原因导致确认应答延迟到达，在源主机重发数据以后才到达的情况也屡见不鲜。此时，源主机只要按照机制重发数据即可。<br>对于目标主机来说，反复收到相同的数据是不可取的。为了对上层应用提供可靠的传输，目标主机必须放弃重复的数据包。为此我们引入了序列号。<br>序列号是按照顺序给发送数据的每一个字节（8 位字节）都标上号码的编号。接收端查询接收数据 TCP 首部中的序列号和数据的长度，将自己下一步应该接收的序列号作为确认应答返送回去。通过序列号和确认应答号，TCP 能够识别是否已经接收数据，又能够判断是否需要接收，从而实现可靠传输。</p>
+<p>3.4 重发超时的确定<br>重发超时是指在重发数据之前，等待确认应答到来的那个特定时间间隔。如果超过这个时间仍未收到确认应答，发送端将进行数据重发。最理想的是，找到一个最小时间，它能保证“确认应答一定能在这个时间内返回”。<br>TCP 要求不论处在何种网络环境下都要提供高性能通信，并且无论网络拥堵情况发生何种变化，都必须保持这一特性。为此，它在每次发包时都会计算往返时间及其偏差。将这个往返时间和偏差时间相加，重发超时的时间就是比这个总和要稍大一点的值。<br>在 BSD 的 Unix 以及 Windows 系统中，超时都以 0.5 秒为单位进行控制，因此重发超时都是 0.5 秒的整数倍。不过，最初其重发超时的默认值一般设置为 6 秒左右。<br>数据被重发之后若还是收不到确认应答，则进行再次发送。此时，等待确认应答的时间将会以 2 倍、4 倍的指数函数延长。<br>此外，数据也不会被无限、反复地重发。达到一定重发次数之后，如果仍没有任何确认应答返回，就会判断为网络或对端主机发生了异常，强制关闭连接。并且通知应用通信异常强行终止。<br>3.5 以段为单位发送数据<br>在建立 TCP 连接的同时，也可以确定发送数据包的单位，我们也可以称其为“最大消息长度”（MSS）。最理想的情况是，最大消息长度正好是 IP 中不会被分片处理的最大数据长度。<br>TCP 在传送大量数据时，是以 MSS 的大小将数据进行分割发送。进行重发时也是以 MSS 为单位。<br>MSS 在三次握手的时候，在两端主机之间被计算得出。两端的主机在发出建立连接的请求时，会在 TCP 首部中写入 MSS 选项，告诉对方自己的接口能够适应的 MSS 的大小。然后会在两者之间选择一个较小的值投入使用。<br>3.6 利用窗口控制提高速度<br>TCP 以 1 个段为单位，每发送一个段进行一次确认应答的处理。这样的传输方式有一个缺点，就是包的往返时间越长通信性能就越低。<br>为解决这个问题，TCP 引入了窗口这个概念。确认应答不再是以每个分段，而是以更大的单位进行确认，转发时间将会被大幅地缩短。也就是说，发送端主机，在发送了一个段以后不必要一直等待确认应答，而是继续发送。如下图所示：</p>
+<p>窗口大小就是指无需等待确认应答而可以继续发送数据的最大值。上图中窗口大小为 4 个段。这个机制实现了使用大量的缓冲区，通过对多个段同时进行确认应答的功能。<br>3.7 滑动窗口控制</p>
+<p>上图中的窗口内的数据即便没有收到确认应答也可以被发送出去。不过，在整个窗口的确认应答没有到达之前，如果其中部分数据出现丢包，那么发送端仍然要负责重传。为此，发送端主机需要设置缓存保留这些待被重传的数据，直到收到他们的确认应答。<br>在滑动窗口以外的部分包括未发送的数据以及已经确认对端已收到的数据。当数据发出后若如期收到确认应答就可以不用再进行重发，此时数据就可以从缓存区清除。<br>收到确认应答的情况下，将窗口滑动到确认应答中的序列号的位置。这样可以顺序地将多个段同时发送提高通信性能。这种机制也别称为滑动窗口控制。<br>3.8 窗口控制中的重发控制<br>在使用窗口控制中， 出现丢包一般分为两种情况：</p>
+<p>① 确认应答未能返回的情况。在这种情况下，数据已经到达对端，是不需要再进行重发的，如下图：</p>
+<p>② 某个报文段丢失的情况。接收主机如果收到一个自己应该接收的序列号以外的数据时，会针对当前为止收到数据返回确认应答。如下图所示，当某一报文段丢失后，发送端会一直收到序号为 1001 的确认应答，因此，在窗口比较大，又出现报文段丢失的情况下，同一个序列号的确认应答将会被重复不断地返回。而发送端主机如果连续 3 次收到同一个确认应答，就会将其对应的数据进行重发。这种机制比之前提到的超时管理更加高效，因此也被称为高速重发控制。</p>
+<p>※网络层中的 IP 协议<br>IP（IPv4、IPv6）相当于 OSI 参考模型中的第 3 层——网络层。网络层的主要作用是“实现终端节点之间的通信”。这种终端节点之间的通信也叫“点对点通信”。<br>网络的下一层——数据链路层的主要作用是在互连同一种数据链路的节点之间进行包传递。而一旦跨越多种数据链路，就需要借助网络层。网络层可以跨越不同的数据链路，即使是在不同的数据链路上也能实现两端节点之间的数据包传输。<br>IP 大致分为三大作用模块，它们是 IP 寻址、路由（最终节点为止的转发）以及 IP 分包与组包。</p>
+<ol>
+<li>IP 地址<br>1.1 IP 地址概述<br>在计算机通信中，为了识别通信对端，必须要有一个类似于地址的识别码进行标识。在数据链路中的 MAC 地址正是用来标识同一个链路中不同计算机的一种识别码。<br>作为网络层的 IP ,也有这种地址信息，一般叫做 IP 地址。IP 地址用于在“连接到网络中的所有主机中识别出进行通信的目标地址”。因此，在 TCP/IP 通信中所有主机或路由器必须设定自己的 IP 地址。<br>不论一台主机与哪种数据链路连接，其 IP 地址的形式都保持不变。<br>IP 地址（IPv4 地址）由 32 位正整数来表示。IP 地址在计算机内部以二进制方式被处理。然而，由于我们并不习惯于采用二进制方式，我们将 32 位的 IP 地址以每 8 位为一组，分成 4 组，每组以 “.” 隔开，再将每组数转换成十进制数。如下：<br>2828282810101100000101000000000100000001（2 进制）10101100.00010100.00000001.00000001（2 进制）172.20.1.1（10 进制）</li>
+</ol>
+<p>1.2 IP 地址由网络和主机两部分标识组成<br>如下图，网络标识在数据链路的每个段配置不同的值。网络标识必须保证相互连接的每个段的地址不相重复。而相同段内相连的主机必须有相同的网络地址。IP 地址的“主机标识”则不允许在同一个网段内重复出现。由此，可以通过设置网络地址和主机地址，在相互连接的整个网络中保证每台主机的 IP 地址都不会相互重叠。即 IP 地址具有了唯一性。</p>
+<p>如下图，IP 包被转发到途中某个路由器时，正是利用目标 IP 地址的网络标识进行路由。因为即使不看主机标识，只要一见到网络标识就能判断出是否为该网段内的主机。</p>
+<p>1.3 IP 地址的分类<br>IP 地址分为四个级别，分别为 A 类、B 类、C 类、D 类。它根据 IP 地址中从第 1 位到第 4 位的比特列对其网络标识和主机标识进行区分。<br>A 类 IP 地址是首位以 “0” 开头的地址。从第 1 位到第 8 位是它的网络标识。用十进制表示的话，0.0.0.0<del>127.0.0.0 是 A 类的网络地址。A 类地址的后 24 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 16,777,214 个。<br>B 类 IP 地址是前两位 “10” 的地址。从第 1 位到第 16 位是它的网络标识。用十进制表示的话，128.0.0.0</del>191.255.0.0 是 B 类的网络地址。B 类地址的后 16 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 65,534 个。<br>C 类 IP 地址是前三位为 “110” 的地址。从第 1 位到第 24 位是它的网络标识。用十进制表示的话，192.0.0.0<del>223.255.255.0 是 C 类的网络地址。C 类地址的后 8 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 254 个。<br>D 类 IP 地址是前四位为 “1110” 的地址。从第 1 位到第 32 位是它的网络标识。用十进制表示的话，224.0.0.0</del>239.255.255.255 是 D 类的网络地址。D 类地址没有主机标识，常用于多播。<br>在分配 IP 地址时关于主机标识有一点需要注意。即要用比特位表示主机地址时，不可以全部为 0 或全部为 1。因为全部为 0 只有在表示对应的网络地址或 IP 地址不可以获知的情况下才使用。而全部为 1 的主机通常作为广播地址。因此，在分配过程中，应该去掉这两种情况。这也是为什么 C 类地址每个网段最多只能有 254（ 28 - 2 = 254）个主机地址的原因。<br>1.4 广播地址<br>广播地址用于在同一个链路中相互连接的主机之间发送数据包。将 IP 地址中的主机地址部分全部设置为 1，就成了广播地址。<br>广播分为本地广播和直接广播两种。在本网络内的广播叫做本地广播；在不同网络之间的广播叫做直接广播。<br>1.5 IP 多播<br>多播用于将包发送给特定组内的所有主机。由于其直接使用 IP 地址，因此也不存在可靠传输。<br>相比于广播，多播既可以穿透路由器，又可以实现只给那些必要的组发送数据包。请看下图：</p>
+<p>多播使用 D 类地址。因此，如果从首位开始到第 4 位是 “1110”，就可以认为是多播地址。而剩下的 28 位可以成为多播的组编号。<br>此外， 对于多播，所有的主机（路由器以外的主机和终端主机）必须属于 224.0.0.1 的组，所有的路由器必须属于 224.0.0.2 的组。<br>1.6 子网掩码<br>现在一个 IP 地址的网络标识和主机标识已不再受限于该地址的类别，而是由一个叫做“子网掩码”的识别码通过子网网络地址细分出比 A 类、B 类、C 类更小粒度的网络。这种方式实际上就是将原来 A 类、B 类、C 类等分类中的主机地址部分用作子网地址，可以将原网络分为多个物理网络的一种机制。<br>子网掩码用二进制方式表示的话，也是一个 32 位的数字。它对应 IP 地址网络标识部分的位全部为 “1”，对应 IP 地址主机标识的部分则全部为 “0”。由此，一个 IP 地址可以不再受限于自己的类别，而是可以用这样的子网掩码自由地定位自己的网络标识长度。当然，子网掩码必须是 IP 地址的首位开始连续的 “1”。<br>对于子网掩码，目前有两种表示方式。第一种是，将 IP 地址与子网掩码的地址分别用两行来表示。以 172.20.100.52 的前 26 位是网络地址的情况为例，如下：<br>IP 地址 172.20.100.52 子网掩码 255.255.255.192 网络地址 172.20.100.0 子网掩码 255.255.255.192 广播地址 172.20.100.63 子网掩码 255.255.255.192</p>
+<p>第二种表示方式是，在每个 IP 地址后面追加网络地址的位数用 “/ ” 隔开，如下：<br>IP 地址 172.20.100.52/ 26 网络地址 172.20.100.0/ 26 广播地址 172.20.100.63/ 26</p>
+<p>另外，在第二种方式下记述网络地址时可以省略后面的 “0” 。例如：172.20.0.0/26 跟 172.20/26 其实是一个意思。 2. 路由<br>发送数据包时所使用的地址是网络层的地址，即 IP 地址。然而仅仅有 IP 地址还不足以实现将数据包发送到对端目标地址，在数据发送过程中还需要类似于“指明路由器或主机”的信息，以便真正发往目标地址。保存这种信息的就是路由控制表。<br>该路由控制表的形成方式有两种：一种是管理员手动设置，另一种是路由器与其他路由器相互交换信息时自动刷新。前者也叫做静态路由控制，而后者叫做动态路由控制。<br>IP 协议始终认为路由表是正确的。然后，IP 本身并没有定义制作路由控制表的协议。即 IP 没有制作路由控制表的机制。该表示由一个叫做“路由协议”的协议制作而成。<br>2.1 IP 地址与路由控制<br>IP 地址的网络地址部分用于进行路由控制。<br>路由控制表中记录着网络地址与下一步应该发送至路由器的地址。<br>在发送 IP 包时，首先要确定 IP 包首部中的目标地址，再从路由控制表中找到与该地址具有相同网络地址的记录，根据该记录将 IP 包转发给相应的下一个路由器。如果路由控制表中存在多条相同网络地址的记录，就选择一个最为吻合的网络地址。</p>
+<ol start="3">
+<li>IP 分包与组包<br>每种数据链路的最大传输单元（MTU）都不尽相同，因为每个不同类型的数据链路的使用目的不同。使用目的不同，可承载的 MTU 也就不同。<br>任何一台主机都有必要对 IP 分片进行相应的处理。分片往往在网络上遇到比较大的报文无法一下子发送出去时才会进行处理。<br>经过分片之后的 IP 数据报在被重组的时候，只能由目标主机进行。路由器虽然做分片但不会进行重组。<br>3.1 路径 MTU 发现<br>分片机制也有它的不足。如路由器的处理负荷加重之类。因此，只要允许，是不希望由路由器进行 IP 数据包的分片处理的。<br>为了应对分片机制的不足，“路径 MTU 发现” 技术应运而生。路径 MTU 指的是，从发送端主机到接收端主机之间不需要分片是最大 MTU 的大小。即路径中存在的所有数据链路中最小的 MTU 。<br>进行路径 MTU 发现，就可以避免在中途的路由器上进行分片处理，也可以在 TCP 中发送更大的包。</li>
+<li>IPv6<br>IPv6（IP version 6）是为了根本解决 IPv4 地址耗尽的问题而被标准化的网际协议。IPv4 的地址长度为 4 个 8 位字节，即 32 比特。而 IPv6 的地址长度则是原来的 4 倍，即 128 比特，一般写成 8 个 16 位字节。<br>4.1 IPv6 的特点<br>IP 得知的扩大与路由控制表的聚合。<br>性能提升。包首部长度采用固定的值（40 字节），不再采用首部检验码。简化首部结构，减轻路由器负担。路由器不再做分片处理。<br>支持即插即用功能。即使没有 DHCP 服务器也可以实现自动分配 IP 地址。<br>采用认证与加密功能。应对伪造 IP 地址的网络安全功能以及防止线路窃听的功能。<br>多播、Mobile IP 成为扩展功能。<br>4.2 IPv6 中 IP 地址的标记方法<br>一般人们将 128 比特 IP 地址以每 16 比特为一组，每组用冒号（“：”）隔开进行标记。<br>而且如果出现连续的 0 时还可以将这些 0 省略，并用两个冒号（“：：”）隔开。但是，一个 IP 地址中只允许出现一次两个连续的冒号。<br>4.3 IPv6 地址的结构<br>IPv6 类似 IPv4，也是通过 IP 地址的前几位标识 IP 地址的种类。<br>在互联网通信中，使用一种全局的单播地址。它是互联网中唯一的一个地址，不需要正式分配 IP 地址。<br>未定义 0000 … 0000（128 比特）：：/ 128 环回地址 0000 … 0001（128 比特）：：1 / 128 唯一本地地址 1111 110FC00：/ 7 链路本地单播地址 1111 1110 10FE80：：/ 10 多播地址 1111 1111FF00：：/ 8 全局单播地址（其他）</li>
+</ol>
+<p>4.4 全局单播地址<br>全局单播地址是指世界上唯一的一个地址。它是互联网通信以及各个域内部通信中最为常用的一个 IPv6 地址。<br>格式如下图所示，现在 IPv6 的网络中所使用的格式为，n = 48，m = 16 以及 128 - n - m = 64。即前 64 比特为网络标识，后 64 比特为主机标识。</p>
+<p>4.5 链路本地单播地址<br>链路本地单播地址是指在同一个数据链路内唯一的地址。它用于不经过路由器，在同一个链路中的通信。通常接口 ID 保存 64 比特版的 MAC 地址。</p>
+<p>4.6 唯一本地地址<br>唯一本地地址是不进行互联网通信时所用的地址。<br>唯一本地地址虽然不会与互联网连接，但是也会尽可能地随机生成一个唯一的全局 ID。<br>L 通常被置为 1<br>全局 ID 的值随机决定<br>子网 ID 是指该域子网地址<br>接口 ID 即为接口的 ID</p>
+<p>4.7 IPv6 分段处理<br>IPv6 的分片处理只在作为起点的发送端主机上进行，路由器不参与分片。<br>IPv6 中最小 MTU 为 1280 字节，因此，在嵌入式系统中对于那些有一定系统资源限制的设备来说，不需要进行“路径 MTU 发现”，而是在发送 IP 包时直接以 1280 字节为单位分片送出。<br>4.8 IP 首部（暂略）<br>※IP 协议相关技术<br>IP 旨在让最终目标主机收到数据包，但是在这一过程中仅仅有 IP 是无法实现通信的。必须还有能够解析主机名称和 MAC 地址的功能，以及数据包在发送过程中异常情况处理的功能。<br>5.1 DNS<br>我们平常在访问某个网站时不适用 IP 地址，而是用一串由罗马字和点号组成的字符串。而一般用户在使用 TCP/IP 进行通信时也不使用 IP 地址。能够这样做是因为有了 DNS （Domain Name System）功能的支持。DNS 可以将那串字符串自动转换为具体的 IP 地址。<br>这种 DNS 不仅适用于 IPv4，还适用于 IPv6。<br>5.2 ARP<br>只要确定了 IP 地址，就可以向这个目标地址发送 IP 数据报。然而，在底层数据链路层，进行实际通信时却有必要了解每个 IP 地址所对应的 MAC 地址。<br>ARP 是一种解决地址问题的协议。以目标 IP 地址为线索，用来定位下一个应该接收数据分包的网络设备对应的 MAC 地址。不过 ARP 只适用于 IPv4，不能用于 IPv6。IPv6 中可以用 ICMPv6 替代 ARP 发送邻居探索消息。<br>RARP 是将 ARP 反过来，从 MAC 地址定位 IP 地址的一种协议。<br>5.3 ICMP<br>ICMP 的主要功能包括，确认 IP 包是否成功送达目标地址，通知在发送过程当中 IP 包被废弃的具体原因，改善网络设置等。<br>IPv4 中 ICMP 仅作为一个辅助作用支持 IPv4。也就是说，在 IPv4 时期，即使没有 ICMP，仍然可以实现 IP 通信。然而，在 IPv6 中，ICMP 的作用被扩大，如果没有 ICMPv6，IPv6 就无法进行正常通信。<br>5.4 DHCP<br>如果逐一为每一台主机设置 IP 地址会是非常繁琐的事情。特别是在移动使用笔记本电脑、只能终端以及平板电脑等设备时，每移动到一个新的地方，都要重新设置 IP 地址。<br>于是，为了实现自动设置 IP 地址、统一管理 IP 地址分配，就产生了 DHCP（Dynamic Host Configuration Protocol）协议。有了 DHCP，计算机只要连接到网络，就可以进行 TCP/IP 通信。也就是说，DHCP 让即插即用变得可能。<br>DHCP 不仅在 IPv4 中，在 IPv6 中也可以使用。<br>5.5 NAT<br>NAT（Network Address Translator）是用于在本地网络中使用私有地址，在连接互联网时转而使用全局 IP 地址的技术。<br>除转换 IP 地址外，还出现了可以转换 TCP、UDP 端口号的 NAPT（Network Address Ports Translator）技术，由此可以实现用一个全局 IP 地址与多个主机的通信。<br>NAT（NAPT）实际上是为正在面临地址枯竭的 IPv4 而开发的技术。不过，在 IPv6 中为了提高网络安全也在使用 NAT，在 IPv4 和 IPv6 之间的相互通信当中常常使用 NAT-PT。<br>5.6 IP 隧道</p>
+<p>如上图的网络环境中，网络 A 与网络 B 之间无法直接进行通信，为了让它们之间正常通信，这时必须得采用 IP 隧道的功能。<br>IP 隧道可以将那些从网络 A 发过来的 IPv6 的包统合为一个数据，再为之追加一个 IPv4 的首部以后转发给网络 C。<br>一般情况下，紧接着 IP 首部的是 TCP 或 UDP 的首部。然而，现在的应用当中“ IP 首部的后面还是 IP 首部”或者“ IP 首部的后面是 IPv6 的首部”等情况与日俱增。这种在网络层的首部后面追加网络层首部的通信方法就叫做“ IP 隧道”。</p>
+<h2 id="六-应用层"><a href="#六-应用层" class="headerlink" title="六.应用层"></a>六.应用层</h2><p>1.应用层的作用<br>通过位于不同主机中的多个应用进程之间的通信和协同工作来完成，应用层的内容就是具体定义通信规则 2.应用层中常见的协议<br>域名系统 DNS<br>域名结构：每一个域名用标号隔开。 mail.cctv.com (三级域名.二级域名.顶级域名)<br>域名服务器：迭代 递归<br>文件传输协议 FTP<br>使用 TCP 连接，传输数据<br>端口号是 21（20） 20 发送数据<br>远程终端协议 TELNET<br>使用 TCP 连接，远程登录到远地的另外一台主机上<br>端口号是 23<br>万维网和 HTTP 协议<br>超文本传输协议，是一个简单的请求-响应协议<br>端口号是 80<br>电子邮件协议<br>SMTP 电子邮件传输协议：端口号 25<br>POP3 邮局协议版本 3：端口号 110<br>DHCP 动态主机配置协议<br>指的是由服务器控制一段 IP 地址范围，客户机登录服务器时就可以自动获得服务器分配的 IP 地址和子网掩码。<br>端口号 68</p>
+<h2 id="七-网络安全"><a href="#七-网络安全" class="headerlink" title="七.网络安全"></a>七.网络安全</h2><p>1.网络安全概论<br>1.1 网络安全<br>网络安全（Cyber Security）是指网络系统的硬件，软件及其系统中的数据受到保护，不因偶然的或者恶意的原因而遭到破坏，更改，泄露。系统连续可靠正常的运行，网络服务不中断。<br>1.2 计算机网络面临的威胁主要分为两类<br>1.2.1 主动攻击<br>主动的去做一些在网络基础上的恶意行为。恶意串改信息数据，发布恶意程序脚本等<br>篡改<br>恶意程序<br>拒绝服务<br>1.2.2 被动攻击<br>被动攻击主要是收集信息而不是进行访问，不改变数据本身的结构，也不对软硬件数据造成影响<br>截取<br>窃听<br>流量分析<br>1.2 网络系统特性<br>保密性：信息不泄露给非授权用户，实体或过程，或供其利用的特性<br>完整性：数据未经授权不能进行改变的特性，即信息在存储或传输过程中保持不被修改，不被破坏和丢失的特性<br>可用性：可被授权实体访问并按需求使用的特性。即当需要时能否存取所需信息。例如网络环境下拒绝服务，破坏网络和有关系统的正常运行等后属于对可用性的攻击<br>可靠性：对信息的传播及内容具有控制能力<br>不可抵赖性：出现安全问题时提供依据与手段 2.加密和交互<br>2.1 加密和解密<br>2.1.1 加密<br>是以某种特殊的算法改变原有的信息数据，使得未授权的用户即即使获得了已加密的信息，但因不知解密的方法，仍然无法了解信息的内容<br>加密手段<br>MD5 加密（信息-摘要算法）：128 位<br>AES 加密（称秘钥加密）：128,192,256 位<br>SHAI 加密（安全哈希算法）：160 位<br>RSA 加密：公钥加密，私钥解密：1204 位<br>2.1.2 解密<br>加密的逆过程就是解密<br>2.2 公钥和私钥<br>2.2.1 对称加密<br>采用单钥密码系统的加密方式，同一个秘钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单秘钥加密。<br>2.2.2 非对称加密<br>使用非对称的加密方式时，会产生两把钥匙。发送方利用自己的公钥加密，接收方利用自己的私钥解密<br>数字签名的四大特点<br>防止重放攻击：攻击者利用网络监听或则其他方式盗取认证凭据，之后再把它重新发给认证服务器。在数字签名中，如果采用了对签名报文加盖时间戳等或添加流水号等技术，就可以有效防止重放攻击<br>防止数据伪造：其他人不能伪造对消息的签名，因为私有秘钥只能签名者自己知道，所有其他人不可以构造出正确的签名结果数据<br>防止数据篡改：数字签名与原始文件或摘要一起发送给接受者，一旦信息被篡改，接受者可以通过计算摘要和验证签名来判断该文件无效，从而保证了文件的完整性<br>防止数据抵赖：数字签名既可以作为身份认证的依据，也可以作为签名者签名操作的证据。要防止接受者抵赖，可以在数字签名系统中要求接收者返回一个自己的签名的表示收到报文，给发送者或者信任第三方。如果接受者不返回任何信息，此次通信可终止或重新的开始，签名方也没有任何的损失，由此双方均不可抵赖。<br>2.3 防火墙<br>防火墙是一种访问控制技术，可以严格控制进出网络边界的分组，禁止任何不必要的通信，来减少潜在入侵的发生</p>
+<p>防火墙的区域们<br>Local 本地区域<br>顶级安全区域，安全优先级为 100<br>local 就是防火墙本身的区域比如 ping 指令等网际控制协议的回复，需要 local 域的权限凡是由防火墙主动发出的报文均可认为是从 local 区域中发出是需要防火墙响应并处理（而不是转发）的报文均可认为是 Local 区域接收<br>Trust 受信区<br>高级安全区域，安全优先级为 85<br>通常用来定义内部用户所在的网络，也可以理解为应该是防护最严密的地区<br>DMZ 非军事化区<br>中级安全区域，安全优先级 50<br>通常用来定义内部服务器坐在网络<br>作用是把 WEB。E-mail 等允许外部访问的服务器单独接在该区域端口，使整个需要访问，实现内外网分离，达到用户需求。DMZ 可以理解为一个不同于外网或内网的特殊网络区域，DMZ 内通常放置一些不含机密信息的公用服务器，比如 Web，Mail，FTP 中的服务。这样来自外网的访问者可以访问 DMZ 中服务，但不可能接触到存放在内网中的公司机密或私人信息等，及时 DMZ 中服务器受到破坏，也不会对内网中的机密信造成影响<br>Untrust 非受信区<br>低级安全区域，安全优先级为 5<br>通常用来定义 Internet 等不安全的网络，用于网络入口线的接入。</p>
+]]></content>
   </entry>
 </search>
