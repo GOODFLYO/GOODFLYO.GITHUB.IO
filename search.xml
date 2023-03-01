@@ -6,12 +6,12 @@
     <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
 <h1 style="font-size:32px;text-align:center;color:red">区块链基础入门</h1>
 [toc]
+<span id="more"></span>
+---
 
-<hr>
 <h3 id="说到区块链，我想我们听到最多的就是比特币"><a href="#说到区块链，我想我们听到最多的就是比特币" class="headerlink" title="说到区块链，我想我们听到最多的就是比特币"></a>说到区块链，我想我们听到最多的就是比特币</h3><blockquote>
 <p>每当同学聚餐问我学的什么的时候，我一说区块链，他们就说自己知道：是比特币！<br>但是很明显，他们只是了解一丢丢。</p>
 </blockquote>
-<span id="more"></span>
 <hr>
 <h3 id="区块链是什么？"><a href="#区块链是什么？" class="headerlink" title="区块链是什么？"></a>区块链是什么？</h3><blockquote>
 <p>官方定义已经足够充分，但我不认为好理解。<br><img src="https://gitee.com/goodflyo/cdn/raw/master/01/define.png" alt="区块链定义"></p>
@@ -106,12 +106,12 @@
     <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
 <h1 style="font-size:32px;text-align:center;color:red">前端基础知识</h1>
 [toc]
+<span id="more"></span>
+---
 
-<hr>
 <h3 id="html-中标签的定义"><a href="#html-中标签的定义" class="headerlink" title="html 中标签的定义"></a>html 中标签的定义</h3><blockquote>
 <p>我们都知道，html 中可以使用&lt;p&gt;&lt;/p&gt;这些标签去定义内容，但是如何能定义自己的标签呢？例如我想用“ZYN”这个名字作为一个标签，怎么办呢？</p>
 </blockquote>
-<span id="more"></span>
 <p>此时就需要 js 了：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> 周亚男 <span class="keyword">extends</span> <span class="title class_">THMLElement</span>&#123;</span><br><span class="line">    ...内容</span><br><span class="line">&#125;</span><br><span class="line">customElements.<span class="title function_">define</span>(<span class="string">&quot;ZYN&quot;</span>,周亚男);</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">ZYN</span>&gt;</span><span class="tag">&lt;/<span class="name">ZYN</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
@@ -312,221 +312,6 @@
       </categories>
   </entry>
   <entry>
-    <title>区块链学习第四期</title>
-    <url>/2022/12/15/202_zyn_04/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
-<h1 style="font-size:32px;text-align:center;color:red">学习ethers.js</h1>
-[toc]
-
-<hr>
-<h2 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h2><blockquote>
-<p>在说 etherjs 之前呢，先说一下<strong>web3js</strong></p>
-</blockquote>
-<ul>
-<li>Web3.js 是一个库集合，允许您使用 HTTP、IPC 或 WebSocket 与本地或远程以太坊节点进行交互。<span id="more"></span></li>
-<li>web3js 提供了用于和 geth 通信的 javascipt API，也就是用 web3js 连接 geth，在通过 geth 连接以太坊。</li>
-<li>内部使用了 json-rpc 与 geth 通信</li>
-<li><strong>json-rpc</strong>是一个无状态且轻量级的远程过程调用（rpc）协议。允许使用 socket、http 等协议进行通讯。使用 json 作为数据格式（rfc4627）==》被封装成了 jsapi</li>
-<li>web3js 可以与所有支持 rpc 的节点进行通信。不仅支持以太坊相关的 api，还支持以太坊生态中其它系统的 api</li>
-<li><hr>
-</li>
-</ul>
-<h2 id="ethers-js"><a href="#ethers-js" class="headerlink" title="ethers.js"></a>ethers.js</h2><blockquote>
-<p><strong>etherjs</strong>是一个完整而紧凑的开源库，用于与以太坊区块链及其生态系统进行交互（个人认为就是提供一个方便访问区块链的接口,是压缩版的 web3js）。<strong>如果要写 Dapp 前端，则需要用到它。</strong></p>
-<p><strong>uer interface（frontend）</strong> &lt;–&gt; <strong>ethereum api</strong> &lt;–&gt; <strong>smart contract</strong></p>
-</blockquote>
-<h3 id="对-alchemy-的再理解"><a href="#对-alchemy-的再理解" class="headerlink" title="对 alchemy 的再理解"></a>对 alchemy 的再理解</h3><p>某一次实验需要注册 alchemy 获取一个 api key,但一直不懂为什么要。下面我用个对比法解释：</p>
-<blockquote>
-<p>我们一开始访问以太坊时，用的扩展类工具连接的以太坊：<strong>Metamask</strong></p>
-<ol>
-<li>提供连接到以太坊的网络（a Provider）</li>
-<li>持有你的私钥并且可以进行签名（a Signer）</li>
-</ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(<span class="variable language_">window</span>.<span class="property">ethereum</span>);</span><br><span class="line"><span class="comment">//Metamask插件支持签名交易和信息，来发送交易信息改变区块链的状态</span></span><br><span class="line"><span class="comment">//因此需要一个账户联名</span></span><br><span class="line"><span class="keyword">const</span> signer = provider.<span class="title function_">getSigner</span>();</span><br></pre></td></tr></table></figure>
-
-<p>但是我们不想下载扩展呢？我还能在不通过网页的形式下查看链上信息吗？</p>
-<blockquote>
-<p>RPC 全称 Remote Procedure Call，即远程过程调用）JSON-RPC API 接口，是另一个连接到以太坊的方法，可以在所有的主要的以太坊节点实现，他主要提供了</p>
-<ol>
-<li>提供连接到以太坊的网络（a Provider）</li>
-<li>持有你的私钥并且可以进行签名（a Signer）<br>查询区块链一旦有了一个 Provider，就有了一个与区块链的连接，可以用它去查询当前状态，获取历史日志，查询部署的代码等</li>
-</ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//await 作用使异步方法变同步</span></span><br><span class="line"><span class="keyword">await</span> provider.<span class="title function_">getBlockNumber</span>();</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">formatEther</span>(balance);</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入区块</span></span><br><span class="line"><span class="comment">// Send 1 ether to an ens name.发送1以太到以太坊域名</span></span><br><span class="line"><span class="keyword">const</span> tx = signer.<span class="title function_">sendTransaction</span>(&#123;</span><br><span class="line">  <span class="comment">//签名，发送交易</span></span><br><span class="line">  <span class="attr">to</span>: <span class="string">&quot;ricmoo.firefly.eth&quot;</span>, <span class="comment">//发送至以太坊域名</span></span><br><span class="line">  <span class="attr">value</span>: ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>), <span class="comment">//格式化</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="web3js-和-ethersjs-对比"><a href="#web3js-和-ethersjs-对比" class="headerlink" title="web3js 和 ethersjs 对比"></a>web3js 和 ethersjs 对比</h3><ul>
-<li><p>web3js 认为用户在本地部署以太坊节点，私钥和网络连接状态这个节点管理（事迹并不是这样）；ethersjs 中，provider 提供器管理网络连接状态，wallet 钱包类管理密钥，安全且灵活，原生支持 ens</p>
-</li>
-<li><p>Ethers.js 提供的状态和密钥管理。Web3 的设计场景是 DApp 应该连接到一个本地节点，由这个节点负责保存密钥、签名交易并与以太坊区块链交互。<strong>现实并不是这样的</strong>，绝大多数用户不会在本地运行一个 geth 节点。Metamask 在浏览器 应用中有效地模拟了这种节点环境，因此绝大多数 web3 应用需要使用 Metamask 来保存密钥、签名交易并完成与以太坊的交互。</p>
-</li>
-<li><p>Ethers.js 采取了不同的设计思路，它提供给开发者更多的灵活性。Ethers.js 将“节点”拆分为两个不同的角色：</p>
-<p><strong>钱包</strong>：负责密钥保存和交易签名<br><strong>提供器</strong>：负责以太坊网络的匿名连接、状态检查和交易发送</p>
-</li>
-</ul>
-<h3 id="本地使用-ethersjs，如何配置环境"><a href="#本地使用-ethersjs，如何配置环境" class="headerlink" title="本地使用 ethersjs，如何配置环境"></a>本地使用 ethersjs，如何配置环境</h3><ol>
-<li>安装环境 nodejs</li>
-<li>安装 ethersjs 包—npm i –save ethers</li>
-<li>alchemy 申请一个 rpc 复制里面的 apikey</li>
-<li><a href="https://learnblockchain.cn/docs/ethers.js/api.html">查看官方文档</a></li>
-<li>当然单个网页也可以直接引入<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 会导出一个全局的变量: ethers --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://cdn.ethers.io/scripts/ethers-v4.min.js&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="本地如何使用使用呢？每一步到底做什么？"><a href="#本地如何使用使用呢？每一步到底做什么？" class="headerlink" title="本地如何使用使用呢？每一步到底做什么？"></a>本地如何使用使用呢？每一步到底做什么？</h3><blockquote>
-<p>本次测试的目录结构</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ethers-template</span><br><span class="line">    +compile.js</span><br><span class="line">    +contracts</span><br><span class="line">        -erc20.sol</span><br><span class="line">    +build</span><br><span class="line">        -ERC.json</span><br><span class="line">        -Context.json</span><br><span class="line">        -IERC20.sjon</span><br><span class="line">        -SafeMath.json</span><br><span class="line">   -package.json</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>初始化一个文件夹<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure></li>
-<li>创建一个 config.json 文件保存你的项目配置<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">//账户私钥，将使用这个私钥对应的账户在指定网络上部署智能合约</span></span><br><span class="line"> <span class="attr">&quot;private_key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;24C4FE6063E62710EAD956611B71825B778B041B18ED53118CE5DA5F02E494BA&quot;</span><span class="punctuation">,</span></span><br><span class="line"> &lt;!--要接入的以太坊网络，ethers.js支持以下网络：</span><br><span class="line">     homestead：主网</span><br><span class="line">     rinkeby</span><br><span class="line">     ropsten</span><br><span class="line">     kovan</span><br><span class="line">     goerli --&gt;</span><br><span class="line"> <span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kovan&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//声明要交互的已部署合约，可选</span></span><br><span class="line"> <span class="attr">&quot;ERC20&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0x0DEd9F7D82a24099F09AF7831CaB61B31Df10487&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//ERC20合约的参数</span></span><br><span class="line"> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fly&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;symbol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zhou&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;total_supply&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1000000000000000000000000&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;decimals&quot;</span><span class="punctuation">:</span> <span class="number">18</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-<li>为了编译合约，还需要安装solc和fs-extra<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm install <span class="built_in">fs</span>-extra@<span class="number">8</span>.<span class="number">1</span>.<span class="number">0</span> solc@<span class="number">0</span>.<span class="number">5</span>.<span class="number">11</span> --save</span><br></pre></td></tr></table></figure></li>
-<li>创建ERC20合约代码</li>
-<li>编写合约编译脚本,下面代码将读入并编译contracts目录中的所有合约文件，然后将编译得到的abi和字节码保存为json文件<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> solc = <span class="built_in">require</span>(<span class="string">&#x27;solc&#x27;</span>);</span><br><span class="line"><span class="comment">//这个读取的就是自己的配置文件</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sourceFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> buildFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;build&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getContractSource</span> = contractFileName =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> contractPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>, contractFileName);</span><br><span class="line">  <span class="keyword">const</span> source = fs.<span class="title function_">readFileSync</span>(contractPath, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> source;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sources = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readdirSync</span>(sourceFolderPath).<span class="title function_">forEach</span>(<span class="function"><span class="params">contractFileName</span> =&gt;</span> &#123;</span><br><span class="line">  sources = &#123;</span><br><span class="line">    ...sources,</span><br><span class="line">    [contractFileName]: &#123;</span><br><span class="line">      <span class="attr">content</span>: <span class="title function_">getContractSource</span>(contractFileName)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = &#123;</span><br><span class="line">    <span class="attr">language</span>: <span class="string">&#x27;Solidity&#x27;</span>,</span><br><span class="line">    sources,</span><br><span class="line">    <span class="attr">settings</span>: &#123;</span><br><span class="line">        <span class="attr">outputSelection</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;*&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;*&#x27;</span>: [ <span class="string">&#x27;*&#x27;</span> ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nCompiling contracts...&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(solc.<span class="title function_">compile</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(input)));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Done&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> shouldBuild = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (output.<span class="property">errors</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(output.<span class="property">errors</span>);</span><br><span class="line">  <span class="comment">// throw &#x27;nError in compilation please check the contractn&#x27;;</span></span><br><span class="line">  <span class="keyword">for</span>(error <span class="keyword">of</span> output.<span class="property">errors</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(error.<span class="property">severity</span> === <span class="string">&#x27;error&#x27;</span>) &#123;</span><br><span class="line">      shouldBuild = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">&#x27;Error found&#x27;</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(shouldBuild) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuilding please wait...&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  fs.<span class="title function_">removeSync</span>(buildFolderPath);</span><br><span class="line">  fs.<span class="title function_">ensureDirSync</span>(buildFolderPath);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> contractFile <span class="keyword">in</span> output.<span class="property">contracts</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> output.<span class="property">contracts</span>[contractFile]) &#123;</span><br><span class="line">      fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">        path.<span class="title function_">resolve</span>(buildFolderPath, <span class="string">`<span class="subst">$&#123;key&#125;</span>.json`</span>),</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">abi</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;abi&quot;</span>],</span><br><span class="line">          <span class="attr">bytecode</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;evm&quot;</span>][<span class="string">&quot;bytecode&quot;</span>][<span class="string">&quot;object&quot;</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">          <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Build finished successfully!n&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuild failedn&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
- 运行node compile.js就可以对合约进行编译</li>
-<li>创建文件deploy.js<ul>
-<li>下面代码中的默认网络是<strong>configjs</strong>中的测试网</li>
-<li>在这个测试网中，需要一些<strong>以太币来支付部署交易的手续费</strong></li>
-<li>将使用config.json中的<strong>private_key</strong>来部署合约</li>
-<li>运行deploy.js脚本时，需要在命令行传入要部署的合约名称ERC20 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node deploy.js ERC20</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> startTimestamp = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">const</span> ethers = <span class="built_in">require</span>(<span class="string">&#x27;ethers&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(config[<span class="string">&quot;network&quot;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wallet = <span class="keyword">new</span> ethers.<span class="title class_">Wallet</span>(config[<span class="string">&quot;private_key&quot;</span>], provider);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Loaded wallet <span class="subst">$&#123;wallet.address&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> compiled = <span class="built_in">require</span>(<span class="string">`./build/<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>.json`</span>);</span><br><span class="line"></span><br><span class="line">(<span class="title function_">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`nDeploying <span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span> in <span class="subst">$&#123;config[<span class="string">&quot;network&quot;</span>]&#125;</span>...`</span>);</span><br><span class="line">  <span class="keyword">let</span> contract = <span class="keyword">new</span> ethers.<span class="title class_">ContractFactory</span>(</span><br><span class="line">    compiled.<span class="property">abi</span>,</span><br><span class="line">    compiled.<span class="property">bytecode</span>,</span><br><span class="line">    wallet</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> instance =  <span class="keyword">await</span> contract.<span class="title function_">deploy</span>(config[<span class="string">&quot;decimals&quot;</span>], config[<span class="string">&quot;symbol&quot;</span>], config[<span class="string">&quot;name&quot;</span>], config[<span class="string">&quot;total_supply&quot;</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`deployed at <span class="subst">$&#123;instance.address&#125;</span>`</span>)</span><br><span class="line">  config[<span class="string">`<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>`</span>] = instance.<span class="property">address</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Waiting for the contract to get mined...&quot;</span>)</span><br><span class="line">  <span class="keyword">await</span> instance.<span class="title function_">deployed</span>()</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed&quot;</span>)</span><br><span class="line">  fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">    <span class="string">&#x27;config.json&#x27;</span>,</span><br><span class="line">    config,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">      <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<h3 id="ethers-js-接口文档导读"><a href="#ethers-js-接口文档导读" class="headerlink" title="ethers.js 接口文档导读"></a>ethers.js 接口文档导读</h3><blockquote>
-<p>其实整个文档可以看出四个大类 我把它们按照学习的先后顺序分为：</p>
-<ul>
-<li>provider（提供器：我习惯理解成提供给我信息的网络）</li>
-<li>wallet（钱包）</li>
-<li>contract（合约）</li>
-<li>utils（工具包）</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>区块链学习第六期</title>
-    <url>/2023/01/15/202_zyn_06/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
-<h1 style="font-size:32px;text-align:center;color:red">零知识证明基础</h1> 
-[toc] 
-<span id="more"></span>
---- 
-
-<h1 id="零知识证明（Zero-Knowledge-Proofs-ZKP）"><a href="#零知识证明（Zero-Knowledge-Proofs-ZKP）" class="headerlink" title="零知识证明（Zero-Knowledge Proofs  ZKP）"></a>零知识证明（Zero-Knowledge Proofs  ZKP）</h1><blockquote>
-<p>零知识证明技术是现代密码学三大基础之一，由 S.Goldwasser、S.Micali 及 C.Rackoff 在 20 世纪 80 年代初提出。早期的零知识证明由于其效率和可用性等限制，未得到很好的利用，仅停留在理论层面。直到近年来，零知识证明的理论研究才开始不断突破，同时区块链也为零知识证明创造了大展拳脚的机会，因而走进大众视野。<br>零知识证明这项“黑科技”随着它的热度逐渐增加，相关的学习资源也慢慢丰富起来了。但是由于，一方面零知识证明背后的原理颇为复杂，且内容繁多；另一方面，针对零知识证明的学习资源质量参差不齐，尚未形成系统。因此对绝大多数读者来说，学习零知识证明的难度依然很大。</p>
-</blockquote>
-<hr>
-<h2 id="简单理解ZKP"><a href="#简单理解ZKP" class="headerlink" title="简单理解ZKP"></a>简单理解ZKP</h2><blockquote>
-<p>通过间接方式证明某事物的存在。所谓的零知识，就是指验证方除了对论断判断的结果（错或对）之外，<strong>无法获取任何额外信息</strong>。</p>
-</blockquote>
-<h2 id="ZKP分类"><a href="#ZKP分类" class="headerlink" title="ZKP分类"></a>ZKP分类</h2><ul>
-<li><p>交互式<br>  需要通过反复确认（比如验证者问我问题我每次都可以答对）</p>
-</li>
-<li><p>非交互式<br>  区块链更常使用的是「非交互式zk」，简称「NIZK」。区块链上的一个交易会分发给多个矿工进行验证，如果每个矿工都进行交互式的验证，那耗时将是难以想象的。而NIZK在证明者进行一次证明之后，能够取信多个验证者，所以更加适合区块链上的场景</p>
-</li>
-</ul>
-<h2 id="零知识证明三大性质"><a href="#零知识证明三大性质" class="headerlink" title="零知识证明三大性质"></a>零知识证明三大性质</h2><ul>
-<li>完备性（Completeness）：若一个证明方确实掌握了某论断的答案，则他肯定能找到方法向验证方证明他手中掌握的数据的正确性，即真的假不了。（对应上面药丸的例子，就是拥有药丸的证明方肯定能想办法说服验证方，证明他手里真的有药丸。）</li>
-<li>可靠性（Soundness）：若一证明方根本不掌握某论断的答案，则他无法（或只能以极低概率）说服验证方他手中所谓答案的准确性，即假的真不了。（对应上面药丸的例子，就是证明方若手中无药丸则没法蒙混过关让验证方误以为他有药丸。）</li>
-<li>零知识性（Zero-knowledgeness）：验证方除了知道证明的结果外，对其他信息一无所知。</li>
-</ul>
-<h2 id="零知识证明构造方法的三段论"><a href="#零知识证明构造方法的三段论" class="headerlink" title="零知识证明构造方法的三段论"></a>零知识证明构造方法的三段论</h2><ol>
-<li>证明方先根据论断内容向验证方发个交底材料，这个样例论断需要是随机的或加密的；</li>
-<li>验证方随机生成一个试探（学术名词是挑战，challenge），发给证明方；</li>
-<li>证明方根据该试探和交底材料生成证明信息发给验证方。验证方自己将信息和交底材料一合计，判断证明方是否通过了该试探。</li>
-</ol>
-<h2 id="零知识证明的优点"><a href="#零知识证明的优点" class="headerlink" title="零知识证明的优点"></a>零知识证明的优点</h2><p><strong>安全</strong>，随着零知识证明的使用，安全性会大大提高。<br><strong>高效</strong>，零知识证明过程计算量小，双方交换的信息量会大大减少，因此较为高效。</p>
-<h2 id="零知识证明的应用"><a href="#零知识证明的应用" class="headerlink" title="零知识证明的应用"></a>零知识证明的应用</h2><ul>
-<li>身份验证</li>
-<li>数字签名</li>
-<li>认证协议</li>
-</ul>
-<h2 id="密码学常用公钥密码"><a href="#密码学常用公钥密码" class="headerlink" title="密码学常用公钥密码"></a>密码学常用公钥密码</h2><p>验证某人是否有<strong>私钥</strong></p>
-<ol>
-<li>用公钥加密某x</li>
-<li>让对方出示加密的内容</li>
-<li>如果正确则拥有公钥</li>
-</ol>
-<h2 id="零知识证明形象化举例"><a href="#零知识证明形象化举例" class="headerlink" title="零知识证明形象化举例"></a>零知识证明形象化举例</h2><p>A有一个开房间R的钥匙🔑，B怎么在不知道A有钥匙🔑的情况下相信A有钥匙呢？<br>答：A可以把门打开，拿出其中的一把椅子，B看了之后就知道，A肯定有钥匙，不然怎么开门呢。此时A并没有给B看到钥匙，仅仅是通过给出在有钥匙才能办到的事这个结果，让B相信有钥匙。</p>
-]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>区块链学习第五期</title>
-    <url>/2022/12/31/202_zyn_05/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
-<h1 style="font-size:32px;text-align:center;color:red">ethers.js再探索</h1> 
-[toc] 
-
-<hr>
-<p><strong>续上一期内容，阳了，失去产出能力</strong></p>
-<span id="more"></span>
-<h2 id="ethers-js-接口文档导读"><a href="#ethers-js-接口文档导读" class="headerlink" title="ethers.js 接口文档导读"></a>ethers.js 接口文档导读</h2><blockquote>
-<p>其实整个文档可以看出四个大类 我把它们按照学习的先后顺序分为：</p>
-<ul>
-<li>provider（提供器：我习惯理解成提供给我信息的网络）</li>
-<li>wallet（钱包）</li>
-<li>contract（合约）</li>
-<li>utils（工具包）</li>
-</ul>
-</blockquote>
-<h3 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h3><ul>
-<li><p>在 Ethers.js 中，”provider” 是一个对象，用于与以太坊网络连接并进行通信。它提供了<strong>一组方法</strong>，用于从以太坊网络中读取数据和发送交易。</p>
-</li>
-<li><p>可以将 provider 看作是<strong>与以太坊网络的接口</strong>，通过它可以与以太坊网络进行交互。可以使用 Ethers.js 的 provider 对象来访问以太坊区块链数据、发送交易和调用智能合约。</p>
-</li>
-<li><p>可以使用 Ethers.js 的 provider 对象来连接到任何以太坊节点，包括本地节点和远程节点。可以使用它来连接到任何支持 JSON-RPC 的以太坊节点。</p>
-</li>
-</ul>
-<h3 id="wallet"><a href="#wallet" class="headerlink" title="wallet"></a>wallet</h3><ul>
-<li><p>Ethers.js 中的 wallet 是一个 JavaScript 对象，用于管理以太坊账户。它具有一组方法，用于签署和发送交易，以及访问和管理账户余额和交易历史记录。</p>
-</li>
-<li><p>在 Ethers.js 中，wallet 是一个抽象概念，用于表示一个以太坊账户。它可以是一个用户账户，也可以是智能合约账户。在任何情况下，wallet 都是用于管理以太坊账户的对象。</p>
-</li>
-<li><p>可以使用 Ethers.js 的 wallet 对象来签署和发送交易，访问账户余额和交易历史记录，以及使用钱包加密功能加密和解密私钥。</p>
-</li>
-<li><p>可以使用 Ethers.js 创建多种类型的钱包，包括用户账户钱包、智能合约钱包和测试钱包。每种类型的钱包都具有一些特定的功能，但所有类型的钱包都提供了基本的钱包功能。</p>
-</li>
-</ul>
-<h3 id="contract"><a href="#contract" class="headerlink" title="contract"></a>contract</h3><ul>
-<li><p>Ethers.js 中的 contract 是一个 JavaScript 对象，用于与以太坊智能合约进行交互。它具有一组方法，用于调用合约的函数和访问合约的数据。</p>
-</li>
-<li><p>在 Ethers.js 中，contract 是一个抽象概念，用于表示一个以太坊智能合约。它提供了一组方法，用于与合约进行交互，包括调用合约函数和访问合约数据。</p>
-</li>
-<li><p>可以使用 Ethers.js 的 contract 对象来调用智能合约函数，访问智能合约数据，并监听合约事件。你还可以使用它来部署新的智能合约。</p>
-</li>
-<li><p>要使用 Ethers.js 中的 contract 对象，你需要先定义合约的接口，即合约中可调用的函数和可访问的数据。可以使用 Solidity 编写合约并生成 ABI（应用程序二进制接口），然后使用 ABI 和合约地址来创建 contract 对象。</p>
-</li>
-</ul>
-<h3 id="utils"><a href="#utils" class="headerlink" title="utils"></a>utils</h3><ul>
-<li><p>Ethers.js 中的 utils 模块提供了一组实用程序函数，用于帮助你在使用 Ethers.js 时进行常见任务。这些函数包括格式化数据、转换数据类型、生成哈希值和执行其他常见任务。</p>
-</li>
-<li><p>可以使用 Ethers.js 的 utils 模块来执行各种各样的任务，包括：</p>
-<ul>
-<li><p>格式化数据：可以使用 utils 模块中的函数来格式化数据，例如将数字转换为十六进制字符串、将字节数组转换为字符串等。</p>
-</li>
-<li><p>转换数据类型：你可以使用 utils 模块中的函数来转换数据类型，例如将十六进制字符串转换为数字、将字符串转换为字节数组等。</p>
-</li>
-<li><p>生成哈希值：你可以使用 utils 模块中的函数来生成哈希值，例如使用 keccak256 算法生成数据的哈希值。</p>
-</li>
-<li><p>执行其他常见任务：你可以使用 utils 模块中的函数来执行其他常见任务，例如生成以太坊地址、计算以太坊交易费用等。</p>
-</li>
-</ul>
-</li>
-<li><p>可以在 Ethers.js 文档中找到有关 utils 模块的更多信息，包括可用函数的列表和使用示例。</p>
-</li>
-</ul>
-<h2 id="那具体代码是怎样的呢？如何工作？"><a href="#那具体代码是怎样的呢？如何工作？" class="headerlink" title="那具体代码是怎样的呢？如何工作？"></a>那具体代码是怎样的呢？如何工作？</h2><h3 id="provider的具体使用"><a href="#provider的具体使用" class="headerlink" title="provider的具体使用"></a>provider的具体使用</h3>  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 连接默认的provider</span></span><br><span class="line"><span class="comment">// 可以使用任何标准网络名称做参数：</span></span><br><span class="line"><span class="comment">//  - &quot;homestead&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;rinkeby&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;ropsten&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;kovan&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;goerli&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(<span class="string">&#x27;ropsten&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 连接metamask</span></span><br><span class="line"><span class="comment">// 将自动检测网络;</span></span><br><span class="line"><span class="comment">// 如果在MetaMask中更改了网络，则会导致页面刷新。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(web3.<span class="property">currentProvider</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
-  </entry>
-  <entry>
     <title>区块链学习第三期</title>
     <url>/2022/12/01/202_zyn_03/</url>
     <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
@@ -646,6 +431,795 @@
       <categories>
         <category>区块链</category>
       </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第五期</title>
+    <url>/2022/12/31/202_zyn_05/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
+<h1 style="font-size:32px;text-align:center;color:red">学习ethers.js【下篇】</h1> 
+[toc] 
+
+<hr>
+<p><strong>续上一期内容，阳了，失去产出能力</strong></p>
+<span id="more"></span>
+<h2 id="ethers-js-接口文档导读"><a href="#ethers-js-接口文档导读" class="headerlink" title="ethers.js 接口文档导读"></a>ethers.js 接口文档导读</h2><blockquote>
+<p>其实整个文档可以看出四个大类 我把它们按照学习的先后顺序分为：</p>
+<ul>
+<li>provider（提供器：我习惯理解成提供给我信息的网络）</li>
+<li>wallet（钱包）</li>
+<li>contract（合约）</li>
+<li>utils（工具包）</li>
+</ul>
+</blockquote>
+<h3 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h3><ul>
+<li><p>在 Ethers.js 中，”provider” 是一个对象，用于与以太坊网络连接并进行通信。它提供了<strong>一组方法</strong>，用于从以太坊网络中读取数据和发送交易。</p>
+</li>
+<li><p>可以将 provider 看作是<strong>与以太坊网络的接口</strong>，通过它可以与以太坊网络进行交互。可以使用 Ethers.js 的 provider 对象来访问以太坊区块链数据、发送交易和调用智能合约。</p>
+</li>
+<li><p>可以使用 Ethers.js 的 provider 对象来连接到任何以太坊节点，包括本地节点和远程节点。可以使用它来连接到任何支持 JSON-RPC 的以太坊节点。</p>
+</li>
+</ul>
+<h3 id="wallet"><a href="#wallet" class="headerlink" title="wallet"></a>wallet</h3><ul>
+<li><p>Ethers.js 中的 wallet 是一个 JavaScript 对象，用于管理以太坊账户。它具有一组方法，用于签署和发送交易，以及访问和管理账户余额和交易历史记录。</p>
+</li>
+<li><p>在 Ethers.js 中，wallet 是一个抽象概念，用于表示一个以太坊账户。它可以是一个用户账户，也可以是智能合约账户。在任何情况下，wallet 都是用于管理以太坊账户的对象。</p>
+</li>
+<li><p>可以使用 Ethers.js 的 wallet 对象来签署和发送交易，访问账户余额和交易历史记录，以及使用钱包加密功能加密和解密私钥。</p>
+</li>
+<li><p>可以使用 Ethers.js 创建多种类型的钱包，包括用户账户钱包、智能合约钱包和测试钱包。每种类型的钱包都具有一些特定的功能，但所有类型的钱包都提供了基本的钱包功能。</p>
+</li>
+</ul>
+<h3 id="contract"><a href="#contract" class="headerlink" title="contract"></a>contract</h3><ul>
+<li><p>Ethers.js 中的 contract 是一个 JavaScript 对象，用于与以太坊智能合约进行交互。它具有一组方法，用于调用合约的函数和访问合约的数据。</p>
+</li>
+<li><p>在 Ethers.js 中，contract 是一个抽象概念，用于表示一个以太坊智能合约。它提供了一组方法，用于与合约进行交互，包括调用合约函数和访问合约数据。</p>
+</li>
+<li><p>可以使用 Ethers.js 的 contract 对象来调用智能合约函数，访问智能合约数据，并监听合约事件。你还可以使用它来部署新的智能合约。</p>
+</li>
+<li><p>要使用 Ethers.js 中的 contract 对象，你需要先定义合约的接口，即合约中可调用的函数和可访问的数据。可以使用 Solidity 编写合约并生成 ABI（应用程序二进制接口），然后使用 ABI 和合约地址来创建 contract 对象。</p>
+</li>
+</ul>
+<h3 id="utils"><a href="#utils" class="headerlink" title="utils"></a>utils</h3><ul>
+<li><p>Ethers.js 中的 utils 模块提供了一组实用程序函数，用于帮助你在使用 Ethers.js 时进行常见任务。这些函数包括格式化数据、转换数据类型、生成哈希值和执行其他常见任务。</p>
+</li>
+<li><p>可以使用 Ethers.js 的 utils 模块来执行各种各样的任务，包括：</p>
+<ul>
+<li><p>格式化数据：可以使用 utils 模块中的函数来格式化数据，例如将数字转换为十六进制字符串、将字节数组转换为字符串等。</p>
+</li>
+<li><p>转换数据类型：你可以使用 utils 模块中的函数来转换数据类型，例如将十六进制字符串转换为数字、将字符串转换为字节数组等。</p>
+</li>
+<li><p>生成哈希值：你可以使用 utils 模块中的函数来生成哈希值，例如使用 keccak256 算法生成数据的哈希值。</p>
+</li>
+<li><p>执行其他常见任务：你可以使用 utils 模块中的函数来执行其他常见任务，例如生成以太坊地址、计算以太坊交易费用等。</p>
+</li>
+</ul>
+</li>
+<li><p>可以在 Ethers.js 文档中找到有关 utils 模块的更多信息，包括可用函数的列表和使用示例。</p>
+</li>
+</ul>
+<h2 id="那具体代码是怎样的呢？如何工作？"><a href="#那具体代码是怎样的呢？如何工作？" class="headerlink" title="那具体代码是怎样的呢？如何工作？"></a>那具体代码是怎样的呢？如何工作？</h2><h3 id="provider的具体使用"><a href="#provider的具体使用" class="headerlink" title="provider的具体使用"></a>provider的具体使用</h3>  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 连接默认的provider</span></span><br><span class="line"><span class="comment">// 可以使用任何标准网络名称做参数：</span></span><br><span class="line"><span class="comment">//  - &quot;homestead&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;rinkeby&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;ropsten&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;kovan&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;goerli&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(<span class="string">&#x27;ropsten&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 连接metamask</span></span><br><span class="line"><span class="comment">// 将自动检测网络;</span></span><br><span class="line"><span class="comment">// 如果在MetaMask中更改了网络，则会导致页面刷新。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(web3.<span class="property">currentProvider</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第七期</title>
+    <url>/2023/02/01/202_zyn_07/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
+<h1 style="font-size:32px;text-align:center;color:red">挖矿日常理解</h1> 
+[toc] 
+<span id="more"></span>
+--- 
+
+<h1 id="挖矿初识"><a href="#挖矿初识" class="headerlink" title="挖矿初识"></a>挖矿初识</h1><h2 id="挖矿原理简介"><a href="#挖矿原理简介" class="headerlink" title="挖矿原理简介"></a>挖矿原理简介</h2><p>比特币如此神奇，很多人都想知道除了直接用钱购买之外，还有没有其他方法可以获得比特币？答案是肯定的。比特币存在于互联网数字空间中，隐藏在特定算法里，所以只要利用联网的计算机就能挖掘出来。大家口中所说的“挖矿”就是通过计算机设备运算挖掘比特币，那些专门通过“挖矿”寻找比特币的人就是比特币矿工。</p>
+<p>从表面上看，“挖矿”是一个非常简单的过程，只需要利用计算机下载比特币挖矿工具，然后让设备持续运行就能得到比特币，然后确定账户信息取得对比特币的拥有权。但是，比特币在设计之初已经制定好了规则，产生新比特币的算法难度会随着比特币产生速度的变化而变化。也就是说，矿工挖掘比特币的速度越快，算法难度就会越大；反之，难度越小。</p>
+<p>根据比特币挖矿原理可知，计算机的运算能力是挖掘比特币的关键。对于大多数矿工来说，只要打开挖矿客户端，然后挂机就可以坐等比特币的产生。目前，常用的“挖矿”工具有UfasoftCoin、Guiminer等。由于越来越多的人涌入“挖矿”行列中，比特币的产生也随着算力的增大而变得缓慢。</p>
+<h2 id="影响比特币收益的四大因素"><a href="#影响比特币收益的四大因素" class="headerlink" title="影响比特币收益的四大因素"></a>影响比特币收益的四大因素</h2><ol>
+<li><p><strong>算法因素</strong></p>
+<p>算法因素是比特币本身的特性，不会受到外部因素影响，但是会影响外部因素，包括算法难度调整周期、每区块收益等。</p>
+</li>
+<li><p><strong>矿机硬件</strong></p>
+<p>矿机硬件是矿工可以通过人力施加影响，从而提高收益的一个因素。一般来说，硬件因素在短期内几乎没有什么变化，而且可预见性、可操作性较高。例如，矿机速度、功耗、成本等，这些因素主要受上游芯片厂商、矿机组装厂商的影响。</p>
+</li>
+<li><p><strong>矿场部署</strong></p>
+<p>矿场指的是比特币矿工团队集体工作的环境。矿场部署是矿场和旷工可以通过人力施加影响，从而提高收益的另一个因素，同样受到上游芯片厂商、矿</p>
+<p>机组装厂商的影响，可预见性较高。矿场部署因素包括矿机部署时间、矿场电 费、运行保障能力等。</p>
+</li>
+<li><p><strong>市场因素</strong></p>
+<p>比起其他三大因素，市场因素的可预见性较低，但是对挖矿收益的影响非常大。比如，比特币的价格、全网算力增长率、难度增长率等。比特币的价格在短期内波动较小，但是在中长期内何时会出现暴涨暴跌是难以预测的。全网算力和难度增长率在短期内变化幅度会较大，中长期则是会增长趋势。</p>
+<p>在影响挖矿收益的四大因素中，算法因素是比特币自身特性，并制约着其他三种因素；矿机硬件的性能和功耗将随着技术升级不断优化；矿场部署的当前趋势是集中化和规模化，通过总量来降低挖矿成本，提升挖矿收益；市场因素受到宏观大环境影响，风险和机遇同时存在。</p>
+</li>
+</ol>
+<h1 id="矿池"><a href="#矿池" class="headerlink" title="矿池"></a>矿池</h1><h2 id="为什么要有矿池"><a href="#为什么要有矿池" class="headerlink" title="为什么要有矿池"></a>为什么要有矿池</h2><p>激烈竞争的环境下，单个矿工（也被称为“个体矿工”）独立工作基本没有机会赢得竞争。他们通过挖矿弥补电力和硬件成本的可能性非常低，基本上就等同于参加一场赌博或者买彩票。即使最快的消费型ASIC挖矿系统，也无法赶上那些安装了成千上万芯片的商业系统，那些系统通常建在水电站附近的巨大机房里。矿工们一般联合起来组成矿池，他们将算力集中起来，而奖励也在成员间共享。通过加入矿池，矿工可以得到全部奖励的一小部分，但是这种方式削减了不确定性，矿工们几乎每天都能分到奖励。</p>
+<blockquote>
+<p>假定一个矿工购买了一台矿机，其处理能力能达到6000G哈希每秒（GH/s），或者6TH/s。在2014年的8月份，这台设备的成本大概是1万美元。设备运行时的功率为3kW，每天72度（kWH）耗电，每天平均电力成本是7～8美元。在当前的比特币挖矿难度下，如果矿工单干的话，大概每155天或者5个月可以找到1个新区块。如果矿工在这个时间内真的找到了1个区块，那么他将得到25比特币的奖励，每个比特币兑换价格大概是600美元，总的奖励是1.5万美元。这笔钱扣除硬件和电力的全部成本后，大概还有3000美元的收益。但是，5个月内能否找到一个区块，完全凭矿工的运气。他可能5个月内找到2个区块，获得更多的收益；也有可能10个月也找不到1个区块，导致财务损失。更糟糕的是，比特币工作量证明的难度很可能在这段时间内已经显著提高了，以当前哈希算力的增长速度，矿工最多在6个月时间内必须达到收支平衡，否则硬件就将过时，需要被更强的挖矿硬件取代。如果矿工加入一个矿池，每周就能赚到500～700美元，而不用等待5个月一次的“横财”。矿池定期派发的奖励帮他摊销了硬件和电力成本，不再需要承担巨大的风险。硬件设备仍然会在6～9个月后过时，风险依然很高，但是至少在这个时间内的回报是定期发放，相对可靠的。</p>
+</blockquote>
+<h2 id="矿池的运行机制"><a href="#矿池的运行机制" class="headerlink" title="矿池的运行机制"></a>矿池的运行机制</h2><blockquote>
+<p>矿池通过专门的矿池协议，将成百上千的矿工集合在一起。个体矿工在矿池中创建账号后，通过设置把挖矿设备与矿池服务器相连。在挖矿的过程中，挖矿硬件保持与矿池服务器相连，与其他矿工同时进行挖矿工作。这样，矿池中的矿工共享挖矿的努力，也共享收获的奖励。</p>
+</blockquote>
+<h3 id="P2P矿池介绍"><a href="#P2P矿池介绍" class="headerlink" title="P2P矿池介绍"></a>P2P矿池介绍</h3><p>P2P矿池通过将矿池服务器的功能去中心化，实现了一个平行的类似区块链的系统，叫作份额链（share chain）。份额链是一条相比比特币区块链具有较低难度的区块链。份额链允许矿工在去中心化的矿池中协同工作，它们以每30秒一个份额区块的速度在份额链上进行份额挖矿。份额链上的每个区块记录着参与贡献的矿工的奖励份额，并且继承了之前份额区块上的份额记录。当某个份额区块同时达到比特币网络的难度目标时，这个区块就会被传播出去，并入比特币区块链，而区块奖励则根据每个矿工之前对份额的贡献度进行发放。本质上，份额链采用一种类似比特币区块链的去中心化共识机制，让所有矿池中的矿工都能跟踪所有贡献份额的记录，而不像矿池服务器一样，由一个中心节点保存矿工的份额和奖励记录。</p>
+<p>P2P矿池挖矿比托管矿池挖矿复杂得多，它要求矿工运行一台具有足够硬盘空间、内存和网络带宽的专用电脑，以支持完全节点和P2P矿池节点软件。P2P矿池矿工将他们的挖矿设备与本地的P2P矿池节点进行连接，P2P矿池节点通过向挖矿设备发送区块模板的方式，模拟矿池服务器的功能。在P2P矿池中，矿工构建他们自己的候选区块，归集交易，其行为与个体矿工很类似，但是P2P矿工是在份额链上合作挖矿。P2P矿池整合了个体矿工和矿池两者的优势，能够让个体矿工在支出上具有更加细粒度的优势，在控制层面，它不需要像托管矿池那样将控制权交给矿池管理人。</p>
+<p>当前，矿池中集中的算力已接近可发起51%攻击的能力，出于对此的担忧，P2P矿池的矿工数量有了显著增长。P2P矿池协议进一步的发展有望移除对完全节点的依赖，从而使这种去中心化的挖矿更加易用。</p>
+<h3 id="为什么要有P2P矿池"><a href="#为什么要有P2P矿池" class="headerlink" title="为什么要有P2P矿池"></a>为什么要有P2P矿池</h3><blockquote>
+<p>托管矿池有可能引发矿池管理员的欺诈行为，他可能将矿池的算力引导至双重支付交易或者无效区块（参见“共识攻击”）。此外，中心化的矿池服务器也存在单点故障的隐患。如果矿池服务器宕机或者因拒绝服务攻击而放慢运行速度，矿池中的矿工就无法挖矿。在2011年，为解决这个中心化问题，引进了一个新的矿池挖矿协议：<strong>P2P矿池，它是一个点对点的矿池，不需要中心管理员</strong>。</p>
+</blockquote>
+<h3 id="托管矿池"><a href="#托管矿池" class="headerlink" title="托管矿池"></a>托管矿池</h3><p>大多数矿池都是“托管矿池”，即公司或者个人运营着矿池服务器。矿池服务器的拥有者被称为矿池经营者，他按一定比例向加入矿池的矿工抽取奖励费用的佣金。</p>
+<p>矿池服务器运行着专用的软件，根据矿池挖矿协议来协调矿工们的工作。矿池服务器同时与一个或多个完全比特币节点相连（比特币节点类型与角色），可以直接访问区块链数据库的完整复制。这使得矿池服务器可以代表矿工对区块和交易进行验证，使他们从运行完全节点的负担中解脱出来。对于矿池中的矿工而言，这是一个重要的考虑因素，因为一个完全节点需要一台专用的计算机，配置至少15G~20G的硬盘，至少2G的内存（RAM）。此外，运行在完全节点上的比特币软件还需要时不时地监控、维护、升级。任何因为缺少维护或者资源而导致的宕机，都会损害矿工的收益。<strong>对于很多矿工来说，不用维护完全节点即能参与挖矿是加入托管矿池的另一大好处</strong>。</p>
+<h4 id="矿池服务器"><a href="#矿池服务器" class="headerlink" title="矿池服务器"></a>矿池服务器</h4><p>矿池矿工利用挖矿协议，比如Stratum（STM）或GetBlockTemplate（GBT）与矿池服务器相连。曾经有个旧标准，被称为GetWork（GWK），到2012年年底基本上已经作废了，因为这个标准难以支撑哈希速度超过4GH/s的挖矿工作。不管是STM还是GBT协议，都会创建一个包含候选区块头的区块模板（templates）。矿池服务器通过归集交易，添加铸币交易（包括扩展随机数空间），计算默克尔根（参见默克尔树），加入连接到前序区块的哈希引用，从而创建一个新的区块。候选区块的区块头作为模板，发送给矿池中的所有矿工。每个矿工基于区块模板，在一个低于比特币网络难度值的目标下进行挖矿；一旦找到满足矿池难度值的区块，就将其发回矿池服务器，赢得奖励份额。</p>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第四期</title>
+    <url>/2022/12/15/202_zyn_04/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">学习ethers.js【上篇】</h1>
+[toc]
+<span id="more"></span>
+---
+
+<h2 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h2><blockquote>
+<p>在说 etherjs 之前呢，先说一下<strong>web3js</strong></p>
+</blockquote>
+<ul>
+<li>Web3.js 是一个库集合，允许您使用 HTTP、IPC 或 WebSocket 与本地或远程以太坊节点进行交互。</li>
+<li>web3js 提供了用于和 geth 通信的 javascipt API，也就是用 web3js 连接 geth，在通过 geth 连接以太坊。</li>
+<li>内部使用了 json-rpc 与 geth 通信</li>
+<li><strong>json-rpc</strong>是一个无状态且轻量级的远程过程调用（rpc）协议。允许使用 socket、http 等协议进行通讯。使用 json 作为数据格式（rfc4627）==》被封装成了 jsapi</li>
+<li>web3js 可以与所有支持 rpc 的节点进行通信。不仅支持以太坊相关的 api，还支持以太坊生态中其它系统的 api</li>
+<li><hr>
+</li>
+</ul>
+<h2 id="ethers-js"><a href="#ethers-js" class="headerlink" title="ethers.js"></a>ethers.js</h2><blockquote>
+<p><strong>etherjs</strong>是一个完整而紧凑的开源库，用于与以太坊区块链及其生态系统进行交互（个人认为就是提供一个方便访问区块链的接口,是压缩版的 web3js）。<strong>如果要写 Dapp 前端，则需要用到它。</strong></p>
+<p><strong>uer interface（frontend）</strong> &lt;–&gt; <strong>ethereum api</strong> &lt;–&gt; <strong>smart contract</strong></p>
+</blockquote>
+<h3 id="对-alchemy-的再理解"><a href="#对-alchemy-的再理解" class="headerlink" title="对 alchemy 的再理解"></a>对 alchemy 的再理解</h3><p>某一次实验需要注册 alchemy 获取一个 api key,但一直不懂为什么要。下面我用个对比法解释：</p>
+<blockquote>
+<p>我们一开始访问以太坊时，用的扩展类工具连接的以太坊：<strong>Metamask</strong></p>
+<ol>
+<li>提供连接到以太坊的网络（a Provider）</li>
+<li>持有你的私钥并且可以进行签名（a Signer）</li>
+</ol>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(<span class="variable language_">window</span>.<span class="property">ethereum</span>);</span><br><span class="line"><span class="comment">//Metamask插件支持签名交易和信息，来发送交易信息改变区块链的状态</span></span><br><span class="line"><span class="comment">//因此需要一个账户联名</span></span><br><span class="line"><span class="keyword">const</span> signer = provider.<span class="title function_">getSigner</span>();</span><br></pre></td></tr></table></figure>
+
+<p>但是我们不想下载扩展呢？我还能在不通过网页的形式下查看链上信息吗？</p>
+<blockquote>
+<p>RPC 全称 Remote Procedure Call，即远程过程调用）JSON-RPC API 接口，是另一个连接到以太坊的方法，可以在所有的主要的以太坊节点实现，他主要提供了</p>
+<ol>
+<li>提供连接到以太坊的网络（a Provider）</li>
+<li>持有你的私钥并且可以进行签名（a Signer）<br>查询区块链一旦有了一个 Provider，就有了一个与区块链的连接，可以用它去查询当前状态，获取历史日志，查询部署的代码等</li>
+</ol>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//await 作用使异步方法变同步</span></span><br><span class="line"><span class="keyword">await</span> provider.<span class="title function_">getBlockNumber</span>();</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">formatEther</span>(balance);</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入区块</span></span><br><span class="line"><span class="comment">// Send 1 ether to an ens name.发送1以太到以太坊域名</span></span><br><span class="line"><span class="keyword">const</span> tx = signer.<span class="title function_">sendTransaction</span>(&#123;</span><br><span class="line">  <span class="comment">//签名，发送交易</span></span><br><span class="line">  <span class="attr">to</span>: <span class="string">&quot;ricmoo.firefly.eth&quot;</span>, <span class="comment">//发送至以太坊域名</span></span><br><span class="line">  <span class="attr">value</span>: ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>), <span class="comment">//格式化</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="web3js-和-ethersjs-对比"><a href="#web3js-和-ethersjs-对比" class="headerlink" title="web3js 和 ethersjs 对比"></a>web3js 和 ethersjs 对比</h3><ul>
+<li><p>web3js 认为用户在本地部署以太坊节点，私钥和网络连接状态这个节点管理（事迹并不是这样）；ethersjs 中，provider 提供器管理网络连接状态，wallet 钱包类管理密钥，安全且灵活，原生支持 ens</p>
+</li>
+<li><p>Ethers.js 提供的状态和密钥管理。Web3 的设计场景是 DApp 应该连接到一个本地节点，由这个节点负责保存密钥、签名交易并与以太坊区块链交互。<strong>现实并不是这样的</strong>，绝大多数用户不会在本地运行一个 geth 节点。Metamask 在浏览器 应用中有效地模拟了这种节点环境，因此绝大多数 web3 应用需要使用 Metamask 来保存密钥、签名交易并完成与以太坊的交互。</p>
+</li>
+<li><p>Ethers.js 采取了不同的设计思路，它提供给开发者更多的灵活性。Ethers.js 将“节点”拆分为两个不同的角色：</p>
+<p><strong>钱包</strong>：负责密钥保存和交易签名<br><strong>提供器</strong>：负责以太坊网络的匿名连接、状态检查和交易发送</p>
+</li>
+</ul>
+<h3 id="本地使用-ethersjs，如何配置环境"><a href="#本地使用-ethersjs，如何配置环境" class="headerlink" title="本地使用 ethersjs，如何配置环境"></a>本地使用 ethersjs，如何配置环境</h3><ol>
+<li>安装环境 nodejs</li>
+<li>安装 ethersjs 包—npm i –save ethers</li>
+<li>alchemy 申请一个 rpc 复制里面的 apikey</li>
+<li><a href="https://learnblockchain.cn/docs/ethers.js/api.html">查看官方文档</a></li>
+<li>当然单个网页也可以直接引入<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 会导出一个全局的变量: ethers --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://cdn.ethers.io/scripts/ethers-v4.min.js&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="本地如何使用使用呢？每一步到底做什么？"><a href="#本地如何使用使用呢？每一步到底做什么？" class="headerlink" title="本地如何使用使用呢？每一步到底做什么？"></a>本地如何使用使用呢？每一步到底做什么？</h3><blockquote>
+<p>本次测试的目录结构</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ethers-template</span><br><span class="line">    +compile.js</span><br><span class="line">    +contracts</span><br><span class="line">        -erc20.sol</span><br><span class="line">    +build</span><br><span class="line">        -ERC.json</span><br><span class="line">        -Context.json</span><br><span class="line">        -IERC20.sjon</span><br><span class="line">        -SafeMath.json</span><br><span class="line">   -package.json</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>初始化一个文件夹<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure></li>
+<li>创建一个 config.json 文件保存你的项目配置<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">//账户私钥，将使用这个私钥对应的账户在指定网络上部署智能合约</span></span><br><span class="line"> <span class="attr">&quot;private_key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;24C4FE6063E62710EAD956611B71825B778B041B18ED53118CE5DA5F02E494BA&quot;</span><span class="punctuation">,</span></span><br><span class="line"> &lt;!--要接入的以太坊网络，ethers.js支持以下网络：</span><br><span class="line">     homestead：主网</span><br><span class="line">     rinkeby</span><br><span class="line">     ropsten</span><br><span class="line">     kovan</span><br><span class="line">     goerli --&gt;</span><br><span class="line"> <span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kovan&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//声明要交互的已部署合约，可选</span></span><br><span class="line"> <span class="attr">&quot;ERC20&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0x0DEd9F7D82a24099F09AF7831CaB61B31Df10487&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//ERC20合约的参数</span></span><br><span class="line"> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fly&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;symbol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zhou&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;total_supply&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1000000000000000000000000&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;decimals&quot;</span><span class="punctuation">:</span> <span class="number">18</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>为了编译合约，还需要安装solc和fs-extra<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm install <span class="built_in">fs</span>-extra@<span class="number">8</span>.<span class="number">1</span>.<span class="number">0</span> solc@<span class="number">0</span>.<span class="number">5</span>.<span class="number">11</span> --save</span><br></pre></td></tr></table></figure></li>
+<li>创建ERC20合约代码</li>
+<li>编写合约编译脚本,下面代码将读入并编译contracts目录中的所有合约文件，然后将编译得到的abi和字节码保存为json文件<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> solc = <span class="built_in">require</span>(<span class="string">&#x27;solc&#x27;</span>);</span><br><span class="line"><span class="comment">//这个读取的就是自己的配置文件</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sourceFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> buildFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;build&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getContractSource</span> = contractFileName =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> contractPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>, contractFileName);</span><br><span class="line">  <span class="keyword">const</span> source = fs.<span class="title function_">readFileSync</span>(contractPath, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> source;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sources = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readdirSync</span>(sourceFolderPath).<span class="title function_">forEach</span>(<span class="function"><span class="params">contractFileName</span> =&gt;</span> &#123;</span><br><span class="line">  sources = &#123;</span><br><span class="line">    ...sources,</span><br><span class="line">    [contractFileName]: &#123;</span><br><span class="line">      <span class="attr">content</span>: <span class="title function_">getContractSource</span>(contractFileName)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = &#123;</span><br><span class="line">    <span class="attr">language</span>: <span class="string">&#x27;Solidity&#x27;</span>,</span><br><span class="line">    sources,</span><br><span class="line">    <span class="attr">settings</span>: &#123;</span><br><span class="line">        <span class="attr">outputSelection</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;*&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;*&#x27;</span>: [ <span class="string">&#x27;*&#x27;</span> ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nCompiling contracts...&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(solc.<span class="title function_">compile</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(input)));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Done&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> shouldBuild = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (output.<span class="property">errors</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(output.<span class="property">errors</span>);</span><br><span class="line">  <span class="comment">// throw &#x27;nError in compilation please check the contractn&#x27;;</span></span><br><span class="line">  <span class="keyword">for</span>(error <span class="keyword">of</span> output.<span class="property">errors</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(error.<span class="property">severity</span> === <span class="string">&#x27;error&#x27;</span>) &#123;</span><br><span class="line">      shouldBuild = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">&#x27;Error found&#x27;</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(shouldBuild) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuilding please wait...&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  fs.<span class="title function_">removeSync</span>(buildFolderPath);</span><br><span class="line">  fs.<span class="title function_">ensureDirSync</span>(buildFolderPath);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> contractFile <span class="keyword">in</span> output.<span class="property">contracts</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> output.<span class="property">contracts</span>[contractFile]) &#123;</span><br><span class="line">      fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">        path.<span class="title function_">resolve</span>(buildFolderPath, <span class="string">`<span class="subst">$&#123;key&#125;</span>.json`</span>),</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">abi</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;abi&quot;</span>],</span><br><span class="line">          <span class="attr">bytecode</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;evm&quot;</span>][<span class="string">&quot;bytecode&quot;</span>][<span class="string">&quot;object&quot;</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">          <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Build finished successfully!n&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuild failedn&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 运行node compile.js就可以对合约进行编译</li>
+<li>创建文件deploy.js<ul>
+<li>下面代码中的默认网络是<strong>configjs</strong>中的测试网</li>
+<li>在这个测试网中，需要一些<strong>以太币来支付部署交易的手续费</strong></li>
+<li>将使用config.json中的<strong>private_key</strong>来部署合约</li>
+<li>运行deploy.js脚本时，需要在命令行传入要部署的合约名称ERC20 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node deploy.js ERC20</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> startTimestamp = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">const</span> ethers = <span class="built_in">require</span>(<span class="string">&#x27;ethers&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(config[<span class="string">&quot;network&quot;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wallet = <span class="keyword">new</span> ethers.<span class="title class_">Wallet</span>(config[<span class="string">&quot;private_key&quot;</span>], provider);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Loaded wallet <span class="subst">$&#123;wallet.address&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> compiled = <span class="built_in">require</span>(<span class="string">`./build/<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>.json`</span>);</span><br><span class="line"></span><br><span class="line">(<span class="title function_">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`nDeploying <span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span> in <span class="subst">$&#123;config[<span class="string">&quot;network&quot;</span>]&#125;</span>...`</span>);</span><br><span class="line">  <span class="keyword">let</span> contract = <span class="keyword">new</span> ethers.<span class="title class_">ContractFactory</span>(</span><br><span class="line">    compiled.<span class="property">abi</span>,</span><br><span class="line">    compiled.<span class="property">bytecode</span>,</span><br><span class="line">    wallet</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> instance =  <span class="keyword">await</span> contract.<span class="title function_">deploy</span>(config[<span class="string">&quot;decimals&quot;</span>], config[<span class="string">&quot;symbol&quot;</span>], config[<span class="string">&quot;name&quot;</span>], config[<span class="string">&quot;total_supply&quot;</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`deployed at <span class="subst">$&#123;instance.address&#125;</span>`</span>)</span><br><span class="line">  config[<span class="string">`<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>`</span>] = instance.<span class="property">address</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Waiting for the contract to get mined...&quot;</span>)</span><br><span class="line">  <span class="keyword">await</span> instance.<span class="title function_">deployed</span>()</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed&quot;</span>)</span><br><span class="line">  fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">    <span class="string">&#x27;config.json&#x27;</span>,</span><br><span class="line">    config,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">      <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="ethers-js-接口文档导读"><a href="#ethers-js-接口文档导读" class="headerlink" title="ethers.js 接口文档导读"></a>ethers.js 接口文档导读</h3><blockquote>
+<p>其实整个文档可以看出四个大类 我把它们按照学习的先后顺序分为：</p>
+<ul>
+<li>provider（提供器：我习惯理解成提供给我信息的网络）</li>
+<li>wallet（钱包）</li>
+<li>contract（合约）</li>
+<li>utils（工具包）</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第八期</title>
+    <url>/2023/03/01/202_zyn_08/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">solidity小细节【上篇】</h1>
+[toc]
+<span id="more"></span>
+---
+
+<h2 id="1：internal、external、public、private-可见性？"><a href="#1：internal、external、public、private-可见性？" class="headerlink" title="1：internal、external、public、private 可见性？"></a>1：internal、external、public、private 可见性？</h2><blockquote>
+<p>没标明函数类型的，默认internal。</p>
+</blockquote>
+<ul>
+<li><strong>public</strong>: 内部外部均可见。(也可用于修饰状态变量，public变量会自动生成 getter函数，用于查询数值).</li>
+<li><strong>private</strong>: 只能从本合约内部访问，继承的合约也不能用（也可用于修饰状态变量）。</li>
+<li><strong>external</strong>: 只能从合约外部访问（但是可以用this.f()来调用，f是函数名）</li>
+<li><strong>internal</strong>: 只能从合约内部访问，继承的合约可以用（也可用于修饰状态变量）</li>
+</ul>
+<hr>
+<h2 id="2：解构式赋值"><a href="#2：解构式赋值" class="headerlink" title="2：解构式赋值"></a>2：解构式赋值</h2><blockquote>
+<p>solidity使用解构式赋值的规则，支持读取函数的全部或部分返回值。</p>
+</blockquote>
+<ul>
+<li><p>读取<strong>所有</strong>返回值：声明变量，并且将要赋值的变量用,隔开，按顺序排列。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint256 _number;</span><br><span class="line">        bool _bool;</span><br><span class="line">        uint256[3] memory _array;</span><br><span class="line">        (_number, _bool, _array) = returnNamed();</span><br></pre></td></tr></table></figure></li>
+<li><p>读取<strong>部分</strong>返回值：声明要读取的返回值对应的变量，不读取的留空。下面这段代码中，我们只读取_bool，而不读取返回的_number和_array：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(, _bool2, ) = returnNamed();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="3：数据位置-data"><a href="#3：数据位置-data" class="headerlink" title="3：数据位置 data"></a>3：数据位置 data</h2><blockquote>
+<p>solidity数据存储位置有三类：storage，memory和calldata。不同存储位置的gas成本不同。storage类型的数据存在链上，类似计算机的硬盘，消耗gas多；memory和calldata类型的临时存在内存里，消耗gas少。大致用法：</p>
+</blockquote>
+<ol>
+<li><p><strong>storage</strong>：合约里的状态变量默认都是storage，存储在链上。</p>
+</li>
+<li><p><strong>memory</strong>：函数里的参数和临时变量一般用memory，存储在内存中，不上链。</p>
+</li>
+<li><p><strong>calldata</strong>：和memory类似，存储在内存中，不上链。与memory的不同点在于calldata变量不能修改（immutable），一般用于函数的参数。例子：</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function fCalldata(uint[] calldata _x) public pure returns(uint[] calldata)&#123;</span><br><span class="line">        //参数为calldata数组，不能被修改</span><br><span class="line">        // _x[0] = 0 //这样修改会报错</span><br><span class="line">        return(_x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="赋值规则-这个一定要注意"><a href="#赋值规则-这个一定要注意" class="headerlink" title="赋值规则(这个一定要注意)"></a>赋值规则(这个一定要注意)</h3><blockquote>
+<p>在不同存储类型相互赋值时候，有时会产生独立的副本（修改新变量不会影响原变量），有时会产生引用（<em><strong>修改新变量会影响原变量</strong></em>）</p>
+</blockquote>
+<ol>
+<li><strong>storage（合约的状态变量）赋值给本地storage（函数里的）时候，会创建引用，改变新变量会影响原变量。</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint[] x = [1,2,3]; // 状态变量：数组 x</span><br><span class="line"></span><br><span class="line">function fStorage() public&#123;</span><br><span class="line">    //声明一个storage的变量 xStorage，指向x。修改xStorage也会影响x</span><br><span class="line">    uint[] storage xStorage = x;</span><br><span class="line">    xStorage[0] = 100;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>storage赋值给memory，会创建独立的复本，修改其中一个不会影响另一个；反之亦然<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint[] x = [1,2,3]; // 状态变量：数组 x</span><br><span class="line"></span><br><span class="line">function fMemory() public view&#123;</span><br><span class="line">    //声明一个Memory的变量xMemory，复制x。修改xMemory不会影响x</span><br><span class="line">    uint[] memory xMemory = x;</span><br><span class="line">    xMemory[0] = 100;</span><br><span class="line">    xMemory[1] = 200;</span><br><span class="line">    uint[] memory xMemory2 = x;</span><br><span class="line">    xMemory2[0] = 300;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="4：变量的作用域"><a href="#4：变量的作用域" class="headerlink" title="4：变量的作用域"></a>4：变量的作用域</h2><blockquote>
+<p>Solidity中变量按作用域划分有三种，分别是<strong>状态</strong>变量（state variable），<strong>局部</strong>变量（local variable）和<strong>全局</strong>变量(global variable</p>
+</blockquote>
+<ol>
+<li>状态变量<blockquote>
+<p>状态变量是数据存储在链上的变量，所有合约内函数都可以访问 ，gas消耗高。<strong>状态变量在合约内、函数外声明</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Variables &#123;</span><br><span class="line">    uint public x = 1;</span><br><span class="line">    uint public y;</span><br><span class="line">    string public z;</span><br></pre></td></tr></table></figure></li>
+<li>局部变量<blockquote>
+<p>局部变量是仅在函数执行过程中有效的变量，函数退出后，变量无效。局部变量的数据存储在内存里，不上链，gas低。<strong>局部变量在函数内声明</strong></p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function bar() external pure returns(uint)&#123;</span><br><span class="line">    uint xx = 1;</span><br><span class="line">    uint yy = 3;</span><br><span class="line">    uint zz = xx + yy;</span><br><span class="line">    return(zz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>全局变量<blockquote>
+<p>全局变量是全局范围工作的变量，<strong>都是solidity预留关键字</strong>。他们可以在函数内不声明直接使用</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function global() external view returns(address, uint, bytes memory)&#123;</span><br><span class="line">    address sender = msg.sender;</span><br><span class="line">    uint blockNum = block.number;</span><br><span class="line">    bytes memory data = msg.data;</span><br><span class="line">    return(sender, blockNum, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5：delete-操作符"><a href="#5：delete-操作符" class="headerlink" title="5：delete 操作符"></a>5：delete 操作符</h2><blockquote>
+<p>delete a会让变量a的值变为<strong>初始值</strong>。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// delete操作符</span><br><span class="line">bool public _bool2 = true; </span><br><span class="line">function d() external &#123;</span><br><span class="line">    delete _bool2; // delete 会让_bool2变为默认值，false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="6：常数-constant、immutable"><a href="#6：常数-constant、immutable" class="headerlink" title="6：常数 constant、immutable"></a>6：常数 constant、immutable</h2><blockquote>
+<p><strong>只有数值变量</strong>可以声明constant和immutable；string和bytes可以声明为constant，但不能为immutable</p>
+</blockquote>
+<ul>
+<li>constant变量必须在声明的时候初始化，之后再也不能改变</li>
+<li>immutable变量可以在声明时或构造函数中初始化</li>
+</ul>
+<hr>
+<h2 id="7：重写、多重继承"><a href="#7：重写、多重继承" class="headerlink" title="7：重写、多重继承"></a>7：重写、多重继承</h2><h3 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h3><blockquote>
+<p><strong>virtual</strong>: 父合约中的函数，如果希望子合约重写，需要加上virtual关键字。<br><strong>override</strong>：子合约重写了父合约中的函数，需要加上override关键字。</p>
+</blockquote>
+<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><blockquote>
+<p>继承时要按辈分最高到最低的顺序排。比如我们写一个Erzi合约，继承Yeye合约和Baba合约，那么就要写成<strong>contract Erzi is Yeye, Baba</strong>，而不能写成contract Erzi is Baba, Yeye，不然就会报错。 如果某一个函数在多个继承的合约里都存在，比如例子中的hip()和pop()，在子合约里必须重写，不然会报错。 <strong>重写在多个父合约中都重名的函数时，override关键字后面要加上所有父合约名字，例如override(Yeye, Baba)。</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Erzi is Yeye, Baba&#123;</span><br><span class="line">    // 继承两个function: hip()和pop()，输出值为Erzi。</span><br><span class="line">    function hip() public virtual override(Yeye, Baba)&#123;</span><br><span class="line">        emit Log(&quot;Erzi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function pop() public virtual override(Yeye, Baba) &#123;</span><br><span class="line">        emit Log(&quot;Erzi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="修饰器的重写"><a href="#修饰器的重写" class="headerlink" title="修饰器的重写"></a>修饰器的重写</h3><blockquote>
+<p>Solidity中的修饰器（Modifier）同样可以继承，用法与函数继承类似，在相应的地方加virtual和override关键字即可</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Base1 &#123;</span><br><span class="line">    modifier exactDividedBy2And3(uint _a) virtual &#123;</span><br><span class="line">        require(_a % 2 == 0 &amp;&amp; _a % 3 == 0);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">modifier exactDividedBy2And3(uint _a) override &#123;</span><br><span class="line">        _;</span><br><span class="line">        require(_a % 2 == 0 &amp;&amp; _a % 3 == 0);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造函数的继承"><a href="#构造函数的继承" class="headerlink" title="构造函数的继承"></a>构造函数的继承</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract C is A &#123;</span><br><span class="line">    constructor(uint _c) A(_c * _c) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="8：抽象合约、接口区别"><a href="#8：抽象合约、接口区别" class="headerlink" title="8：抽象合约、接口区别"></a>8：抽象合约、接口区别</h2><h3 id="抽象合约"><a href="#抽象合约" class="headerlink" title="抽象合约"></a>抽象合约</h3><blockquote>
+<p>如果一个智能合约里<strong>至少有一个未实现</strong>的函数，即某个函数缺少主体{}中的内容，则必须将该合约标为abstract，不然编译会报错；另外，未实现的函数需要加virtual，以便子合约重写</p>
+</blockquote>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><blockquote>
+<p>接口类似于抽象合约，但它不实现任何功能。接口的规则：<strong>不能包含状态变量</strong></p>
+</blockquote>
+<ul>
+<li>不能包含构造函数</li>
+<li>不能继承除接口外的其他合约</li>
+<li>所有函数都必须是external且不能有函数体</li>
+<li>继承接口的合约必须实现接口定义的所有功能</li>
+</ul>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>APPilike</title>
+    <url>/2022/12/14/APPilike/</url>
+    <content><![CDATA[<p>[toc]</p>
+<hr>
+<h3 id="Clash"><a href="#Clash" class="headerlink" title="Clash"></a>Clash</h3><p>💕 科学上网必备💕<br>💕 <a href="https://goodflyo.github.io/2021/05/26/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/#more">clash详细信息</a>💕</p>
+<hr>
+<h3 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h3><span id="more"></span>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>介绍</th>
+<th>图标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>win 自带画图工具</td>
+<td>简洁的面板 多种工具</td>
+<td><img src="https://img.onlinedown.net/download/202110/141352-6167caa016630.jpg" style="height:55px;" /></td>
+</tr>
+<tr>
+<td>oCam</td>
+<td>录屏软件 体积小 录屏质量高</td>
+<td><img src="https://img2.baidu.com/it/u=1891138054,3556825058&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>快剪辑</td>
+<td>剪辑方便基础功能丰富</td>
+<td><img src="https://img2.baidu.com/it/u=708818509,1951590481&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>洛雪音乐</td>
+<td>千万音乐随便下载 非常无敌</td>
+<td><img src="https://img0.baidu.com/it/u=2973469365,2346081691&fm=253&fmt=auto&app=138&f=PNG?w=220&h=150" style="height:55px" /></td>
+</tr>
+<tr>
+<td>IDM 绿色版</td>
+<td>超高速下载+配合百度网盘使用</td>
+<td><img src="https://img2.baidu.com/it/u=3696265634,1526834780&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>蓝奏云客户端</td>
+<td>批量传输+批量转移</td>
+<td><img src="https://img1.baidu.com/it/u=2073188427,2824667698&fm=253&fmt=auto&app=138&f=PNG?w=243&h=132" style="height:55px" /></td>
+</tr>
+<tr>
+<td>阿里云盘</td>
+<td>上传和下载都很快 可是不能自由分享</td>
+<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fq_70%2Fimages03%2F20211009%2F59c75745d3524163b9277c4006020ac0.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673668758&t=5447eeb39099d7ebac4d8ab57621b747" style="height:55px" /></td>
+</tr>
+<tr>
+<td>typora</td>
+<td>简直无敌了 markdown编辑器—当然也支持各种格式</td>
+<td><img src="https://img0.baidu.com/it/u=2788885325,377457777&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>Fiddler Classic</td>
+<td>电脑抓包工具 可以监听https</td>
+<td><img src="https://img2.baidu.com/it/u=1346851621,972883484&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>electerm</td>
+<td>开源的远程连接工具</td>
+<td><img src="https://img1.baidu.com/it/u=2723696682,2115268521&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>vsode</td>
+<td>超级无敌宇宙噼里啪啦IDE</td>
+<td><img src="https://img1.baidu.com/it/u=1636506776,3169403695&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>GOOGLE</td>
+<td>配上各类插件和脚本 无敌的存在</td>
+<td><img src="https://img1.baidu.com/it/u=1785270759,3943942543&fm=253&fmt=auto&app=120&f=JPEG?w=816&h=487" style="height:55px" /></td>
+</tr>
+<tr>
+<td>网易云音乐</td>
+<td>个人喜欢 不介绍</td>
+<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg3.downza.cn%2Fxueyuan%2F202111%2F5fa12703a4057330ee5cc1512d159377.png&refer=http%3A%2F%2Fimg3.downza.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673669014&t=bd5155d51f678d78e94cbb5c16d9e5ff" style="height:55px" /></td>
+</tr>
+<tr>
+<td>小丸工具箱</td>
+<td>处理视频的好工具–解码转换等等</td>
+<td><img src="https://img1.baidu.com/it/u=1574076885,3181424076&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
+</tr>
+<tr>
+<td>腾讯会议</td>
+<td>通讯效果好 容量大</td>
+<td><img src="https://img0.baidu.com/it/u=2387743273,1319507866&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=267" style="height:55px" /></td>
+</tr>
+<tr>
+<td>格式工厂</td>
+<td>视频格式转化 功能很多 比较耗费gpu</td>
+<td><img src="https://img0.baidu.com/it/u=2605668262,354975190&fm=253&fmt=auto&app=138&f=JPEG?w=170&h=170" style="height:55px" /></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="Android端"><a href="#Android端" class="headerlink" title="Android端"></a>Android端</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>介绍</th>
+<th>图标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bilibili</td>
+<td>视频质量较高 奈何老板作死</td>
+<td><img src="https://img2.baidu.com/it/u=3444794441,3761663944&fm=253&fmt=auto&app=120&f=JPEG?w=669&h=604" style="height:55px" /></td>
+</tr>
+<tr>
+<td>豆果美食</td>
+<td>各种原创食谱</td>
+<td><img src="https://img1.baidu.com/it/u=2547362733,133834015&fm=253&fmt=auto&app=138&f=PNG?w=192&h=192" style="height:55px" /></td>
+</tr>
+<tr>
+<td>listen1</td>
+<td>必不可少的音乐神器</td>
+<td><img src="https://img0.baidu.com/it/u=1569927342,4215404422&fm=253&fmt=auto&app=138&f=JPEG?w=766&h=386" style="height:55px" /></td>
+</tr>
+<tr>
+<td>解压缩全能王</td>
+<td>可以破解压缩密码 解压能力超强–7z rar</td>
+<td><img src="https://img2.baidu.com/it/u=499996747,2707825643&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>小红书</td>
+<td>找到自己的爱好 拒绝孤单</td>
+<td><img src="https://img1.baidu.com/it/u=1943371915,3584795604&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" style="height:55px" /></td>
+</tr>
+<tr>
+<td>云闪付</td>
+<td>集成各大银行 优惠活动多且大</td>
+<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.sj33.cn%2Fuploads%2F202102%2F7-21022G32225U9.jpg&refer=http%3A%2F%2Fimg.sj33.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673670193&t=e2f5288abd3a86a1e61210151e10b4fe" style="height:55px" /></td>
+</tr>
+</tbody></table>
+]]></content>
+  </entry>
+  <entry>
+    <title>区块链学习第六期</title>
+    <url>/2023/01/15/202_zyn_06/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
+<h1 style="font-size:32px;text-align:center;color:red">零知识证明基础</h1> 
+[toc] 
+<span id="more"></span>
+--- 
+
+<h1 id="零知识证明（Zero-Knowledge-Proofs-ZKP）"><a href="#零知识证明（Zero-Knowledge-Proofs-ZKP）" class="headerlink" title="零知识证明（Zero-Knowledge Proofs  ZKP）"></a>零知识证明（Zero-Knowledge Proofs  ZKP）</h1><blockquote>
+<p>零知识证明技术是现代密码学三大基础之一，由 S.Goldwasser、S.Micali 及 C.Rackoff 在 20 世纪 80 年代初提出。早期的零知识证明由于其效率和可用性等限制，未得到很好的利用，仅停留在理论层面。直到近年来，零知识证明的理论研究才开始不断突破，同时区块链也为零知识证明创造了大展拳脚的机会，因而走进大众视野。<br>零知识证明这项“黑科技”随着它的热度逐渐增加，相关的学习资源也慢慢丰富起来了。但是由于，一方面零知识证明背后的原理颇为复杂，且内容繁多；另一方面，针对零知识证明的学习资源质量参差不齐，尚未形成系统。因此对绝大多数读者来说，学习零知识证明的难度依然很大。</p>
+</blockquote>
+<hr>
+<h2 id="简单理解ZKP"><a href="#简单理解ZKP" class="headerlink" title="简单理解ZKP"></a>简单理解ZKP</h2><blockquote>
+<p>通过间接方式证明某事物的存在。所谓的零知识，就是指验证方除了对论断判断的结果（错或对）之外，<strong>无法获取任何额外信息</strong>。</p>
+</blockquote>
+<h2 id="ZKP分类"><a href="#ZKP分类" class="headerlink" title="ZKP分类"></a>ZKP分类</h2><ul>
+<li><p>交互式<br>  需要通过反复确认（比如验证者问我问题我每次都可以答对）</p>
+</li>
+<li><p>非交互式<br>  区块链更常使用的是「非交互式zk」，简称「NIZK」。区块链上的一个交易会分发给多个矿工进行验证，如果每个矿工都进行交互式的验证，那耗时将是难以想象的。而NIZK在证明者进行一次证明之后，能够取信多个验证者，所以更加适合区块链上的场景</p>
+</li>
+</ul>
+<h2 id="零知识证明三大性质"><a href="#零知识证明三大性质" class="headerlink" title="零知识证明三大性质"></a>零知识证明三大性质</h2><ul>
+<li>完备性（Completeness）：若一个证明方确实掌握了某论断的答案，则他肯定能找到方法向验证方证明他手中掌握的数据的正确性，即真的假不了。（对应上面药丸的例子，就是拥有药丸的证明方肯定能想办法说服验证方，证明他手里真的有药丸。）</li>
+<li>可靠性（Soundness）：若一证明方根本不掌握某论断的答案，则他无法（或只能以极低概率）说服验证方他手中所谓答案的准确性，即假的真不了。（对应上面药丸的例子，就是证明方若手中无药丸则没法蒙混过关让验证方误以为他有药丸。）</li>
+<li>零知识性（Zero-knowledgeness）：验证方除了知道证明的结果外，对其他信息一无所知。</li>
+</ul>
+<h2 id="零知识证明构造方法的三段论"><a href="#零知识证明构造方法的三段论" class="headerlink" title="零知识证明构造方法的三段论"></a>零知识证明构造方法的三段论</h2><ol>
+<li>证明方先根据论断内容向验证方发个交底材料，这个样例论断需要是随机的或加密的；</li>
+<li>验证方随机生成一个试探（学术名词是挑战，challenge），发给证明方；</li>
+<li>证明方根据该试探和交底材料生成证明信息发给验证方。验证方自己将信息和交底材料一合计，判断证明方是否通过了该试探。</li>
+</ol>
+<h2 id="零知识证明的优点"><a href="#零知识证明的优点" class="headerlink" title="零知识证明的优点"></a>零知识证明的优点</h2><p><strong>安全</strong>，随着零知识证明的使用，安全性会大大提高。<br><strong>高效</strong>，零知识证明过程计算量小，双方交换的信息量会大大减少，因此较为高效。</p>
+<h2 id="零知识证明的应用"><a href="#零知识证明的应用" class="headerlink" title="零知识证明的应用"></a>零知识证明的应用</h2><ul>
+<li>身份验证</li>
+<li>数字签名</li>
+<li>认证协议</li>
+</ul>
+<h2 id="密码学常用公钥密码"><a href="#密码学常用公钥密码" class="headerlink" title="密码学常用公钥密码"></a>密码学常用公钥密码</h2><p>验证某人是否有<strong>私钥</strong></p>
+<ol>
+<li>用公钥加密某x</li>
+<li>让对方出示加密的内容</li>
+<li>如果正确则拥有公钥</li>
+</ol>
+<h2 id="零知识证明形象化举例"><a href="#零知识证明形象化举例" class="headerlink" title="零知识证明形象化举例"></a>零知识证明形象化举例</h2><p>A有一个开房间R的钥匙🔑，B怎么在不知道A有钥匙🔑的情况下相信A有钥匙呢？<br>答：A可以把门打开，拿出其中的一把椅子，B看了之后就知道，A肯定有钥匙，不然怎么开门呢。此时A并没有给B看到钥匙，仅仅是通过给出在有钥匙才能办到的事这个结果，让B相信有钥匙。</p>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>与我相关</title>
+    <url>/2030/12/31/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>一个普普通通的大学生 爱好前端 知识分享<br>希望我们能一起进步 一起为前端添砖加瓦！</p>
+</blockquote>
+<span id="more"></span>
+<hr>
+<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><table>
+<thead>
+<tr>
+<th>QQ</th>
+<th>WecChat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/blogConfig/self/ADDQQ.jpg" style="height:200px" /></td>
+<td><img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/blogConfig/self/ADDWECHAT.jpg" style="height:200px" /></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="个人推荐"><a href="#个人推荐" class="headerlink" title="个人推荐"></a>个人推荐</h3><p><strong>科学上网</strong></p>
+<ol>
+<li><a href="https://latiao.club/#/register?code=1qAt6V3N">点击此处注册账号</a></li>
+<li>填入我的邀请码:1qAt6V3N  优惠码 8888</li>
+<li>随便选择一个即可购买 <img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/images/techonline/image-20220501210419771.png"></li>
+<li>一定要看<a href="https://latiao.club/#/knowledge">使用文档</a>哟 </li>
+<li>使用 <strong>clash</strong> 的一定要勾选 <strong>system proxy</strong> <img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/images/techonline/image-20220501210921927.png"></li>
+<li>当然，你有不会的地方 ，可以加我的联系方式询问</li>
+<li>因为输入我的邀请码可以让我<strong>获得部分佣金</strong>且<strong>购买更便宜</strong> 介意的话可以输入别人的哟</li>
+</ol>
+]]></content>
+      <categories>
+        <category>与我相关</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+        <tag>联系方式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>区块链学习第九期</title>
+    <url>/2023/03/15/202_zyn_09/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">solidity小细节【下篇】</h1>
+[toc]
+<span id="more"></span>
+---
+
+<h2 id="9：error、require、assert"><a href="#9：error、require、assert" class="headerlink" title="9：error、require、assert"></a>9：error、require、assert</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="10：库合约（不同点）"><a href="#10：库合约（不同点）" class="headerlink" title="10：库合约（不同点）"></a>10：库合约（不同点）</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="11：receive、fallback"><a href="#11：receive、fallback" class="headerlink" title="11：receive、fallback"></a>11：receive、fallback</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="12：transfer、send、call"><a href="#12：transfer、send、call" class="headerlink" title="12：transfer、send、call"></a>12：transfer、send、call</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="13：call-和-delegatecall"><a href="#13：call-和-delegatecall" class="headerlink" title="13：call 和 delegatecall"></a>13：call 和 delegatecall</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="14：create2-实际应用场景"><a href="#14：create2-实际应用场景" class="headerlink" title="14：create2 实际应用场景"></a>14：create2 实际应用场景</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="15：selfdestruct"><a href="#15：selfdestruct" class="headerlink" title="15：selfdestruct"></a>15：selfdestruct</h2><blockquote>
+</blockquote>
+<hr>
+<h2 id="16：ABI、Hash、selector"><a href="#16：ABI、Hash、selector" class="headerlink" title="16：ABI、Hash、selector"></a>16：ABI、Hash、selector</h2><blockquote>
+</blockquote>
+<hr>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>前端路线</title>
+    <url>/2030/12/31/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<p>[toc]</p>
+<blockquote>
+<p><strong>学习方式各有不同，我只整理的自己的侧重点</strong></p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> html、css 核心基础</li>
+<li><input checked="" disabled="" type="checkbox"> html5 语义化标签</li>
+<li><input checked="" disabled="" type="checkbox"> html5 新增标签属性</li>
+<li><input checked="" disabled="" type="checkbox"> 表单项新增属性</li>
+<li><input checked="" disabled="" type="checkbox"> css 选择器</li>
+<li><input checked="" disabled="" type="checkbox"> css3 伪类</li>
+<li><input checked="" disabled="" type="checkbox"> css 伪元素</li>
+<li><input disabled="" type="checkbox"> css 过渡</li>
+<li><input disabled="" type="checkbox"> 线性渐变、径向渐变</li>
+<li><input disabled="" type="checkbox"> css 都规划 animation</li>
+<li><input checked="" disabled="" type="checkbox"> 弹性盒模型</li>
+<li><input disabled="" type="checkbox"> 响应式布局</li>
+</ul>
+<hr>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> 基本语法</li>
+<li><input disabled="" type="checkbox"> 版本</li>
+<li><input checked="" disabled="" type="checkbox"> 对象</li>
+<li><input checked="" disabled="" type="checkbox"> 函数</li>
+<li><input disabled="" type="checkbox"> 类</li>
+<li><input checked="" disabled="" type="checkbox"> DOM</li>
+<li><input checked="" disabled="" type="checkbox"> BOM</li>
+<li><input disabled="" type="checkbox"> Web API</li>
+<li><input disabled="" type="checkbox"> AJAX</li>
+<li><input checked="" disabled="" type="checkbox"> JSON</li>
+<li><input checked="" disabled="" type="checkbox"> jQuery</li>
+</ul>
+<hr>
+<h1 id="ES6-Node-工程化"><a href="#ES6-Node-工程化" class="headerlink" title="ES6+Node+工程化"></a>ES6+Node+工程化</h1><ul>
+<li><input disabled="" type="checkbox"> ES6/7/8</li>
+<li><input checked="" disabled="" type="checkbox"> npm 常用命令</li>
+<li><input checked="" disabled="" type="checkbox"> git 基础</li>
+<li><input disabled="" type="checkbox"> git 高级</li>
+<li><input disabled="" type="checkbox"> http 协议 &amp; cookie &amp; session</li>
+<li><input disabled="" type="checkbox"> ES6+Node+工程化 MongoDB</li>
+<li><input disabled="" type="checkbox"> 模块化</li>
+<li><input disabled="" type="checkbox"> 构建工具 gulp</li>
+<li><input disabled="" type="checkbox"> webpack</li>
+<li><input disabled="" type="checkbox"> promise</li>
+<li><input checked="" disabled="" type="checkbox"> Node.js 基础</li>
+</ul>
+<hr>
+<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> React 基础语法</li>
+<li><input disabled="" type="checkbox"> react-router</li>
+<li><input disabled="" type="checkbox"> React React Antd 使用</li>
+<li><input disabled="" type="checkbox"> Redux</li>
+<li><input disabled="" type="checkbox"> React 移动端项目</li>
+</ul>
+<hr>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> Vue 基础</li>
+<li><input disabled="" type="checkbox"> VueRouter</li>
+<li><input disabled="" type="checkbox"> Vuex</li>
+<li><input disabled="" type="checkbox"> Vue</li>
+<li><input disabled="" type="checkbox"> Vue 源码</li>
+<li><input disabled="" type="checkbox"> VuePC 项目</li>
+<li><input disabled="" type="checkbox"> Vue 后台管理</li>
+</ul>
+<hr>
+<h1 id="参考提供"><a href="#参考提供" class="headerlink" title="参考提供"></a>参考提供</h1><p><a href="https://objtube.github.io/front-end-roadmap/#/">前端学习路线</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>加密货币</title>
+    <url>/2022/05/20/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</url>
+    <content><![CDATA[<h1 id="加密货币复习"><a href="#加密货币复习" class="headerlink" title="加密货币复习"></a>加密货币复习</h1><h2 id="区块链发展历程"><a href="#区块链发展历程" class="headerlink" title="区块链发展历程"></a>区块链发展历程</h2><h3 id="区块链1-0-可编程货币"><a href="#区块链1-0-可编程货币" class="headerlink" title="区块链1.0 可编程货币"></a>区块链1.0 可编程货币</h3><span id="more"></span>
+
+<p><strong>比特币为代表的货币区块链技术为1.0</strong></p>
+<p>08年，中本聪详细描述了如何创建一套去中心化的电子交易体系，且这种体系不需要创建在交易双方相互信任的基础之上。分布式账本技术的实施导致其第一个明显的应用：加密货币。比特币用作“互联网现金”，一种数字支付系统，可以被视为“货币互联网”的推动者。相关数字货币：比特币BTC、莱特币LTC、</p>
+<p>应用：利用密码学货币进行数字化支付，例如转账、汇款，起到公共账本的作用</p>
+<p><strong>区块链2.0 可编程金融</strong></p>
+<p>以太坊为代表的合同区块链技术为2.0</p>
+<p>自比特币诞生后，人们认识到比特币的底层技术区块链天生可以为智能合约提供可信的执行环境。数字货币开始与智能合约相结合，使得该区块链技术在金融领域有了更广泛的应用场景，同时该技术应用下的交易流程得到了优化。</p>
+<p>应用：可在以太坊中创建去中心化的程序、自治组织以及部署、使用智能合约</p>
+<p><strong>区块链3.0 可编程社会</strong></p>
+<p>实现完备权限控制和安全保障的Hyperledger项目代表3.0</p>
+<p>区块链3.0是智能化物联网时代，不同于区块链1.0和区块链2.0只在金融领域被应用，区块链3.0超出金融领域，为各种行业提供去中心化解决方案。区块链的应用领域扩展到人类生活的方方面面，不再依靠某个第三人或者机构获取信任，实现信息的共享，提高整个系统的运转效率。</p>
+<h3 id="为什么说区块链技术的应用是从信息互联网到价值互联网？"><a href="#为什么说区块链技术的应用是从信息互联网到价值互联网？" class="headerlink" title="为什么说区块链技术的应用是从信息互联网到价值互联网？"></a>为什么说区块链技术的应用是从信息互联网到价值互联网？</h3><p>区块链提供了一种加密安全的端到端支付流程，具有交易不变性和信息共享的一致性。价值互联网设想了一个价值移动和交换的世界。借助价值互联网，外币支付等价值交易可以立即发生。这不仅仅是金钱。价值互联网可以实现对某人有价值的任何资产的交换，包括证券、知识产权、音乐、科学发现等。区块链通过密码学、分布式共识、链式结构等机制实现了确权及允许任何类型的资产从一方直接转移到另一方，而无需中间人。转移是经过验证的、永久的并立即完成的。</p>
+<p>有了“确权”和“交换”，价值就能完成了。而区块链正是解决了这两个问题，才成为了第三代互联网价值互联网的基石，让价值互联网成为可能和现实。</p>
+<h3 id="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"><a href="#区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？" class="headerlink" title="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"></a>区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？</h3><p>公有链：全世界任何拥有联网计算机的用户都可以在任何时候加入或退出网络。</p>
+<p>任意读取区块数据、执行交易，参与网络共识过程。共识算法：PoW、PoS等。</p>
+<p>联盟链：由若干机构组成利益相关的联盟，共同参与并维护具有准入机制的多中心化区块链。区块数据读写、参与记账规则等需要由联盟成员节点共同决定。联盟链上的交易只需要少量节点达成共识即可，且节点间信任度比公有链要高。与公有链相比，其效率也有很大的提升。共识算法：PBFT、Raft等。</p>
+<p>私有链：写入权限仅在一个组织手里的区块链，而读取权限或者对外开放，或者被任意程度地进行了限制。</p>
+<p>国内区块链应用以联盟链为主。</p>
+<p>以区块链六层参考架构为例说明每层主要功能及用途。<br>应用层：可编程货币，可编程合约，可编程社会<br>合约层：脚本代码，算法机制，智能合约—&gt;智能合约<br>激励层：发行机制，分配机制—&gt;经济激励<br>共识层：PoW，PoS，DPoS，PBFT—&gt;分布式信任，众包协作<br>网络层：P2P网络，传播机制，验证机制—&gt;分布式自治<br>数据层：数据区块，链式结构，时间戳，哈希函数，默克尔树，非对称加密—&gt;数据安全</p>
+<h3 id="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。"><a href="#比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。" class="headerlink" title="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。"></a>比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。</h3><p>比特币是一种数字货币,而区块链是一种技术;区块链是比特币的底层技术,而比特币是区块链技术的第一个应用.</p>
+<p>区块数据结构参考下图，对区块头的每个字段意义要求记住。</p>
+<p>!</p>
+<h3 id="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"><a href="#简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？" class="headerlink" title="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"></a>简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？</h3><p>私钥生成:私钥其本质就是一个256位的由0和1组成的随机数，这个随机数是怎么产生的不重要，只要是不可预测和不可重复的都可以，私钥的格式是将这个256位的随机数以64位十六进制数显示。</p>
+<p>公钥生成:公钥是将私钥通过一个椭圆曲线乘法的算法计算得来，这是一个不可逆转的过程。</p>
+<p>地址生成:比特币地址是由公钥经过一系列单向的哈希算法得到。哈希算法是一种单向函数，可以接收任意长度的输入产生指纹或哈希。由公钥生成比特币地址时使用的算法是SHA256和RIPEMD160。公钥先进行SHA256和RIPEMD160后得到公钥哈希,在经过Base58check编码就可以得到比特币地址。将地址经过逆向变换就可以得公钥的哈希值.</p>
+<h3 id="简述比特币钱包的作用和种类？"><a href="#简述比特币钱包的作用和种类？" class="headerlink" title="简述比特币钱包的作用和种类？"></a>简述比特币钱包的作用和种类？</h3><p>广义上，钱包是一个应用程序，为用户提供交互界面。钱包控制用户访问权限，管理密钥和地址，跟踪余额以及创建和签名交易。</p>
+<p>简述比特币的交易流程，指出锁定脚本和解锁脚本放置的位置，并以P2PKH为例说明交易脚本的执行过程，并给出压栈出栈的顺序（可以手绘照相插入到word文档中）<br>1<strong>、比特币交易的创建：比特币交易可以被任何人在线上或线下创建，但要使交易有效，则需要由一个或多个私钥签名，表明具备交易中发送方地址所指向的比特币资金的所有权。2、比特币交易广播到整个P2P网络：一笔比特币交易数经过签名但不会泄露任何信息，可以被公开传播。每个节点都将从网络中收集交易数据并广播给相连接的其他节点。在传播交易前，节点均进行独立验证，确保有效性，异常交易无法传播。比特币网络是点对点网络，交易的扩散迅速，指数级扩散。3、比特币交易验证与挖矿：每个节点维护一个交易池，存放临时未经确认的交易。节点从交易池中选择一系列交易构成一个区块，基于自身算力找到一个具有足够难度的工作量证明，找到后向所有节点广播此区块。4、比特币交易确认：当包含在区块中的所有交易都是有效的且交易输入未动用，其他节点才会接受这个新的区块，链接到自己的区块链的尾部。5、交易记录：</strong>交易得到全网的6个确认之后，永久的记录在区块链中。</p>
+<p>下图中指出了解锁脚本在输入列表里，锁定脚本在输出列表里</p>
+<p>P2PKH脚本的执行指针执行过程和栈上变化如下：</p>
+<h3 id="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"><a href="#比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？" class="headerlink" title="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"></a>比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？</h3><p>比特币区块链采用了PoW共识机制。</p>
+<p>比特币每产生2016个区块调整一次挖矿难度，通过调整挖矿难度来调整出块时间，新难度值=旧难度值×（过去2016个区块花费时长/20160分钟），一个块10分钟，挖矿难度的计算公式：难度值= 最大目标值/难度目标值（或难度目标值 = 最大目标值/难度值），最大目标值= 0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF，难度目标值越小，区块生成难度值就越大。 这个难度目标值被保存在比特币的区块头中Bits字段中。</p>
+<p>SPV节点如何完成SPV验证（说明什么是Merkle Path Proof），Bloom Filter工作原理及SPV节点如何通过Bloom Filter完成指定交易的搜索。<br>Bloom过滤器数组里的每一个数的初始值为零。</p>
+<p>关键词被加到Bloom过滤器中之前，会依次通过每个哈希函数运算一次。</p>
+<p>关键词依次通过各哈希函数运算之后，相应的位变为1，Bloom过滤器则记录下该关键词。</p>
+<p>Bloom过滤器正匹配代表着“可能是”，负匹配代表着“一定不是”。所以SPV节点若只关心某个支付到自己比特币地址的交易，则可通过建立布隆过滤器（布隆过滤器是一种基于哈希的高效查找结构，能够快速确定某个元素是否在一个集合内）限制只接收含有目标比特币地址的交易。一旦比特币网络中其他当节点探测到某个交易符合SPV节点设置的布隆过滤器条件时，其它节点将以Merkleblock消息的形式发送该区块，Merkleblock消息包含区块头和一条连接目标交易与Merkle根的Merkle路径。</p>
+<p>SPV节点需要验证交易，需要做2个检查：交易的存在性检查和交易是否重花的检查。</p>
+<p>SPV节点通过该Merkle路径找到跟该交易相关的区块，并验证对应区块中是否存在目标交易（该过程被称为：Merkle Path Proof）。SPV节点所收到的Merkleblock数据量通常少于1KB，只有一个完整区块（大约1MB）大小的千分之一左右。</p>
+<p>现在通过Merkle Path Proof，SPV节点确认了交易确实存在于区块链中，但是这个还是无法保证这笔交易（Transaction）的Input（引用的上一笔UTXO）没有被重花（双重支付）。</p>
+<p>这时候SPV节点通过去看这笔交易所在区块之后的区块个数，Block个数越多说明该区块被全网更多节点共识，一般来说，一笔交易所属区块之后的区块个数达到6个时，就说明这笔交易是被大家核准过（达成共识）的，没有重花，而且被篡改的可能性也很低。</p>
+<p>Merkle Path Proof是指假设区块链系统中某个区块中存在A，B，C，D四笔交易，则为了确认交易C是否存在，需要得到交易C到Merkle Tree根节点上整条路径中的其余哈希值，以下图为例就是需要得到N3，N4哈希值，通过验证根节点的哈希一致性确认交易C存在于区块中。</p>
+<h3 id="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"><a href="#什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？" class="headerlink" title="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"></a>什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？</h3><p>比特币交易中的基础构建单元是交易输出。交易输出是比特币不可分割的基本组合，记录在区块上。比特币完整节点跟踪所有可找到的和可使用的输出，称为 “未花费的交易输出”即UTXO；所有UTXO的集合被称为UTXO集。比特币“余额”：用户钱包中可用UTXO总和，分散在多个交易和区块中。通过钱包所控制的密钥控制UTXO花费行为。UTXO是面值为“聪”的离散且不可分割的价值单元，一个UTXO只能在一次交易中作为一个整体被消耗。一笔比特币交易通过使用所有者的签名来解锁UTXO，并通过使用新的所有者的比特币地址来锁定并创建UTXO。</p>
+<p>UTXO 模型的优点：如果用户启用了新的地址用于转账和交易，新地址与原地址之间的关系很难被追踪，更好保证用户的隐私；UTXO 模型理论上来说可以并行地签发多笔交易，并广播到网络中；</p>
+<h3 id="比特币区块链有哪几种分叉，每种分叉的原因是什么？"><a href="#比特币区块链有哪几种分叉，每种分叉的原因是什么？" class="headerlink" title="比特币区块链有哪几种分叉，每种分叉的原因是什么？"></a>比特币区块链有哪几种分叉，每种分叉的原因是什么？</h3><p>临时分叉：算法导致的分叉，通过最大工作量证明保证最终收敛性。</p>
+<p>硬分叉：出现了旧规则禁止，新规则允许的行为。</p>
+<p>软分叉：出现了旧规则允许，新规则禁止的行为。</p>
+<p>举例说明比特币的链上扩容和链下扩容。<br>链上扩容是在区块链基层协议上实现的扩容解决方案，它需要通过改变区块容量或者数据结构来达到提高处理交易能力的目的。包括：比特币采用的隔离见证+2MB硬分叉，比特币现金升级区块容量，以及以太坊分片技术</p>
+<p>链下扩容是不改变公链基础协议的一种应用层上的扩展方案。它不改动区块链本身的规则。包括状态通道、侧链等解决方案。</p>
+<p>举例说明侧链的典型应用场景。<br>侧链技术就是为了方便数字资产在不同区块链间互相转移，在两条链完全独立的情况下，将不同的区块链互相连接在一起，以实现区块链的扩展，使两者能够“互相操作，实现交互”的一种跨区块链解决方案。</p>
+<p>BTC Relay是一个典型应用场景，本质上是在以太坊上用合约重写了比特币的spv验证规则。其主要原理是把以太坊网络与比特币网络以一种安全去中心化的方式连接起来。通过使用以太坊的智能合约功能来验证比特币交易。BTC Relay使用区块头创建一种小型版本的比特币区块链，以太坊DApp开发者可以从智能合约向BTC Relay进行API调用来验证比特币网络活动。</p>
+<h3 id="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"><a href="#说明闪电网络解决了比特币系统的什么问题及其如何解决的？" class="headerlink" title="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"></a>说明闪电网络解决了比特币系统的什么问题及其如何解决的？</h3><p>比特币的交易网络，全网每秒 7 笔的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认花费约 1 个小时的最终确认时间。闪电网络是将大量交易放到比特币区块链之外进行。闪电网络通过智能合约来完善链下的交易渠道。核心的概念主要有两个：RSMC和 HTLC。前者解决了链下交易的确认问题，后者解决了支付通道的问题。</p>
+<h3 id="以太坊解决了比特币的哪些问题？"><a href="#以太坊解决了比特币的哪些问题？" class="headerlink" title="以太坊解决了比特币的哪些问题？"></a>以太坊解决了比特币的哪些问题？</h3><p>1.缺少图灵完备性，比特币不能支持所有的计算，如循环控制等。2价值盲，UTXO的不可分割性，使得其不能为账户的取款额度提供精细的控制。3缺少状态， UTXO只能用于建立简单的、一次性的合约，没有给需要任何其它内部状态的多阶段合约或者脚本留出生存空间。4区块链盲，UTXO看不到区块链的数据5交易确认时间太长。</p>
+<p>以太坊的发展经历过那几个阶段，每个阶段进行了哪些重大升级？<br>以太坊的发展分成四个阶段：Frontier、Homestead、Metropolis和Serenity。</p>
+<h3 id="简述以太坊技术体系，每层提供哪些功能服务。"><a href="#简述以太坊技术体系，每层提供哪些功能服务。" class="headerlink" title="简述以太坊技术体系，每层提供哪些功能服务。"></a>简述以太坊技术体系，每层提供哪些功能服务。</h3><p>应用层：DApps，以太币钱包，以太币浏览器 合约层：Solidity，EVM，eWASM 激励层：以太币，Gas共识层：PoW，PoW和PoS混合，PoS 网络层：DEVp2p，RLPx，Discv4 数据层：数据结构，数据模型，分片技术，哈希函数，数字签名，非对称加密 存储层：LevelDB，ethdb模块，日志模块</p>
+<h3 id="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"><a href="#简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。" class="headerlink" title="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"></a>简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。</h3><p>交易树：树叶里是交易<br>收据树：树叶里是交易生成的收据<br>状态数：树叶里是交易影响到的账户状态<br>基于Merkle Patricia Trie/tree（MPT）构建三棵树，通过三棵树根哈希，分别建立于区块头相应字段的映射关系<br>交易树根哈希：交易字典树根的RLP hash值（key：交易编号；Value：交易内容）<br>收据树根哈希：收据字典树根的RLP hash值（key：索引编号；Value：收据内容）<br>状态树根哈希：状态字典树根的RLP hash值（key：账户地址；Value：账户内容）</p>
+<h3 id="什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"><a href="#什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？" class="headerlink" title="什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"></a>什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？</h3><p>Patricia Trie，又称基数树，是一种存储空间优化的Trie树。</p>
+<p>MPT（Merkle Patricia Trie/Tree）融合了Patricia Trie和Merkle Tree的优点。其中Merkle树用于交易存在和完整性的校验，Patricia树用于优化字典树的空间利用率，同时提升读写效率。</p>
+<p>如果直接将Merkle Tree来存放以太坊账户状态，那么存放全球账户数据太多，占内存和存储空间，账户状态多变，修改困难。</p>
+<p>以太坊对其进行了以下方面的优化：1）提高操作效率：引入多种类型节点和压缩前缀2）安全性：每节点利用其哈希被引用，可在LevelDB中查询；而非内存地址。</p>
+<p>Key：节点的RLP编码的SHA3哈希值。</p>
+<p>Value：节点的RLP编码。</p>
+<p>想获得一个非叶节点的子节点，只需要根据子节点的hash访问数据库获得节点的RLP编码，然后解码。</p>
+<h3 id="以太坊账户类型有哪些？它们之间有何区别？"><a href="#以太坊账户类型有哪些？它们之间有何区别？" class="headerlink" title="以太坊账户类型有哪些？它们之间有何区别？"></a>以太坊账户类型有哪些？它们之间有何区别？</h3><p>对比项 外部拥有账户 合约账户<br>以太币余额 有 有<br>输内容 交易 交易或消息<br>控制 私钥 合约代码<br>地址 公钥决定 由合约创建者地址和Nonce计算得<br>代码 不包含代码 包含代码</p>
+<h3 id="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"><a href="#什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？" class="headerlink" title="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"></a>什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？</h3><p>GHOST协议解决当前快速确认的区块链因区块高作废率而受到低安全性困扰的问题。GHOST协议是根据最重子树选择主链。</p>
+<p>相较比特币而言，以太坊产生区块的间隔时间更短，更易出现区块链分叉产生孤块，通过将产生孤块的算力也被包含进来，有效的增强了安全性。同时通过给叔区块奖励，避免出现像比特币那样计算力高度集中的矿池。 产生叔区块的矿工将获得的奖励为：（叔区块ID+8-当前区块ID）×区块奖励/8。将叔区块链接到区块链上的奖励为：每链接一个叔区块获得区块奖励/32个以太币的奖励，最多链接两个叔区块。</p>
+<h3 id="以太币和Gas有何关系？"><a href="#以太币和Gas有何关系？" class="headerlink" title="以太币和Gas有何关系？"></a>以太币和Gas有何关系？</h3><p>以太坊中两种不同的计量单位gas存在于EVM中；</p>
+<p>ether存在于以太坊账户中。</p>
+<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
+<p>用户可以通过向以太坊账户中充值以太币，由以太坊客户端自动购买用户指定操作最大支出的gas，同时在操作结束时将剩余的gas转换成以太币返还到用户的以太坊账户。gas与以太币两者分开，gas单位与具备自然成本的运算单位一致，而ether的价格通常会由于市场力量产生波动。</p>
+<h3 id="以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？"><a href="#以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？" class="headerlink" title="以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？"></a>以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？</h3><p>Storage<strong>（账户存储）</strong>每个账户有一块保存在区块链上的持久性存储，称为 storage。这是一个将256位字映射到256位字的 key-value 存储区，均为32字节；未使用Key-Value值为0，非0值代表已占用。永久储存在区块链中，读写的 gas 开销也最大。</p>
+<p>Memory<strong>（内存）</strong>每一次消息调用，会临时获取一块干净的内存空间。生命周期仅为整个方法执行期间，函数调用后回收，按照可寻址字节数组来存储，读写 gas 开销较小。</p>
+<p>Stack<strong>（栈）</strong>EVM是基于栈的，几乎免费使用的内存，但有数量限制。栈中每个元素是32字节，最多容1024个元素。</p>
+<h3 id="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？"><a href="#简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？" class="headerlink" title="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？"></a>简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？</h3><p>第一步：生成种子，根据区块块头信息计算出一个种子。</p>
+<p>第二步：伪随机数据集，根据种子生成一个大小为16M的伪随机数据集，每30000个区块进行一次更新，用于轻客户端存储缓存。</p>
+<p>第三步：DAG数据集，根据伪随机数据集生成大小1G的大规模数据集。该数据集中每项元素通过伪随机数据集中少量的几项计算得到。</p>
+<p>第四步：挖矿，通过header及nonce计算出一个初始的哈希值映射到初始位置A，然后读取A位置元素和A的相邻后一个位置A’的元素，再通过（A和A’）计算出位置（B和B’），以此类推，迭代64次后，一共读取出128个数，最后计算这128个数的哈希值与目标值target比较，若满足target，则挖矿成功；否则重新尝试nonce。ASIC芯片主要优势是算力强，但在内存访问的性能上没有那么大的优势，所以能设计出一个对内存要求很高的puzzle，就能起到遏制ASIC芯片的作用。</p>
+<h1 id="复习简化-from-confucian-e"><a href="#复习简化-from-confucian-e" class="headerlink" title="复习简化 from confucian-e"></a>复习简化 from confucian-e</h1><h3 id="BlockChian"><a href="#BlockChian" class="headerlink" title="BlockChian"></a>BlockChian</h3><p>为什么说区块链技术应用是从信息互联网到价值互联网</p>
+<p>（围绕“不可复制”、“确权”、“价值交换”）。</p>
+<p>区块链部署的三种形式，每种形式的特点，我国以哪种为主</p>
+<p>公有链：节点加入无需准许，人人都可参与网络共识，任意读取数据，执行交易；PoW、PoS等。<br>联盟链：节点加入需要准许，多个机构组成联盟，数据读写等操作由联盟成员决定，效率高，节点可信度高；PBFT、Raft等。<br>私有链：写入权限掌握在一个组织内部，读取或开放或限制。<br>国内以联盟链为主。</p>
+<p>区块链的六层架构</p>
+<p>应用层：dapp<br>合约层：智能合约<br>激励层：挖矿<br>共识层：共识机制<br>网络层：P2P<br>数据层：数据结构，数据库<br>公有链激励层中的分配机制和发行机制</p>
+<p>发行<br>ICO<br>IPO<br>IEO<br>公私募<br>分配<br>空投<br>流动性挖矿<br>质押挖矿<br>社区成员分配</p>
+<h3 id="Bitcoin"><a href="#Bitcoin" class="headerlink" title="Bitcoin"></a>Bitcoin</h3><p>比特币区块头数据结构，每个字段长度及意义</p>
+<p>区块头包含：上一个区块头哈希、默克尔树根哈希、版本号、时间戳、当前挖矿难度、随机数；共80个字节，前2个各32位，后4个各4位。</p>
+<p>比特币密钥和地址生成过程，为什么通过地址推导公钥哈希</p>
+<p>私钥：256位由0和1组成的随机数，以64位16进制显示。</p>
+<p>公钥：私钥通过一个椭圆曲线算法(ECDSA)计算而来，不可逆，即不能根据公钥倒推私钥。</p>
+<p>地址：公钥先通过单向哈希(SHA256, RIPEMD160)计算出公钥哈希，公钥哈希通过Base58check编码得到地址。</p>
+<p>因为地址是公钥哈希通过Base58check编码得来的，所以地址逆向变换可得公钥哈希。</p>
+<p>比特币交易流程</p>
+<p>交易的创建：线上线下都可。<br>广播交易：广播到P2P网络，全网节点收到验证。<br>交易验证与挖矿：从交易池中选一系列交易，矿工挖出区块。<br>交易确认：待新块中全部交易验证完成后，各节点将该块添加到区块链尾部（上链）。<br>确认有效：经过6个区块（1个小时）确认后即有效，永久保存于链上。<br>锁定脚本与解锁脚本位置</p>
+<p>锁定脚本在输入列表中，解锁脚本在输出列表中。</p>
+<p>P2PKH执行过程，出入栈变化</p>
+<p>签名(sig)入栈。<br>公钥(PubK)入栈。<br>复制栈顶的公钥(DUP)。<br>对栈顶的公钥进行哈希(HASH160)。<br>压入公钥哈希(PubKHash)。<br>判断栈顶的2个公钥哈希是否相等(EQUALVERIFY)，相等后这2个出栈。<br>根据公钥检验签名(CHECKSIG)，正确后都出栈，栈顶显示TRUE。<br>比特币分叉类型及原因</p>
+<p>临时分叉：算法导致，同时挖出2个甚至多个块。<br>硬分叉：升级系统，新规则无法向前兼容，旧节点无法认可新节点的区块。<br>软分叉：升级系统，可以向前兼容。</p>
+<h3 id="Ethereum"><a href="#Ethereum" class="headerlink" title="Ethereum"></a>Ethereum</h3><p>以太坊解决了比特币的哪些问题</p>
+<p>缺少图灵完备：比特币脚本语言非图灵完备。<br>价值盲：UTXO不可分割，转账金额不能精细控制。<br>缺少状态：UTXO只有是否花费，不能构建复杂合约。<br>区块链盲：看不到区块链的数据<br>速度慢：交易确认时间长，TPS低<br>以太坊发展的4个阶段</p>
+<p>前沿(Frontier)<br>家园(Homestead)<br>大都会(Metropolis)<br>宁静(Serenity)<br>以太坊区块头的三棵树及作用</p>
+<p>交易树：存交易<br>收据树：存交易生成的收据<br>状态树：存账户状态<br>以太坊账户类型</p>
+<p>外部拥有账户(EOA)和合约账户(CA)</p>
+<p>以太币(ether)与gas的区别</p>
+<p>以太坊中2种不同的计量单位。</p>
+<p>gas存在于EVM中；ether存在于以太坊账户中，最小货币单位为wei。</p>
+<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
+<p>以太坊虚拟机可访问存储数据的空间有哪些，各自特点</p>
+<p>Storage：链上永久存储，gas开销大。<br>Memory：临时存储，生命周期为方法执行期间，gas开销小。<br>Stack：EVM不是基于寄存器，而是基于栈。</p>
+]]></content>
   </entry>
   <entry>
     <title>mysql入门</title>
@@ -1448,446 +2022,6 @@ WHERE City LIKE ‘[!bsp]%’;
 ]]></content>
   </entry>
   <entry>
-    <title>与我相关</title>
-    <url>/2030/12/31/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
-<p>一个普普通通的大学生 爱好前端 知识分享<br>希望我们能一起进步 一起为前端添砖加瓦！</p>
-</blockquote>
-<span id="more"></span>
-<hr>
-<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><table>
-<thead>
-<tr>
-<th>QQ</th>
-<th>WecChat</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/blogConfig/self/ADDQQ.jpg" style="height:200px" /></td>
-<td><img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/blogConfig/self/ADDWECHAT.jpg" style="height:200px" /></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="个人推荐"><a href="#个人推荐" class="headerlink" title="个人推荐"></a>个人推荐</h3><p><strong>科学上网</strong></p>
-<ol>
-<li><a href="https://latiao.club/#/register?code=1qAt6V3N">点击此处注册账号</a></li>
-<li>填入我的邀请码:1qAt6V3N  优惠码 8888</li>
-<li>随便选择一个即可购买 <img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/images/techonline/image-20220501210419771.png"></li>
-<li>一定要看<a href="https://latiao.club/#/knowledge">使用文档</a>哟 </li>
-<li>使用 <strong>clash</strong> 的一定要勾选 <strong>system proxy</strong> <img src="https://cdn.jsdelivr.net/gh/GOODFLYO/CDN/images/techonline/image-20220501210921927.png"></li>
-<li>当然，你有不会的地方 ，可以加我的联系方式询问</li>
-<li>因为输入我的邀请码可以让我<strong>获得部分佣金</strong>且<strong>购买更便宜</strong> 介意的话可以输入别人的哟</li>
-</ol>
-]]></content>
-      <categories>
-        <category>与我相关</category>
-      </categories>
-      <tags>
-        <tag>科学上网</tag>
-        <tag>联系方式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端路线</title>
-    <url>/2030/12/31/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<p>[toc]</p>
-<blockquote>
-<p><strong>学习方式各有不同，我只整理的自己的侧重点</strong></p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> html、css 核心基础</li>
-<li><input checked="" disabled="" type="checkbox"> html5 语义化标签</li>
-<li><input checked="" disabled="" type="checkbox"> html5 新增标签属性</li>
-<li><input checked="" disabled="" type="checkbox"> 表单项新增属性</li>
-<li><input checked="" disabled="" type="checkbox"> css 选择器</li>
-<li><input checked="" disabled="" type="checkbox"> css3 伪类</li>
-<li><input checked="" disabled="" type="checkbox"> css 伪元素</li>
-<li><input disabled="" type="checkbox"> css 过渡</li>
-<li><input disabled="" type="checkbox"> 线性渐变、径向渐变</li>
-<li><input disabled="" type="checkbox"> css 都规划 animation</li>
-<li><input checked="" disabled="" type="checkbox"> 弹性盒模型</li>
-<li><input disabled="" type="checkbox"> 响应式布局</li>
-</ul>
-<hr>
-<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> 基本语法</li>
-<li><input disabled="" type="checkbox"> 版本</li>
-<li><input checked="" disabled="" type="checkbox"> 对象</li>
-<li><input checked="" disabled="" type="checkbox"> 函数</li>
-<li><input disabled="" type="checkbox"> 类</li>
-<li><input checked="" disabled="" type="checkbox"> DOM</li>
-<li><input checked="" disabled="" type="checkbox"> BOM</li>
-<li><input disabled="" type="checkbox"> Web API</li>
-<li><input disabled="" type="checkbox"> AJAX</li>
-<li><input checked="" disabled="" type="checkbox"> JSON</li>
-<li><input checked="" disabled="" type="checkbox"> jQuery</li>
-</ul>
-<hr>
-<h1 id="ES6-Node-工程化"><a href="#ES6-Node-工程化" class="headerlink" title="ES6+Node+工程化"></a>ES6+Node+工程化</h1><ul>
-<li><input disabled="" type="checkbox"> ES6/7/8</li>
-<li><input checked="" disabled="" type="checkbox"> npm 常用命令</li>
-<li><input checked="" disabled="" type="checkbox"> git 基础</li>
-<li><input disabled="" type="checkbox"> git 高级</li>
-<li><input disabled="" type="checkbox"> http 协议 &amp; cookie &amp; session</li>
-<li><input disabled="" type="checkbox"> ES6+Node+工程化 MongoDB</li>
-<li><input disabled="" type="checkbox"> 模块化</li>
-<li><input disabled="" type="checkbox"> 构建工具 gulp</li>
-<li><input disabled="" type="checkbox"> webpack</li>
-<li><input disabled="" type="checkbox"> promise</li>
-<li><input checked="" disabled="" type="checkbox"> Node.js 基础</li>
-</ul>
-<hr>
-<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> React 基础语法</li>
-<li><input disabled="" type="checkbox"> react-router</li>
-<li><input disabled="" type="checkbox"> React React Antd 使用</li>
-<li><input disabled="" type="checkbox"> Redux</li>
-<li><input disabled="" type="checkbox"> React 移动端项目</li>
-</ul>
-<hr>
-<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> Vue 基础</li>
-<li><input disabled="" type="checkbox"> VueRouter</li>
-<li><input disabled="" type="checkbox"> Vuex</li>
-<li><input disabled="" type="checkbox"> Vue</li>
-<li><input disabled="" type="checkbox"> Vue 源码</li>
-<li><input disabled="" type="checkbox"> VuePC 项目</li>
-<li><input disabled="" type="checkbox"> Vue 后台管理</li>
-</ul>
-<hr>
-<h1 id="参考提供"><a href="#参考提供" class="headerlink" title="参考提供"></a>参考提供</h1><p><a href="https://objtube.github.io/front-end-roadmap/#/">前端学习路线</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>APPilike</title>
-    <url>/2022/12/14/APPilike/</url>
-    <content><![CDATA[<p>[toc]</p>
-<hr>
-<h3 id="Clash"><a href="#Clash" class="headerlink" title="Clash"></a>Clash</h3><p>💕 科学上网必备💕<br>💕 <a href="https://goodflyo.github.io/2021/05/26/%E4%B8%8E%E6%88%91%E7%9B%B8%E5%85%B3/#more">clash详细信息</a>💕</p>
-<hr>
-<h3 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h3><span id="more"></span>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>介绍</th>
-<th>图标</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>win 自带画图工具</td>
-<td>简洁的面板 多种工具</td>
-<td><img src="https://img.onlinedown.net/download/202110/141352-6167caa016630.jpg" style="height:55px;" /></td>
-</tr>
-<tr>
-<td>oCam</td>
-<td>录屏软件 体积小 录屏质量高</td>
-<td><img src="https://img2.baidu.com/it/u=1891138054,3556825058&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" style="height:55px" /></td>
-</tr>
-<tr>
-<td>快剪辑</td>
-<td>剪辑方便基础功能丰富</td>
-<td><img src="https://img2.baidu.com/it/u=708818509,1951590481&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
-</tr>
-<tr>
-<td>洛雪音乐</td>
-<td>千万音乐随便下载 非常无敌</td>
-<td><img src="https://img0.baidu.com/it/u=2973469365,2346081691&fm=253&fmt=auto&app=138&f=PNG?w=220&h=150" style="height:55px" /></td>
-</tr>
-<tr>
-<td>IDM 绿色版</td>
-<td>超高速下载+配合百度网盘使用</td>
-<td><img src="https://img2.baidu.com/it/u=3696265634,1526834780&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
-</tr>
-<tr>
-<td>蓝奏云客户端</td>
-<td>批量传输+批量转移</td>
-<td><img src="https://img1.baidu.com/it/u=2073188427,2824667698&fm=253&fmt=auto&app=138&f=PNG?w=243&h=132" style="height:55px" /></td>
-</tr>
-<tr>
-<td>阿里云盘</td>
-<td>上传和下载都很快 可是不能自由分享</td>
-<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fq_70%2Fimages03%2F20211009%2F59c75745d3524163b9277c4006020ac0.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673668758&t=5447eeb39099d7ebac4d8ab57621b747" style="height:55px" /></td>
-</tr>
-<tr>
-<td>typora</td>
-<td>简直无敌了 markdown编辑器—当然也支持各种格式</td>
-<td><img src="https://img0.baidu.com/it/u=2788885325,377457777&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
-</tr>
-<tr>
-<td>Fiddler Classic</td>
-<td>电脑抓包工具 可以监听https</td>
-<td><img src="https://img2.baidu.com/it/u=1346851621,972883484&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
-</tr>
-<tr>
-<td>electerm</td>
-<td>开源的远程连接工具</td>
-<td><img src="https://img1.baidu.com/it/u=2723696682,2115268521&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" style="height:55px" /></td>
-</tr>
-<tr>
-<td>vsode</td>
-<td>超级无敌宇宙噼里啪啦IDE</td>
-<td><img src="https://img1.baidu.com/it/u=1636506776,3169403695&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500" style="height:55px" /></td>
-</tr>
-<tr>
-<td>GOOGLE</td>
-<td>配上各类插件和脚本 无敌的存在</td>
-<td><img src="https://img1.baidu.com/it/u=1785270759,3943942543&fm=253&fmt=auto&app=120&f=JPEG?w=816&h=487" style="height:55px" /></td>
-</tr>
-<tr>
-<td>网易云音乐</td>
-<td>个人喜欢 不介绍</td>
-<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg3.downza.cn%2Fxueyuan%2F202111%2F5fa12703a4057330ee5cc1512d159377.png&refer=http%3A%2F%2Fimg3.downza.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673669014&t=bd5155d51f678d78e94cbb5c16d9e5ff" style="height:55px" /></td>
-</tr>
-<tr>
-<td>小丸工具箱</td>
-<td>处理视频的好工具–解码转换等等</td>
-<td><img src="https://img1.baidu.com/it/u=1574076885,3181424076&fm=253&fmt=auto&app=138&f=PNG?w=256&h=256" style="height:55px" /></td>
-</tr>
-<tr>
-<td>腾讯会议</td>
-<td>通讯效果好 容量大</td>
-<td><img src="https://img0.baidu.com/it/u=2387743273,1319507866&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=267" style="height:55px" /></td>
-</tr>
-<tr>
-<td>格式工厂</td>
-<td>视频格式转化 功能很多 比较耗费gpu</td>
-<td><img src="https://img0.baidu.com/it/u=2605668262,354975190&fm=253&fmt=auto&app=138&f=JPEG?w=170&h=170" style="height:55px" /></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="Android端"><a href="#Android端" class="headerlink" title="Android端"></a>Android端</h3><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>介绍</th>
-<th>图标</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bilibili</td>
-<td>视频质量较高 奈何老板作死</td>
-<td><img src="https://img2.baidu.com/it/u=3444794441,3761663944&fm=253&fmt=auto&app=120&f=JPEG?w=669&h=604" style="height:55px" /></td>
-</tr>
-<tr>
-<td>豆果美食</td>
-<td>各种原创食谱</td>
-<td><img src="https://img1.baidu.com/it/u=2547362733,133834015&fm=253&fmt=auto&app=138&f=PNG?w=192&h=192" style="height:55px" /></td>
-</tr>
-<tr>
-<td>listen1</td>
-<td>必不可少的音乐神器</td>
-<td><img src="https://img0.baidu.com/it/u=1569927342,4215404422&fm=253&fmt=auto&app=138&f=JPEG?w=766&h=386" style="height:55px" /></td>
-</tr>
-<tr>
-<td>解压缩全能王</td>
-<td>可以破解压缩密码 解压能力超强–7z rar</td>
-<td><img src="https://img2.baidu.com/it/u=499996747,2707825643&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" style="height:55px" /></td>
-</tr>
-<tr>
-<td>小红书</td>
-<td>找到自己的爱好 拒绝孤单</td>
-<td><img src="https://img1.baidu.com/it/u=1943371915,3584795604&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" style="height:55px" /></td>
-</tr>
-<tr>
-<td>云闪付</td>
-<td>集成各大银行 优惠活动多且大</td>
-<td><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.sj33.cn%2Fuploads%2F202102%2F7-21022G32225U9.jpg&refer=http%3A%2F%2Fimg.sj33.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673670193&t=e2f5288abd3a86a1e61210151e10b4fe" style="height:55px" /></td>
-</tr>
-</tbody></table>
-]]></content>
-  </entry>
-  <entry>
-    <title>加密货币</title>
-    <url>/2022/05/20/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</url>
-    <content><![CDATA[<h1 id="加密货币复习"><a href="#加密货币复习" class="headerlink" title="加密货币复习"></a>加密货币复习</h1><h2 id="区块链发展历程"><a href="#区块链发展历程" class="headerlink" title="区块链发展历程"></a>区块链发展历程</h2><h3 id="区块链1-0-可编程货币"><a href="#区块链1-0-可编程货币" class="headerlink" title="区块链1.0 可编程货币"></a>区块链1.0 可编程货币</h3><span id="more"></span>
-
-<p><strong>比特币为代表的货币区块链技术为1.0</strong></p>
-<p>08年，中本聪详细描述了如何创建一套去中心化的电子交易体系，且这种体系不需要创建在交易双方相互信任的基础之上。分布式账本技术的实施导致其第一个明显的应用：加密货币。比特币用作“互联网现金”，一种数字支付系统，可以被视为“货币互联网”的推动者。相关数字货币：比特币BTC、莱特币LTC、</p>
-<p>应用：利用密码学货币进行数字化支付，例如转账、汇款，起到公共账本的作用</p>
-<p><strong>区块链2.0 可编程金融</strong></p>
-<p>以太坊为代表的合同区块链技术为2.0</p>
-<p>自比特币诞生后，人们认识到比特币的底层技术区块链天生可以为智能合约提供可信的执行环境。数字货币开始与智能合约相结合，使得该区块链技术在金融领域有了更广泛的应用场景，同时该技术应用下的交易流程得到了优化。</p>
-<p>应用：可在以太坊中创建去中心化的程序、自治组织以及部署、使用智能合约</p>
-<p><strong>区块链3.0 可编程社会</strong></p>
-<p>实现完备权限控制和安全保障的Hyperledger项目代表3.0</p>
-<p>区块链3.0是智能化物联网时代，不同于区块链1.0和区块链2.0只在金融领域被应用，区块链3.0超出金融领域，为各种行业提供去中心化解决方案。区块链的应用领域扩展到人类生活的方方面面，不再依靠某个第三人或者机构获取信任，实现信息的共享，提高整个系统的运转效率。</p>
-<h3 id="为什么说区块链技术的应用是从信息互联网到价值互联网？"><a href="#为什么说区块链技术的应用是从信息互联网到价值互联网？" class="headerlink" title="为什么说区块链技术的应用是从信息互联网到价值互联网？"></a>为什么说区块链技术的应用是从信息互联网到价值互联网？</h3><p>区块链提供了一种加密安全的端到端支付流程，具有交易不变性和信息共享的一致性。价值互联网设想了一个价值移动和交换的世界。借助价值互联网，外币支付等价值交易可以立即发生。这不仅仅是金钱。价值互联网可以实现对某人有价值的任何资产的交换，包括证券、知识产权、音乐、科学发现等。区块链通过密码学、分布式共识、链式结构等机制实现了确权及允许任何类型的资产从一方直接转移到另一方，而无需中间人。转移是经过验证的、永久的并立即完成的。</p>
-<p>有了“确权”和“交换”，价值就能完成了。而区块链正是解决了这两个问题，才成为了第三代互联网价值互联网的基石，让价值互联网成为可能和现实。</p>
-<h3 id="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"><a href="#区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？" class="headerlink" title="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"></a>区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？</h3><p>公有链：全世界任何拥有联网计算机的用户都可以在任何时候加入或退出网络。</p>
-<p>任意读取区块数据、执行交易，参与网络共识过程。共识算法：PoW、PoS等。</p>
-<p>联盟链：由若干机构组成利益相关的联盟，共同参与并维护具有准入机制的多中心化区块链。区块数据读写、参与记账规则等需要由联盟成员节点共同决定。联盟链上的交易只需要少量节点达成共识即可，且节点间信任度比公有链要高。与公有链相比，其效率也有很大的提升。共识算法：PBFT、Raft等。</p>
-<p>私有链：写入权限仅在一个组织手里的区块链，而读取权限或者对外开放，或者被任意程度地进行了限制。</p>
-<p>国内区块链应用以联盟链为主。</p>
-<p>以区块链六层参考架构为例说明每层主要功能及用途。<br>应用层：可编程货币，可编程合约，可编程社会<br>合约层：脚本代码，算法机制，智能合约—&gt;智能合约<br>激励层：发行机制，分配机制—&gt;经济激励<br>共识层：PoW，PoS，DPoS，PBFT—&gt;分布式信任，众包协作<br>网络层：P2P网络，传播机制，验证机制—&gt;分布式自治<br>数据层：数据区块，链式结构，时间戳，哈希函数，默克尔树，非对称加密—&gt;数据安全</p>
-<h3 id="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。"><a href="#比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。" class="headerlink" title="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。"></a>比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。</h3><p>比特币是一种数字货币,而区块链是一种技术;区块链是比特币的底层技术,而比特币是区块链技术的第一个应用.</p>
-<p>区块数据结构参考下图，对区块头的每个字段意义要求记住。</p>
-<p>!</p>
-<h3 id="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"><a href="#简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？" class="headerlink" title="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"></a>简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？</h3><p>私钥生成:私钥其本质就是一个256位的由0和1组成的随机数，这个随机数是怎么产生的不重要，只要是不可预测和不可重复的都可以，私钥的格式是将这个256位的随机数以64位十六进制数显示。</p>
-<p>公钥生成:公钥是将私钥通过一个椭圆曲线乘法的算法计算得来，这是一个不可逆转的过程。</p>
-<p>地址生成:比特币地址是由公钥经过一系列单向的哈希算法得到。哈希算法是一种单向函数，可以接收任意长度的输入产生指纹或哈希。由公钥生成比特币地址时使用的算法是SHA256和RIPEMD160。公钥先进行SHA256和RIPEMD160后得到公钥哈希,在经过Base58check编码就可以得到比特币地址。将地址经过逆向变换就可以得公钥的哈希值.</p>
-<h3 id="简述比特币钱包的作用和种类？"><a href="#简述比特币钱包的作用和种类？" class="headerlink" title="简述比特币钱包的作用和种类？"></a>简述比特币钱包的作用和种类？</h3><p>广义上，钱包是一个应用程序，为用户提供交互界面。钱包控制用户访问权限，管理密钥和地址，跟踪余额以及创建和签名交易。</p>
-<p>简述比特币的交易流程，指出锁定脚本和解锁脚本放置的位置，并以P2PKH为例说明交易脚本的执行过程，并给出压栈出栈的顺序（可以手绘照相插入到word文档中）<br>1<strong>、比特币交易的创建：比特币交易可以被任何人在线上或线下创建，但要使交易有效，则需要由一个或多个私钥签名，表明具备交易中发送方地址所指向的比特币资金的所有权。2、比特币交易广播到整个P2P网络：一笔比特币交易数经过签名但不会泄露任何信息，可以被公开传播。每个节点都将从网络中收集交易数据并广播给相连接的其他节点。在传播交易前，节点均进行独立验证，确保有效性，异常交易无法传播。比特币网络是点对点网络，交易的扩散迅速，指数级扩散。3、比特币交易验证与挖矿：每个节点维护一个交易池，存放临时未经确认的交易。节点从交易池中选择一系列交易构成一个区块，基于自身算力找到一个具有足够难度的工作量证明，找到后向所有节点广播此区块。4、比特币交易确认：当包含在区块中的所有交易都是有效的且交易输入未动用，其他节点才会接受这个新的区块，链接到自己的区块链的尾部。5、交易记录：</strong>交易得到全网的6个确认之后，永久的记录在区块链中。</p>
-<p>下图中指出了解锁脚本在输入列表里，锁定脚本在输出列表里</p>
-<p>P2PKH脚本的执行指针执行过程和栈上变化如下：</p>
-<h3 id="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"><a href="#比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？" class="headerlink" title="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"></a>比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？</h3><p>比特币区块链采用了PoW共识机制。</p>
-<p>比特币每产生2016个区块调整一次挖矿难度，通过调整挖矿难度来调整出块时间，新难度值=旧难度值×（过去2016个区块花费时长/20160分钟），一个块10分钟，挖矿难度的计算公式：难度值= 最大目标值/难度目标值（或难度目标值 = 最大目标值/难度值），最大目标值= 0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF，难度目标值越小，区块生成难度值就越大。 这个难度目标值被保存在比特币的区块头中Bits字段中。</p>
-<p>SPV节点如何完成SPV验证（说明什么是Merkle Path Proof），Bloom Filter工作原理及SPV节点如何通过Bloom Filter完成指定交易的搜索。<br>Bloom过滤器数组里的每一个数的初始值为零。</p>
-<p>关键词被加到Bloom过滤器中之前，会依次通过每个哈希函数运算一次。</p>
-<p>关键词依次通过各哈希函数运算之后，相应的位变为1，Bloom过滤器则记录下该关键词。</p>
-<p>Bloom过滤器正匹配代表着“可能是”，负匹配代表着“一定不是”。所以SPV节点若只关心某个支付到自己比特币地址的交易，则可通过建立布隆过滤器（布隆过滤器是一种基于哈希的高效查找结构，能够快速确定某个元素是否在一个集合内）限制只接收含有目标比特币地址的交易。一旦比特币网络中其他当节点探测到某个交易符合SPV节点设置的布隆过滤器条件时，其它节点将以Merkleblock消息的形式发送该区块，Merkleblock消息包含区块头和一条连接目标交易与Merkle根的Merkle路径。</p>
-<p>SPV节点需要验证交易，需要做2个检查：交易的存在性检查和交易是否重花的检查。</p>
-<p>SPV节点通过该Merkle路径找到跟该交易相关的区块，并验证对应区块中是否存在目标交易（该过程被称为：Merkle Path Proof）。SPV节点所收到的Merkleblock数据量通常少于1KB，只有一个完整区块（大约1MB）大小的千分之一左右。</p>
-<p>现在通过Merkle Path Proof，SPV节点确认了交易确实存在于区块链中，但是这个还是无法保证这笔交易（Transaction）的Input（引用的上一笔UTXO）没有被重花（双重支付）。</p>
-<p>这时候SPV节点通过去看这笔交易所在区块之后的区块个数，Block个数越多说明该区块被全网更多节点共识，一般来说，一笔交易所属区块之后的区块个数达到6个时，就说明这笔交易是被大家核准过（达成共识）的，没有重花，而且被篡改的可能性也很低。</p>
-<p>Merkle Path Proof是指假设区块链系统中某个区块中存在A，B，C，D四笔交易，则为了确认交易C是否存在，需要得到交易C到Merkle Tree根节点上整条路径中的其余哈希值，以下图为例就是需要得到N3，N4哈希值，通过验证根节点的哈希一致性确认交易C存在于区块中。</p>
-<h3 id="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"><a href="#什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？" class="headerlink" title="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"></a>什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？</h3><p>比特币交易中的基础构建单元是交易输出。交易输出是比特币不可分割的基本组合，记录在区块上。比特币完整节点跟踪所有可找到的和可使用的输出，称为 “未花费的交易输出”即UTXO；所有UTXO的集合被称为UTXO集。比特币“余额”：用户钱包中可用UTXO总和，分散在多个交易和区块中。通过钱包所控制的密钥控制UTXO花费行为。UTXO是面值为“聪”的离散且不可分割的价值单元，一个UTXO只能在一次交易中作为一个整体被消耗。一笔比特币交易通过使用所有者的签名来解锁UTXO，并通过使用新的所有者的比特币地址来锁定并创建UTXO。</p>
-<p>UTXO 模型的优点：如果用户启用了新的地址用于转账和交易，新地址与原地址之间的关系很难被追踪，更好保证用户的隐私；UTXO 模型理论上来说可以并行地签发多笔交易，并广播到网络中；</p>
-<h3 id="比特币区块链有哪几种分叉，每种分叉的原因是什么？"><a href="#比特币区块链有哪几种分叉，每种分叉的原因是什么？" class="headerlink" title="比特币区块链有哪几种分叉，每种分叉的原因是什么？"></a>比特币区块链有哪几种分叉，每种分叉的原因是什么？</h3><p>临时分叉：算法导致的分叉，通过最大工作量证明保证最终收敛性。</p>
-<p>硬分叉：出现了旧规则禁止，新规则允许的行为。</p>
-<p>软分叉：出现了旧规则允许，新规则禁止的行为。</p>
-<p>举例说明比特币的链上扩容和链下扩容。<br>链上扩容是在区块链基层协议上实现的扩容解决方案，它需要通过改变区块容量或者数据结构来达到提高处理交易能力的目的。包括：比特币采用的隔离见证+2MB硬分叉，比特币现金升级区块容量，以及以太坊分片技术</p>
-<p>链下扩容是不改变公链基础协议的一种应用层上的扩展方案。它不改动区块链本身的规则。包括状态通道、侧链等解决方案。</p>
-<p>举例说明侧链的典型应用场景。<br>侧链技术就是为了方便数字资产在不同区块链间互相转移，在两条链完全独立的情况下，将不同的区块链互相连接在一起，以实现区块链的扩展，使两者能够“互相操作，实现交互”的一种跨区块链解决方案。</p>
-<p>BTC Relay是一个典型应用场景，本质上是在以太坊上用合约重写了比特币的spv验证规则。其主要原理是把以太坊网络与比特币网络以一种安全去中心化的方式连接起来。通过使用以太坊的智能合约功能来验证比特币交易。BTC Relay使用区块头创建一种小型版本的比特币区块链，以太坊DApp开发者可以从智能合约向BTC Relay进行API调用来验证比特币网络活动。</p>
-<h3 id="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"><a href="#说明闪电网络解决了比特币系统的什么问题及其如何解决的？" class="headerlink" title="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"></a>说明闪电网络解决了比特币系统的什么问题及其如何解决的？</h3><p>比特币的交易网络，全网每秒 7 笔的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认花费约 1 个小时的最终确认时间。闪电网络是将大量交易放到比特币区块链之外进行。闪电网络通过智能合约来完善链下的交易渠道。核心的概念主要有两个：RSMC和 HTLC。前者解决了链下交易的确认问题，后者解决了支付通道的问题。</p>
-<h3 id="以太坊解决了比特币的哪些问题？"><a href="#以太坊解决了比特币的哪些问题？" class="headerlink" title="以太坊解决了比特币的哪些问题？"></a>以太坊解决了比特币的哪些问题？</h3><p>1.缺少图灵完备性，比特币不能支持所有的计算，如循环控制等。2价值盲，UTXO的不可分割性，使得其不能为账户的取款额度提供精细的控制。3缺少状态， UTXO只能用于建立简单的、一次性的合约，没有给需要任何其它内部状态的多阶段合约或者脚本留出生存空间。4区块链盲，UTXO看不到区块链的数据5交易确认时间太长。</p>
-<p>以太坊的发展经历过那几个阶段，每个阶段进行了哪些重大升级？<br>以太坊的发展分成四个阶段：Frontier、Homestead、Metropolis和Serenity。</p>
-<h3 id="简述以太坊技术体系，每层提供哪些功能服务。"><a href="#简述以太坊技术体系，每层提供哪些功能服务。" class="headerlink" title="简述以太坊技术体系，每层提供哪些功能服务。"></a>简述以太坊技术体系，每层提供哪些功能服务。</h3><p>应用层：DApps，以太币钱包，以太币浏览器 合约层：Solidity，EVM，eWASM 激励层：以太币，Gas共识层：PoW，PoW和PoS混合，PoS 网络层：DEVp2p，RLPx，Discv4 数据层：数据结构，数据模型，分片技术，哈希函数，数字签名，非对称加密 存储层：LevelDB，ethdb模块，日志模块</p>
-<h3 id="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"><a href="#简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。" class="headerlink" title="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"></a>简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。</h3><p>交易树：树叶里是交易<br>收据树：树叶里是交易生成的收据<br>状态数：树叶里是交易影响到的账户状态<br>基于Merkle Patricia Trie/tree（MPT）构建三棵树，通过三棵树根哈希，分别建立于区块头相应字段的映射关系<br>交易树根哈希：交易字典树根的RLP hash值（key：交易编号；Value：交易内容）<br>收据树根哈希：收据字典树根的RLP hash值（key：索引编号；Value：收据内容）<br>状态树根哈希：状态字典树根的RLP hash值（key：账户地址；Value：账户内容）</p>
-<h3 id="什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"><a href="#什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？" class="headerlink" title="什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"></a>什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？</h3><p>Patricia Trie，又称基数树，是一种存储空间优化的Trie树。</p>
-<p>MPT（Merkle Patricia Trie/Tree）融合了Patricia Trie和Merkle Tree的优点。其中Merkle树用于交易存在和完整性的校验，Patricia树用于优化字典树的空间利用率，同时提升读写效率。</p>
-<p>如果直接将Merkle Tree来存放以太坊账户状态，那么存放全球账户数据太多，占内存和存储空间，账户状态多变，修改困难。</p>
-<p>以太坊对其进行了以下方面的优化：1）提高操作效率：引入多种类型节点和压缩前缀2）安全性：每节点利用其哈希被引用，可在LevelDB中查询；而非内存地址。</p>
-<p>Key：节点的RLP编码的SHA3哈希值。</p>
-<p>Value：节点的RLP编码。</p>
-<p>想获得一个非叶节点的子节点，只需要根据子节点的hash访问数据库获得节点的RLP编码，然后解码。</p>
-<h3 id="以太坊账户类型有哪些？它们之间有何区别？"><a href="#以太坊账户类型有哪些？它们之间有何区别？" class="headerlink" title="以太坊账户类型有哪些？它们之间有何区别？"></a>以太坊账户类型有哪些？它们之间有何区别？</h3><p>对比项 外部拥有账户 合约账户<br>以太币余额 有 有<br>输内容 交易 交易或消息<br>控制 私钥 合约代码<br>地址 公钥决定 由合约创建者地址和Nonce计算得<br>代码 不包含代码 包含代码</p>
-<h3 id="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"><a href="#什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？" class="headerlink" title="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"></a>什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？</h3><p>GHOST协议解决当前快速确认的区块链因区块高作废率而受到低安全性困扰的问题。GHOST协议是根据最重子树选择主链。</p>
-<p>相较比特币而言，以太坊产生区块的间隔时间更短，更易出现区块链分叉产生孤块，通过将产生孤块的算力也被包含进来，有效的增强了安全性。同时通过给叔区块奖励，避免出现像比特币那样计算力高度集中的矿池。 产生叔区块的矿工将获得的奖励为：（叔区块ID+8-当前区块ID）×区块奖励/8。将叔区块链接到区块链上的奖励为：每链接一个叔区块获得区块奖励/32个以太币的奖励，最多链接两个叔区块。</p>
-<h3 id="以太币和Gas有何关系？"><a href="#以太币和Gas有何关系？" class="headerlink" title="以太币和Gas有何关系？"></a>以太币和Gas有何关系？</h3><p>以太坊中两种不同的计量单位gas存在于EVM中；</p>
-<p>ether存在于以太坊账户中。</p>
-<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
-<p>用户可以通过向以太坊账户中充值以太币，由以太坊客户端自动购买用户指定操作最大支出的gas，同时在操作结束时将剩余的gas转换成以太币返还到用户的以太坊账户。gas与以太币两者分开，gas单位与具备自然成本的运算单位一致，而ether的价格通常会由于市场力量产生波动。</p>
-<h3 id="以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？"><a href="#以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？" class="headerlink" title="以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？"></a>以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？</h3><p>Storage<strong>（账户存储）</strong>每个账户有一块保存在区块链上的持久性存储，称为 storage。这是一个将256位字映射到256位字的 key-value 存储区，均为32字节；未使用Key-Value值为0，非0值代表已占用。永久储存在区块链中，读写的 gas 开销也最大。</p>
-<p>Memory<strong>（内存）</strong>每一次消息调用，会临时获取一块干净的内存空间。生命周期仅为整个方法执行期间，函数调用后回收，按照可寻址字节数组来存储，读写 gas 开销较小。</p>
-<p>Stack<strong>（栈）</strong>EVM是基于栈的，几乎免费使用的内存，但有数量限制。栈中每个元素是32字节，最多容1024个元素。</p>
-<h3 id="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？"><a href="#简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？" class="headerlink" title="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？"></a>简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？</h3><p>第一步：生成种子，根据区块块头信息计算出一个种子。</p>
-<p>第二步：伪随机数据集，根据种子生成一个大小为16M的伪随机数据集，每30000个区块进行一次更新，用于轻客户端存储缓存。</p>
-<p>第三步：DAG数据集，根据伪随机数据集生成大小1G的大规模数据集。该数据集中每项元素通过伪随机数据集中少量的几项计算得到。</p>
-<p>第四步：挖矿，通过header及nonce计算出一个初始的哈希值映射到初始位置A，然后读取A位置元素和A的相邻后一个位置A’的元素，再通过（A和A’）计算出位置（B和B’），以此类推，迭代64次后，一共读取出128个数，最后计算这128个数的哈希值与目标值target比较，若满足target，则挖矿成功；否则重新尝试nonce。ASIC芯片主要优势是算力强，但在内存访问的性能上没有那么大的优势，所以能设计出一个对内存要求很高的puzzle，就能起到遏制ASIC芯片的作用。</p>
-<h1 id="复习简化-from-confucian-e"><a href="#复习简化-from-confucian-e" class="headerlink" title="复习简化 from confucian-e"></a>复习简化 from confucian-e</h1><h3 id="BlockChian"><a href="#BlockChian" class="headerlink" title="BlockChian"></a>BlockChian</h3><p>为什么说区块链技术应用是从信息互联网到价值互联网</p>
-<p>（围绕“不可复制”、“确权”、“价值交换”）。</p>
-<p>区块链部署的三种形式，每种形式的特点，我国以哪种为主</p>
-<p>公有链：节点加入无需准许，人人都可参与网络共识，任意读取数据，执行交易；PoW、PoS等。<br>联盟链：节点加入需要准许，多个机构组成联盟，数据读写等操作由联盟成员决定，效率高，节点可信度高；PBFT、Raft等。<br>私有链：写入权限掌握在一个组织内部，读取或开放或限制。<br>国内以联盟链为主。</p>
-<p>区块链的六层架构</p>
-<p>应用层：dapp<br>合约层：智能合约<br>激励层：挖矿<br>共识层：共识机制<br>网络层：P2P<br>数据层：数据结构，数据库<br>公有链激励层中的分配机制和发行机制</p>
-<p>发行<br>ICO<br>IPO<br>IEO<br>公私募<br>分配<br>空投<br>流动性挖矿<br>质押挖矿<br>社区成员分配</p>
-<h3 id="Bitcoin"><a href="#Bitcoin" class="headerlink" title="Bitcoin"></a>Bitcoin</h3><p>比特币区块头数据结构，每个字段长度及意义</p>
-<p>区块头包含：上一个区块头哈希、默克尔树根哈希、版本号、时间戳、当前挖矿难度、随机数；共80个字节，前2个各32位，后4个各4位。</p>
-<p>比特币密钥和地址生成过程，为什么通过地址推导公钥哈希</p>
-<p>私钥：256位由0和1组成的随机数，以64位16进制显示。</p>
-<p>公钥：私钥通过一个椭圆曲线算法(ECDSA)计算而来，不可逆，即不能根据公钥倒推私钥。</p>
-<p>地址：公钥先通过单向哈希(SHA256, RIPEMD160)计算出公钥哈希，公钥哈希通过Base58check编码得到地址。</p>
-<p>因为地址是公钥哈希通过Base58check编码得来的，所以地址逆向变换可得公钥哈希。</p>
-<p>比特币交易流程</p>
-<p>交易的创建：线上线下都可。<br>广播交易：广播到P2P网络，全网节点收到验证。<br>交易验证与挖矿：从交易池中选一系列交易，矿工挖出区块。<br>交易确认：待新块中全部交易验证完成后，各节点将该块添加到区块链尾部（上链）。<br>确认有效：经过6个区块（1个小时）确认后即有效，永久保存于链上。<br>锁定脚本与解锁脚本位置</p>
-<p>锁定脚本在输入列表中，解锁脚本在输出列表中。</p>
-<p>P2PKH执行过程，出入栈变化</p>
-<p>签名(sig)入栈。<br>公钥(PubK)入栈。<br>复制栈顶的公钥(DUP)。<br>对栈顶的公钥进行哈希(HASH160)。<br>压入公钥哈希(PubKHash)。<br>判断栈顶的2个公钥哈希是否相等(EQUALVERIFY)，相等后这2个出栈。<br>根据公钥检验签名(CHECKSIG)，正确后都出栈，栈顶显示TRUE。<br>比特币分叉类型及原因</p>
-<p>临时分叉：算法导致，同时挖出2个甚至多个块。<br>硬分叉：升级系统，新规则无法向前兼容，旧节点无法认可新节点的区块。<br>软分叉：升级系统，可以向前兼容。</p>
-<h3 id="Ethereum"><a href="#Ethereum" class="headerlink" title="Ethereum"></a>Ethereum</h3><p>以太坊解决了比特币的哪些问题</p>
-<p>缺少图灵完备：比特币脚本语言非图灵完备。<br>价值盲：UTXO不可分割，转账金额不能精细控制。<br>缺少状态：UTXO只有是否花费，不能构建复杂合约。<br>区块链盲：看不到区块链的数据<br>速度慢：交易确认时间长，TPS低<br>以太坊发展的4个阶段</p>
-<p>前沿(Frontier)<br>家园(Homestead)<br>大都会(Metropolis)<br>宁静(Serenity)<br>以太坊区块头的三棵树及作用</p>
-<p>交易树：存交易<br>收据树：存交易生成的收据<br>状态树：存账户状态<br>以太坊账户类型</p>
-<p>外部拥有账户(EOA)和合约账户(CA)</p>
-<p>以太币(ether)与gas的区别</p>
-<p>以太坊中2种不同的计量单位。</p>
-<p>gas存在于EVM中；ether存在于以太坊账户中，最小货币单位为wei。</p>
-<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
-<p>以太坊虚拟机可访问存储数据的空间有哪些，各自特点</p>
-<p>Storage：链上永久存储，gas开销大。<br>Memory：临时存储，生命周期为方法执行期间，gas开销小。<br>Stack：EVM不是基于寄存器，而是基于栈。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>股票入门</title>
-    <url>/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h1 id="计算机网络复习资料"><a href="#计算机网络复习资料" class="headerlink" title="计算机网络复习资料"></a>计算机网络复习资料</h1><h2 id="一-计算机网络概述"><a href="#一-计算机网络概述" class="headerlink" title="一.计算机网络概述"></a>一.计算机网络概述</h2><h3 id="计算机网络的概念："><a href="#计算机网络的概念：" class="headerlink" title="计算机网络的概念："></a>计算机网络的概念：</h3><h4 id="1-计算机网络的定义："><a href="#1-计算机网络的定义：" class="headerlink" title="1.计算机网络的定义："></a>1.计算机网络的定义：</h4><p>计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路链接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。</p>
-<span id="more"></span>
-
-<h4 id="2-计算机网络的组成："><a href="#2-计算机网络的组成：" class="headerlink" title="2.计算机网络的组成："></a>2.计算机网络的组成：</h4><p><strong>终端系统/资源子网</strong>：提供共享的软件资源和硬件资源<br><strong>通信子网</strong>：提供信息交换的网络结点和通信线路。</p>
-<h4 id="3-计算机网络的类型："><a href="#3-计算机网络的类型：" class="headerlink" title="3.计算机网络的类型："></a>3.计算机网络的类型：</h4><p><strong>按照拓朴分类</strong>： 星型结构 树形结构 总线型结构 环形结构 网状结构<br><strong>按照范围分类</strong>：局域网 LAN 城域网 MAN 广域网 WAN 补充：个人区域网 PAN 互联网 Internet<br><strong>按照传输方式分类</strong>：有线网络（IEEE802.3） 无线网络：（ IEEE802.11 WLAN 无线局域网（wireless） WPAN 无线个域网）</p>
-<h3 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h3><h4 id="1-传输方式："><a href="#1-传输方式：" class="headerlink" title="1.传输方式："></a>1.传输方式：</h4><p><strong>按照传输的方向分</strong>：<br><strong>单工</strong>：只能单方向传输的工作模式<br><strong>双工</strong>：在同一时间，线路上只能允许一个方向的数据通过<br><strong>全双工</strong>：双方可以同时进行数据通信<br><strong>按照传输对象（方式）分</strong>：<br><strong>单播</strong>： 1 对 1<br><strong>多播</strong>：1 对多<br><strong>广播</strong>：1 对 all</p>
-<h4 id="2-数据交换："><a href="#2-数据交换：" class="headerlink" title="2.数据交换："></a>2.数据交换：</h4><p><strong>电路交换</strong>：整个报文从源头到终点连续的传输<br><strong>报文交换</strong>：整个报文先传达到相邻节点，全部存储下来查找转发表，再转发到下一个节点<br><strong>分组交换</strong>：将一个报文分成多个分组，传送到相邻结点，在查找转发表，在转发到下一个结点</p>
-<h4 id="3-通信协议和体系结构："><a href="#3-通信协议和体系结构：" class="headerlink" title="3.通信协议和体系结构："></a>3.通信协议和体系结构：</h4><p><strong>网络协议三要素</strong>：语法 语义 时序<br><strong>OSI 参考模型</strong>：<br><strong>应用层</strong>：使用应用程序通过网络服务。<br><strong>表示层</strong>：表示层用于处理交互数据的表示方式，例如格式转换，数据的加密和解密，数据压缩和回复等功能<br><strong>会话层</strong>：负责维护通信中两个结点之间的会话建立维护和断开，以及数据的交换<br><strong>传输层</strong>：提供端到端之间的数据传输服务，实现对数据进行控制和操作的功能。<br><strong>网络层</strong>：单位 分组，在数据链路层的基础之上，提供点到点之间的通信，提供路由功能，实现拥塞控制，网络互联等功能。<br><strong>数据链路层</strong>：单位 帧，在物理层的基础之上，提供结点到结点之间的服务，采取差错控制和流量控制的方法实现网路互联<br><strong>物理层</strong>：单位 bit，利用传输介质为通信的网络节点之间的建立<br>TCP/<strong>IP 参考模型</strong>：<br><strong>网络接口层</strong>：物理层和数据链路层<br><strong>网际层</strong>：网络层<br><strong>传输层</strong><br><strong>应用层</strong>：会话层，表示层，应用层</p>
-<hr>
-<h2 id="二-物理层"><a href="#二-物理层" class="headerlink" title="二.物理层"></a>二.物理层</h2><h3 id="1-物理层的基本概念："><a href="#1-物理层的基本概念：" class="headerlink" title="1.物理层的基本概念："></a>1.物理层的基本概念：</h3><h4 id="1-1-四大特性："><a href="#1-1-四大特性：" class="headerlink" title="1.1 四大特性："></a>1.1 四大特性：</h4><p>机械特性：接口是怎么样的<br>电气特性：用多少伏的电<br>功能特性：线路上电平电压的特性<br>过程特性：实现不同功能所发射信号的顺序</p>
-<h4 id="1-2-两种信号："><a href="#1-2-两种信号：" class="headerlink" title="1.2 两种信号："></a>1.2 两种信号：</h4><p>模拟信号—特定频段的信号—有更加丰富的表现形式——抗干扰能力弱<br>数字信号—不是 1 就是 0——–抗干扰能力强</p>
-<h4 id="1-3-调制和编码："><a href="#1-3-调制和编码：" class="headerlink" title="1.3 调制和编码："></a>1.3 调制和编码：</h4><p>调制：模拟信号转换<br>编码：<br>数字信号转换<br>编码的步骤：采样 量化 编码<br>区别：<br>数据可以通过编码手段转成数字信号，也可以通过调制手段将数据转成模拟型号。<br>数字数据可以通过数字发送器转化为数字信号（编码），也可以通过调制器转化为模拟信号。<br>模拟信号可以通过 PCM 编码器转化为数字信号（编码），也可以通过放大器调制器转化为模拟型号（调制）。</p>
-<h4 id="1-4-传输介质："><a href="#1-4-传输介质：" class="headerlink" title="1.4 传输介质："></a>1.4 传输介质：</h4><p>双绞线：<br>传输距离 100-500（集线器 最多四个，超过就失真了）<br>屏蔽双绞线 STP：抗干扰强，贵一些<br>非屏蔽双绞线：便宜，抗干扰差<br>制作标准：<br>568B：橙白，橙，绿白，蓝，蓝白，绿，棕白，棕 ：八种<br>568A：12，26 调换—绿白，绿，绿白，蓝，蓝白，橙，棕白，棕<br>光纤：<br>多模光纤：<br>芯较粗（50 或 62.5）。可以传多种模式的光。但其模间色散较大，这就限制了传输数字信号的频率，而且随距离的增加会更加的严重。例如：600MB/KM 的光纤在 2KM 时只有 300MB 的宽带了。因此多模光纤传输距离就比较的近，一般只有几公里。<br>距离：2KM<br>单模光纤：<br>单模光纤：中间纤芯很细（芯径一般是 8-10），只能传一种模式的光，因此。其模间色散很小，适合语远程通讯，但还存在着材料色散和波导色散，这样单模光纤对光源的谱宽和稳定性有较高的要求，即谱宽要窄。稳定性要好。<br>距离：100KM<br>同轴电缆：淘汰了<br>无线：无线信号频率 IEEE802.11</p>
-<h4 id="1-5-三大部分："><a href="#1-5-三大部分：" class="headerlink" title="1.5 三大部分："></a>1.5 三大部分：</h4><p>源系统：发送数据的一端<br>传输系统：传输过程中的各种传输介质<br>目的系统：接收数据的电脑</p>
-<h3 id="2-物理层的基本通信技术"><a href="#2-物理层的基本通信技术" class="headerlink" title="2.物理层的基本通信技术"></a>2.物理层的基本通信技术</h3><h4 id="2-1-四种信道复用技术"><a href="#2-1-四种信道复用技术" class="headerlink" title="2.1 四种信道复用技术"></a>2.1 四种信道复用技术</h4><h5 id="2-1-1-复用技术"><a href="#2-1-1-复用技术" class="headerlink" title="2.1.1 复用技术"></a>2.1.1 复用技术</h5><p>复用技术是指一种在传输路径上综合多路道信道，然后恢复原机制或则解除终端各信道复用技术的过程<br>将多种不同的信号在同一信道上进行传输，复用技术主要是用来解决不同信号传输时应该如何区分。</p>
-<h5 id="2-1-2-频分复用-FDM"><a href="#2-1-2-频分复用-FDM" class="headerlink" title="2.1.2 频分复用 FDM"></a>2.1.2 频分复用 FDM</h5><p>频分多路复用，是在适于某种传输媒介的传输频带内，若干个频谱互不重叠的信号一并传输的方式，简称 FDM。在每路信号进入传输频带前，先要以此搬移频率（调制），而在接收端，在搬回到原来的频段，恢复每路的原信号，从而使传输频带得到多路信号的复用。<br>划分不同频率来并行传输信号</p>
-<h5 id="2-1-3-时分复用-TDM"><a href="#2-1-3-时分复用-TDM" class="headerlink" title="2.1.3 时分复用 TDM"></a>2.1.3 时分复用 TDM</h5><p>时分复用 TDM 是采用同一物理连接的不同时段来传输不同的信号，也能达到多路传输的此目的。时分多路复用以时间作为信号分割的参量，故必须使各路信号在时间轴上互不重叠。时分复用 TDM 就是将提供给整个信道传输信息的时间划分为若干时间片（简称时隙），并将这些时隙分给每一个信号源使用<br>划分不同的时间段来传输信号</p>
-<h5 id="2-1-4-波分复用-WDM（波）"><a href="#2-1-4-波分复用-WDM（波）" class="headerlink" title="2.1.4 波分复用 WDM（波）"></a>2.1.4 波分复用 WDM（波）</h5><p>是将两种或多种不 i 同波长的光载波信号（携带各种信息）在发送端经复用器（亦称合波器）汇合在一起，并耦合到光线路的同一根光纤中进行传输技术<br>根据光波的波长进行传输（合波器耦合）</p>
-<h5 id="2-1-5-码分复用"><a href="#2-1-5-码分复用" class="headerlink" title="2.1.5 码分复用"></a>2.1.5 码分复用</h5><p>码分复用 CDM 是靠不同的编码来区分各路原始信号的一种复用方式，主要和各种多址技术结合产生了各种接入技术，包括无线和有线接入。<br>在同一时间同一频率根据传输的数据码进行区分</p>
-<h4 id="2-2-数据传输方式"><a href="#2-2-数据传输方式" class="headerlink" title="2.2 数据传输方式"></a>2.2 数据传输方式</h4><h5 id="2-2-1-通过同时间传输数量分为"><a href="#2-2-1-通过同时间传输数量分为" class="headerlink" title="2.2.1 通过同时间传输数量分为"></a>2.2.1 通过同时间传输数量分为</h5><p>串行传输<br>使用一条数据线，将数据一位一位的依次输入，每一位数据占据一个固定的时间长度。只需要少数几条先就可以在系统间交换信息，特别适用于计算机语计算机，外设之间的远距离通信。<br>并行传输<br>并行传输指的是数据以成组的方式，在多条并行信道上同时进行传输，是在传输中有多个数据位同时在设备之间进行的传输。</p>
-<h5 id="2-2-2-通过数据报文的双方的行为分为"><a href="#2-2-2-通过数据报文的双方的行为分为" class="headerlink" title="2.2.2 通过数据报文的双方的行为分为"></a>2.2.2 通过数据报文的双方的行为分为</h5><p>同步传输<br>同步：在计算机网络中，定时的因素称为位同步。同步是要接收按照发送放放送的每个位的起止时刻和速率来接受数据，否则会产生误差。<br>同步传输的比特分组要大得多。他不会独立的发送每个字符，每个字符都有自己的开始位和停止位，而是把他们组合起来发送。我们将这些组合称为数据帧，或简称帧<br>异步传输：<br>异步传输将比特分成小组进行传输，小组可以是 8 位的 1 个字符或更长。发送方可以在任何时刻发送这些比特组，而接受方从不知道它们会在什么时候到达。</p>
-<h4 id="3-3-通过传输的信号分"><a href="#3-3-通过传输的信号分" class="headerlink" title="3.3 通过传输的信号分"></a>3.3 通过传输的信号分</h4><p>基带传输：传输数字信号叫做基带传输<br>频带传输：传输模拟信号叫做频带传输（300-3400HZ）</p>
-<h4 id="3-4-通过传输方向分"><a href="#3-4-通过传输方向分" class="headerlink" title="3.4 通过传输方向分"></a>3.4 通过传输方向分</h4><p>单工 半双工 全双工</p>
-<h4 id="3-5-通过传输对象分"><a href="#3-5-通过传输对象分" class="headerlink" title="3.5 通过传输对象分"></a>3.5 通过传输对象分</h4><p>单播 组播 广播</p>
-<hr>
-<h2 id="三-数据链路层"><a href="#三-数据链路层" class="headerlink" title="三.数据链路层"></a>三.数据链路层</h2><h3 id="1-数据链路层的基础概念"><a href="#1-数据链路层的基础概念" class="headerlink" title="1.数据链路层的基础概念"></a>1.数据链路层的基础概念</h3><h4 id="1-1-数据链路层的概念"><a href="#1-1-数据链路层的概念" class="headerlink" title="1.1 数据链路层的概念"></a>1.1 数据链路层的概念</h4><p>数据链路层是在物理层和网际层之间的协议，提供相邻结点的可靠数据传输</p>
-<h4 id="1-2-帧的概念"><a href="#1-2-帧的概念" class="headerlink" title="1.2 帧的概念"></a>1.2 帧的概念</h4><p>数据链路层的协议数据单元<br>组成：<br>帧头：源 MAC 地址，目的 MAC 地址，类型（MAC 地址用于在网络中唯一标示一个网卡，一台设备若有一或多个网卡，则每个网卡都需要并会有一个唯一的 MAC 地址）<br>数据<br>帧尾：校验</p>
-<p>1.3 以太网数据帧中的 MAC 和 LLC<br>MAC（一种协议，对接物理层）<br>MAC 介质控制访问<br>作用：数据帧的封装/卸载，帧的寻址和识别，帧的接收语发送，链路的管理，帧的差错控制等。MAC 子层的存在屏蔽了不同的物理链路层种类的差异性<br>LLC（对接网络层）<br>LLC 逻辑控制访问<br>作用：LLC 子层的主要功能为传输可靠性保障和控制，数据包的分段与重组。数据包的顺序传播。<br>注解：<br>该协议位于 OSI 七层协议中数据链路层，数据链路层分为上层 LLC（逻辑链路控制），和下层的 MAC（媒体访问控制），MAC 主要负责控制与链接物理层的物理介质。在发送数据的时候，MAC 协议可以事先判断是否发送数据，如果可以发送将给数据加上一些控制信息，最终将数据以及控制信息以规定的格式发送到物理层；在接收数据的时候，MAC 协议首先判断输入的信息并是否发生传输错误，如果没有错误，则去掉控制信息发送至 LLC（逻辑链路控制）层。</p>
-<p>1.4 数据链路层的两种传输方式<br>单播 广播<br>1.5 数据链路层的三个基本问题（***）<br>封装成帧（PPP）<br>封装成帧就是在一段数据的前后分别添加首部和尾部，这样就构成了一个帧，接收端在收到物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束。<br>透明传输<br>透明传输是指不管所传数据是什么样的比特组合，都应当能够在链路上传输<br>差错检测（奇数校验 偶数校验 CRC：需要计算）<br>收到正确的帧就要向发送端发送确认，发送算在一定的期限内若没有收到对方的确认，就认为出现了差错，因而就进行重传，直到收到对方的确认为止，<br>1.6 局域网中的设备<br>网桥（在物理层和数据链路层之间）<br>两个端口的交换机<br>集线器（在物理层 共享带宽）<br>集线器的英文为：“HUB”是“中心”的意思，集线器的主要功能是对接受的信号进行再生整形放大，以扩大网络的传输距离，同时把所有结点集中在以它为中心的结点上。<br>交换机（数据链路层 独享带宽）<br>交换机（Switch）意为“开关”是一种用于电（光）信号转发的网络设备。它可以为接入交换机的任意两个网络结点提供独享的电信号通路。最常见的交换机式以太网交换机。<br>2 数据链路层的通信协议<br>2.1 冲突域和广播域<br>冲突域<br>交换机的每一个端口都是一个冲突域；冲突域只能发生在一个网段<br>广播域<br>交换机的所有端口都在一个广播域；广播域在一个或多个网段内发生<br>区别<br>广播域可以跨网段<br>冲突域是基于第一层（物理层），而广播域是基于第二层（数据链路层）<br>HUB 所有端口都在同一个广播域，冲突域内，Switch 所有端口都在同意广播域内，而每一个端口就是一个冲突域。<br>同一冲突域共享宽带<br>2.2 虚拟局域网（实验）VLAN<br>VLAN（Virtual local Area Network）即虚拟局域网，是将一个物理的 LAN 在逻辑上划分成多个广播域的通信技术。VLAN 间不能直接通信，而 VLAN 间不能直接通信，从而将广播报文限制在一个 VLAN 内。<br>优点和目的<br>划分广播域：减少垃圾数据<br>增强局域网的安全性<br>提高健壮性<br>灵活构建工作组<br>划分 VLAN 的方式<br>基于端口<br>给交换机的每个接口配置不同的 PVID，当一个数据帧进入交换机接口时，如果没有带 VLAN 标签，且该接口上配置了 PVID。如果进入的帧已经带有 VLAN 标签，那么交换机不会在增加 VLAN 标签，即使接口已经配置了 PVID<br>Access：只允许通过一个 VLAN<br>Trunk：允许通过多个 VLAN<br>Hybird<br>基于子网<br>配置好子网域 VLAN 映射表，如果交换设备收到的是 untagged（不带 VLAN 标签）帧，交换设备根据报文中的源 IP 地址信息，确认添加的 VLAN iD。将指定网段或 IP 地址发出的报文在指定的 VLAN 中传输，减轻了网络管理着的任务量，且有利于管理<br>基于 MAC 地址<br>先配置好 MAC 地址和 VLAN 映射关系表，当终端用户的物理位置发生改变，不需要重新配置 VLAN。提高了终端用户的安全性和接入的灵活性<br>基于协议<br>将网络中提供的服务类型域 VLAN 相绑定，方便管理和维护。需要对网络中所有的协议类型和 VLAN ID 的映射关系表进行初始配置。需要分析各种协议的地址格式并进行相应的转换，消耗交换机较多的资源，速度上稍具劣势。<br>基于匹配策略<br>先在交换机上配置好终端的 MAC 地址和 IP 地址，并与 VLAN 并联。只有符合条件的终端才能加入指定 VLAN。符合策略的终端加入指定 VLAN 后，严禁修改 IP 地址和 MAC 地址，否则会导致终端从指定 VLAN 中退出。<br>2.3：CSMA/CD（总线型）<br>CSDN/CD 即载波侦听多路访问/冲突检测，是广播信道中采用一种随机访问技术的竞争型访问方法，具有多目标地址的特点，总线型网络传输数据<br>四大特点（重要）<br>先听再发<br>边听边发<br>冲突停止<br>延迟后发<br>2.4：PPP（单播）<br>点对点通信是一对一通道，因此不会发生碰撞，因此比较简单，采用 PPP 协议；其中 PPP 协议就是用户计算机和 ISP（互联网服务提供商）进行通信时使用的数据链路层的协议<br>PPP 最初设计是为两个对等节点之间的 IP 流量传输提供一种封装协议。<br>2.5：CRC（需要单独的深入学习）<br>循环冗余校验<br>是数据通信领域中最常用的一种查错校验码，其特征是信息字段和校验字段的长度可以任意选定。循环冗余检查（CRC）是一种数据传输检错功能。l<br>例题：要发送的数据为 1101011011，采用 CRC 的生成多项式是 P（x）=x^4+x+1.求余数。</p>
-<h2 id="四-网络层"><a href="#四-网络层" class="headerlink" title="四.网络层"></a>四.网络层</h2><p>1.网络层的作用<br>提供端到端的服务 单位：分组<br>网络层的目的是实现两个端系统之间的数据透明传输，具体功能包括寻址和路由选择，连接的建立，保持和终止等。它提供的服务使传输层不需要了解网络中的数据传输和交换技术。 2.网际层协议 IP<br>ARP 地址解析协议<br>根据 IP 地址获取物理地址<br>RARP 反地址解析协议<br>ICMP 网际控制报文协议<br>通过 ICMP 传输控制消息，控制消息是指网络通不通，主机是否可达，路由是否可用等网络本身的消息。<br>IGMP 网际组管理协议<br>适用于管理协议多播组成员的一种通信协议。IP 主机和相邻路由器利用 IGMP 来创建多播组的组成员。组播方式解决了单播情况下数据的重复拷贝及带宽的重复占用，也解决了广播方式下带宽资源的浪费<br>3.IP 地址<br>3.1IP 地址的概念<br>IP 地址使 IP 协议提供的一种统一的地址格式，他为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。<br>组成：一个 IP 地址由 4 个字节，32 位组成，一般用点分十进制的方式表现，<br>IP 地址和 MAC 地址的区别<br>IP 地址是一个逻辑地址，MAC 地址是物理地址<br>MAC 地址是唯一的但是 IP 地址不受唯一的<br>MAC 地址主要是工作在第二层，IP 地址在网际层<br>MAC 地址是 48 位，IP 地址一般是 32 位（v6 是 128 位）<br>IP 地址的分配取决于网络拓扑，MAC 地址分配取决于制造商<br>3.2IP 地址的组成<br>主机地址和网络地址组成的<br>主机地址/主机号<br>标识某一台设备的地址<br>网络地址/网络号<br>标识某一网段的地址<br>子网掩码<br>子网掩码用于区分网络号和主机号<br>它是一种用来指明一个 IP 地址的哪些位标识的是主机所在的子网，以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合 IP 地址一起使用。子网掩码只能有一个作用，就是将某一个 IP 地址划分成为网络地址和主机地址两部分<br>3.3IP 地址的分类<br>3.3.1A 类<br>一个 A 类 IP 地址是指，在 IP 地址的四段号码中，第一段号为网络号码，剩下的三段号码为本地计算机的号码。A 类 IP 地址中网络的标识长度为 8 位，主机标识的长度为 24 位，A 类网络地址数量较少，有 126 个网络，每一个网络可以容纳主机数量高达 1600 多万台. A 类 IP 地址 地址范围 1.0.0.1 到 127.255.255.254<br>第一个字节为网络号，第一个字节第一位为 0<br>3.3.2B 类<br>一个 B 类地址是指，在 IP 地址的四段号码中，前两段号码为网络号码。B 类 IP 地址中网络的标识长度为 16 位，主机标识的长度为 16 位，B 类网络地址适用于中等规模的网络，有 16384 个网络，每个网络所能容纳的计算机数 6 万多台。 B 类 IP 地址 地址范围 128.0.01-191.255.255.254<br>前两个字节为网络号，第一个字节前两位是 10<br>3.3.3C 类<br>一个 C 类 IP 地址是指，在 IP 地址的四段号码中，前三段号码为网络号码，剩下的一段号码为本地计算机的号码。C 类 IP 地址中网络的标识长度为 24 位，主机标识的长度为 8 位，C 网络地址数量较多，有 209 万余个网络。适用于小规模的局域网络，每个网络最多只能包含 254 台计算机。C 类 IP 地址范围 192.0.0.1-223.255.255.254<br>前三个字节为网络号，第一个字节前两位是 110<br>3.3.4D 类<br>D 类 IP 地址在历史上呗叫做多播地址，及组播地址。在以太网中，多播地址命名了一组应该在这个网络中应用接收到一个分组的站点。多播地址的最高位必须是“1110”，范围从 224.0.0.0 到 239.255.255.255<br>3.3.5E 类<br>保留<br>3.3.6 特殊地址<br>网络地址：主机号全为 0 的地址不可用<br>广播地址：主机号全为 1 的地址不可用<br>回环地址：127.0.0.0 测试使用<br>4.IPv6<br>因为 IPv4 地址满足不了需求，出现匮乏的情况，所以就诞生了 IPv6 地址继续使用。v6 地址由 128 位，16 字节组成，一般表现形式为十六进制。 4.网络层的路由<br>4.1 路由<br>路由是什么？<br>路由是指分组从源到目的地时，决定端到端路径的网络范围的进程。路由是指导报文转发的路径信息，通过路由可以确认转发 IP 报文的路径<br>路由是网络层最主要的工作任务<br>路由器<br>网络层的基础设备<br>数据转发<br>一个端口代表一个网段，路由器中存放着通往各个网段的表格，叫做路由表<br>路由表<br>又称路由择域信息库，是一个存储在路由器或者联网计算机中的电子表格（文件）或者类数据库。路由表存储着指向特定网络地址的路径<br>网关<br>又称网间连接器，协议转换器。用于两个高层协议不同的网络互连。网关既可以用于广域网互连，也可以用于局域网互连<br>路由获取方式<br>直连路由<br>静态路由<br>动态路由<br>4.2 路由的配置方式<br>静态路由<br>静态路由：由管理员手工配置，配置方便，对系统要求低，适用于拓扑结构简单稳定的小型网络<br>缺省路由：是一种特殊的路由，当报文没有在路由表中找到匹配的具体表项时才能使用的路由<br>动态路由<br>动态路由<br>通过动态路由协议来实现不同网段的路由互通<br>动态路由协议有自己的路由算法，能够自动适应网络拓扑的变化，适用于具有一定数量的三层设备的网络<br>动态路由协议<br>RPI<br>RPI：路由信息协议<br>基于矢量的动态路由协议<br>适用于中小规模的网络拓扑，最大跳数为 15<br>OSPF<br>OSPF:开放式最短路径优先<br>基于链路状态的路由<br>使用 SPF 算法，计算最短路径。树形协议<br>BGP<br>BGP 是自治系统间的路由协议。自治系统之间的路由协议<br>自治系统间的路由协议<br>IS-IS<br>IS-IS：中间系统到中间系统<br>与 OSPF 类似，IS-IS 是基于路由路划分区域，OSPF 利用接口划分<br>内部网关协议<br>RIP 和 OSPF 的区别<br>RIP 是基于矢量的协议，OSPF 是基于链路状态<br>RIP 适用于中小型网络拓扑，OSPF 适用于较大规模的网络<br>OSPF 支持可变长度子网掩码（VLSM）。RIP 不支持<br>ODPF 的收敛速度比 RIP 更加的迅速</p>
-<h2 id="五-传输层"><a href="#五-传输层" class="headerlink" title="五.传输层"></a>五.传输层</h2><p>1.传输层概念<br>1.1 传输层<br>传输层提供端到端服务<br>从通信和信息处理的角度看，传输层向上层应用层提供通信服务<br>所谓的端口，就好像是门牌号一样，客户端可以通过 IP 地址找到对应的服务器端，但是服务器端是有很多的端口的，每个应用程序对应一个端口号，通过类似门牌号的端口号，客户端才能真正的访问到该服务器。为了对端口号进行区分，将每个端口进行编号，这就是端口号<br>1.2 端口号<br>FTP：21（20）_<br>FTP（文件传输协议）<br>21 连接；20 传输数据<br>TELNET：23_：TELNET(远程登录)<br>SMTP：25*<br>SMTP(电子邮件传输协议)<br>POP3（邮局协议版本 3）：110<br>DNS：53<em>：DNS（域名系统）<br>TFTP：69：TFTP（简单文件传输协议）<br>HTTP：80</em>：HTTP（超文本传输协议）<br>SNMP：161：SNMP（简单网络管理协议）<br>HTTPS：443*：HTTPS（超文本传输安全协议） 2.传输层的两个重要协议<br>3.1TCP<br>传输控制协议：TCP<br>TCP 是 TCP/IP 体系中较为复杂的协议，是传输层中最重要的协议<br>TCP 的主要特点是：<br>TCP 是面向连接的传输层协议<br>TCP 提供可靠的交付服务<br>TCP 提供全双工通信<br>TCP 是面向字节流<br>窗口<br>固定窗口：如果窗口过小，当传输比较大的数据的时候需要不停的对数据进行确认，这个时候就会造成很大的延迟<br>滑动窗口：滑动窗口通俗的讲就是一种流量控制技术。它本质上是描述接收方 TCP 数据报缓冲区大小的数据，发送根据这个数据来计算自己最多能发送所长的数据，如果发送方收到接收方的窗口大小为 0 的 TCP 数据报，那么发送方将停止发送数据，等到接受方发送窗口大小不为 0 的数据报的到来<br>拥塞处理和流量控制<br>TCP 的三次握手和流量控制<br>3.2UDP<br>用户数据报协议：UDP<br>UDP 是在 IP 数据报服务之上增加了一些功能，增加了复用和分用的功能以及差错检测的功能<br>UDP 的主要特点是：<br>UDP 是无连接的<br>UDP 尽最大努力交付<br>UDP 面向报文且没有拥塞控制<br>UDP 开销较小传输效率较高<br>UDP 首部的概念<br>个人认为的复习重点(超级重要的 tcp)</p>
-<p>※传输层中的 TCP 和 UDP<br>TCP/IP 中有两个具有代表性的传输层协议，分别是 TCP 和 UDP。</p>
-<p>TCP 是面向连接的、可靠的流协议。流就是指不间断的数据结构，当应用程序采用 TCP 发送消息时，虽然可以保证发送的顺序，但还是犹如没有任何间隔的数据流发送给接收端。TCP 为提供可靠性传输，实行“顺序控制”或“重发控制”机制。此外还具备“流控制（流量控制）”、“拥塞控制”、提高网络利用率等众多功能。<br>UDP 是不具有可靠性的数据报协议。细微的处理它会交给上层的应用去完成。在 UDP 的情况下，虽然可以确保发送消息的大小，却不能保证消息一定会到达。因此，应用有时会根据自己的需要进行重发处理。<br>TCP 和 UDP 的优缺点无法简单地、绝对地去做比较：TCP 用于在传输层有必要实现可靠传输的情况；而在一方面，UDP 主要用于那些对高速传输和实时性有较高要求的通信或广播通信。TCP 和 UDP 应该根据应用的目的按需使用。</p>
-<ol>
-<li>端口号<br>数据链路和 IP 中的地址，分别指的是 MAC 地址和 IP 地址。前者用来识别同一链路中不同的计算机，后者用来识别 TCP/IP 网络中互连的主机和路由器。在传输层也有这种类似于地址的概念，那就是端口号。端口号用来识别同一台计算机中进行通信的不同应用程序。因此，它也被称为程序地址。</li>
-</ol>
-<p>1.1 根据端口号识别应用<br>一台计算机上同时可以运行多个程序。传输层协议正是利用这些端口号识别本机中正在进行通信的应用程序，并准确地将数据传输。</p>
-<p>1.2 通过 IP 地址、端口号、协议号进行通信识别<br>仅凭目标端口号识别某一个通信是远远不够的。</p>
-<p>① 和 ② 的通信是在两台计算机上进行的。它们的目标端口号相同，都是 80。这里可以根据源端口号加以区分。<br>③ 和 ① 的目标端口号和源端口号完全相同，但它们各自的源 IP 地址不同。<br>此外，当 IP 地址和端口号全都一样时，我们还可以通过协议号来区分（TCP 和 UDP）。<br>1.3 端口号的确定<br>标准既定的端口号：这种方法也叫静态方法。它是指每个应用程序都有其指定的端口号。但并不是说可以随意使用任何一个端口号。例如 HTTP、FTP、TELNET 等广为使用的应用协议中所使用的端口号就是固定的。这些端口号被称为知名端口号，分布在 0<del>1023 之间；除知名端口号之外，还有一些端口号被正式注册，它们分布在 1024</del>49151 之间，不过这些端口号可用于任何通信用途。<br>时序分配法：服务器有必要确定监听端口号，但是接受服务的客户端没必要确定端口号。在这种方法下，客户端应用程序完全可以不用自己设置端口号，而全权交给操作系统进行分配。动态分配的端口号范围在 49152~65535 之间。<br>1.4 端口号与协议<br>端口号由其使用的传输层协议决定。因此，不同的传输层协议可以使用相同的端口号。<br>此外，那些知名端口号与传输层协议并无关系。只要端口一致都将分配同一种应用程序进行处理。 2. UDP<br>UDP 不提供复杂的控制机制，利用 IP 提供面向无连接的通信服务。<br>并且它是将应用程序发来的数据在收到的那一刻，立即按照原样发送到网络上的一种机制。即使是出现网络拥堵的情况，UDP 也无法进行流量控制等避免网络拥塞行为。<br>此外，传输途中出现丢包，UDP 也不负责重发。<br>甚至当包的到达顺序出现乱序时也没有纠正的功能。<br>如果需要以上的细节控制，不得不交由采用 UDP 的应用程序去处理。<br>UDP 常用于一下几个方面：1.包总量较少的通信（DNS、SNMP 等）；2.视频、音频等多媒体通信（即时通信）；3.限定于 LAN 等特定网络中的应用通信；4.广播通信（广播、多播）。 3. TCP<br>TCP 与 UDP 的区别相当大。它充分地实现了数据传输时各种控制功能，可以进行丢包时的重发控制，还可以对次序乱掉的分包进行顺序控制。而这些在 UDP 中都没有。<br>此外，TCP 作为一种面向有连接的协议，只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。<br>根据 TCP 的这些机制，在 IP 这种无连接的网络上也能够实现高可靠性的通信（ 主要通过检验和、序列号、确认应答、重发控制、连接管理以及窗口控制等机制实现）。<br>3.1 三次握手（重点）<br>TCP 提供面向有连接的通信传输。面向有连接是指在数据通信开始之前先做好两端之间的准备工作。<br>所谓三次握手是指建立一个 TCP 连接时需要客户端和服务器端总共发送三个包以确认连接的建立。在 socket 编程中，这一过程由客户端执行 connect 来触发。<br>下面来看看三次握手的流程图：</p>
-<p>第一次握手：客户端将标志位 SYN 置为 1，随机产生一个值 seq=J，并将该数据包发送给服务器端，客户端进入 SYN_SENT 状态，等待服务器端确认。<br>第二次握手：服务器端收到数据包后由标志位 SYN=1 知道客户端请求建立连接，服务器端将标志位 SYN 和 ACK 都置为 1，ack=J+1，随机产生一个值 seq=K，并将该数据包发送给客户端以确认连接请求，服务器端进入 SYN_RCVD 状态。<br>第三次握手：客户端收到确认后，检查 ack 是否为 J+1，ACK 是否为 1，如果正确则将标志位 ACK 置为 1，ack=K+1，并将该数据包发送给服务器端，服务器端检查 ack 是否为 K+1，ACK 是否为 1，如果正确则连接建立成功，客户端和服务器端进入 ESTABLISHED 状态，完成三次握手，随后客户端与服务器端之间可以开始传输数据了。<br>3.2 四次挥手（重点）<br>四次挥手即终止 TCP 连接，就是指断开一个 TCP 连接时，需要客户端和服务端总共发送 4 个包以确认连接的断开。在 socket 编程中，这一过程由客户端或服务端任一方执行 close 来触发。<br>由于 TCP 连接是全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个 FIN 来终止这一方向的连接，收到一个 FIN 只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个 TCP 连接上仍然能够发送数据，直到这一方向也发送了 FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。<br>下面来看看四次挥手的流程图：</p>
-<p>中断连接端可以是客户端，也可以是服务器端。<br>第一次挥手：客户端发送一个 FIN=M，用来关闭客户端到服务器端的数据传送，客户端进入 FIN_WAIT_1 状态。意思是说”我客户端没有数据要发给你了”，但是如果你服务器端还有数据没有发送完成，则不必急着关闭连接，可以继续发送数据。<br>第二次挥手：服务器端收到 FIN 后，先发送 ack=M+1，告诉客户端，你的请求我收到了，但是我还没准备好，请继续你等我的消息。这个时候客户端就进入 FIN_WAIT_2 状态，继续等待服务器端的 FIN 报文。<br>第三次挥手：当服务器端确定数据已发送完成，则向客户端发送 FIN=N 报文，告诉客户端，好了，我这边数据发完了，准备好关闭连接了。服务器端进入 LAST_ACK 状态。<br>第四次挥手：客户端收到 FIN=N 报文后，就知道可以关闭连接了，但是他还是不相信网络，怕服务器端不知道要关闭，所以发送 ack=N+1 后进入 TIME_WAIT 状态，如果 Server 端没有收到 ACK 则可以重传。服务器端收到 ACK 后，就知道可以断开连接了。客户端等待了 2MSL 后依然没有收到回复，则证明服务器端已正常关闭，那好，我客户端也可以关闭连接了。最终完成了四次握手。<br>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，<br>具体流程如下图：</p>
-<p>3.3 通过序列号与确认应答提高可靠性<br>在 TCP 中，当发送端的数据到达接收主机时，接收端主机会返回一个已收到消息的通知。这个消息叫做确认应答（ACK）。当发送端将数据发出之后会等待对端的确认应答。如果有确认应答，说明数据已经成功到达对端。反之，则数据丢失的可能性很大。<br>在一定时间内没有等待到确认应答，发送端就可以认为数据已经丢失，并进行重发。由此，即使产生了丢包，仍然能够保证数据能够到达对端，实现可靠传输。<br>未收到确认应答并不意味着数据一定丢失。也有可能是数据对方已经收到，只是返回的确认应答在途中丢失。这种情况也会导致发送端误以为数据没有到达目的地而重发数据。<br>此外，也有可能因为一些其他原因导致确认应答延迟到达，在源主机重发数据以后才到达的情况也屡见不鲜。此时，源主机只要按照机制重发数据即可。<br>对于目标主机来说，反复收到相同的数据是不可取的。为了对上层应用提供可靠的传输，目标主机必须放弃重复的数据包。为此我们引入了序列号。<br>序列号是按照顺序给发送数据的每一个字节（8 位字节）都标上号码的编号。接收端查询接收数据 TCP 首部中的序列号和数据的长度，将自己下一步应该接收的序列号作为确认应答返送回去。通过序列号和确认应答号，TCP 能够识别是否已经接收数据，又能够判断是否需要接收，从而实现可靠传输。</p>
-<p>3.4 重发超时的确定<br>重发超时是指在重发数据之前，等待确认应答到来的那个特定时间间隔。如果超过这个时间仍未收到确认应答，发送端将进行数据重发。最理想的是，找到一个最小时间，它能保证“确认应答一定能在这个时间内返回”。<br>TCP 要求不论处在何种网络环境下都要提供高性能通信，并且无论网络拥堵情况发生何种变化，都必须保持这一特性。为此，它在每次发包时都会计算往返时间及其偏差。将这个往返时间和偏差时间相加，重发超时的时间就是比这个总和要稍大一点的值。<br>在 BSD 的 Unix 以及 Windows 系统中，超时都以 0.5 秒为单位进行控制，因此重发超时都是 0.5 秒的整数倍。不过，最初其重发超时的默认值一般设置为 6 秒左右。<br>数据被重发之后若还是收不到确认应答，则进行再次发送。此时，等待确认应答的时间将会以 2 倍、4 倍的指数函数延长。<br>此外，数据也不会被无限、反复地重发。达到一定重发次数之后，如果仍没有任何确认应答返回，就会判断为网络或对端主机发生了异常，强制关闭连接。并且通知应用通信异常强行终止。<br>3.5 以段为单位发送数据<br>在建立 TCP 连接的同时，也可以确定发送数据包的单位，我们也可以称其为“最大消息长度”（MSS）。最理想的情况是，最大消息长度正好是 IP 中不会被分片处理的最大数据长度。<br>TCP 在传送大量数据时，是以 MSS 的大小将数据进行分割发送。进行重发时也是以 MSS 为单位。<br>MSS 在三次握手的时候，在两端主机之间被计算得出。两端的主机在发出建立连接的请求时，会在 TCP 首部中写入 MSS 选项，告诉对方自己的接口能够适应的 MSS 的大小。然后会在两者之间选择一个较小的值投入使用。<br>3.6 利用窗口控制提高速度<br>TCP 以 1 个段为单位，每发送一个段进行一次确认应答的处理。这样的传输方式有一个缺点，就是包的往返时间越长通信性能就越低。<br>为解决这个问题，TCP 引入了窗口这个概念。确认应答不再是以每个分段，而是以更大的单位进行确认，转发时间将会被大幅地缩短。也就是说，发送端主机，在发送了一个段以后不必要一直等待确认应答，而是继续发送。如下图所示：</p>
-<p>窗口大小就是指无需等待确认应答而可以继续发送数据的最大值。上图中窗口大小为 4 个段。这个机制实现了使用大量的缓冲区，通过对多个段同时进行确认应答的功能。<br>3.7 滑动窗口控制</p>
-<p>上图中的窗口内的数据即便没有收到确认应答也可以被发送出去。不过，在整个窗口的确认应答没有到达之前，如果其中部分数据出现丢包，那么发送端仍然要负责重传。为此，发送端主机需要设置缓存保留这些待被重传的数据，直到收到他们的确认应答。<br>在滑动窗口以外的部分包括未发送的数据以及已经确认对端已收到的数据。当数据发出后若如期收到确认应答就可以不用再进行重发，此时数据就可以从缓存区清除。<br>收到确认应答的情况下，将窗口滑动到确认应答中的序列号的位置。这样可以顺序地将多个段同时发送提高通信性能。这种机制也别称为滑动窗口控制。<br>3.8 窗口控制中的重发控制<br>在使用窗口控制中， 出现丢包一般分为两种情况：</p>
-<p>① 确认应答未能返回的情况。在这种情况下，数据已经到达对端，是不需要再进行重发的，如下图：</p>
-<p>② 某个报文段丢失的情况。接收主机如果收到一个自己应该接收的序列号以外的数据时，会针对当前为止收到数据返回确认应答。如下图所示，当某一报文段丢失后，发送端会一直收到序号为 1001 的确认应答，因此，在窗口比较大，又出现报文段丢失的情况下，同一个序列号的确认应答将会被重复不断地返回。而发送端主机如果连续 3 次收到同一个确认应答，就会将其对应的数据进行重发。这种机制比之前提到的超时管理更加高效，因此也被称为高速重发控制。</p>
-<p>※网络层中的 IP 协议<br>IP（IPv4、IPv6）相当于 OSI 参考模型中的第 3 层——网络层。网络层的主要作用是“实现终端节点之间的通信”。这种终端节点之间的通信也叫“点对点通信”。<br>网络的下一层——数据链路层的主要作用是在互连同一种数据链路的节点之间进行包传递。而一旦跨越多种数据链路，就需要借助网络层。网络层可以跨越不同的数据链路，即使是在不同的数据链路上也能实现两端节点之间的数据包传输。<br>IP 大致分为三大作用模块，它们是 IP 寻址、路由（最终节点为止的转发）以及 IP 分包与组包。</p>
-<ol>
-<li>IP 地址<br>1.1 IP 地址概述<br>在计算机通信中，为了识别通信对端，必须要有一个类似于地址的识别码进行标识。在数据链路中的 MAC 地址正是用来标识同一个链路中不同计算机的一种识别码。<br>作为网络层的 IP ,也有这种地址信息，一般叫做 IP 地址。IP 地址用于在“连接到网络中的所有主机中识别出进行通信的目标地址”。因此，在 TCP/IP 通信中所有主机或路由器必须设定自己的 IP 地址。<br>不论一台主机与哪种数据链路连接，其 IP 地址的形式都保持不变。<br>IP 地址（IPv4 地址）由 32 位正整数来表示。IP 地址在计算机内部以二进制方式被处理。然而，由于我们并不习惯于采用二进制方式，我们将 32 位的 IP 地址以每 8 位为一组，分成 4 组，每组以 “.” 隔开，再将每组数转换成十进制数。如下：<br>2828282810101100000101000000000100000001（2 进制）10101100.00010100.00000001.00000001（2 进制）172.20.1.1（10 进制）</li>
-</ol>
-<p>1.2 IP 地址由网络和主机两部分标识组成<br>如下图，网络标识在数据链路的每个段配置不同的值。网络标识必须保证相互连接的每个段的地址不相重复。而相同段内相连的主机必须有相同的网络地址。IP 地址的“主机标识”则不允许在同一个网段内重复出现。由此，可以通过设置网络地址和主机地址，在相互连接的整个网络中保证每台主机的 IP 地址都不会相互重叠。即 IP 地址具有了唯一性。</p>
-<p>如下图，IP 包被转发到途中某个路由器时，正是利用目标 IP 地址的网络标识进行路由。因为即使不看主机标识，只要一见到网络标识就能判断出是否为该网段内的主机。</p>
-<p>1.3 IP 地址的分类<br>IP 地址分为四个级别，分别为 A 类、B 类、C 类、D 类。它根据 IP 地址中从第 1 位到第 4 位的比特列对其网络标识和主机标识进行区分。<br>A 类 IP 地址是首位以 “0” 开头的地址。从第 1 位到第 8 位是它的网络标识。用十进制表示的话，0.0.0.0<del>127.0.0.0 是 A 类的网络地址。A 类地址的后 24 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 16,777,214 个。<br>B 类 IP 地址是前两位 “10” 的地址。从第 1 位到第 16 位是它的网络标识。用十进制表示的话，128.0.0.0</del>191.255.0.0 是 B 类的网络地址。B 类地址的后 16 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 65,534 个。<br>C 类 IP 地址是前三位为 “110” 的地址。从第 1 位到第 24 位是它的网络标识。用十进制表示的话，192.0.0.0<del>223.255.255.0 是 C 类的网络地址。C 类地址的后 8 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 254 个。<br>D 类 IP 地址是前四位为 “1110” 的地址。从第 1 位到第 32 位是它的网络标识。用十进制表示的话，224.0.0.0</del>239.255.255.255 是 D 类的网络地址。D 类地址没有主机标识，常用于多播。<br>在分配 IP 地址时关于主机标识有一点需要注意。即要用比特位表示主机地址时，不可以全部为 0 或全部为 1。因为全部为 0 只有在表示对应的网络地址或 IP 地址不可以获知的情况下才使用。而全部为 1 的主机通常作为广播地址。因此，在分配过程中，应该去掉这两种情况。这也是为什么 C 类地址每个网段最多只能有 254（ 28 - 2 = 254）个主机地址的原因。<br>1.4 广播地址<br>广播地址用于在同一个链路中相互连接的主机之间发送数据包。将 IP 地址中的主机地址部分全部设置为 1，就成了广播地址。<br>广播分为本地广播和直接广播两种。在本网络内的广播叫做本地广播；在不同网络之间的广播叫做直接广播。<br>1.5 IP 多播<br>多播用于将包发送给特定组内的所有主机。由于其直接使用 IP 地址，因此也不存在可靠传输。<br>相比于广播，多播既可以穿透路由器，又可以实现只给那些必要的组发送数据包。请看下图：</p>
-<p>多播使用 D 类地址。因此，如果从首位开始到第 4 位是 “1110”，就可以认为是多播地址。而剩下的 28 位可以成为多播的组编号。<br>此外， 对于多播，所有的主机（路由器以外的主机和终端主机）必须属于 224.0.0.1 的组，所有的路由器必须属于 224.0.0.2 的组。<br>1.6 子网掩码<br>现在一个 IP 地址的网络标识和主机标识已不再受限于该地址的类别，而是由一个叫做“子网掩码”的识别码通过子网网络地址细分出比 A 类、B 类、C 类更小粒度的网络。这种方式实际上就是将原来 A 类、B 类、C 类等分类中的主机地址部分用作子网地址，可以将原网络分为多个物理网络的一种机制。<br>子网掩码用二进制方式表示的话，也是一个 32 位的数字。它对应 IP 地址网络标识部分的位全部为 “1”，对应 IP 地址主机标识的部分则全部为 “0”。由此，一个 IP 地址可以不再受限于自己的类别，而是可以用这样的子网掩码自由地定位自己的网络标识长度。当然，子网掩码必须是 IP 地址的首位开始连续的 “1”。<br>对于子网掩码，目前有两种表示方式。第一种是，将 IP 地址与子网掩码的地址分别用两行来表示。以 172.20.100.52 的前 26 位是网络地址的情况为例，如下：<br>IP 地址 172.20.100.52 子网掩码 255.255.255.192 网络地址 172.20.100.0 子网掩码 255.255.255.192 广播地址 172.20.100.63 子网掩码 255.255.255.192</p>
-<p>第二种表示方式是，在每个 IP 地址后面追加网络地址的位数用 “/ ” 隔开，如下：<br>IP 地址 172.20.100.52/ 26 网络地址 172.20.100.0/ 26 广播地址 172.20.100.63/ 26</p>
-<p>另外，在第二种方式下记述网络地址时可以省略后面的 “0” 。例如：172.20.0.0/26 跟 172.20/26 其实是一个意思。 2. 路由<br>发送数据包时所使用的地址是网络层的地址，即 IP 地址。然而仅仅有 IP 地址还不足以实现将数据包发送到对端目标地址，在数据发送过程中还需要类似于“指明路由器或主机”的信息，以便真正发往目标地址。保存这种信息的就是路由控制表。<br>该路由控制表的形成方式有两种：一种是管理员手动设置，另一种是路由器与其他路由器相互交换信息时自动刷新。前者也叫做静态路由控制，而后者叫做动态路由控制。<br>IP 协议始终认为路由表是正确的。然后，IP 本身并没有定义制作路由控制表的协议。即 IP 没有制作路由控制表的机制。该表示由一个叫做“路由协议”的协议制作而成。<br>2.1 IP 地址与路由控制<br>IP 地址的网络地址部分用于进行路由控制。<br>路由控制表中记录着网络地址与下一步应该发送至路由器的地址。<br>在发送 IP 包时，首先要确定 IP 包首部中的目标地址，再从路由控制表中找到与该地址具有相同网络地址的记录，根据该记录将 IP 包转发给相应的下一个路由器。如果路由控制表中存在多条相同网络地址的记录，就选择一个最为吻合的网络地址。</p>
-<ol start="3">
-<li>IP 分包与组包<br>每种数据链路的最大传输单元（MTU）都不尽相同，因为每个不同类型的数据链路的使用目的不同。使用目的不同，可承载的 MTU 也就不同。<br>任何一台主机都有必要对 IP 分片进行相应的处理。分片往往在网络上遇到比较大的报文无法一下子发送出去时才会进行处理。<br>经过分片之后的 IP 数据报在被重组的时候，只能由目标主机进行。路由器虽然做分片但不会进行重组。<br>3.1 路径 MTU 发现<br>分片机制也有它的不足。如路由器的处理负荷加重之类。因此，只要允许，是不希望由路由器进行 IP 数据包的分片处理的。<br>为了应对分片机制的不足，“路径 MTU 发现” 技术应运而生。路径 MTU 指的是，从发送端主机到接收端主机之间不需要分片是最大 MTU 的大小。即路径中存在的所有数据链路中最小的 MTU 。<br>进行路径 MTU 发现，就可以避免在中途的路由器上进行分片处理，也可以在 TCP 中发送更大的包。</li>
-<li>IPv6<br>IPv6（IP version 6）是为了根本解决 IPv4 地址耗尽的问题而被标准化的网际协议。IPv4 的地址长度为 4 个 8 位字节，即 32 比特。而 IPv6 的地址长度则是原来的 4 倍，即 128 比特，一般写成 8 个 16 位字节。<br>4.1 IPv6 的特点<br>IP 得知的扩大与路由控制表的聚合。<br>性能提升。包首部长度采用固定的值（40 字节），不再采用首部检验码。简化首部结构，减轻路由器负担。路由器不再做分片处理。<br>支持即插即用功能。即使没有 DHCP 服务器也可以实现自动分配 IP 地址。<br>采用认证与加密功能。应对伪造 IP 地址的网络安全功能以及防止线路窃听的功能。<br>多播、Mobile IP 成为扩展功能。<br>4.2 IPv6 中 IP 地址的标记方法<br>一般人们将 128 比特 IP 地址以每 16 比特为一组，每组用冒号（“：”）隔开进行标记。<br>而且如果出现连续的 0 时还可以将这些 0 省略，并用两个冒号（“：：”）隔开。但是，一个 IP 地址中只允许出现一次两个连续的冒号。<br>4.3 IPv6 地址的结构<br>IPv6 类似 IPv4，也是通过 IP 地址的前几位标识 IP 地址的种类。<br>在互联网通信中，使用一种全局的单播地址。它是互联网中唯一的一个地址，不需要正式分配 IP 地址。<br>未定义 0000 … 0000（128 比特）：：/ 128 环回地址 0000 … 0001（128 比特）：：1 / 128 唯一本地地址 1111 110FC00：/ 7 链路本地单播地址 1111 1110 10FE80：：/ 10 多播地址 1111 1111FF00：：/ 8 全局单播地址（其他）</li>
-</ol>
-<p>4.4 全局单播地址<br>全局单播地址是指世界上唯一的一个地址。它是互联网通信以及各个域内部通信中最为常用的一个 IPv6 地址。<br>格式如下图所示，现在 IPv6 的网络中所使用的格式为，n = 48，m = 16 以及 128 - n - m = 64。即前 64 比特为网络标识，后 64 比特为主机标识。</p>
-<p>4.5 链路本地单播地址<br>链路本地单播地址是指在同一个数据链路内唯一的地址。它用于不经过路由器，在同一个链路中的通信。通常接口 ID 保存 64 比特版的 MAC 地址。</p>
-<p>4.6 唯一本地地址<br>唯一本地地址是不进行互联网通信时所用的地址。<br>唯一本地地址虽然不会与互联网连接，但是也会尽可能地随机生成一个唯一的全局 ID。<br>L 通常被置为 1<br>全局 ID 的值随机决定<br>子网 ID 是指该域子网地址<br>接口 ID 即为接口的 ID</p>
-<p>4.7 IPv6 分段处理<br>IPv6 的分片处理只在作为起点的发送端主机上进行，路由器不参与分片。<br>IPv6 中最小 MTU 为 1280 字节，因此，在嵌入式系统中对于那些有一定系统资源限制的设备来说，不需要进行“路径 MTU 发现”，而是在发送 IP 包时直接以 1280 字节为单位分片送出。<br>4.8 IP 首部（暂略）<br>※IP 协议相关技术<br>IP 旨在让最终目标主机收到数据包，但是在这一过程中仅仅有 IP 是无法实现通信的。必须还有能够解析主机名称和 MAC 地址的功能，以及数据包在发送过程中异常情况处理的功能。<br>5.1 DNS<br>我们平常在访问某个网站时不适用 IP 地址，而是用一串由罗马字和点号组成的字符串。而一般用户在使用 TCP/IP 进行通信时也不使用 IP 地址。能够这样做是因为有了 DNS （Domain Name System）功能的支持。DNS 可以将那串字符串自动转换为具体的 IP 地址。<br>这种 DNS 不仅适用于 IPv4，还适用于 IPv6。<br>5.2 ARP<br>只要确定了 IP 地址，就可以向这个目标地址发送 IP 数据报。然而，在底层数据链路层，进行实际通信时却有必要了解每个 IP 地址所对应的 MAC 地址。<br>ARP 是一种解决地址问题的协议。以目标 IP 地址为线索，用来定位下一个应该接收数据分包的网络设备对应的 MAC 地址。不过 ARP 只适用于 IPv4，不能用于 IPv6。IPv6 中可以用 ICMPv6 替代 ARP 发送邻居探索消息。<br>RARP 是将 ARP 反过来，从 MAC 地址定位 IP 地址的一种协议。<br>5.3 ICMP<br>ICMP 的主要功能包括，确认 IP 包是否成功送达目标地址，通知在发送过程当中 IP 包被废弃的具体原因，改善网络设置等。<br>IPv4 中 ICMP 仅作为一个辅助作用支持 IPv4。也就是说，在 IPv4 时期，即使没有 ICMP，仍然可以实现 IP 通信。然而，在 IPv6 中，ICMP 的作用被扩大，如果没有 ICMPv6，IPv6 就无法进行正常通信。<br>5.4 DHCP<br>如果逐一为每一台主机设置 IP 地址会是非常繁琐的事情。特别是在移动使用笔记本电脑、只能终端以及平板电脑等设备时，每移动到一个新的地方，都要重新设置 IP 地址。<br>于是，为了实现自动设置 IP 地址、统一管理 IP 地址分配，就产生了 DHCP（Dynamic Host Configuration Protocol）协议。有了 DHCP，计算机只要连接到网络，就可以进行 TCP/IP 通信。也就是说，DHCP 让即插即用变得可能。<br>DHCP 不仅在 IPv4 中，在 IPv6 中也可以使用。<br>5.5 NAT<br>NAT（Network Address Translator）是用于在本地网络中使用私有地址，在连接互联网时转而使用全局 IP 地址的技术。<br>除转换 IP 地址外，还出现了可以转换 TCP、UDP 端口号的 NAPT（Network Address Ports Translator）技术，由此可以实现用一个全局 IP 地址与多个主机的通信。<br>NAT（NAPT）实际上是为正在面临地址枯竭的 IPv4 而开发的技术。不过，在 IPv6 中为了提高网络安全也在使用 NAT，在 IPv4 和 IPv6 之间的相互通信当中常常使用 NAT-PT。<br>5.6 IP 隧道</p>
-<p>如上图的网络环境中，网络 A 与网络 B 之间无法直接进行通信，为了让它们之间正常通信，这时必须得采用 IP 隧道的功能。<br>IP 隧道可以将那些从网络 A 发过来的 IPv6 的包统合为一个数据，再为之追加一个 IPv4 的首部以后转发给网络 C。<br>一般情况下，紧接着 IP 首部的是 TCP 或 UDP 的首部。然而，现在的应用当中“ IP 首部的后面还是 IP 首部”或者“ IP 首部的后面是 IPv6 的首部”等情况与日俱增。这种在网络层的首部后面追加网络层首部的通信方法就叫做“ IP 隧道”。</p>
-<h2 id="六-应用层"><a href="#六-应用层" class="headerlink" title="六.应用层"></a>六.应用层</h2><p>1.应用层的作用<br>通过位于不同主机中的多个应用进程之间的通信和协同工作来完成，应用层的内容就是具体定义通信规则 2.应用层中常见的协议<br>域名系统 DNS<br>域名结构：每一个域名用标号隔开。 mail.cctv.com (三级域名.二级域名.顶级域名)<br>域名服务器：迭代 递归<br>文件传输协议 FTP<br>使用 TCP 连接，传输数据<br>端口号是 21（20） 20 发送数据<br>远程终端协议 TELNET<br>使用 TCP 连接，远程登录到远地的另外一台主机上<br>端口号是 23<br>万维网和 HTTP 协议<br>超文本传输协议，是一个简单的请求-响应协议<br>端口号是 80<br>电子邮件协议<br>SMTP 电子邮件传输协议：端口号 25<br>POP3 邮局协议版本 3：端口号 110<br>DHCP 动态主机配置协议<br>指的是由服务器控制一段 IP 地址范围，客户机登录服务器时就可以自动获得服务器分配的 IP 地址和子网掩码。<br>端口号 68</p>
-<h2 id="七-网络安全"><a href="#七-网络安全" class="headerlink" title="七.网络安全"></a>七.网络安全</h2><p>1.网络安全概论<br>1.1 网络安全<br>网络安全（Cyber Security）是指网络系统的硬件，软件及其系统中的数据受到保护，不因偶然的或者恶意的原因而遭到破坏，更改，泄露。系统连续可靠正常的运行，网络服务不中断。<br>1.2 计算机网络面临的威胁主要分为两类<br>1.2.1 主动攻击<br>主动的去做一些在网络基础上的恶意行为。恶意串改信息数据，发布恶意程序脚本等<br>篡改<br>恶意程序<br>拒绝服务<br>1.2.2 被动攻击<br>被动攻击主要是收集信息而不是进行访问，不改变数据本身的结构，也不对软硬件数据造成影响<br>截取<br>窃听<br>流量分析<br>1.2 网络系统特性<br>保密性：信息不泄露给非授权用户，实体或过程，或供其利用的特性<br>完整性：数据未经授权不能进行改变的特性，即信息在存储或传输过程中保持不被修改，不被破坏和丢失的特性<br>可用性：可被授权实体访问并按需求使用的特性。即当需要时能否存取所需信息。例如网络环境下拒绝服务，破坏网络和有关系统的正常运行等后属于对可用性的攻击<br>可靠性：对信息的传播及内容具有控制能力<br>不可抵赖性：出现安全问题时提供依据与手段 2.加密和交互<br>2.1 加密和解密<br>2.1.1 加密<br>是以某种特殊的算法改变原有的信息数据，使得未授权的用户即即使获得了已加密的信息，但因不知解密的方法，仍然无法了解信息的内容<br>加密手段<br>MD5 加密（信息-摘要算法）：128 位<br>AES 加密（称秘钥加密）：128,192,256 位<br>SHAI 加密（安全哈希算法）：160 位<br>RSA 加密：公钥加密，私钥解密：1204 位<br>2.1.2 解密<br>加密的逆过程就是解密<br>2.2 公钥和私钥<br>2.2.1 对称加密<br>采用单钥密码系统的加密方式，同一个秘钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单秘钥加密。<br>2.2.2 非对称加密<br>使用非对称的加密方式时，会产生两把钥匙。发送方利用自己的公钥加密，接收方利用自己的私钥解密<br>数字签名的四大特点<br>防止重放攻击：攻击者利用网络监听或则其他方式盗取认证凭据，之后再把它重新发给认证服务器。在数字签名中，如果采用了对签名报文加盖时间戳等或添加流水号等技术，就可以有效防止重放攻击<br>防止数据伪造：其他人不能伪造对消息的签名，因为私有秘钥只能签名者自己知道，所有其他人不可以构造出正确的签名结果数据<br>防止数据篡改：数字签名与原始文件或摘要一起发送给接受者，一旦信息被篡改，接受者可以通过计算摘要和验证签名来判断该文件无效，从而保证了文件的完整性<br>防止数据抵赖：数字签名既可以作为身份认证的依据，也可以作为签名者签名操作的证据。要防止接受者抵赖，可以在数字签名系统中要求接收者返回一个自己的签名的表示收到报文，给发送者或者信任第三方。如果接受者不返回任何信息，此次通信可终止或重新的开始，签名方也没有任何的损失，由此双方均不可抵赖。<br>2.3 防火墙<br>防火墙是一种访问控制技术，可以严格控制进出网络边界的分组，禁止任何不必要的通信，来减少潜在入侵的发生</p>
-<p>防火墙的区域们<br>Local 本地区域<br>顶级安全区域，安全优先级为 100<br>local 就是防火墙本身的区域比如 ping 指令等网际控制协议的回复，需要 local 域的权限凡是由防火墙主动发出的报文均可认为是从 local 区域中发出是需要防火墙响应并处理（而不是转发）的报文均可认为是 Local 区域接收<br>Trust 受信区<br>高级安全区域，安全优先级为 85<br>通常用来定义内部用户所在的网络，也可以理解为应该是防护最严密的地区<br>DMZ 非军事化区<br>中级安全区域，安全优先级 50<br>通常用来定义内部服务器坐在网络<br>作用是把 WEB。E-mail 等允许外部访问的服务器单独接在该区域端口，使整个需要访问，实现内外网分离，达到用户需求。DMZ 可以理解为一个不同于外网或内网的特殊网络区域，DMZ 内通常放置一些不含机密信息的公用服务器，比如 Web，Mail，FTP 中的服务。这样来自外网的访问者可以访问 DMZ 中服务，但不可能接触到存放在内网中的公司机密或私人信息等，及时 DMZ 中服务器受到破坏，也不会对内网中的机密信造成影响<br>Untrust 非受信区<br>低级安全区域，安全优先级为 5<br>通常用来定义 Internet 等不安全的网络，用于网络入口线的接入。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>股票入门</title>
     <url>/2022/05/03/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h1 id="股票入门知识-原创：狂神"><a href="#股票入门知识-原创：狂神" class="headerlink" title="股票入门知识(原创：狂神)"></a>股票入门知识(原创：狂神)</h1><hr>
@@ -2495,5 +2629,80 @@ WHERE City LIKE ‘[!bsp]%’;
         <tag>股票</tag>
         <tag>金融</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>股票入门</title>
+    <url>/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h1 id="计算机网络复习资料"><a href="#计算机网络复习资料" class="headerlink" title="计算机网络复习资料"></a>计算机网络复习资料</h1><h2 id="一-计算机网络概述"><a href="#一-计算机网络概述" class="headerlink" title="一.计算机网络概述"></a>一.计算机网络概述</h2><h3 id="计算机网络的概念："><a href="#计算机网络的概念：" class="headerlink" title="计算机网络的概念："></a>计算机网络的概念：</h3><h4 id="1-计算机网络的定义："><a href="#1-计算机网络的定义：" class="headerlink" title="1.计算机网络的定义："></a>1.计算机网络的定义：</h4><p>计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路链接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。</p>
+<span id="more"></span>
+
+<h4 id="2-计算机网络的组成："><a href="#2-计算机网络的组成：" class="headerlink" title="2.计算机网络的组成："></a>2.计算机网络的组成：</h4><p><strong>终端系统/资源子网</strong>：提供共享的软件资源和硬件资源<br><strong>通信子网</strong>：提供信息交换的网络结点和通信线路。</p>
+<h4 id="3-计算机网络的类型："><a href="#3-计算机网络的类型：" class="headerlink" title="3.计算机网络的类型："></a>3.计算机网络的类型：</h4><p><strong>按照拓朴分类</strong>： 星型结构 树形结构 总线型结构 环形结构 网状结构<br><strong>按照范围分类</strong>：局域网 LAN 城域网 MAN 广域网 WAN 补充：个人区域网 PAN 互联网 Internet<br><strong>按照传输方式分类</strong>：有线网络（IEEE802.3） 无线网络：（ IEEE802.11 WLAN 无线局域网（wireless） WPAN 无线个域网）</p>
+<h3 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h3><h4 id="1-传输方式："><a href="#1-传输方式：" class="headerlink" title="1.传输方式："></a>1.传输方式：</h4><p><strong>按照传输的方向分</strong>：<br><strong>单工</strong>：只能单方向传输的工作模式<br><strong>双工</strong>：在同一时间，线路上只能允许一个方向的数据通过<br><strong>全双工</strong>：双方可以同时进行数据通信<br><strong>按照传输对象（方式）分</strong>：<br><strong>单播</strong>： 1 对 1<br><strong>多播</strong>：1 对多<br><strong>广播</strong>：1 对 all</p>
+<h4 id="2-数据交换："><a href="#2-数据交换：" class="headerlink" title="2.数据交换："></a>2.数据交换：</h4><p><strong>电路交换</strong>：整个报文从源头到终点连续的传输<br><strong>报文交换</strong>：整个报文先传达到相邻节点，全部存储下来查找转发表，再转发到下一个节点<br><strong>分组交换</strong>：将一个报文分成多个分组，传送到相邻结点，在查找转发表，在转发到下一个结点</p>
+<h4 id="3-通信协议和体系结构："><a href="#3-通信协议和体系结构：" class="headerlink" title="3.通信协议和体系结构："></a>3.通信协议和体系结构：</h4><p><strong>网络协议三要素</strong>：语法 语义 时序<br><strong>OSI 参考模型</strong>：<br><strong>应用层</strong>：使用应用程序通过网络服务。<br><strong>表示层</strong>：表示层用于处理交互数据的表示方式，例如格式转换，数据的加密和解密，数据压缩和回复等功能<br><strong>会话层</strong>：负责维护通信中两个结点之间的会话建立维护和断开，以及数据的交换<br><strong>传输层</strong>：提供端到端之间的数据传输服务，实现对数据进行控制和操作的功能。<br><strong>网络层</strong>：单位 分组，在数据链路层的基础之上，提供点到点之间的通信，提供路由功能，实现拥塞控制，网络互联等功能。<br><strong>数据链路层</strong>：单位 帧，在物理层的基础之上，提供结点到结点之间的服务，采取差错控制和流量控制的方法实现网路互联<br><strong>物理层</strong>：单位 bit，利用传输介质为通信的网络节点之间的建立<br>TCP/<strong>IP 参考模型</strong>：<br><strong>网络接口层</strong>：物理层和数据链路层<br><strong>网际层</strong>：网络层<br><strong>传输层</strong><br><strong>应用层</strong>：会话层，表示层，应用层</p>
+<hr>
+<h2 id="二-物理层"><a href="#二-物理层" class="headerlink" title="二.物理层"></a>二.物理层</h2><h3 id="1-物理层的基本概念："><a href="#1-物理层的基本概念：" class="headerlink" title="1.物理层的基本概念："></a>1.物理层的基本概念：</h3><h4 id="1-1-四大特性："><a href="#1-1-四大特性：" class="headerlink" title="1.1 四大特性："></a>1.1 四大特性：</h4><p>机械特性：接口是怎么样的<br>电气特性：用多少伏的电<br>功能特性：线路上电平电压的特性<br>过程特性：实现不同功能所发射信号的顺序</p>
+<h4 id="1-2-两种信号："><a href="#1-2-两种信号：" class="headerlink" title="1.2 两种信号："></a>1.2 两种信号：</h4><p>模拟信号—特定频段的信号—有更加丰富的表现形式——抗干扰能力弱<br>数字信号—不是 1 就是 0——–抗干扰能力强</p>
+<h4 id="1-3-调制和编码："><a href="#1-3-调制和编码：" class="headerlink" title="1.3 调制和编码："></a>1.3 调制和编码：</h4><p>调制：模拟信号转换<br>编码：<br>数字信号转换<br>编码的步骤：采样 量化 编码<br>区别：<br>数据可以通过编码手段转成数字信号，也可以通过调制手段将数据转成模拟型号。<br>数字数据可以通过数字发送器转化为数字信号（编码），也可以通过调制器转化为模拟信号。<br>模拟信号可以通过 PCM 编码器转化为数字信号（编码），也可以通过放大器调制器转化为模拟型号（调制）。</p>
+<h4 id="1-4-传输介质："><a href="#1-4-传输介质：" class="headerlink" title="1.4 传输介质："></a>1.4 传输介质：</h4><p>双绞线：<br>传输距离 100-500（集线器 最多四个，超过就失真了）<br>屏蔽双绞线 STP：抗干扰强，贵一些<br>非屏蔽双绞线：便宜，抗干扰差<br>制作标准：<br>568B：橙白，橙，绿白，蓝，蓝白，绿，棕白，棕 ：八种<br>568A：12，26 调换—绿白，绿，绿白，蓝，蓝白，橙，棕白，棕<br>光纤：<br>多模光纤：<br>芯较粗（50 或 62.5）。可以传多种模式的光。但其模间色散较大，这就限制了传输数字信号的频率，而且随距离的增加会更加的严重。例如：600MB/KM 的光纤在 2KM 时只有 300MB 的宽带了。因此多模光纤传输距离就比较的近，一般只有几公里。<br>距离：2KM<br>单模光纤：<br>单模光纤：中间纤芯很细（芯径一般是 8-10），只能传一种模式的光，因此。其模间色散很小，适合语远程通讯，但还存在着材料色散和波导色散，这样单模光纤对光源的谱宽和稳定性有较高的要求，即谱宽要窄。稳定性要好。<br>距离：100KM<br>同轴电缆：淘汰了<br>无线：无线信号频率 IEEE802.11</p>
+<h4 id="1-5-三大部分："><a href="#1-5-三大部分：" class="headerlink" title="1.5 三大部分："></a>1.5 三大部分：</h4><p>源系统：发送数据的一端<br>传输系统：传输过程中的各种传输介质<br>目的系统：接收数据的电脑</p>
+<h3 id="2-物理层的基本通信技术"><a href="#2-物理层的基本通信技术" class="headerlink" title="2.物理层的基本通信技术"></a>2.物理层的基本通信技术</h3><h4 id="2-1-四种信道复用技术"><a href="#2-1-四种信道复用技术" class="headerlink" title="2.1 四种信道复用技术"></a>2.1 四种信道复用技术</h4><h5 id="2-1-1-复用技术"><a href="#2-1-1-复用技术" class="headerlink" title="2.1.1 复用技术"></a>2.1.1 复用技术</h5><p>复用技术是指一种在传输路径上综合多路道信道，然后恢复原机制或则解除终端各信道复用技术的过程<br>将多种不同的信号在同一信道上进行传输，复用技术主要是用来解决不同信号传输时应该如何区分。</p>
+<h5 id="2-1-2-频分复用-FDM"><a href="#2-1-2-频分复用-FDM" class="headerlink" title="2.1.2 频分复用 FDM"></a>2.1.2 频分复用 FDM</h5><p>频分多路复用，是在适于某种传输媒介的传输频带内，若干个频谱互不重叠的信号一并传输的方式，简称 FDM。在每路信号进入传输频带前，先要以此搬移频率（调制），而在接收端，在搬回到原来的频段，恢复每路的原信号，从而使传输频带得到多路信号的复用。<br>划分不同频率来并行传输信号</p>
+<h5 id="2-1-3-时分复用-TDM"><a href="#2-1-3-时分复用-TDM" class="headerlink" title="2.1.3 时分复用 TDM"></a>2.1.3 时分复用 TDM</h5><p>时分复用 TDM 是采用同一物理连接的不同时段来传输不同的信号，也能达到多路传输的此目的。时分多路复用以时间作为信号分割的参量，故必须使各路信号在时间轴上互不重叠。时分复用 TDM 就是将提供给整个信道传输信息的时间划分为若干时间片（简称时隙），并将这些时隙分给每一个信号源使用<br>划分不同的时间段来传输信号</p>
+<h5 id="2-1-4-波分复用-WDM（波）"><a href="#2-1-4-波分复用-WDM（波）" class="headerlink" title="2.1.4 波分复用 WDM（波）"></a>2.1.4 波分复用 WDM（波）</h5><p>是将两种或多种不 i 同波长的光载波信号（携带各种信息）在发送端经复用器（亦称合波器）汇合在一起，并耦合到光线路的同一根光纤中进行传输技术<br>根据光波的波长进行传输（合波器耦合）</p>
+<h5 id="2-1-5-码分复用"><a href="#2-1-5-码分复用" class="headerlink" title="2.1.5 码分复用"></a>2.1.5 码分复用</h5><p>码分复用 CDM 是靠不同的编码来区分各路原始信号的一种复用方式，主要和各种多址技术结合产生了各种接入技术，包括无线和有线接入。<br>在同一时间同一频率根据传输的数据码进行区分</p>
+<h4 id="2-2-数据传输方式"><a href="#2-2-数据传输方式" class="headerlink" title="2.2 数据传输方式"></a>2.2 数据传输方式</h4><h5 id="2-2-1-通过同时间传输数量分为"><a href="#2-2-1-通过同时间传输数量分为" class="headerlink" title="2.2.1 通过同时间传输数量分为"></a>2.2.1 通过同时间传输数量分为</h5><p>串行传输<br>使用一条数据线，将数据一位一位的依次输入，每一位数据占据一个固定的时间长度。只需要少数几条先就可以在系统间交换信息，特别适用于计算机语计算机，外设之间的远距离通信。<br>并行传输<br>并行传输指的是数据以成组的方式，在多条并行信道上同时进行传输，是在传输中有多个数据位同时在设备之间进行的传输。</p>
+<h5 id="2-2-2-通过数据报文的双方的行为分为"><a href="#2-2-2-通过数据报文的双方的行为分为" class="headerlink" title="2.2.2 通过数据报文的双方的行为分为"></a>2.2.2 通过数据报文的双方的行为分为</h5><p>同步传输<br>同步：在计算机网络中，定时的因素称为位同步。同步是要接收按照发送放放送的每个位的起止时刻和速率来接受数据，否则会产生误差。<br>同步传输的比特分组要大得多。他不会独立的发送每个字符，每个字符都有自己的开始位和停止位，而是把他们组合起来发送。我们将这些组合称为数据帧，或简称帧<br>异步传输：<br>异步传输将比特分成小组进行传输，小组可以是 8 位的 1 个字符或更长。发送方可以在任何时刻发送这些比特组，而接受方从不知道它们会在什么时候到达。</p>
+<h4 id="3-3-通过传输的信号分"><a href="#3-3-通过传输的信号分" class="headerlink" title="3.3 通过传输的信号分"></a>3.3 通过传输的信号分</h4><p>基带传输：传输数字信号叫做基带传输<br>频带传输：传输模拟信号叫做频带传输（300-3400HZ）</p>
+<h4 id="3-4-通过传输方向分"><a href="#3-4-通过传输方向分" class="headerlink" title="3.4 通过传输方向分"></a>3.4 通过传输方向分</h4><p>单工 半双工 全双工</p>
+<h4 id="3-5-通过传输对象分"><a href="#3-5-通过传输对象分" class="headerlink" title="3.5 通过传输对象分"></a>3.5 通过传输对象分</h4><p>单播 组播 广播</p>
+<hr>
+<h2 id="三-数据链路层"><a href="#三-数据链路层" class="headerlink" title="三.数据链路层"></a>三.数据链路层</h2><h3 id="1-数据链路层的基础概念"><a href="#1-数据链路层的基础概念" class="headerlink" title="1.数据链路层的基础概念"></a>1.数据链路层的基础概念</h3><h4 id="1-1-数据链路层的概念"><a href="#1-1-数据链路层的概念" class="headerlink" title="1.1 数据链路层的概念"></a>1.1 数据链路层的概念</h4><p>数据链路层是在物理层和网际层之间的协议，提供相邻结点的可靠数据传输</p>
+<h4 id="1-2-帧的概念"><a href="#1-2-帧的概念" class="headerlink" title="1.2 帧的概念"></a>1.2 帧的概念</h4><p>数据链路层的协议数据单元<br>组成：<br>帧头：源 MAC 地址，目的 MAC 地址，类型（MAC 地址用于在网络中唯一标示一个网卡，一台设备若有一或多个网卡，则每个网卡都需要并会有一个唯一的 MAC 地址）<br>数据<br>帧尾：校验</p>
+<p>1.3 以太网数据帧中的 MAC 和 LLC<br>MAC（一种协议，对接物理层）<br>MAC 介质控制访问<br>作用：数据帧的封装/卸载，帧的寻址和识别，帧的接收语发送，链路的管理，帧的差错控制等。MAC 子层的存在屏蔽了不同的物理链路层种类的差异性<br>LLC（对接网络层）<br>LLC 逻辑控制访问<br>作用：LLC 子层的主要功能为传输可靠性保障和控制，数据包的分段与重组。数据包的顺序传播。<br>注解：<br>该协议位于 OSI 七层协议中数据链路层，数据链路层分为上层 LLC（逻辑链路控制），和下层的 MAC（媒体访问控制），MAC 主要负责控制与链接物理层的物理介质。在发送数据的时候，MAC 协议可以事先判断是否发送数据，如果可以发送将给数据加上一些控制信息，最终将数据以及控制信息以规定的格式发送到物理层；在接收数据的时候，MAC 协议首先判断输入的信息并是否发生传输错误，如果没有错误，则去掉控制信息发送至 LLC（逻辑链路控制）层。</p>
+<p>1.4 数据链路层的两种传输方式<br>单播 广播<br>1.5 数据链路层的三个基本问题（***）<br>封装成帧（PPP）<br>封装成帧就是在一段数据的前后分别添加首部和尾部，这样就构成了一个帧，接收端在收到物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束。<br>透明传输<br>透明传输是指不管所传数据是什么样的比特组合，都应当能够在链路上传输<br>差错检测（奇数校验 偶数校验 CRC：需要计算）<br>收到正确的帧就要向发送端发送确认，发送算在一定的期限内若没有收到对方的确认，就认为出现了差错，因而就进行重传，直到收到对方的确认为止，<br>1.6 局域网中的设备<br>网桥（在物理层和数据链路层之间）<br>两个端口的交换机<br>集线器（在物理层 共享带宽）<br>集线器的英文为：“HUB”是“中心”的意思，集线器的主要功能是对接受的信号进行再生整形放大，以扩大网络的传输距离，同时把所有结点集中在以它为中心的结点上。<br>交换机（数据链路层 独享带宽）<br>交换机（Switch）意为“开关”是一种用于电（光）信号转发的网络设备。它可以为接入交换机的任意两个网络结点提供独享的电信号通路。最常见的交换机式以太网交换机。<br>2 数据链路层的通信协议<br>2.1 冲突域和广播域<br>冲突域<br>交换机的每一个端口都是一个冲突域；冲突域只能发生在一个网段<br>广播域<br>交换机的所有端口都在一个广播域；广播域在一个或多个网段内发生<br>区别<br>广播域可以跨网段<br>冲突域是基于第一层（物理层），而广播域是基于第二层（数据链路层）<br>HUB 所有端口都在同一个广播域，冲突域内，Switch 所有端口都在同意广播域内，而每一个端口就是一个冲突域。<br>同一冲突域共享宽带<br>2.2 虚拟局域网（实验）VLAN<br>VLAN（Virtual local Area Network）即虚拟局域网，是将一个物理的 LAN 在逻辑上划分成多个广播域的通信技术。VLAN 间不能直接通信，而 VLAN 间不能直接通信，从而将广播报文限制在一个 VLAN 内。<br>优点和目的<br>划分广播域：减少垃圾数据<br>增强局域网的安全性<br>提高健壮性<br>灵活构建工作组<br>划分 VLAN 的方式<br>基于端口<br>给交换机的每个接口配置不同的 PVID，当一个数据帧进入交换机接口时，如果没有带 VLAN 标签，且该接口上配置了 PVID。如果进入的帧已经带有 VLAN 标签，那么交换机不会在增加 VLAN 标签，即使接口已经配置了 PVID<br>Access：只允许通过一个 VLAN<br>Trunk：允许通过多个 VLAN<br>Hybird<br>基于子网<br>配置好子网域 VLAN 映射表，如果交换设备收到的是 untagged（不带 VLAN 标签）帧，交换设备根据报文中的源 IP 地址信息，确认添加的 VLAN iD。将指定网段或 IP 地址发出的报文在指定的 VLAN 中传输，减轻了网络管理着的任务量，且有利于管理<br>基于 MAC 地址<br>先配置好 MAC 地址和 VLAN 映射关系表，当终端用户的物理位置发生改变，不需要重新配置 VLAN。提高了终端用户的安全性和接入的灵活性<br>基于协议<br>将网络中提供的服务类型域 VLAN 相绑定，方便管理和维护。需要对网络中所有的协议类型和 VLAN ID 的映射关系表进行初始配置。需要分析各种协议的地址格式并进行相应的转换，消耗交换机较多的资源，速度上稍具劣势。<br>基于匹配策略<br>先在交换机上配置好终端的 MAC 地址和 IP 地址，并与 VLAN 并联。只有符合条件的终端才能加入指定 VLAN。符合策略的终端加入指定 VLAN 后，严禁修改 IP 地址和 MAC 地址，否则会导致终端从指定 VLAN 中退出。<br>2.3：CSMA/CD（总线型）<br>CSDN/CD 即载波侦听多路访问/冲突检测，是广播信道中采用一种随机访问技术的竞争型访问方法，具有多目标地址的特点，总线型网络传输数据<br>四大特点（重要）<br>先听再发<br>边听边发<br>冲突停止<br>延迟后发<br>2.4：PPP（单播）<br>点对点通信是一对一通道，因此不会发生碰撞，因此比较简单，采用 PPP 协议；其中 PPP 协议就是用户计算机和 ISP（互联网服务提供商）进行通信时使用的数据链路层的协议<br>PPP 最初设计是为两个对等节点之间的 IP 流量传输提供一种封装协议。<br>2.5：CRC（需要单独的深入学习）<br>循环冗余校验<br>是数据通信领域中最常用的一种查错校验码，其特征是信息字段和校验字段的长度可以任意选定。循环冗余检查（CRC）是一种数据传输检错功能。l<br>例题：要发送的数据为 1101011011，采用 CRC 的生成多项式是 P（x）=x^4+x+1.求余数。</p>
+<h2 id="四-网络层"><a href="#四-网络层" class="headerlink" title="四.网络层"></a>四.网络层</h2><p>1.网络层的作用<br>提供端到端的服务 单位：分组<br>网络层的目的是实现两个端系统之间的数据透明传输，具体功能包括寻址和路由选择，连接的建立，保持和终止等。它提供的服务使传输层不需要了解网络中的数据传输和交换技术。 2.网际层协议 IP<br>ARP 地址解析协议<br>根据 IP 地址获取物理地址<br>RARP 反地址解析协议<br>ICMP 网际控制报文协议<br>通过 ICMP 传输控制消息，控制消息是指网络通不通，主机是否可达，路由是否可用等网络本身的消息。<br>IGMP 网际组管理协议<br>适用于管理协议多播组成员的一种通信协议。IP 主机和相邻路由器利用 IGMP 来创建多播组的组成员。组播方式解决了单播情况下数据的重复拷贝及带宽的重复占用，也解决了广播方式下带宽资源的浪费<br>3.IP 地址<br>3.1IP 地址的概念<br>IP 地址使 IP 协议提供的一种统一的地址格式，他为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。<br>组成：一个 IP 地址由 4 个字节，32 位组成，一般用点分十进制的方式表现，<br>IP 地址和 MAC 地址的区别<br>IP 地址是一个逻辑地址，MAC 地址是物理地址<br>MAC 地址是唯一的但是 IP 地址不受唯一的<br>MAC 地址主要是工作在第二层，IP 地址在网际层<br>MAC 地址是 48 位，IP 地址一般是 32 位（v6 是 128 位）<br>IP 地址的分配取决于网络拓扑，MAC 地址分配取决于制造商<br>3.2IP 地址的组成<br>主机地址和网络地址组成的<br>主机地址/主机号<br>标识某一台设备的地址<br>网络地址/网络号<br>标识某一网段的地址<br>子网掩码<br>子网掩码用于区分网络号和主机号<br>它是一种用来指明一个 IP 地址的哪些位标识的是主机所在的子网，以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合 IP 地址一起使用。子网掩码只能有一个作用，就是将某一个 IP 地址划分成为网络地址和主机地址两部分<br>3.3IP 地址的分类<br>3.3.1A 类<br>一个 A 类 IP 地址是指，在 IP 地址的四段号码中，第一段号为网络号码，剩下的三段号码为本地计算机的号码。A 类 IP 地址中网络的标识长度为 8 位，主机标识的长度为 24 位，A 类网络地址数量较少，有 126 个网络，每一个网络可以容纳主机数量高达 1600 多万台. A 类 IP 地址 地址范围 1.0.0.1 到 127.255.255.254<br>第一个字节为网络号，第一个字节第一位为 0<br>3.3.2B 类<br>一个 B 类地址是指，在 IP 地址的四段号码中，前两段号码为网络号码。B 类 IP 地址中网络的标识长度为 16 位，主机标识的长度为 16 位，B 类网络地址适用于中等规模的网络，有 16384 个网络，每个网络所能容纳的计算机数 6 万多台。 B 类 IP 地址 地址范围 128.0.01-191.255.255.254<br>前两个字节为网络号，第一个字节前两位是 10<br>3.3.3C 类<br>一个 C 类 IP 地址是指，在 IP 地址的四段号码中，前三段号码为网络号码，剩下的一段号码为本地计算机的号码。C 类 IP 地址中网络的标识长度为 24 位，主机标识的长度为 8 位，C 网络地址数量较多，有 209 万余个网络。适用于小规模的局域网络，每个网络最多只能包含 254 台计算机。C 类 IP 地址范围 192.0.0.1-223.255.255.254<br>前三个字节为网络号，第一个字节前两位是 110<br>3.3.4D 类<br>D 类 IP 地址在历史上呗叫做多播地址，及组播地址。在以太网中，多播地址命名了一组应该在这个网络中应用接收到一个分组的站点。多播地址的最高位必须是“1110”，范围从 224.0.0.0 到 239.255.255.255<br>3.3.5E 类<br>保留<br>3.3.6 特殊地址<br>网络地址：主机号全为 0 的地址不可用<br>广播地址：主机号全为 1 的地址不可用<br>回环地址：127.0.0.0 测试使用<br>4.IPv6<br>因为 IPv4 地址满足不了需求，出现匮乏的情况，所以就诞生了 IPv6 地址继续使用。v6 地址由 128 位，16 字节组成，一般表现形式为十六进制。 4.网络层的路由<br>4.1 路由<br>路由是什么？<br>路由是指分组从源到目的地时，决定端到端路径的网络范围的进程。路由是指导报文转发的路径信息，通过路由可以确认转发 IP 报文的路径<br>路由是网络层最主要的工作任务<br>路由器<br>网络层的基础设备<br>数据转发<br>一个端口代表一个网段，路由器中存放着通往各个网段的表格，叫做路由表<br>路由表<br>又称路由择域信息库，是一个存储在路由器或者联网计算机中的电子表格（文件）或者类数据库。路由表存储着指向特定网络地址的路径<br>网关<br>又称网间连接器，协议转换器。用于两个高层协议不同的网络互连。网关既可以用于广域网互连，也可以用于局域网互连<br>路由获取方式<br>直连路由<br>静态路由<br>动态路由<br>4.2 路由的配置方式<br>静态路由<br>静态路由：由管理员手工配置，配置方便，对系统要求低，适用于拓扑结构简单稳定的小型网络<br>缺省路由：是一种特殊的路由，当报文没有在路由表中找到匹配的具体表项时才能使用的路由<br>动态路由<br>动态路由<br>通过动态路由协议来实现不同网段的路由互通<br>动态路由协议有自己的路由算法，能够自动适应网络拓扑的变化，适用于具有一定数量的三层设备的网络<br>动态路由协议<br>RPI<br>RPI：路由信息协议<br>基于矢量的动态路由协议<br>适用于中小规模的网络拓扑，最大跳数为 15<br>OSPF<br>OSPF:开放式最短路径优先<br>基于链路状态的路由<br>使用 SPF 算法，计算最短路径。树形协议<br>BGP<br>BGP 是自治系统间的路由协议。自治系统之间的路由协议<br>自治系统间的路由协议<br>IS-IS<br>IS-IS：中间系统到中间系统<br>与 OSPF 类似，IS-IS 是基于路由路划分区域，OSPF 利用接口划分<br>内部网关协议<br>RIP 和 OSPF 的区别<br>RIP 是基于矢量的协议，OSPF 是基于链路状态<br>RIP 适用于中小型网络拓扑，OSPF 适用于较大规模的网络<br>OSPF 支持可变长度子网掩码（VLSM）。RIP 不支持<br>ODPF 的收敛速度比 RIP 更加的迅速</p>
+<h2 id="五-传输层"><a href="#五-传输层" class="headerlink" title="五.传输层"></a>五.传输层</h2><p>1.传输层概念<br>1.1 传输层<br>传输层提供端到端服务<br>从通信和信息处理的角度看，传输层向上层应用层提供通信服务<br>所谓的端口，就好像是门牌号一样，客户端可以通过 IP 地址找到对应的服务器端，但是服务器端是有很多的端口的，每个应用程序对应一个端口号，通过类似门牌号的端口号，客户端才能真正的访问到该服务器。为了对端口号进行区分，将每个端口进行编号，这就是端口号<br>1.2 端口号<br>FTP：21（20）_<br>FTP（文件传输协议）<br>21 连接；20 传输数据<br>TELNET：23_：TELNET(远程登录)<br>SMTP：25*<br>SMTP(电子邮件传输协议)<br>POP3（邮局协议版本 3）：110<br>DNS：53<em>：DNS（域名系统）<br>TFTP：69：TFTP（简单文件传输协议）<br>HTTP：80</em>：HTTP（超文本传输协议）<br>SNMP：161：SNMP（简单网络管理协议）<br>HTTPS：443*：HTTPS（超文本传输安全协议） 2.传输层的两个重要协议<br>3.1TCP<br>传输控制协议：TCP<br>TCP 是 TCP/IP 体系中较为复杂的协议，是传输层中最重要的协议<br>TCP 的主要特点是：<br>TCP 是面向连接的传输层协议<br>TCP 提供可靠的交付服务<br>TCP 提供全双工通信<br>TCP 是面向字节流<br>窗口<br>固定窗口：如果窗口过小，当传输比较大的数据的时候需要不停的对数据进行确认，这个时候就会造成很大的延迟<br>滑动窗口：滑动窗口通俗的讲就是一种流量控制技术。它本质上是描述接收方 TCP 数据报缓冲区大小的数据，发送根据这个数据来计算自己最多能发送所长的数据，如果发送方收到接收方的窗口大小为 0 的 TCP 数据报，那么发送方将停止发送数据，等到接受方发送窗口大小不为 0 的数据报的到来<br>拥塞处理和流量控制<br>TCP 的三次握手和流量控制<br>3.2UDP<br>用户数据报协议：UDP<br>UDP 是在 IP 数据报服务之上增加了一些功能，增加了复用和分用的功能以及差错检测的功能<br>UDP 的主要特点是：<br>UDP 是无连接的<br>UDP 尽最大努力交付<br>UDP 面向报文且没有拥塞控制<br>UDP 开销较小传输效率较高<br>UDP 首部的概念<br>个人认为的复习重点(超级重要的 tcp)</p>
+<p>※传输层中的 TCP 和 UDP<br>TCP/IP 中有两个具有代表性的传输层协议，分别是 TCP 和 UDP。</p>
+<p>TCP 是面向连接的、可靠的流协议。流就是指不间断的数据结构，当应用程序采用 TCP 发送消息时，虽然可以保证发送的顺序，但还是犹如没有任何间隔的数据流发送给接收端。TCP 为提供可靠性传输，实行“顺序控制”或“重发控制”机制。此外还具备“流控制（流量控制）”、“拥塞控制”、提高网络利用率等众多功能。<br>UDP 是不具有可靠性的数据报协议。细微的处理它会交给上层的应用去完成。在 UDP 的情况下，虽然可以确保发送消息的大小，却不能保证消息一定会到达。因此，应用有时会根据自己的需要进行重发处理。<br>TCP 和 UDP 的优缺点无法简单地、绝对地去做比较：TCP 用于在传输层有必要实现可靠传输的情况；而在一方面，UDP 主要用于那些对高速传输和实时性有较高要求的通信或广播通信。TCP 和 UDP 应该根据应用的目的按需使用。</p>
+<ol>
+<li>端口号<br>数据链路和 IP 中的地址，分别指的是 MAC 地址和 IP 地址。前者用来识别同一链路中不同的计算机，后者用来识别 TCP/IP 网络中互连的主机和路由器。在传输层也有这种类似于地址的概念，那就是端口号。端口号用来识别同一台计算机中进行通信的不同应用程序。因此，它也被称为程序地址。</li>
+</ol>
+<p>1.1 根据端口号识别应用<br>一台计算机上同时可以运行多个程序。传输层协议正是利用这些端口号识别本机中正在进行通信的应用程序，并准确地将数据传输。</p>
+<p>1.2 通过 IP 地址、端口号、协议号进行通信识别<br>仅凭目标端口号识别某一个通信是远远不够的。</p>
+<p>① 和 ② 的通信是在两台计算机上进行的。它们的目标端口号相同，都是 80。这里可以根据源端口号加以区分。<br>③ 和 ① 的目标端口号和源端口号完全相同，但它们各自的源 IP 地址不同。<br>此外，当 IP 地址和端口号全都一样时，我们还可以通过协议号来区分（TCP 和 UDP）。<br>1.3 端口号的确定<br>标准既定的端口号：这种方法也叫静态方法。它是指每个应用程序都有其指定的端口号。但并不是说可以随意使用任何一个端口号。例如 HTTP、FTP、TELNET 等广为使用的应用协议中所使用的端口号就是固定的。这些端口号被称为知名端口号，分布在 0<del>1023 之间；除知名端口号之外，还有一些端口号被正式注册，它们分布在 1024</del>49151 之间，不过这些端口号可用于任何通信用途。<br>时序分配法：服务器有必要确定监听端口号，但是接受服务的客户端没必要确定端口号。在这种方法下，客户端应用程序完全可以不用自己设置端口号，而全权交给操作系统进行分配。动态分配的端口号范围在 49152~65535 之间。<br>1.4 端口号与协议<br>端口号由其使用的传输层协议决定。因此，不同的传输层协议可以使用相同的端口号。<br>此外，那些知名端口号与传输层协议并无关系。只要端口一致都将分配同一种应用程序进行处理。 2. UDP<br>UDP 不提供复杂的控制机制，利用 IP 提供面向无连接的通信服务。<br>并且它是将应用程序发来的数据在收到的那一刻，立即按照原样发送到网络上的一种机制。即使是出现网络拥堵的情况，UDP 也无法进行流量控制等避免网络拥塞行为。<br>此外，传输途中出现丢包，UDP 也不负责重发。<br>甚至当包的到达顺序出现乱序时也没有纠正的功能。<br>如果需要以上的细节控制，不得不交由采用 UDP 的应用程序去处理。<br>UDP 常用于一下几个方面：1.包总量较少的通信（DNS、SNMP 等）；2.视频、音频等多媒体通信（即时通信）；3.限定于 LAN 等特定网络中的应用通信；4.广播通信（广播、多播）。 3. TCP<br>TCP 与 UDP 的区别相当大。它充分地实现了数据传输时各种控制功能，可以进行丢包时的重发控制，还可以对次序乱掉的分包进行顺序控制。而这些在 UDP 中都没有。<br>此外，TCP 作为一种面向有连接的协议，只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。<br>根据 TCP 的这些机制，在 IP 这种无连接的网络上也能够实现高可靠性的通信（ 主要通过检验和、序列号、确认应答、重发控制、连接管理以及窗口控制等机制实现）。<br>3.1 三次握手（重点）<br>TCP 提供面向有连接的通信传输。面向有连接是指在数据通信开始之前先做好两端之间的准备工作。<br>所谓三次握手是指建立一个 TCP 连接时需要客户端和服务器端总共发送三个包以确认连接的建立。在 socket 编程中，这一过程由客户端执行 connect 来触发。<br>下面来看看三次握手的流程图：</p>
+<p>第一次握手：客户端将标志位 SYN 置为 1，随机产生一个值 seq=J，并将该数据包发送给服务器端，客户端进入 SYN_SENT 状态，等待服务器端确认。<br>第二次握手：服务器端收到数据包后由标志位 SYN=1 知道客户端请求建立连接，服务器端将标志位 SYN 和 ACK 都置为 1，ack=J+1，随机产生一个值 seq=K，并将该数据包发送给客户端以确认连接请求，服务器端进入 SYN_RCVD 状态。<br>第三次握手：客户端收到确认后，检查 ack 是否为 J+1，ACK 是否为 1，如果正确则将标志位 ACK 置为 1，ack=K+1，并将该数据包发送给服务器端，服务器端检查 ack 是否为 K+1，ACK 是否为 1，如果正确则连接建立成功，客户端和服务器端进入 ESTABLISHED 状态，完成三次握手，随后客户端与服务器端之间可以开始传输数据了。<br>3.2 四次挥手（重点）<br>四次挥手即终止 TCP 连接，就是指断开一个 TCP 连接时，需要客户端和服务端总共发送 4 个包以确认连接的断开。在 socket 编程中，这一过程由客户端或服务端任一方执行 close 来触发。<br>由于 TCP 连接是全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个 FIN 来终止这一方向的连接，收到一个 FIN 只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个 TCP 连接上仍然能够发送数据，直到这一方向也发送了 FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。<br>下面来看看四次挥手的流程图：</p>
+<p>中断连接端可以是客户端，也可以是服务器端。<br>第一次挥手：客户端发送一个 FIN=M，用来关闭客户端到服务器端的数据传送，客户端进入 FIN_WAIT_1 状态。意思是说”我客户端没有数据要发给你了”，但是如果你服务器端还有数据没有发送完成，则不必急着关闭连接，可以继续发送数据。<br>第二次挥手：服务器端收到 FIN 后，先发送 ack=M+1，告诉客户端，你的请求我收到了，但是我还没准备好，请继续你等我的消息。这个时候客户端就进入 FIN_WAIT_2 状态，继续等待服务器端的 FIN 报文。<br>第三次挥手：当服务器端确定数据已发送完成，则向客户端发送 FIN=N 报文，告诉客户端，好了，我这边数据发完了，准备好关闭连接了。服务器端进入 LAST_ACK 状态。<br>第四次挥手：客户端收到 FIN=N 报文后，就知道可以关闭连接了，但是他还是不相信网络，怕服务器端不知道要关闭，所以发送 ack=N+1 后进入 TIME_WAIT 状态，如果 Server 端没有收到 ACK 则可以重传。服务器端收到 ACK 后，就知道可以断开连接了。客户端等待了 2MSL 后依然没有收到回复，则证明服务器端已正常关闭，那好，我客户端也可以关闭连接了。最终完成了四次握手。<br>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，<br>具体流程如下图：</p>
+<p>3.3 通过序列号与确认应答提高可靠性<br>在 TCP 中，当发送端的数据到达接收主机时，接收端主机会返回一个已收到消息的通知。这个消息叫做确认应答（ACK）。当发送端将数据发出之后会等待对端的确认应答。如果有确认应答，说明数据已经成功到达对端。反之，则数据丢失的可能性很大。<br>在一定时间内没有等待到确认应答，发送端就可以认为数据已经丢失，并进行重发。由此，即使产生了丢包，仍然能够保证数据能够到达对端，实现可靠传输。<br>未收到确认应答并不意味着数据一定丢失。也有可能是数据对方已经收到，只是返回的确认应答在途中丢失。这种情况也会导致发送端误以为数据没有到达目的地而重发数据。<br>此外，也有可能因为一些其他原因导致确认应答延迟到达，在源主机重发数据以后才到达的情况也屡见不鲜。此时，源主机只要按照机制重发数据即可。<br>对于目标主机来说，反复收到相同的数据是不可取的。为了对上层应用提供可靠的传输，目标主机必须放弃重复的数据包。为此我们引入了序列号。<br>序列号是按照顺序给发送数据的每一个字节（8 位字节）都标上号码的编号。接收端查询接收数据 TCP 首部中的序列号和数据的长度，将自己下一步应该接收的序列号作为确认应答返送回去。通过序列号和确认应答号，TCP 能够识别是否已经接收数据，又能够判断是否需要接收，从而实现可靠传输。</p>
+<p>3.4 重发超时的确定<br>重发超时是指在重发数据之前，等待确认应答到来的那个特定时间间隔。如果超过这个时间仍未收到确认应答，发送端将进行数据重发。最理想的是，找到一个最小时间，它能保证“确认应答一定能在这个时间内返回”。<br>TCP 要求不论处在何种网络环境下都要提供高性能通信，并且无论网络拥堵情况发生何种变化，都必须保持这一特性。为此，它在每次发包时都会计算往返时间及其偏差。将这个往返时间和偏差时间相加，重发超时的时间就是比这个总和要稍大一点的值。<br>在 BSD 的 Unix 以及 Windows 系统中，超时都以 0.5 秒为单位进行控制，因此重发超时都是 0.5 秒的整数倍。不过，最初其重发超时的默认值一般设置为 6 秒左右。<br>数据被重发之后若还是收不到确认应答，则进行再次发送。此时，等待确认应答的时间将会以 2 倍、4 倍的指数函数延长。<br>此外，数据也不会被无限、反复地重发。达到一定重发次数之后，如果仍没有任何确认应答返回，就会判断为网络或对端主机发生了异常，强制关闭连接。并且通知应用通信异常强行终止。<br>3.5 以段为单位发送数据<br>在建立 TCP 连接的同时，也可以确定发送数据包的单位，我们也可以称其为“最大消息长度”（MSS）。最理想的情况是，最大消息长度正好是 IP 中不会被分片处理的最大数据长度。<br>TCP 在传送大量数据时，是以 MSS 的大小将数据进行分割发送。进行重发时也是以 MSS 为单位。<br>MSS 在三次握手的时候，在两端主机之间被计算得出。两端的主机在发出建立连接的请求时，会在 TCP 首部中写入 MSS 选项，告诉对方自己的接口能够适应的 MSS 的大小。然后会在两者之间选择一个较小的值投入使用。<br>3.6 利用窗口控制提高速度<br>TCP 以 1 个段为单位，每发送一个段进行一次确认应答的处理。这样的传输方式有一个缺点，就是包的往返时间越长通信性能就越低。<br>为解决这个问题，TCP 引入了窗口这个概念。确认应答不再是以每个分段，而是以更大的单位进行确认，转发时间将会被大幅地缩短。也就是说，发送端主机，在发送了一个段以后不必要一直等待确认应答，而是继续发送。如下图所示：</p>
+<p>窗口大小就是指无需等待确认应答而可以继续发送数据的最大值。上图中窗口大小为 4 个段。这个机制实现了使用大量的缓冲区，通过对多个段同时进行确认应答的功能。<br>3.7 滑动窗口控制</p>
+<p>上图中的窗口内的数据即便没有收到确认应答也可以被发送出去。不过，在整个窗口的确认应答没有到达之前，如果其中部分数据出现丢包，那么发送端仍然要负责重传。为此，发送端主机需要设置缓存保留这些待被重传的数据，直到收到他们的确认应答。<br>在滑动窗口以外的部分包括未发送的数据以及已经确认对端已收到的数据。当数据发出后若如期收到确认应答就可以不用再进行重发，此时数据就可以从缓存区清除。<br>收到确认应答的情况下，将窗口滑动到确认应答中的序列号的位置。这样可以顺序地将多个段同时发送提高通信性能。这种机制也别称为滑动窗口控制。<br>3.8 窗口控制中的重发控制<br>在使用窗口控制中， 出现丢包一般分为两种情况：</p>
+<p>① 确认应答未能返回的情况。在这种情况下，数据已经到达对端，是不需要再进行重发的，如下图：</p>
+<p>② 某个报文段丢失的情况。接收主机如果收到一个自己应该接收的序列号以外的数据时，会针对当前为止收到数据返回确认应答。如下图所示，当某一报文段丢失后，发送端会一直收到序号为 1001 的确认应答，因此，在窗口比较大，又出现报文段丢失的情况下，同一个序列号的确认应答将会被重复不断地返回。而发送端主机如果连续 3 次收到同一个确认应答，就会将其对应的数据进行重发。这种机制比之前提到的超时管理更加高效，因此也被称为高速重发控制。</p>
+<p>※网络层中的 IP 协议<br>IP（IPv4、IPv6）相当于 OSI 参考模型中的第 3 层——网络层。网络层的主要作用是“实现终端节点之间的通信”。这种终端节点之间的通信也叫“点对点通信”。<br>网络的下一层——数据链路层的主要作用是在互连同一种数据链路的节点之间进行包传递。而一旦跨越多种数据链路，就需要借助网络层。网络层可以跨越不同的数据链路，即使是在不同的数据链路上也能实现两端节点之间的数据包传输。<br>IP 大致分为三大作用模块，它们是 IP 寻址、路由（最终节点为止的转发）以及 IP 分包与组包。</p>
+<ol>
+<li>IP 地址<br>1.1 IP 地址概述<br>在计算机通信中，为了识别通信对端，必须要有一个类似于地址的识别码进行标识。在数据链路中的 MAC 地址正是用来标识同一个链路中不同计算机的一种识别码。<br>作为网络层的 IP ,也有这种地址信息，一般叫做 IP 地址。IP 地址用于在“连接到网络中的所有主机中识别出进行通信的目标地址”。因此，在 TCP/IP 通信中所有主机或路由器必须设定自己的 IP 地址。<br>不论一台主机与哪种数据链路连接，其 IP 地址的形式都保持不变。<br>IP 地址（IPv4 地址）由 32 位正整数来表示。IP 地址在计算机内部以二进制方式被处理。然而，由于我们并不习惯于采用二进制方式，我们将 32 位的 IP 地址以每 8 位为一组，分成 4 组，每组以 “.” 隔开，再将每组数转换成十进制数。如下：<br>2828282810101100000101000000000100000001（2 进制）10101100.00010100.00000001.00000001（2 进制）172.20.1.1（10 进制）</li>
+</ol>
+<p>1.2 IP 地址由网络和主机两部分标识组成<br>如下图，网络标识在数据链路的每个段配置不同的值。网络标识必须保证相互连接的每个段的地址不相重复。而相同段内相连的主机必须有相同的网络地址。IP 地址的“主机标识”则不允许在同一个网段内重复出现。由此，可以通过设置网络地址和主机地址，在相互连接的整个网络中保证每台主机的 IP 地址都不会相互重叠。即 IP 地址具有了唯一性。</p>
+<p>如下图，IP 包被转发到途中某个路由器时，正是利用目标 IP 地址的网络标识进行路由。因为即使不看主机标识，只要一见到网络标识就能判断出是否为该网段内的主机。</p>
+<p>1.3 IP 地址的分类<br>IP 地址分为四个级别，分别为 A 类、B 类、C 类、D 类。它根据 IP 地址中从第 1 位到第 4 位的比特列对其网络标识和主机标识进行区分。<br>A 类 IP 地址是首位以 “0” 开头的地址。从第 1 位到第 8 位是它的网络标识。用十进制表示的话，0.0.0.0<del>127.0.0.0 是 A 类的网络地址。A 类地址的后 24 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 16,777,214 个。<br>B 类 IP 地址是前两位 “10” 的地址。从第 1 位到第 16 位是它的网络标识。用十进制表示的话，128.0.0.0</del>191.255.0.0 是 B 类的网络地址。B 类地址的后 16 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 65,534 个。<br>C 类 IP 地址是前三位为 “110” 的地址。从第 1 位到第 24 位是它的网络标识。用十进制表示的话，192.0.0.0<del>223.255.255.0 是 C 类的网络地址。C 类地址的后 8 位相当于主机标识。因此，一个网段内可容纳的主机地址上限为 254 个。<br>D 类 IP 地址是前四位为 “1110” 的地址。从第 1 位到第 32 位是它的网络标识。用十进制表示的话，224.0.0.0</del>239.255.255.255 是 D 类的网络地址。D 类地址没有主机标识，常用于多播。<br>在分配 IP 地址时关于主机标识有一点需要注意。即要用比特位表示主机地址时，不可以全部为 0 或全部为 1。因为全部为 0 只有在表示对应的网络地址或 IP 地址不可以获知的情况下才使用。而全部为 1 的主机通常作为广播地址。因此，在分配过程中，应该去掉这两种情况。这也是为什么 C 类地址每个网段最多只能有 254（ 28 - 2 = 254）个主机地址的原因。<br>1.4 广播地址<br>广播地址用于在同一个链路中相互连接的主机之间发送数据包。将 IP 地址中的主机地址部分全部设置为 1，就成了广播地址。<br>广播分为本地广播和直接广播两种。在本网络内的广播叫做本地广播；在不同网络之间的广播叫做直接广播。<br>1.5 IP 多播<br>多播用于将包发送给特定组内的所有主机。由于其直接使用 IP 地址，因此也不存在可靠传输。<br>相比于广播，多播既可以穿透路由器，又可以实现只给那些必要的组发送数据包。请看下图：</p>
+<p>多播使用 D 类地址。因此，如果从首位开始到第 4 位是 “1110”，就可以认为是多播地址。而剩下的 28 位可以成为多播的组编号。<br>此外， 对于多播，所有的主机（路由器以外的主机和终端主机）必须属于 224.0.0.1 的组，所有的路由器必须属于 224.0.0.2 的组。<br>1.6 子网掩码<br>现在一个 IP 地址的网络标识和主机标识已不再受限于该地址的类别，而是由一个叫做“子网掩码”的识别码通过子网网络地址细分出比 A 类、B 类、C 类更小粒度的网络。这种方式实际上就是将原来 A 类、B 类、C 类等分类中的主机地址部分用作子网地址，可以将原网络分为多个物理网络的一种机制。<br>子网掩码用二进制方式表示的话，也是一个 32 位的数字。它对应 IP 地址网络标识部分的位全部为 “1”，对应 IP 地址主机标识的部分则全部为 “0”。由此，一个 IP 地址可以不再受限于自己的类别，而是可以用这样的子网掩码自由地定位自己的网络标识长度。当然，子网掩码必须是 IP 地址的首位开始连续的 “1”。<br>对于子网掩码，目前有两种表示方式。第一种是，将 IP 地址与子网掩码的地址分别用两行来表示。以 172.20.100.52 的前 26 位是网络地址的情况为例，如下：<br>IP 地址 172.20.100.52 子网掩码 255.255.255.192 网络地址 172.20.100.0 子网掩码 255.255.255.192 广播地址 172.20.100.63 子网掩码 255.255.255.192</p>
+<p>第二种表示方式是，在每个 IP 地址后面追加网络地址的位数用 “/ ” 隔开，如下：<br>IP 地址 172.20.100.52/ 26 网络地址 172.20.100.0/ 26 广播地址 172.20.100.63/ 26</p>
+<p>另外，在第二种方式下记述网络地址时可以省略后面的 “0” 。例如：172.20.0.0/26 跟 172.20/26 其实是一个意思。 2. 路由<br>发送数据包时所使用的地址是网络层的地址，即 IP 地址。然而仅仅有 IP 地址还不足以实现将数据包发送到对端目标地址，在数据发送过程中还需要类似于“指明路由器或主机”的信息，以便真正发往目标地址。保存这种信息的就是路由控制表。<br>该路由控制表的形成方式有两种：一种是管理员手动设置，另一种是路由器与其他路由器相互交换信息时自动刷新。前者也叫做静态路由控制，而后者叫做动态路由控制。<br>IP 协议始终认为路由表是正确的。然后，IP 本身并没有定义制作路由控制表的协议。即 IP 没有制作路由控制表的机制。该表示由一个叫做“路由协议”的协议制作而成。<br>2.1 IP 地址与路由控制<br>IP 地址的网络地址部分用于进行路由控制。<br>路由控制表中记录着网络地址与下一步应该发送至路由器的地址。<br>在发送 IP 包时，首先要确定 IP 包首部中的目标地址，再从路由控制表中找到与该地址具有相同网络地址的记录，根据该记录将 IP 包转发给相应的下一个路由器。如果路由控制表中存在多条相同网络地址的记录，就选择一个最为吻合的网络地址。</p>
+<ol start="3">
+<li>IP 分包与组包<br>每种数据链路的最大传输单元（MTU）都不尽相同，因为每个不同类型的数据链路的使用目的不同。使用目的不同，可承载的 MTU 也就不同。<br>任何一台主机都有必要对 IP 分片进行相应的处理。分片往往在网络上遇到比较大的报文无法一下子发送出去时才会进行处理。<br>经过分片之后的 IP 数据报在被重组的时候，只能由目标主机进行。路由器虽然做分片但不会进行重组。<br>3.1 路径 MTU 发现<br>分片机制也有它的不足。如路由器的处理负荷加重之类。因此，只要允许，是不希望由路由器进行 IP 数据包的分片处理的。<br>为了应对分片机制的不足，“路径 MTU 发现” 技术应运而生。路径 MTU 指的是，从发送端主机到接收端主机之间不需要分片是最大 MTU 的大小。即路径中存在的所有数据链路中最小的 MTU 。<br>进行路径 MTU 发现，就可以避免在中途的路由器上进行分片处理，也可以在 TCP 中发送更大的包。</li>
+<li>IPv6<br>IPv6（IP version 6）是为了根本解决 IPv4 地址耗尽的问题而被标准化的网际协议。IPv4 的地址长度为 4 个 8 位字节，即 32 比特。而 IPv6 的地址长度则是原来的 4 倍，即 128 比特，一般写成 8 个 16 位字节。<br>4.1 IPv6 的特点<br>IP 得知的扩大与路由控制表的聚合。<br>性能提升。包首部长度采用固定的值（40 字节），不再采用首部检验码。简化首部结构，减轻路由器负担。路由器不再做分片处理。<br>支持即插即用功能。即使没有 DHCP 服务器也可以实现自动分配 IP 地址。<br>采用认证与加密功能。应对伪造 IP 地址的网络安全功能以及防止线路窃听的功能。<br>多播、Mobile IP 成为扩展功能。<br>4.2 IPv6 中 IP 地址的标记方法<br>一般人们将 128 比特 IP 地址以每 16 比特为一组，每组用冒号（“：”）隔开进行标记。<br>而且如果出现连续的 0 时还可以将这些 0 省略，并用两个冒号（“：：”）隔开。但是，一个 IP 地址中只允许出现一次两个连续的冒号。<br>4.3 IPv6 地址的结构<br>IPv6 类似 IPv4，也是通过 IP 地址的前几位标识 IP 地址的种类。<br>在互联网通信中，使用一种全局的单播地址。它是互联网中唯一的一个地址，不需要正式分配 IP 地址。<br>未定义 0000 … 0000（128 比特）：：/ 128 环回地址 0000 … 0001（128 比特）：：1 / 128 唯一本地地址 1111 110FC00：/ 7 链路本地单播地址 1111 1110 10FE80：：/ 10 多播地址 1111 1111FF00：：/ 8 全局单播地址（其他）</li>
+</ol>
+<p>4.4 全局单播地址<br>全局单播地址是指世界上唯一的一个地址。它是互联网通信以及各个域内部通信中最为常用的一个 IPv6 地址。<br>格式如下图所示，现在 IPv6 的网络中所使用的格式为，n = 48，m = 16 以及 128 - n - m = 64。即前 64 比特为网络标识，后 64 比特为主机标识。</p>
+<p>4.5 链路本地单播地址<br>链路本地单播地址是指在同一个数据链路内唯一的地址。它用于不经过路由器，在同一个链路中的通信。通常接口 ID 保存 64 比特版的 MAC 地址。</p>
+<p>4.6 唯一本地地址<br>唯一本地地址是不进行互联网通信时所用的地址。<br>唯一本地地址虽然不会与互联网连接，但是也会尽可能地随机生成一个唯一的全局 ID。<br>L 通常被置为 1<br>全局 ID 的值随机决定<br>子网 ID 是指该域子网地址<br>接口 ID 即为接口的 ID</p>
+<p>4.7 IPv6 分段处理<br>IPv6 的分片处理只在作为起点的发送端主机上进行，路由器不参与分片。<br>IPv6 中最小 MTU 为 1280 字节，因此，在嵌入式系统中对于那些有一定系统资源限制的设备来说，不需要进行“路径 MTU 发现”，而是在发送 IP 包时直接以 1280 字节为单位分片送出。<br>4.8 IP 首部（暂略）<br>※IP 协议相关技术<br>IP 旨在让最终目标主机收到数据包，但是在这一过程中仅仅有 IP 是无法实现通信的。必须还有能够解析主机名称和 MAC 地址的功能，以及数据包在发送过程中异常情况处理的功能。<br>5.1 DNS<br>我们平常在访问某个网站时不适用 IP 地址，而是用一串由罗马字和点号组成的字符串。而一般用户在使用 TCP/IP 进行通信时也不使用 IP 地址。能够这样做是因为有了 DNS （Domain Name System）功能的支持。DNS 可以将那串字符串自动转换为具体的 IP 地址。<br>这种 DNS 不仅适用于 IPv4，还适用于 IPv6。<br>5.2 ARP<br>只要确定了 IP 地址，就可以向这个目标地址发送 IP 数据报。然而，在底层数据链路层，进行实际通信时却有必要了解每个 IP 地址所对应的 MAC 地址。<br>ARP 是一种解决地址问题的协议。以目标 IP 地址为线索，用来定位下一个应该接收数据分包的网络设备对应的 MAC 地址。不过 ARP 只适用于 IPv4，不能用于 IPv6。IPv6 中可以用 ICMPv6 替代 ARP 发送邻居探索消息。<br>RARP 是将 ARP 反过来，从 MAC 地址定位 IP 地址的一种协议。<br>5.3 ICMP<br>ICMP 的主要功能包括，确认 IP 包是否成功送达目标地址，通知在发送过程当中 IP 包被废弃的具体原因，改善网络设置等。<br>IPv4 中 ICMP 仅作为一个辅助作用支持 IPv4。也就是说，在 IPv4 时期，即使没有 ICMP，仍然可以实现 IP 通信。然而，在 IPv6 中，ICMP 的作用被扩大，如果没有 ICMPv6，IPv6 就无法进行正常通信。<br>5.4 DHCP<br>如果逐一为每一台主机设置 IP 地址会是非常繁琐的事情。特别是在移动使用笔记本电脑、只能终端以及平板电脑等设备时，每移动到一个新的地方，都要重新设置 IP 地址。<br>于是，为了实现自动设置 IP 地址、统一管理 IP 地址分配，就产生了 DHCP（Dynamic Host Configuration Protocol）协议。有了 DHCP，计算机只要连接到网络，就可以进行 TCP/IP 通信。也就是说，DHCP 让即插即用变得可能。<br>DHCP 不仅在 IPv4 中，在 IPv6 中也可以使用。<br>5.5 NAT<br>NAT（Network Address Translator）是用于在本地网络中使用私有地址，在连接互联网时转而使用全局 IP 地址的技术。<br>除转换 IP 地址外，还出现了可以转换 TCP、UDP 端口号的 NAPT（Network Address Ports Translator）技术，由此可以实现用一个全局 IP 地址与多个主机的通信。<br>NAT（NAPT）实际上是为正在面临地址枯竭的 IPv4 而开发的技术。不过，在 IPv6 中为了提高网络安全也在使用 NAT，在 IPv4 和 IPv6 之间的相互通信当中常常使用 NAT-PT。<br>5.6 IP 隧道</p>
+<p>如上图的网络环境中，网络 A 与网络 B 之间无法直接进行通信，为了让它们之间正常通信，这时必须得采用 IP 隧道的功能。<br>IP 隧道可以将那些从网络 A 发过来的 IPv6 的包统合为一个数据，再为之追加一个 IPv4 的首部以后转发给网络 C。<br>一般情况下，紧接着 IP 首部的是 TCP 或 UDP 的首部。然而，现在的应用当中“ IP 首部的后面还是 IP 首部”或者“ IP 首部的后面是 IPv6 的首部”等情况与日俱增。这种在网络层的首部后面追加网络层首部的通信方法就叫做“ IP 隧道”。</p>
+<h2 id="六-应用层"><a href="#六-应用层" class="headerlink" title="六.应用层"></a>六.应用层</h2><p>1.应用层的作用<br>通过位于不同主机中的多个应用进程之间的通信和协同工作来完成，应用层的内容就是具体定义通信规则 2.应用层中常见的协议<br>域名系统 DNS<br>域名结构：每一个域名用标号隔开。 mail.cctv.com (三级域名.二级域名.顶级域名)<br>域名服务器：迭代 递归<br>文件传输协议 FTP<br>使用 TCP 连接，传输数据<br>端口号是 21（20） 20 发送数据<br>远程终端协议 TELNET<br>使用 TCP 连接，远程登录到远地的另外一台主机上<br>端口号是 23<br>万维网和 HTTP 协议<br>超文本传输协议，是一个简单的请求-响应协议<br>端口号是 80<br>电子邮件协议<br>SMTP 电子邮件传输协议：端口号 25<br>POP3 邮局协议版本 3：端口号 110<br>DHCP 动态主机配置协议<br>指的是由服务器控制一段 IP 地址范围，客户机登录服务器时就可以自动获得服务器分配的 IP 地址和子网掩码。<br>端口号 68</p>
+<h2 id="七-网络安全"><a href="#七-网络安全" class="headerlink" title="七.网络安全"></a>七.网络安全</h2><p>1.网络安全概论<br>1.1 网络安全<br>网络安全（Cyber Security）是指网络系统的硬件，软件及其系统中的数据受到保护，不因偶然的或者恶意的原因而遭到破坏，更改，泄露。系统连续可靠正常的运行，网络服务不中断。<br>1.2 计算机网络面临的威胁主要分为两类<br>1.2.1 主动攻击<br>主动的去做一些在网络基础上的恶意行为。恶意串改信息数据，发布恶意程序脚本等<br>篡改<br>恶意程序<br>拒绝服务<br>1.2.2 被动攻击<br>被动攻击主要是收集信息而不是进行访问，不改变数据本身的结构，也不对软硬件数据造成影响<br>截取<br>窃听<br>流量分析<br>1.2 网络系统特性<br>保密性：信息不泄露给非授权用户，实体或过程，或供其利用的特性<br>完整性：数据未经授权不能进行改变的特性，即信息在存储或传输过程中保持不被修改，不被破坏和丢失的特性<br>可用性：可被授权实体访问并按需求使用的特性。即当需要时能否存取所需信息。例如网络环境下拒绝服务，破坏网络和有关系统的正常运行等后属于对可用性的攻击<br>可靠性：对信息的传播及内容具有控制能力<br>不可抵赖性：出现安全问题时提供依据与手段 2.加密和交互<br>2.1 加密和解密<br>2.1.1 加密<br>是以某种特殊的算法改变原有的信息数据，使得未授权的用户即即使获得了已加密的信息，但因不知解密的方法，仍然无法了解信息的内容<br>加密手段<br>MD5 加密（信息-摘要算法）：128 位<br>AES 加密（称秘钥加密）：128,192,256 位<br>SHAI 加密（安全哈希算法）：160 位<br>RSA 加密：公钥加密，私钥解密：1204 位<br>2.1.2 解密<br>加密的逆过程就是解密<br>2.2 公钥和私钥<br>2.2.1 对称加密<br>采用单钥密码系统的加密方式，同一个秘钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单秘钥加密。<br>2.2.2 非对称加密<br>使用非对称的加密方式时，会产生两把钥匙。发送方利用自己的公钥加密，接收方利用自己的私钥解密<br>数字签名的四大特点<br>防止重放攻击：攻击者利用网络监听或则其他方式盗取认证凭据，之后再把它重新发给认证服务器。在数字签名中，如果采用了对签名报文加盖时间戳等或添加流水号等技术，就可以有效防止重放攻击<br>防止数据伪造：其他人不能伪造对消息的签名，因为私有秘钥只能签名者自己知道，所有其他人不可以构造出正确的签名结果数据<br>防止数据篡改：数字签名与原始文件或摘要一起发送给接受者，一旦信息被篡改，接受者可以通过计算摘要和验证签名来判断该文件无效，从而保证了文件的完整性<br>防止数据抵赖：数字签名既可以作为身份认证的依据，也可以作为签名者签名操作的证据。要防止接受者抵赖，可以在数字签名系统中要求接收者返回一个自己的签名的表示收到报文，给发送者或者信任第三方。如果接受者不返回任何信息，此次通信可终止或重新的开始，签名方也没有任何的损失，由此双方均不可抵赖。<br>2.3 防火墙<br>防火墙是一种访问控制技术，可以严格控制进出网络边界的分组，禁止任何不必要的通信，来减少潜在入侵的发生</p>
+<p>防火墙的区域们<br>Local 本地区域<br>顶级安全区域，安全优先级为 100<br>local 就是防火墙本身的区域比如 ping 指令等网际控制协议的回复，需要 local 域的权限凡是由防火墙主动发出的报文均可认为是从 local 区域中发出是需要防火墙响应并处理（而不是转发）的报文均可认为是 Local 区域接收<br>Trust 受信区<br>高级安全区域，安全优先级为 85<br>通常用来定义内部用户所在的网络，也可以理解为应该是防护最严密的地区<br>DMZ 非军事化区<br>中级安全区域，安全优先级 50<br>通常用来定义内部服务器坐在网络<br>作用是把 WEB。E-mail 等允许外部访问的服务器单独接在该区域端口，使整个需要访问，实现内外网分离，达到用户需求。DMZ 可以理解为一个不同于外网或内网的特殊网络区域，DMZ 内通常放置一些不含机密信息的公用服务器，比如 Web，Mail，FTP 中的服务。这样来自外网的访问者可以访问 DMZ 中服务，但不可能接触到存放在内网中的公司机密或私人信息等，及时 DMZ 中服务器受到破坏，也不会对内网中的机密信造成影响<br>Untrust 非受信区<br>低级安全区域，安全优先级为 5<br>通常用来定义 Internet 等不安全的网络，用于网络入口线的接入。</p>
+]]></content>
   </entry>
 </search>
