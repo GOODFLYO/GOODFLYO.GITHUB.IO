@@ -144,7 +144,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -224,9 +224,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-03-01 18:05:03 / 修改时间：13:27:48" itemprop="dateCreated datePublished" datetime="2023-03-01T18:05:03+08:00">2023-03-01</time>
+      <time title="创建时间：2023-03-01 18:05:03" itemprop="dateCreated datePublished" datetime="2023-03-01T18:05:03+08:00">2023-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-30 14:19:21" itemprop="dateModified" datetime="2023-03-30T14:19:21+08:00">2023-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,91 +275,101 @@
 ---
 
 <h2 id="1：internal、external、public、private-可见性？"><a href="#1：internal、external、public、private-可见性？" class="headerlink" title="1：internal、external、public、private 可见性？"></a>1：internal、external、public、private 可见性？</h2><blockquote>
-<p>没标明函数类型的，默认internal。</p>
+<p>没标明函数类型的，默认 internal。</p>
 </blockquote>
 <ul>
-<li><strong>public</strong>: 内部外部均可见。(也可用于修饰状态变量，public变量会自动生成 getter函数，用于查询数值).</li>
+<li><strong>public</strong>: 内部外部均可见。(也可用于修饰状态变量，public 变量会自动生成 getter 函数，用于查询数值).</li>
 <li><strong>private</strong>: 只能从本合约内部访问，继承的合约也不能用（也可用于修饰状态变量）。</li>
-<li><strong>external</strong>: 只能从合约外部访问（但是可以用this.f()来调用，f是函数名）</li>
+<li><strong>external</strong>: 只能从合约外部访问（但是可以用 this.f()来调用，f 是函数名）</li>
 <li><strong>internal</strong>: 只能从合约内部访问，继承的合约可以用（也可用于修饰状态变量）</li>
 </ul>
 <hr>
 <h2 id="2：解构式赋值"><a href="#2：解构式赋值" class="headerlink" title="2：解构式赋值"></a>2：解构式赋值</h2><blockquote>
-<p>solidity使用解构式赋值的规则，支持读取函数的全部或部分返回值。</p>
+<p>solidity 使用解构式赋值的规则，支持读取函数的全部或部分返回值。</p>
 </blockquote>
 <ul>
-<li><p>读取<strong>所有</strong>返回值：声明变量，并且将要赋值的变量用,隔开，按顺序排列。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uint256 _number;</span><br><span class="line">        bool _bool;</span><br><span class="line">        uint256[3] memory _array;</span><br><span class="line">        (_number, _bool, _array) = returnNamed();</span><br></pre></td></tr></table></figure></li>
-<li><p>读取<strong>部分</strong>返回值：声明要读取的返回值对应的变量，不读取的留空。下面这段代码中，我们只读取_bool，而不读取返回的_number和_array：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(, _bool2, ) = returnNamed();</span><br></pre></td></tr></table></figure></li>
+<li>读取<strong>所有</strong>返回值：声明变量，并且将要赋值的变量用,隔开，按顺序排列。</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uint256 _number;</span><br><span class="line">        bool _bool;</span><br><span class="line">        uint256[3] memory _array;</span><br><span class="line">        (_number, _bool, _array) = returnNamed();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>读取部分返回值</strong>：声明要读取的返回值对应的变量，不读取的留空。下面这段代码中，我们只读取_bool，而不读取返回的_number 和_array：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(, _bool2, ) = returnNamed();</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="3：数据位置-data"><a href="#3：数据位置-data" class="headerlink" title="3：数据位置 data"></a>3：数据位置 data</h2><blockquote>
-<p>solidity数据存储位置有三类：storage，memory和calldata。不同存储位置的gas成本不同。storage类型的数据存在链上，类似计算机的硬盘，消耗gas多；memory和calldata类型的临时存在内存里，消耗gas少。大致用法：</p>
+<p>solidity 数据存储位置有三类：storage，memory 和 calldata。不同存储位置的 gas 成本不同。storage 类型的数据存在链上，类似计算机的硬盘，消耗 gas 多；memory 和 calldata 类型的临时存在内存里，消耗 gas 少。大致用法：</p>
 </blockquote>
 <ol>
-<li><p><strong>storage</strong>：合约里的状态变量默认都是storage，存储在链上。</p>
+<li><p><strong>storage</strong>：合约里的状态变量默认都是 storage，存储在链上。</p>
 </li>
-<li><p><strong>memory</strong>：函数里的参数和临时变量一般用memory，存储在内存中，不上链。</p>
+<li><p><strong>memory</strong>：函数里的参数和临时变量一般用 memory，存储在内存中，不上链。</p>
 </li>
-<li><p><strong>calldata</strong>：和memory类似，存储在内存中，不上链。与memory的不同点在于calldata变量不能修改（immutable），一般用于函数的参数。例子：</p>
+<li><p><strong>calldata</strong>：和 memory 类似，存储在内存中，不上链。与 memory 的不同点在于 calldata 变量不能修改（immutable），一般用于函数的参数。例子：</p>
 </li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fCalldata(uint[] calldata _x) public pure returns(uint[] calldata)&#123;</span><br><span class="line">        //参数为calldata数组，不能被修改</span><br><span class="line">        // _x[0] = 0 //这样修改会报错</span><br><span class="line">        return(_x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="赋值规则-这个一定要注意"><a href="#赋值规则-这个一定要注意" class="headerlink" title="赋值规则(这个一定要注意)"></a>赋值规则(这个一定要注意)</h3><blockquote>
-<p>在不同存储类型相互赋值时候，有时会产生独立的副本（修改新变量不会影响原变量），有时会产生引用（<em><strong>修改新变量会影响原变量</strong></em>）</p>
+<p>在不同存储类型相互赋值时候，有时会产生独立的副本（修改新变量不会影响原变量），有时会产生引用（**<em>修改新变量会影响原变量</em>**）</p>
 </blockquote>
 <ol>
-<li><strong>storage（合约的状态变量）赋值给本地storage（函数里的）时候，会创建引用，改变新变量会影响原变量。</strong><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">uint[] x = [1,2,3]; // 状态变量：数组 x</span><br><span class="line"></span><br><span class="line">function fStorage() public&#123;</span><br><span class="line">    //声明一个storage的变量 xStorage，指向x。修改xStorage也会影响x</span><br><span class="line">    uint[] storage xStorage = x;</span><br><span class="line">    xStorage[0] = 100;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>storage赋值给memory，会创建独立的复本，修改其中一个不会影响另一个；反之亦然<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">uint[] x = [1,2,3]; // 状态变量：数组 x</span><br><span class="line"></span><br><span class="line">function fMemory() public view&#123;</span><br><span class="line">    //声明一个Memory的变量xMemory，复制x。修改xMemory不会影响x</span><br><span class="line">    uint[] memory xMemory = x;</span><br><span class="line">    xMemory[0] = 100;</span><br><span class="line">    xMemory[1] = 200;</span><br><span class="line">    uint[] memory xMemory2 = x;</span><br><span class="line">    xMemory2[0] = 300;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><strong>storage（合约的状态变量）赋值给本地 storage（函数里的）时候，会创建引用，改变新变量会影响原变量。</strong></li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">uint[] x = [1,2,3]; // 状态变量：数组 x</span><br><span class="line"></span><br><span class="line">function fStorage() public&#123;</span><br><span class="line">    //声明一个storage的变量 xStorage，指向x。修改xStorage也会影响x</span><br><span class="line">    uint[] storage xStorage = x;</span><br><span class="line">    xStorage[0] = 100;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>storage 赋值给 memory，会创建独立的复本，修改其中一个不会影响另一个；反之亦然</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">uint[] x = [1,2,3]; // 状态变量：数组 x</span><br><span class="line"></span><br><span class="line">function fMemory() public view&#123;</span><br><span class="line">    //声明一个Memory的变量xMemory，复制x。修改xMemory不会影响x</span><br><span class="line">    uint[] memory xMemory = x;</span><br><span class="line">    xMemory[0] = 100;</span><br><span class="line">    xMemory[1] = 200;</span><br><span class="line">    uint[] memory xMemory2 = x;</span><br><span class="line">    xMemory2[0] = 300;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="4：变量的作用域"><a href="#4：变量的作用域" class="headerlink" title="4：变量的作用域"></a>4：变量的作用域</h2><blockquote>
-<p>Solidity中变量按作用域划分有三种，分别是<strong>状态</strong>变量（state variable），<strong>局部</strong>变量（local variable）和<strong>全局</strong>变量(global variable</p>
+<p>Solidity 中变量按作用域划分有三种，分别是<strong>状态</strong>变量（state variable），<strong>局部</strong>变量（local variable）和<strong>全局</strong>变量(global variable</p>
 </blockquote>
 <ol>
-<li>状态变量<blockquote>
-<p>状态变量是数据存储在链上的变量，所有合约内函数都可以访问 ，gas消耗高。<strong>状态变量在合约内、函数外声明</strong></p>
+<li><p>状态变量</p>
+<blockquote>
+<p>状态变量是数据存储在链上的变量，所有合约内函数都可以访问 ，gas 消耗高。<strong>状态变量在合约内、函数外声明</strong></p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">contract Variables &#123;</span><br><span class="line">    uint public x = 1;</span><br><span class="line">    uint public y;</span><br><span class="line">    string public z;</span><br></pre></td></tr></table></figure></li>
-<li>局部变量<blockquote>
-<p>局部变量是仅在函数执行过程中有效的变量，函数退出后，变量无效。局部变量的数据存储在内存里，不上链，gas低。<strong>局部变量在函数内声明</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">contract Variables &#123;</span><br><span class="line">    uint public x = 1;</span><br><span class="line">    uint public y;</span><br><span class="line">    string public z;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>局部变量</p>
+<blockquote>
+<p>局部变量是仅在函数执行过程中有效的变量，函数退出后，变量无效。局部变量的数据存储在内存里，不上链，gas 低。<strong>局部变量在函数内声明</strong></p>
 </blockquote>
-</li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function bar() external pure returns(uint)&#123;</span><br><span class="line">    uint xx = 1;</span><br><span class="line">    uint yy = 3;</span><br><span class="line">    uint zz = xx + yy;</span><br><span class="line">    return(zz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>全局变量</p>
+<blockquote>
+<p>全局变量是全局范围工作的变量，<strong>都是 solidity 预留关键字</strong>。他们可以在函数内不声明直接使用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function global() external view returns(address, uint, bytes memory)&#123;</span><br><span class="line">    address sender = msg.sender;</span><br><span class="line">    uint blockNum = block.number;</span><br><span class="line">    bytes memory data = msg.data;</span><br><span class="line">    return(sender, blockNum, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function bar() external pure returns(uint)&#123;</span><br><span class="line">    uint xx = 1;</span><br><span class="line">    uint yy = 3;</span><br><span class="line">    uint zz = xx + yy;</span><br><span class="line">    return(zz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>全局变量<blockquote>
-<p>全局变量是全局范围工作的变量，<strong>都是solidity预留关键字</strong>。他们可以在函数内不声明直接使用</p>
-</blockquote>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function global() external view returns(address, uint, bytes memory)&#123;</span><br><span class="line">    address sender = msg.sender;</span><br><span class="line">    uint blockNum = block.number;</span><br><span class="line">    bytes memory data = msg.data;</span><br><span class="line">    return(sender, blockNum, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h2 id="5：delete-操作符"><a href="#5：delete-操作符" class="headerlink" title="5：delete 操作符"></a>5：delete 操作符</h2><blockquote>
-<p>delete a会让变量a的值变为<strong>初始值</strong>。</p>
+<p>delete a 会让变量 a 的值变为<strong>初始值</strong>。</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// delete操作符</span><br><span class="line">bool public _bool2 = true; </span><br><span class="line">function d() external &#123;</span><br><span class="line">    delete _bool2; // delete 会让_bool2变为默认值，false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// delete操作符</span><br><span class="line">bool public _bool2 = true;</span><br><span class="line">function d() external &#123;</span><br><span class="line">    delete _bool2; // delete 会让_bool2变为默认值，false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="6：常数-constant、immutable"><a href="#6：常数-constant、immutable" class="headerlink" title="6：常数 constant、immutable"></a>6：常数 constant、immutable</h2><blockquote>
-<p><strong>只有数值变量</strong>可以声明constant和immutable；string和bytes可以声明为constant，但不能为immutable</p>
+<p><strong>只有数值变量</strong>可以声明 constant 和 immutable；string 和 bytes 可以声明为 constant，但不能为 immutable</p>
 </blockquote>
 <ul>
-<li>constant变量必须在声明的时候初始化，之后再也不能改变</li>
-<li>immutable变量可以在声明时或构造函数中初始化</li>
+<li>constant 变量必须在声明的时候初始化，之后再也不能改变</li>
+<li>immutable 变量可以在声明时或构造函数中初始化</li>
 </ul>
 <hr>
 <h2 id="7：重写、多重继承"><a href="#7：重写、多重继承" class="headerlink" title="7：重写、多重继承"></a>7：重写、多重继承</h2><h3 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h3><blockquote>
-<p><strong>virtual</strong>: 父合约中的函数，如果希望子合约重写，需要加上virtual关键字。<br><strong>override</strong>：子合约重写了父合约中的函数，需要加上override关键字。</p>
+<p><strong>virtual</strong>: 父合约中的函数，如果希望子合约重写，需要加上 virtual 关键字。<br><strong>override</strong>：子合约重写了父合约中的函数，需要加上 override 关键字。</p>
 </blockquote>
 <h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><blockquote>
-<p>继承时要按辈分最高到最低的顺序排。比如我们写一个Erzi合约，继承Yeye合约和Baba合约，那么就要写成<strong>contract Erzi is Yeye, Baba</strong>，而不能写成contract Erzi is Baba, Yeye，不然就会报错。 如果某一个函数在多个继承的合约里都存在，比如例子中的hip()和pop()，在子合约里必须重写，不然会报错。 <strong>重写在多个父合约中都重名的函数时，override关键字后面要加上所有父合约名字，例如override(Yeye, Baba)。</strong></p>
+<p>继承时要按辈分最高到最低的顺序排。比如我们写一个 Erzi 合约，继承 Yeye 合约和 Baba 合约，那么就要写成<strong>contract Erzi is Yeye, Baba</strong>，而不能写成 contract Erzi is Baba, Yeye，不然就会报错。 如果某一个函数在多个继承的合约里都存在，比如例子中的 hip()和 pop()，在子合约里必须重写，不然会报错。 <strong>重写在多个父合约中都重名的函数时，override 关键字后面要加上所有父合约名字，例如 override(Yeye, Baba)。</strong></p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">contract Erzi is Yeye, Baba&#123;</span><br><span class="line">    // 继承两个function: hip()和pop()，输出值为Erzi。</span><br><span class="line">    function hip() public virtual override(Yeye, Baba)&#123;</span><br><span class="line">        emit Log(&quot;Erzi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function pop() public virtual override(Yeye, Baba) &#123;</span><br><span class="line">        emit Log(&quot;Erzi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="修饰器的重写"><a href="#修饰器的重写" class="headerlink" title="修饰器的重写"></a>修饰器的重写</h3><blockquote>
-<p>Solidity中的修饰器（Modifier）同样可以继承，用法与函数继承类似，在相应的地方加virtual和override关键字即可</p>
+<p>Solidity 中的修饰器（Modifier）同样可以继承，用法与函数继承类似，在相应的地方加 virtual 和 override 关键字即可</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">contract Base1 &#123;</span><br><span class="line">    modifier exactDividedBy2And3(uint _a) virtual &#123;</span><br><span class="line">        require(_a % 2 == 0 &amp;&amp; _a % 3 == 0);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -361,10 +377,9 @@
 
 <h3 id="构造函数的继承"><a href="#构造函数的继承" class="headerlink" title="构造函数的继承"></a>构造函数的继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract C is A &#123;</span><br><span class="line">    constructor(uint _c) A(_c * _c) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
 <hr>
 <h2 id="8：抽象合约、接口区别"><a href="#8：抽象合约、接口区别" class="headerlink" title="8：抽象合约、接口区别"></a>8：抽象合约、接口区别</h2><h3 id="抽象合约"><a href="#抽象合约" class="headerlink" title="抽象合约"></a>抽象合约</h3><blockquote>
-<p>如果一个智能合约里<strong>至少有一个未实现</strong>的函数，即某个函数缺少主体{}中的内容，则必须将该合约标为abstract，不然编译会报错；另外，未实现的函数需要加virtual，以便子合约重写</p>
+<p>如果一个智能合约里<strong>至少有一个未实现</strong>的函数，即某个函数缺少主体{}中的内容，则必须将该合约标为 abstract，不然编译会报错；另外，未实现的函数需要加 virtual，以便子合约重写</p>
 </blockquote>
 <h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><blockquote>
 <p>接口类似于抽象合约，但它不实现任何功能。接口的规则：<strong>不能包含状态变量</strong></p>
@@ -372,7 +387,7 @@
 <ul>
 <li>不能包含构造函数</li>
 <li>不能继承除接口外的其他合约</li>
-<li>所有函数都必须是external且不能有函数体</li>
+<li>所有函数都必须是 external 且不能有函数体</li>
 <li>继承接口的合约必须实现接口定义的所有功能</li>
 </ul>
 
