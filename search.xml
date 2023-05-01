@@ -1,221 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>区块链学习第一期</title>
-    <url>/2022/11/01/202_zyn_01/</url>
+    <title>区块链学习第四期</title>
+    <url>/2022/12/15/202_zyn_04/</url>
     <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
-<h1 style="font-size:32px;text-align:center;color:red">区块链基础入门</h1>
+<h1 style="font-size:32px;text-align:center;color:red">学习ethers.js【上篇】</h1>
 [toc]
 <span id="more"></span>
 ---
 
-<h3 id="说到区块链，我想我们听到最多的就是比特币"><a href="#说到区块链，我想我们听到最多的就是比特币" class="headerlink" title="说到区块链，我想我们听到最多的就是比特币"></a>说到区块链，我想我们听到最多的就是比特币</h3><blockquote>
-<p>每当同学聚餐问我学的什么的时候，我一说区块链，他们就说自己知道：是比特币！<br>但是很明显，他们只是了解一丢丢。</p>
+<h2 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h2><blockquote>
+<p>在说 etherjs 之前呢，先说一下<strong>web3js</strong></p>
 </blockquote>
-<hr>
-<h3 id="区块链是什么？"><a href="#区块链是什么？" class="headerlink" title="区块链是什么？"></a>区块链是什么？</h3><blockquote>
-<p>官方定义已经足够充分，但我不认为好理解。<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/define.png" alt="区块链定义"></p>
-</blockquote>
-<p><strong>谈谈个人理解（错误不可避免，今后将会修正）</strong></p>
 <ul>
-<li>区块链是一个数据库的集合（超大链表），每个区块之间可以通过哈希指针连接起来</li>
-<li>区块链=区块+链（其中“链”是一个区块到另一个区块链的”指针”）</li>
-<li>区块=区块头+区块体<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/myknow.png" alt="区块链自我理解"></li>
-<li>区块体里面则包含了我们要存储的数据，区块头则：<img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/body.png" alt="区块体"></li>
-<li>如上所示，区块链并不是什么复杂的概念，反而像个一步步迭代过来的新型数据库，只不过这个数据库搭载了很多其他领域的知识</li>
-</ul>
-<hr>
-<h3 id="区块链的应用实现"><a href="#区块链的应用实现" class="headerlink" title="区块链的应用实现"></a>区块链的应用实现</h3><ul>
-<li>比特币：区块链 1.0<ul>
-<li>闪电网络</li>
-<li>数字钱包</li>
-<li>挖矿（PoW、PoS、DPoS）</li>
-</ul>
-</li>
-<li>以太坊：区块链 2.0<ul>
-<li>雷电网络</li>
-<li>数字钱包</li>
-<li>挖矿</li>
-<li>智能合约</li>
-</ul>
-</li>
-<li>EOS：区块链 3.0<ul>
-<li>数字钱包</li>
-<li>挖矿</li>
-</ul>
+<li>Web3.js 是一个库集合，允许您使用 HTTP、IPC 或 WebSocket 与本地或远程以太坊节点进行交互。</li>
+<li>web3js 提供了用于和 geth 通信的 javascipt API，也就是用 web3js 连接 geth，在通过 geth 连接以太坊。</li>
+<li>内部使用了 json-rpc 与 geth 通信</li>
+<li><strong>json-rpc</strong>是一个无状态且轻量级的远程过程调用（rpc）协议。允许使用 socket、http 等协议进行通讯。使用 json 作为数据格式（rfc4627）==》被封装成了 jsapi</li>
+<li>web3js 可以与所有支持 rpc 的节点进行通信。不仅支持以太坊相关的 api，还支持以太坊生态中其它系统的 api</li>
+<li><hr>
 </li>
 </ul>
+<h2 id="ethers-js"><a href="#ethers-js" class="headerlink" title="ethers.js"></a>ethers.js</h2><blockquote>
+<p><strong>etherjs</strong>是一个完整而紧凑的开源库，用于与以太坊区块链及其生态系统进行交互（个人认为就是提供一个方便访问区块链的接口,是压缩版的 web3js）。<strong>如果要写 Dapp 前端，则需要用到它。</strong></p>
+<p><strong>uer interface（frontend）</strong> &lt;–&gt; <strong>ethereum api</strong> &lt;–&gt; <strong>smart contract</strong></p>
+</blockquote>
+<h3 id="对-alchemy-的再理解"><a href="#对-alchemy-的再理解" class="headerlink" title="对 alchemy 的再理解"></a>对 alchemy 的再理解</h3><p>某一次实验需要注册 alchemy 获取一个 api key,但一直不懂为什么要。下面我用个对比法解释：</p>
 <blockquote>
-<p>当然，以上只是最经典的应用的例举，还有很多的现代区块链落地产品。但是我们始终要知道，区块链是比特币的底层技术，比特币是区块链的应用实现。</p>
+<p>我们一开始访问以太坊时，用的扩展类工具连接的以太坊：<strong>Metamask</strong></p>
+<ol>
+<li>提供连接到以太坊的网络（a Provider）</li>
+<li>持有你的私钥并且可以进行签名（a Signer）</li>
+</ol>
 </blockquote>
-<p>区块链大致结构框架<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/fabric.jpg" alt="区块链框架"></p>
-<hr>
-<h1 style="font-size:32px;text-align:center;color:red">智能合约知识</h1>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(<span class="variable language_">window</span>.<span class="property">ethereum</span>);</span><br><span class="line"><span class="comment">//Metamask插件支持签名交易和信息，来发送交易信息改变区块链的状态</span></span><br><span class="line"><span class="comment">//因此需要一个账户联名</span></span><br><span class="line"><span class="keyword">const</span> signer = provider.<span class="title function_">getSigner</span>();</span><br></pre></td></tr></table></figure>
 
-<h3 id="关键字-constan、view、pure、payable？"><a href="#关键字-constan、view、pure、payable？" class="headerlink" title="关键字 constan、view、pure、payable？"></a>关键字 constan、view、pure、payable？</h3><hr>
-<p>Solidity 中变量按作用域划分有三种，分别是</p>
+<p>但是我们不想下载扩展呢？我还能在不通过网页的形式下查看链上信息吗？</p>
 <blockquote>
-<p>前提：</p>
+<p>RPC 全称 Remote Procedure Call，即远程过程调用）JSON-RPC API 接口，是另一个连接到以太坊的方法，可以在所有的主要的以太坊节点实现，他主要提供了</p>
+<ol>
+<li>提供连接到以太坊的网络（a Provider）</li>
+<li>持有你的私钥并且可以进行签名（a Signer）<br>查询区块链一旦有了一个 Provider，就有了一个与区块链的连接，可以用它去查询当前状态，获取历史日志，查询部署的代码等</li>
+</ol>
 </blockquote>
-<ul>
-<li><p><strong>状态变量（state variable）</strong></p>
-</li>
-<li><p><strong>局部变量（local variable）</strong></p>
-</li>
-<li><p><strong>全局变量（global variable）</strong></p>
-<ul>
-<li><p><strong>状态变量</strong><br>状态变量是数据存储在链上的变量，所有合约内函数都可以访问 ，gas 消耗高。状态变量在合约内、函数外声明：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sol contract Variables &#123;</span><br><span class="line">     uint public x = 1;</span><br><span class="line">     uint public y;</span><br><span class="line">     string public z; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//await 作用使异步方法变同步</span></span><br><span class="line"><span class="keyword">await</span> provider.<span class="title function_">getBlockNumber</span>();</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">formatEther</span>(balance);</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入区块</span></span><br><span class="line"><span class="comment">// Send 1 ether to an ens name.发送1以太到以太坊域名</span></span><br><span class="line"><span class="keyword">const</span> tx = signer.<span class="title function_">sendTransaction</span>(&#123;</span><br><span class="line">  <span class="comment">//签名，发送交易</span></span><br><span class="line">  <span class="attr">to</span>: <span class="string">&quot;ricmoo.firefly.eth&quot;</span>, <span class="comment">//发送至以太坊域名</span></span><br><span class="line">  <span class="attr">value</span>: ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>), <span class="comment">//格式化</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>我们可以在函数里更改状态变量的值：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> function foo() external&#123;</span><br><span class="line">         // 可以在函数里更改状态变量的值</span><br><span class="line">         x = 5;</span><br><span class="line">         y = 2;</span><br><span class="line">         z = &quot;0xAA&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>局部变量</strong><br>局部变量是仅在函数执行过程中有效的变量，函数退出后，变量无效。局部变量的数据存储在内存里，不上链，gas 低。局部变量在函数内声明：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function bar() external pure returns(uint)&#123;</span><br><span class="line">uint xx = 1;</span><br><span class="line">uint yy = 3;</span><br><span class="line">uint zz = xx + yy;</span><br><span class="line">return(zz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>全局变量</strong><br>全局变量是全局范围工作的变量，都是 solidity 预留关键字。他们可以在函数内不声明直接使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function global() external view returns(address, uint, bytes memory)&#123;</span><br><span class="line">address sender = msg.sender;</span><br><span class="line">uint blockNum = block.number;</span><br><span class="line">bytes memory data = msg.data;</span><br><span class="line">return(sender, blockNum, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<h3 id="web3js-和-ethersjs-对比"><a href="#web3js-和-ethersjs-对比" class="headerlink" title="web3js 和 ethersjs 对比"></a>web3js 和 ethersjs 对比</h3><ul>
+<li><p>web3js 认为用户在本地部署以太坊节点，私钥和网络连接状态这个节点管理（事迹并不是这样）；ethersjs 中，provider 提供器管理网络连接状态，wallet 钱包类管理密钥，安全且灵活，原生支持 ens</p>
+</li>
+<li><p>Ethers.js 提供的状态和密钥管理。Web3 的设计场景是 DApp 应该连接到一个本地节点，由这个节点负责保存密钥、签名交易并与以太坊区块链交互。<strong>现实并不是这样的</strong>，绝大多数用户不会在本地运行一个 geth 节点。Metamask 在浏览器 应用中有效地模拟了这种节点环境，因此绝大多数 web3 应用需要使用 Metamask 来保存密钥、签名交易并完成与以太坊的交互。</p>
+</li>
+<li><p>Ethers.js 采取了不同的设计思路，它提供给开发者更多的灵活性。Ethers.js 将“节点”拆分为两个不同的角色：</p>
+<p><strong>钱包</strong>：负责密钥保存和交易签名<br><strong>提供器</strong>：负责以太坊网络的匿名连接、状态检查和交易发送</p>
 </li>
 </ul>
-<hr>
-<ol>
-<li><p>view 修饰的函数，是 constant 的别名，只能读取 storage 变量的值，不能写入。（不能改变状态）</p>
-<blockquote>
-<p>这里特别提到 <strong>状态变量</strong></p>
+<h3 id="本地使用-ethersjs，如何配置环境"><a href="#本地使用-ethersjs，如何配置环境" class="headerlink" title="本地使用 ethersjs，如何配置环境"></a>本地使用 ethersjs，如何配置环境</h3><ol>
+<li>安装环境 nodejs</li>
+<li>安装 ethersjs 包—npm i –save ethers</li>
+<li>alchemy 申请一个 rpc 复制里面的 apikey</li>
+<li><a href="https://learnblockchain.cn/docs/ethers.js/api.html">查看官方文档</a></li>
+<li>当然单个网页也可以直接引入<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 会导出一个全局的变量: ethers --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://cdn.ethers.io/scripts/ethers-v4.min.js&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="本地如何使用使用呢？每一步到底做什么？"><a href="#本地如何使用使用呢？每一步到底做什么？" class="headerlink" title="本地如何使用使用呢？每一步到底做什么？"></a>本地如何使用使用呢？每一步到底做什么？</h3><blockquote>
+<p>本次测试的目录结构</p>
 </blockquote>
-</li>
-<li><p>pure 修饰的函数 ，不能对 storage 变量进行读写</p>
-</li>
-<li><p>payable 当一个函数被 payable 修饰，表示调用这个函数时，可以附加发送一些 ETH（当然也可以不发）。<br>没有加 payable 的函数，则没有方法接受 ETH， 附加 ETH 调用会出错。<br><strong>remix 的界面</strong><br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/payableShow.png" alt="支付展示"></p>
-</li>
-</ol>
-<h1 style="font-size:32px;text-align:center;color:red">计划</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ethers-template</span><br><span class="line">    +compile.js</span><br><span class="line">    +contracts</span><br><span class="line">        -erc20.sol</span><br><span class="line">    +build</span><br><span class="line">        -ERC.json</span><br><span class="line">        -Context.json</span><br><span class="line">        -IERC20.sjon</span><br><span class="line">        -SafeMath.json</span><br><span class="line">   -package.json</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li><a href="https://solidity-cn.readthedocs.io/zh/develop/index.html">solidity 官方文档</a></li>
-<li><a href="https://search.bilibili.com/all?keyword=dapp&from_source=webtop_search&spm_id_from=333.1007&search_source=5">了解去中心化应用程序（DAPP）</a></li>
-<li><a href="https://www.zhihu.com/search?type=content&q=%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0">参考计划</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>区块链学习第三期</title>
-    <url>/2022/12/01/202_zyn_03/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
-<h1 style="font-size:32px;text-align:center;color:red">合约和网络知识</h1>
-[toc]
----
-
-<p><strong>绪论:在深入学习区块链的过程中，越来越觉得区块链不是一个简简单单的数据库了，它建立的可编程系统如果真正能运用在社会基层，那将解决许多的问题。例如：农民工工资被拖欠，如果一开始老板就将工资打入智能合约，当农民工完成后，这个钱自动的就打向农民工钱包。</strong></p>
-<span id="more"></span>
-<h3 id="receive-接收以太函数"><a href="#receive-接收以太函数" class="headerlink" title="receive 接收以太函数"></a>receive 接收以太函数</h3><ul>
-<li>一个合约最多有一个 receive 函数, 声明函数为： receive() external payable { … } </li>
-<li>不需要 function 关键字，也没有参数和返回值并且必须是　external　可见性和　payable 修饰． 它可以是 virtual 的，可以被重载也可以有 修改器modifier 。</li>
-<li>在对合约没有任何附加数据调用（通常是对合约转账）是会执行 receive 函数．　例如　通过 .send() or .transfer() 如果 receive 函数不存在，　但是有payable　的 fallback 回退函数fallback 回退函数fallback 回退函数 那么在进行纯以太转账时，fallback 函数会调用．</li>
-<li>如果两个函数都没有，这个合约就没法通过常规的转账交易接收以太（会抛出异常）．</li>
-<li>更糟的是，receive 函数可能只有 2300 gas 可以使用（如，当使用 send 或 transfer 时）， 除了基础的日志输出之外，进行其他操作的余地很小。</li>
+<li>初始化一个文件夹<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure></li>
+<li>创建一个 config.json 文件保存你的项目配置<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">//账户私钥，将使用这个私钥对应的账户在指定网络上部署智能合约</span></span><br><span class="line"> <span class="attr">&quot;private_key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;24C4FE6063E62710EAD956611B71825B778B041B18ED53118CE5DA5F02E494BA&quot;</span><span class="punctuation">,</span></span><br><span class="line"> &lt;!--要接入的以太坊网络，ethers.js支持以下网络：</span><br><span class="line">     homestead：主网</span><br><span class="line">     rinkeby</span><br><span class="line">     ropsten</span><br><span class="line">     kovan</span><br><span class="line">     goerli --&gt;</span><br><span class="line"> <span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kovan&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//声明要交互的已部署合约，可选</span></span><br><span class="line"> <span class="attr">&quot;ERC20&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0x0DEd9F7D82a24099F09AF7831CaB61B31Df10487&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//ERC20合约的参数</span></span><br><span class="line"> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fly&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;symbol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zhou&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;total_supply&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1000000000000000000000000&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;decimals&quot;</span><span class="punctuation">:</span> <span class="number">18</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>为了编译合约，还需要安装solc和fs-extra<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm install <span class="built_in">fs</span>-extra@<span class="number">8</span>.<span class="number">1</span>.<span class="number">0</span> solc@<span class="number">0</span>.<span class="number">5</span>.<span class="number">11</span> --save</span><br></pre></td></tr></table></figure></li>
+<li>创建ERC20合约代码</li>
+<li>编写合约编译脚本,下面代码将读入并编译contracts目录中的所有合约文件，然后将编译得到的abi和字节码保存为json文件<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> solc = <span class="built_in">require</span>(<span class="string">&#x27;solc&#x27;</span>);</span><br><span class="line"><span class="comment">//这个读取的就是自己的配置文件</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sourceFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> buildFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;build&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getContractSource</span> = contractFileName =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> contractPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>, contractFileName);</span><br><span class="line">  <span class="keyword">const</span> source = fs.<span class="title function_">readFileSync</span>(contractPath, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> source;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sources = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readdirSync</span>(sourceFolderPath).<span class="title function_">forEach</span>(<span class="function"><span class="params">contractFileName</span> =&gt;</span> &#123;</span><br><span class="line">  sources = &#123;</span><br><span class="line">    ...sources,</span><br><span class="line">    [contractFileName]: &#123;</span><br><span class="line">      <span class="attr">content</span>: <span class="title function_">getContractSource</span>(contractFileName)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = &#123;</span><br><span class="line">    <span class="attr">language</span>: <span class="string">&#x27;Solidity&#x27;</span>,</span><br><span class="line">    sources,</span><br><span class="line">    <span class="attr">settings</span>: &#123;</span><br><span class="line">        <span class="attr">outputSelection</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;*&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;*&#x27;</span>: [ <span class="string">&#x27;*&#x27;</span> ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nCompiling contracts...&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(solc.<span class="title function_">compile</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(input)));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Done&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> shouldBuild = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (output.<span class="property">errors</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(output.<span class="property">errors</span>);</span><br><span class="line">  <span class="comment">// throw &#x27;nError in compilation please check the contractn&#x27;;</span></span><br><span class="line">  <span class="keyword">for</span>(error <span class="keyword">of</span> output.<span class="property">errors</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(error.<span class="property">severity</span> === <span class="string">&#x27;error&#x27;</span>) &#123;</span><br><span class="line">      shouldBuild = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">&#x27;Error found&#x27;</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(shouldBuild) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuilding please wait...&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  fs.<span class="title function_">removeSync</span>(buildFolderPath);</span><br><span class="line">  fs.<span class="title function_">ensureDirSync</span>(buildFolderPath);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> contractFile <span class="keyword">in</span> output.<span class="property">contracts</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> output.<span class="property">contracts</span>[contractFile]) &#123;</span><br><span class="line">      fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">        path.<span class="title function_">resolve</span>(buildFolderPath, <span class="string">`<span class="subst">$&#123;key&#125;</span>.json`</span>),</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">abi</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;abi&quot;</span>],</span><br><span class="line">          <span class="attr">bytecode</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;evm&quot;</span>][<span class="string">&quot;bytecode&quot;</span>][<span class="string">&quot;object&quot;</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">          <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Build finished successfully!n&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuild failedn&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 运行node compile.js就可以对合约进行编译</li>
+<li>创建文件deploy.js<ul>
+<li>下面代码中的默认网络是<strong>configjs</strong>中的测试网</li>
+<li>在这个测试网中，需要一些<strong>以太币来支付部署交易的手续费</strong></li>
+<li>将使用config.json中的<strong>private_key</strong>来部署合约</li>
+<li>运行deploy.js脚本时，需要在命令行传入要部署的合约名称ERC20 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node deploy.js ERC20</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> startTimestamp = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">const</span> ethers = <span class="built_in">require</span>(<span class="string">&#x27;ethers&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(config[<span class="string">&quot;network&quot;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wallet = <span class="keyword">new</span> ethers.<span class="title class_">Wallet</span>(config[<span class="string">&quot;private_key&quot;</span>], provider);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Loaded wallet <span class="subst">$&#123;wallet.address&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> compiled = <span class="built_in">require</span>(<span class="string">`./build/<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>.json`</span>);</span><br><span class="line"></span><br><span class="line">(<span class="title function_">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`nDeploying <span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span> in <span class="subst">$&#123;config[<span class="string">&quot;network&quot;</span>]&#125;</span>...`</span>);</span><br><span class="line">  <span class="keyword">let</span> contract = <span class="keyword">new</span> ethers.<span class="title class_">ContractFactory</span>(</span><br><span class="line">    compiled.<span class="property">abi</span>,</span><br><span class="line">    compiled.<span class="property">bytecode</span>,</span><br><span class="line">    wallet</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> instance =  <span class="keyword">await</span> contract.<span class="title function_">deploy</span>(config[<span class="string">&quot;decimals&quot;</span>], config[<span class="string">&quot;symbol&quot;</span>], config[<span class="string">&quot;name&quot;</span>], config[<span class="string">&quot;total_supply&quot;</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`deployed at <span class="subst">$&#123;instance.address&#125;</span>`</span>)</span><br><span class="line">  config[<span class="string">`<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>`</span>] = instance.<span class="property">address</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Waiting for the contract to get mined...&quot;</span>)</span><br><span class="line">  <span class="keyword">await</span> instance.<span class="title function_">deployed</span>()</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed&quot;</span>)</span><br><span class="line">  fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">    <span class="string">&#x27;config.json&#x27;</span>,</span><br><span class="line">    config,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">      <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="Fallback-回退函数"><a href="#Fallback-回退函数" class="headerlink" title="Fallback 回退函数"></a>Fallback 回退函数</h3><ul>
-<li>合约可以最多有一个回退函数。函数声明为： fallback () external [payable] 或 fallback (bytes calldata _input) external [payable] returns (bytes memory _output)</li>
-<li>没有　function　关键字。　必须是　external　可见性，它可以是 virtual 的，可以被重载也可以有 修改器modifier 。</li>
-<li>如果在一个对合约调用中，没有其他函数与给定的函数标识符匹配fallback会被调用． 或者在没有 receive 函数<br>　时，而没有提供附加数据对合约调用，那么fallback 函数会被执行。</li>
-<li>fallback　函数始终会接收数据，但为了同时接收以太时，必须标记为　payable 。</li>
-<li>如果使用了带参数的版本，_input 将包含发送到合约的完整数据（等于 msg.data ），并且通过 _output 返回数据。 返回数据不是 ABI 编码过的数据，相反，它返回不经过修改的数据。</li>
-<li>更糟的是，如果回退函数在接收以太时调用，可能只有 2300 gas 可以使用，参考　receive接收函数<br>与任何其他函数一样，只要有足够的 gas 传递给它，回退函数就可以执行复杂的操作。</li>
-</ul>
-<p><strong>竟然难度值取决于多少个0，那为什么不记录256个数字，数字是由 从一个0到256个0 组成的，挖矿的时候只需要按照难度值把这个随机数填进去就可以了</strong></p>
-<h3 id="智能合约与DApp的关系与区别"><a href="#智能合约与DApp的关系与区别" class="headerlink" title="智能合约与DApp的关系与区别"></a>智能合约与DApp的关系与区别</h3><p>以太坊社区把基于智能合约的应用称为去中心化的应用程序（Decentralized App，简称DApp)。DApp的目标是（或者应该是）让智能合约有一个友好的界面，外加一些额外的东西，例如IPFS(可以存储和读取数据的去中心化网络，不是出自以太坊团队，但有类似的精神）。DApp可以在一台与以太坊节点交互的中心化服务器上运行，也可以在任意一个以太坊平等节点上运行。</p>
-<p><strong>提示</strong>:与一般的网站不同，DApp不能在普通的服务器上运行。它需要提交交易到区块链并且从区块链而不是中心化数据库读取重要数据。相对于典型的用户登录系统，用户有可能被表示成一个“钱包”地址而其他用户数据保存在本地。许多事情都会与目前的Web应用有着不同的架构。</p>
-<p>DApp流程如下。</p>
-<ol>
-<li><p>用Solidity(或其他语言）编写智能合约（后缀为.sol)。</p>
-</li>
-<li><p>用sole编译器将.sol合约编译成EVM字节码。</p>
-</li>
-<li><p>编译好的字节码回送给DApp前端。</p>
-</li>
-<li><p>前端将编译好的智能合约部署到区块链中。</p>
-</li>
-<li><p>区块链返回智能合约地址+ABI(合约接口的二进制表示。合约接口用JS0N表示，包括变量、事件和可以调用的方法）。</p>
-</li>
-<li><p>前端通过Address+ABI+nonce，调用智能合约。</p>
-</li>
-<li><p>智能合约开始处理。</p>
 </li>
 </ol>
-<p>智能合约技术的产生对互联网变革非常重要，但是不能直接用于支撑DApp应用生态环境。侧链、VM也撑不起应用生态，因为我们知道应用运行于0S之上，而不是直接运行在裸机之上。一定程度上讲，VM、侧链可以类比图灵等价的裸机。</p>
-<h3 id="互联网是如何运作的"><a href="#互联网是如何运作的" class="headerlink" title="互联网是如何运作的"></a>互联网是如何运作的</h3><p>互联网所有的传输都通过RCP/IP协议族来传输，TCP/IP是<strong>面向连接</strong>的<strong>可靠</strong>字节流服务协议</p>
-<h4 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h4><p><strong>有四层</strong></p>
+<h3 id="ethers-js-接口文档导读"><a href="#ethers-js-接口文档导读" class="headerlink" title="ethers.js 接口文档导读"></a>ethers.js 接口文档导读</h3><blockquote>
+<p>其实整个文档可以看出四个大类 我把它们按照学习的先后顺序分为：</p>
 <ul>
-<li>应用层：提供特定于应用程序的协议  HTTP   FTP   IMAP(邮件)</li>
-<li>网络控制层   发送数据包到计算机上使用特定的端口号的应用程序</li>
-<li>网络层   使用IP地址将数据包发送到特定的计算</li>
-<li>链路层  将二进制数据包与网络信号相互之间转换</li>
+<li>provider（提供器：我习惯理解成提供给我信息的网络）</li>
+<li>wallet（钱包）</li>
+<li>contract（合约）</li>
+<li>utils（工具包）</li>
 </ul>
-<p><strong>TCP的可靠</strong></p>
-<p>tcp在建立连接会进行三次握手，每个收到的数据包都会向发送方发送ack确认，已确保发送成功</p>
-<p><strong>IP的传输</strong></p>
-<p>IP是不可靠的无连接协议，它并不关心数据包是否到达目的地，也不关系连接和端口号，目的是连接到目标IP</p>
-<p><strong>TCP传输的质量和顺序</strong></p>
-<p>当数据包过大，在网络层会进行分包，分包后传输的链路不一样，到达的时间不一样，TCP会根据数据包上携带序列号来进行排序重组，如果发送方在一个特定时间内（也就是重试时间）没有接受到接收方的ack确认，会再次重新发送</p>
-<p><strong>IP和IP地址的区别</strong></p>
-<p>Ip是一种协议  有两种标准  IPv4 2^32次方和IPv6  2^128</p>
-<p>IP地址是一串数字192.0.0.1</p>
-<p><strong>网络传输</strong></p>
-<ol>
-<li>个人电脑</li>
-<li>猫</li>
-<li>local ISP   互联网服务提供商</li>
-<li>regional ISP   经过多个主干网络</li>
-<li>NSP   网络服务提供商  大型网络  卖带宽给ISP</li>
-<li>NAP   每个NSP连接到至少三个网络访问点</li>
-<li>ISP  NSP 所有网络提供都携带路由器，每个路由有当前子网络ip的路由表，当底层向上层发送数据时候，找不到会依次向上找，可能由一个主干网络跳到另外一个主干网络。</li>
-</ol>
-<p><strong>DNS服务</strong></p>
-<p>存在意义是IP别名，不让公司丢客户，也容易记，DNS是一个分布式数据库，存储了域名和IP的对应关系</p>
-<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><h3 id="什么是-JWT"><a href="#什么是-JWT" class="headerlink" title="什么是 JWT"></a>什么是 JWT</h3><ul>
-<li>JSON Web Token（简称 JWT）是目前最流行的跨域认证解决方案。</li>
-<li>是一种认证授权机制。</li>
-<li>JWT 是为了在网络应用环境间传递声明而执行的一种基于 </li>
-<li>JSON 的开放标准（RFC 7519）。JWT 的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源。比如用在用户登录上。</li>
-<li>可以使用 HMAC 算法或者是 RSA 的公/私秘钥对 JWT 进行签名。因为数字签名的存在，这些传递的信息是可信的。</li>
-</ul>
-<h3 id="JWT-的原理"><a href="#JWT-的原理" class="headerlink" title="JWT 的原理"></a>JWT 的原理</h3><p><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/03/jwt.jpg" alt="jwt流程"></p>
-<ul>
-<li>JWT 认证流程：</li>
-<li>用户输入用户名/密码登录，服务端认证成功后，会返回给客户端一个 JWT</li>
-<li>客户端将 token 保存到本地（通常使用 localstorage，也可以使用 cookie）</li>
-<li>当用户希望访问一个受保护的路由或者资源的时候，需要请求头的 Authorization 字段中使用Bearer 模式添加 JWT，其内容看起来是下面这样<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">authorization：bearer：&lt;token&gt;</span><br></pre></td></tr></table></figure></li>
-<li>服务端的保护路由将会检查请求头 Authorization 中的 JWT 信息，如果合法，则允许用户的行为</li>
-<li>因为 JWT 是自包含的（内部包含了一些会话信息），因此减少了需要查询数据库的需要</li>
-<li>因为 JWT 并不使用 Cookie 的，所以你可以使用任何域名提供你的 API 服务而不需要担心跨域资源共享问题（CORS）</li>
-<li>因为用户的状态不再存储在服务端的内存中，所以这是一种无状态的认证机制</li>
-</ul>
-<h3 id="JWT-的使用方式"><a href="#JWT-的使用方式" class="headerlink" title="JWT 的使用方式"></a>JWT 的使用方式</h3><p>客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。</p>
-<ul>
-<li>方式一<ul>
-<li>当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。</li>
-<li>GET /calendar/v1/events</li>
-<li>Host: <a href="http://api.example.com/">http://api.example.com</a></li>
-<li>Authorization: Bearer <token></li>
-<li>用户的状态不会存储在服务端的内存中，这是一种 无状态的认证机制</li>
-<li>服务端的保护路由将会检查请求头 Authorization 中的 JWT 信息，如果合法，则允许用户的行为。</li>
-<li>由于 JWT 是自包含的，因此减少了需要查询数据库的需要</li>
-<li>JWT 的这些特性使得我们可以完全依赖其无状态的特性提供数据 API 服务，甚至是创建一个下载流服务。</li>
-<li>因为 JWT 并不使用 Cookie ，所以你可以使用任何域名提供你的 API 服务而不需要担心跨域资源共享问题（CORS）</li>
-</ul>
-</li>
-<li>方式二<br>跨域的时候，可以把 JWT 放在 POST 请求的数据体里。</li>
-<li>方式三<br>通过 URL 传输<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://www.example.com/user?token=xxx</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="常见的前后端鉴权方式"><a href="#常见的前后端鉴权方式" class="headerlink" title="常见的前后端鉴权方式"></a>常见的前后端鉴权方式</h3><ul>
-<li>Session-Cookie</li>
-<li>Token 验证（包括 JWT，SSO）</li>
-<li>OAuth2.0（开放授权）</li>
-</ul>
-<h3 id="只要关闭浏览器-，session-真的就消失了吗"><a href="#只要关闭浏览器-，session-真的就消失了吗" class="headerlink" title="只要关闭浏览器 ，session 真的就消失了吗"></a>只要关闭浏览器 ，session 真的就消失了吗</h3><p>  不对。对 session 来说，除非程序通知服务器删除一个 session，否则服务器会一直保留，程序一般都是在用户做 log off 的时候发个指令去删除 session。然而浏览器从来不会主动在关闭之前通知服务器它将要关闭，因此服务器根本不会有机会知道浏览器已经关闭，之所以会有这种错觉，是大部分 session 机制都使用会话 cookie 来保存 session id，而关闭浏览器后这个 session id 就消失了，再次连接服务器时也就无法找到原来的 session。如果服务器设置的 cookie 被保存在硬盘上，或者使用某种手段改写浏览器发出的 HTTP 请求头，把原来的 session id 发送给服务器，则再次打开浏览器仍然能够打开原来的 session。恰恰是由于关闭浏览器不会导致 session 被删除，迫使服务器为 session 设置了一个失效时间，当距离客户端上一次使用 session 的时间超过这个失效时间时，服务器就认为客户端已经停止了活动，才会把 session 删除以节省存储空间。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>区块链</category>
@@ -430,96 +305,271 @@
       </categories>
   </entry>
   <entry>
-    <title>区块链学习第四期</title>
-    <url>/2022/12/15/202_zyn_04/</url>
+    <title>区块链学习第三期</title>
+    <url>/2022/12/01/202_zyn_03/</url>
     <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
-<h1 style="font-size:32px;text-align:center;color:red">学习ethers.js【上篇】</h1>
+<h1 style="font-size:32px;text-align:center;color:red">合约和网络知识</h1>
+[toc]
+---
+
+<p><strong>绪论:在深入学习区块链的过程中，越来越觉得区块链不是一个简简单单的数据库了，它建立的可编程系统如果真正能运用在社会基层，那将解决许多的问题。例如：农民工工资被拖欠，如果一开始老板就将工资打入智能合约，当农民工完成后，这个钱自动的就打向农民工钱包。</strong></p>
+<span id="more"></span>
+<h3 id="receive-接收以太函数"><a href="#receive-接收以太函数" class="headerlink" title="receive 接收以太函数"></a>receive 接收以太函数</h3><ul>
+<li>一个合约最多有一个 receive 函数, 声明函数为： receive() external payable { … } </li>
+<li>不需要 function 关键字，也没有参数和返回值并且必须是　external　可见性和　payable 修饰． 它可以是 virtual 的，可以被重载也可以有 修改器modifier 。</li>
+<li>在对合约没有任何附加数据调用（通常是对合约转账）是会执行 receive 函数．　例如　通过 .send() or .transfer() 如果 receive 函数不存在，　但是有payable　的 fallback 回退函数fallback 回退函数fallback 回退函数 那么在进行纯以太转账时，fallback 函数会调用．</li>
+<li>如果两个函数都没有，这个合约就没法通过常规的转账交易接收以太（会抛出异常）．</li>
+<li>更糟的是，receive 函数可能只有 2300 gas 可以使用（如，当使用 send 或 transfer 时）， 除了基础的日志输出之外，进行其他操作的余地很小。</li>
+</ul>
+<h3 id="Fallback-回退函数"><a href="#Fallback-回退函数" class="headerlink" title="Fallback 回退函数"></a>Fallback 回退函数</h3><ul>
+<li>合约可以最多有一个回退函数。函数声明为： fallback () external [payable] 或 fallback (bytes calldata _input) external [payable] returns (bytes memory _output)</li>
+<li>没有　function　关键字。　必须是　external　可见性，它可以是 virtual 的，可以被重载也可以有 修改器modifier 。</li>
+<li>如果在一个对合约调用中，没有其他函数与给定的函数标识符匹配fallback会被调用． 或者在没有 receive 函数<br>　时，而没有提供附加数据对合约调用，那么fallback 函数会被执行。</li>
+<li>fallback　函数始终会接收数据，但为了同时接收以太时，必须标记为　payable 。</li>
+<li>如果使用了带参数的版本，_input 将包含发送到合约的完整数据（等于 msg.data ），并且通过 _output 返回数据。 返回数据不是 ABI 编码过的数据，相反，它返回不经过修改的数据。</li>
+<li>更糟的是，如果回退函数在接收以太时调用，可能只有 2300 gas 可以使用，参考　receive接收函数<br>与任何其他函数一样，只要有足够的 gas 传递给它，回退函数就可以执行复杂的操作。</li>
+</ul>
+<p><strong>竟然难度值取决于多少个0，那为什么不记录256个数字，数字是由 从一个0到256个0 组成的，挖矿的时候只需要按照难度值把这个随机数填进去就可以了</strong></p>
+<h3 id="智能合约与DApp的关系与区别"><a href="#智能合约与DApp的关系与区别" class="headerlink" title="智能合约与DApp的关系与区别"></a>智能合约与DApp的关系与区别</h3><p>以太坊社区把基于智能合约的应用称为去中心化的应用程序（Decentralized App，简称DApp)。DApp的目标是（或者应该是）让智能合约有一个友好的界面，外加一些额外的东西，例如IPFS(可以存储和读取数据的去中心化网络，不是出自以太坊团队，但有类似的精神）。DApp可以在一台与以太坊节点交互的中心化服务器上运行，也可以在任意一个以太坊平等节点上运行。</p>
+<p><strong>提示</strong>:与一般的网站不同，DApp不能在普通的服务器上运行。它需要提交交易到区块链并且从区块链而不是中心化数据库读取重要数据。相对于典型的用户登录系统，用户有可能被表示成一个“钱包”地址而其他用户数据保存在本地。许多事情都会与目前的Web应用有着不同的架构。</p>
+<p>DApp流程如下。</p>
+<ol>
+<li><p>用Solidity(或其他语言）编写智能合约（后缀为.sol)。</p>
+</li>
+<li><p>用sole编译器将.sol合约编译成EVM字节码。</p>
+</li>
+<li><p>编译好的字节码回送给DApp前端。</p>
+</li>
+<li><p>前端将编译好的智能合约部署到区块链中。</p>
+</li>
+<li><p>区块链返回智能合约地址+ABI(合约接口的二进制表示。合约接口用JS0N表示，包括变量、事件和可以调用的方法）。</p>
+</li>
+<li><p>前端通过Address+ABI+nonce，调用智能合约。</p>
+</li>
+<li><p>智能合约开始处理。</p>
+</li>
+</ol>
+<p>智能合约技术的产生对互联网变革非常重要，但是不能直接用于支撑DApp应用生态环境。侧链、VM也撑不起应用生态，因为我们知道应用运行于0S之上，而不是直接运行在裸机之上。一定程度上讲，VM、侧链可以类比图灵等价的裸机。</p>
+<h3 id="互联网是如何运作的"><a href="#互联网是如何运作的" class="headerlink" title="互联网是如何运作的"></a>互联网是如何运作的</h3><p>互联网所有的传输都通过RCP/IP协议族来传输，TCP/IP是<strong>面向连接</strong>的<strong>可靠</strong>字节流服务协议</p>
+<h4 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h4><p><strong>有四层</strong></p>
+<ul>
+<li>应用层：提供特定于应用程序的协议  HTTP   FTP   IMAP(邮件)</li>
+<li>网络控制层   发送数据包到计算机上使用特定的端口号的应用程序</li>
+<li>网络层   使用IP地址将数据包发送到特定的计算</li>
+<li>链路层  将二进制数据包与网络信号相互之间转换</li>
+</ul>
+<p><strong>TCP的可靠</strong></p>
+<p>tcp在建立连接会进行三次握手，每个收到的数据包都会向发送方发送ack确认，已确保发送成功</p>
+<p><strong>IP的传输</strong></p>
+<p>IP是不可靠的无连接协议，它并不关心数据包是否到达目的地，也不关系连接和端口号，目的是连接到目标IP</p>
+<p><strong>TCP传输的质量和顺序</strong></p>
+<p>当数据包过大，在网络层会进行分包，分包后传输的链路不一样，到达的时间不一样，TCP会根据数据包上携带序列号来进行排序重组，如果发送方在一个特定时间内（也就是重试时间）没有接受到接收方的ack确认，会再次重新发送</p>
+<p><strong>IP和IP地址的区别</strong></p>
+<p>Ip是一种协议  有两种标准  IPv4 2^32次方和IPv6  2^128</p>
+<p>IP地址是一串数字192.0.0.1</p>
+<p><strong>网络传输</strong></p>
+<ol>
+<li>个人电脑</li>
+<li>猫</li>
+<li>local ISP   互联网服务提供商</li>
+<li>regional ISP   经过多个主干网络</li>
+<li>NSP   网络服务提供商  大型网络  卖带宽给ISP</li>
+<li>NAP   每个NSP连接到至少三个网络访问点</li>
+<li>ISP  NSP 所有网络提供都携带路由器，每个路由有当前子网络ip的路由表，当底层向上层发送数据时候，找不到会依次向上找，可能由一个主干网络跳到另外一个主干网络。</li>
+</ol>
+<p><strong>DNS服务</strong></p>
+<p>存在意义是IP别名，不让公司丢客户，也容易记，DNS是一个分布式数据库，存储了域名和IP的对应关系</p>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><h3 id="什么是-JWT"><a href="#什么是-JWT" class="headerlink" title="什么是 JWT"></a>什么是 JWT</h3><ul>
+<li>JSON Web Token（简称 JWT）是目前最流行的跨域认证解决方案。</li>
+<li>是一种认证授权机制。</li>
+<li>JWT 是为了在网络应用环境间传递声明而执行的一种基于 </li>
+<li>JSON 的开放标准（RFC 7519）。JWT 的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源。比如用在用户登录上。</li>
+<li>可以使用 HMAC 算法或者是 RSA 的公/私秘钥对 JWT 进行签名。因为数字签名的存在，这些传递的信息是可信的。</li>
+</ul>
+<h3 id="JWT-的原理"><a href="#JWT-的原理" class="headerlink" title="JWT 的原理"></a>JWT 的原理</h3><p><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/03/jwt.jpg" alt="jwt流程"></p>
+<ul>
+<li>JWT 认证流程：</li>
+<li>用户输入用户名/密码登录，服务端认证成功后，会返回给客户端一个 JWT</li>
+<li>客户端将 token 保存到本地（通常使用 localstorage，也可以使用 cookie）</li>
+<li>当用户希望访问一个受保护的路由或者资源的时候，需要请求头的 Authorization 字段中使用Bearer 模式添加 JWT，其内容看起来是下面这样<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">authorization：bearer：&lt;token&gt;</span><br></pre></td></tr></table></figure></li>
+<li>服务端的保护路由将会检查请求头 Authorization 中的 JWT 信息，如果合法，则允许用户的行为</li>
+<li>因为 JWT 是自包含的（内部包含了一些会话信息），因此减少了需要查询数据库的需要</li>
+<li>因为 JWT 并不使用 Cookie 的，所以你可以使用任何域名提供你的 API 服务而不需要担心跨域资源共享问题（CORS）</li>
+<li>因为用户的状态不再存储在服务端的内存中，所以这是一种无状态的认证机制</li>
+</ul>
+<h3 id="JWT-的使用方式"><a href="#JWT-的使用方式" class="headerlink" title="JWT 的使用方式"></a>JWT 的使用方式</h3><p>客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。</p>
+<ul>
+<li>方式一<ul>
+<li>当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。</li>
+<li>GET /calendar/v1/events</li>
+<li>Host: <a href="http://api.example.com/">http://api.example.com</a></li>
+<li>Authorization: Bearer <token></li>
+<li>用户的状态不会存储在服务端的内存中，这是一种 无状态的认证机制</li>
+<li>服务端的保护路由将会检查请求头 Authorization 中的 JWT 信息，如果合法，则允许用户的行为。</li>
+<li>由于 JWT 是自包含的，因此减少了需要查询数据库的需要</li>
+<li>JWT 的这些特性使得我们可以完全依赖其无状态的特性提供数据 API 服务，甚至是创建一个下载流服务。</li>
+<li>因为 JWT 并不使用 Cookie ，所以你可以使用任何域名提供你的 API 服务而不需要担心跨域资源共享问题（CORS）</li>
+</ul>
+</li>
+<li>方式二<br>跨域的时候，可以把 JWT 放在 POST 请求的数据体里。</li>
+<li>方式三<br>通过 URL 传输<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://www.example.com/user?token=xxx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="常见的前后端鉴权方式"><a href="#常见的前后端鉴权方式" class="headerlink" title="常见的前后端鉴权方式"></a>常见的前后端鉴权方式</h3><ul>
+<li>Session-Cookie</li>
+<li>Token 验证（包括 JWT，SSO）</li>
+<li>OAuth2.0（开放授权）</li>
+</ul>
+<h3 id="只要关闭浏览器-，session-真的就消失了吗"><a href="#只要关闭浏览器-，session-真的就消失了吗" class="headerlink" title="只要关闭浏览器 ，session 真的就消失了吗"></a>只要关闭浏览器 ，session 真的就消失了吗</h3><p>  不对。对 session 来说，除非程序通知服务器删除一个 session，否则服务器会一直保留，程序一般都是在用户做 log off 的时候发个指令去删除 session。然而浏览器从来不会主动在关闭之前通知服务器它将要关闭，因此服务器根本不会有机会知道浏览器已经关闭，之所以会有这种错觉，是大部分 session 机制都使用会话 cookie 来保存 session id，而关闭浏览器后这个 session id 就消失了，再次连接服务器时也就无法找到原来的 session。如果服务器设置的 cookie 被保存在硬盘上，或者使用某种手段改写浏览器发出的 HTTP 请求头，把原来的 session id 发送给服务器，则再次打开浏览器仍然能够打开原来的 session。恰恰是由于关闭浏览器不会导致 session 被删除，迫使服务器为 session 设置了一个失效时间，当距离客户端上一次使用 session 的时间超过这个失效时间时，服务器就认为客户端已经停止了活动，才会把 session 删除以节省存储空间。</p>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第六期</title>
+    <url>/2023/01/15/202_zyn_06/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
+<h1 style="font-size:32px;text-align:center;color:red">零知识证明基础</h1> 
+[toc] 
+<span id="more"></span>
+--- 
+
+<h1 id="零知识证明（Zero-Knowledge-Proofs-ZKP）"><a href="#零知识证明（Zero-Knowledge-Proofs-ZKP）" class="headerlink" title="零知识证明（Zero-Knowledge Proofs  ZKP）"></a>零知识证明（Zero-Knowledge Proofs  ZKP）</h1><blockquote>
+<p>零知识证明技术是现代密码学三大基础之一，由 S.Goldwasser、S.Micali 及 C.Rackoff 在 20 世纪 80 年代初提出。早期的零知识证明由于其效率和可用性等限制，未得到很好的利用，仅停留在理论层面。直到近年来，零知识证明的理论研究才开始不断突破，同时区块链也为零知识证明创造了大展拳脚的机会，因而走进大众视野。<br>零知识证明这项“黑科技”随着它的热度逐渐增加，相关的学习资源也慢慢丰富起来了。但是由于，一方面零知识证明背后的原理颇为复杂，且内容繁多；另一方面，针对零知识证明的学习资源质量参差不齐，尚未形成系统。因此对绝大多数读者来说，学习零知识证明的难度依然很大。</p>
+</blockquote>
+<hr>
+<h2 id="简单理解ZKP"><a href="#简单理解ZKP" class="headerlink" title="简单理解ZKP"></a>简单理解ZKP</h2><blockquote>
+<p>通过间接方式证明某事物的存在。所谓的零知识，就是指验证方除了对论断判断的结果（错或对）之外，<strong>无法获取任何额外信息</strong>。</p>
+</blockquote>
+<h2 id="ZKP分类"><a href="#ZKP分类" class="headerlink" title="ZKP分类"></a>ZKP分类</h2><ul>
+<li><p>交互式<br>  需要通过反复确认（比如验证者问我问题我每次都可以答对）</p>
+</li>
+<li><p>非交互式<br>  区块链更常使用的是「非交互式zk」，简称「NIZK」。区块链上的一个交易会分发给多个矿工进行验证，如果每个矿工都进行交互式的验证，那耗时将是难以想象的。而NIZK在证明者进行一次证明之后，能够取信多个验证者，所以更加适合区块链上的场景</p>
+</li>
+</ul>
+<h2 id="零知识证明三大性质"><a href="#零知识证明三大性质" class="headerlink" title="零知识证明三大性质"></a>零知识证明三大性质</h2><ul>
+<li>完备性（Completeness）：若一个证明方确实掌握了某论断的答案，则他肯定能找到方法向验证方证明他手中掌握的数据的正确性，即真的假不了。（对应上面药丸的例子，就是拥有药丸的证明方肯定能想办法说服验证方，证明他手里真的有药丸。）</li>
+<li>可靠性（Soundness）：若一证明方根本不掌握某论断的答案，则他无法（或只能以极低概率）说服验证方他手中所谓答案的准确性，即假的真不了。（对应上面药丸的例子，就是证明方若手中无药丸则没法蒙混过关让验证方误以为他有药丸。）</li>
+<li>零知识性（Zero-knowledgeness）：验证方除了知道证明的结果外，对其他信息一无所知。</li>
+</ul>
+<h2 id="零知识证明构造方法的三段论"><a href="#零知识证明构造方法的三段论" class="headerlink" title="零知识证明构造方法的三段论"></a>零知识证明构造方法的三段论</h2><ol>
+<li>证明方先根据论断内容向验证方发个交底材料，这个样例论断需要是随机的或加密的；</li>
+<li>验证方随机生成一个试探（学术名词是挑战，challenge），发给证明方；</li>
+<li>证明方根据该试探和交底材料生成证明信息发给验证方。验证方自己将信息和交底材料一合计，判断证明方是否通过了该试探。</li>
+</ol>
+<h2 id="零知识证明的优点"><a href="#零知识证明的优点" class="headerlink" title="零知识证明的优点"></a>零知识证明的优点</h2><p><strong>安全</strong>，随着零知识证明的使用，安全性会大大提高。<br><strong>高效</strong>，零知识证明过程计算量小，双方交换的信息量会大大减少，因此较为高效。</p>
+<h2 id="零知识证明的应用"><a href="#零知识证明的应用" class="headerlink" title="零知识证明的应用"></a>零知识证明的应用</h2><ul>
+<li>身份验证</li>
+<li>数字签名</li>
+<li>认证协议</li>
+</ul>
+<h2 id="密码学常用公钥密码"><a href="#密码学常用公钥密码" class="headerlink" title="密码学常用公钥密码"></a>密码学常用公钥密码</h2><p>验证某人是否有<strong>私钥</strong></p>
+<ol>
+<li>用公钥加密某x</li>
+<li>让对方出示加密的内容</li>
+<li>如果正确则拥有公钥</li>
+</ol>
+<h2 id="零知识证明形象化举例"><a href="#零知识证明形象化举例" class="headerlink" title="零知识证明形象化举例"></a>零知识证明形象化举例</h2><p>A有一个开房间R的钥匙🔑，B怎么在不知道A有钥匙🔑的情况下相信A有钥匙呢？<br>答：A可以把门打开，拿出其中的一把椅子，B看了之后就知道，A肯定有钥匙，不然怎么开门呢。此时A并没有给B看到钥匙，仅仅是通过给出在有钥匙才能办到的事这个结果，让B相信有钥匙。</p>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第一期</title>
+    <url>/2022/11/01/202_zyn_01/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">区块链基础入门</h1>
 [toc]
 <span id="more"></span>
 ---
 
-<h2 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h2><blockquote>
-<p>在说 etherjs 之前呢，先说一下<strong>web3js</strong></p>
+<h3 id="说到区块链，我想我们听到最多的就是比特币"><a href="#说到区块链，我想我们听到最多的就是比特币" class="headerlink" title="说到区块链，我想我们听到最多的就是比特币"></a>说到区块链，我想我们听到最多的就是比特币</h3><blockquote>
+<p>每当同学聚餐问我学的什么的时候，我一说区块链，他们就说自己知道：是比特币！<br>但是很明显，他们只是了解一丢丢。</p>
+</blockquote>
+<hr>
+<h3 id="区块链是什么？"><a href="#区块链是什么？" class="headerlink" title="区块链是什么？"></a>区块链是什么？</h3><blockquote>
+<p>官方定义已经足够充分，但我不认为好理解。<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/define.png" alt="区块链定义"></p>
+</blockquote>
+<p><strong>谈谈个人理解（错误不可避免，今后将会修正）</strong></p>
+<ul>
+<li>区块链是一个数据库的集合（超大链表），每个区块之间可以通过哈希指针连接起来</li>
+<li>区块链=区块+链（其中“链”是一个区块到另一个区块链的”指针”）</li>
+<li>区块=区块头+区块体<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/myknow.png" alt="区块链自我理解"></li>
+<li>区块体里面则包含了我们要存储的数据，区块头则：<img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/body.png" alt="区块体"></li>
+<li>如上所示，区块链并不是什么复杂的概念，反而像个一步步迭代过来的新型数据库，只不过这个数据库搭载了很多其他领域的知识</li>
+</ul>
+<hr>
+<h3 id="区块链的应用实现"><a href="#区块链的应用实现" class="headerlink" title="区块链的应用实现"></a>区块链的应用实现</h3><ul>
+<li>比特币：区块链 1.0<ul>
+<li>闪电网络</li>
+<li>数字钱包</li>
+<li>挖矿（PoW、PoS、DPoS）</li>
+</ul>
+</li>
+<li>以太坊：区块链 2.0<ul>
+<li>雷电网络</li>
+<li>数字钱包</li>
+<li>挖矿</li>
+<li>智能合约</li>
+</ul>
+</li>
+<li>EOS：区块链 3.0<ul>
+<li>数字钱包</li>
+<li>挖矿</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>当然，以上只是最经典的应用的例举，还有很多的现代区块链落地产品。但是我们始终要知道，区块链是比特币的底层技术，比特币是区块链的应用实现。</p>
+</blockquote>
+<p>区块链大致结构框架<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/fabric.jpg" alt="区块链框架"></p>
+<hr>
+<h1 style="font-size:32px;text-align:center;color:red">智能合约知识</h1>
+
+<h3 id="关键字-constan、view、pure、payable？"><a href="#关键字-constan、view、pure、payable？" class="headerlink" title="关键字 constan、view、pure、payable？"></a>关键字 constan、view、pure、payable？</h3><hr>
+<p>Solidity 中变量按作用域划分有三种，分别是</p>
+<blockquote>
+<p>前提：</p>
 </blockquote>
 <ul>
-<li>Web3.js 是一个库集合，允许您使用 HTTP、IPC 或 WebSocket 与本地或远程以太坊节点进行交互。</li>
-<li>web3js 提供了用于和 geth 通信的 javascipt API，也就是用 web3js 连接 geth，在通过 geth 连接以太坊。</li>
-<li>内部使用了 json-rpc 与 geth 通信</li>
-<li><strong>json-rpc</strong>是一个无状态且轻量级的远程过程调用（rpc）协议。允许使用 socket、http 等协议进行通讯。使用 json 作为数据格式（rfc4627）==》被封装成了 jsapi</li>
-<li>web3js 可以与所有支持 rpc 的节点进行通信。不仅支持以太坊相关的 api，还支持以太坊生态中其它系统的 api</li>
-<li><hr>
+<li><p><strong>状态变量（state variable）</strong></p>
 </li>
-</ul>
-<h2 id="ethers-js"><a href="#ethers-js" class="headerlink" title="ethers.js"></a>ethers.js</h2><blockquote>
-<p><strong>etherjs</strong>是一个完整而紧凑的开源库，用于与以太坊区块链及其生态系统进行交互（个人认为就是提供一个方便访问区块链的接口,是压缩版的 web3js）。<strong>如果要写 Dapp 前端，则需要用到它。</strong></p>
-<p><strong>uer interface（frontend）</strong> &lt;–&gt; <strong>ethereum api</strong> &lt;–&gt; <strong>smart contract</strong></p>
-</blockquote>
-<h3 id="对-alchemy-的再理解"><a href="#对-alchemy-的再理解" class="headerlink" title="对 alchemy 的再理解"></a>对 alchemy 的再理解</h3><p>某一次实验需要注册 alchemy 获取一个 api key,但一直不懂为什么要。下面我用个对比法解释：</p>
-<blockquote>
-<p>我们一开始访问以太坊时，用的扩展类工具连接的以太坊：<strong>Metamask</strong></p>
-<ol>
-<li>提供连接到以太坊的网络（a Provider）</li>
-<li>持有你的私钥并且可以进行签名（a Signer）</li>
-</ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(<span class="variable language_">window</span>.<span class="property">ethereum</span>);</span><br><span class="line"><span class="comment">//Metamask插件支持签名交易和信息，来发送交易信息改变区块链的状态</span></span><br><span class="line"><span class="comment">//因此需要一个账户联名</span></span><br><span class="line"><span class="keyword">const</span> signer = provider.<span class="title function_">getSigner</span>();</span><br></pre></td></tr></table></figure>
-
-<p>但是我们不想下载扩展呢？我还能在不通过网页的形式下查看链上信息吗？</p>
-<blockquote>
-<p>RPC 全称 Remote Procedure Call，即远程过程调用）JSON-RPC API 接口，是另一个连接到以太坊的方法，可以在所有的主要的以太坊节点实现，他主要提供了</p>
-<ol>
-<li>提供连接到以太坊的网络（a Provider）</li>
-<li>持有你的私钥并且可以进行签名（a Signer）<br>查询区块链一旦有了一个 Provider，就有了一个与区块链的连接，可以用它去查询当前状态，获取历史日志，查询部署的代码等</li>
-</ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//await 作用使异步方法变同步</span></span><br><span class="line"><span class="keyword">await</span> provider.<span class="title function_">getBlockNumber</span>();</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">formatEther</span>(balance);</span><br><span class="line">ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入区块</span></span><br><span class="line"><span class="comment">// Send 1 ether to an ens name.发送1以太到以太坊域名</span></span><br><span class="line"><span class="keyword">const</span> tx = signer.<span class="title function_">sendTransaction</span>(&#123;</span><br><span class="line">  <span class="comment">//签名，发送交易</span></span><br><span class="line">  <span class="attr">to</span>: <span class="string">&quot;ricmoo.firefly.eth&quot;</span>, <span class="comment">//发送至以太坊域名</span></span><br><span class="line">  <span class="attr">value</span>: ethers.<span class="property">utils</span>.<span class="title function_">parseEther</span>(<span class="string">&quot;1.0&quot;</span>), <span class="comment">//格式化</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="web3js-和-ethersjs-对比"><a href="#web3js-和-ethersjs-对比" class="headerlink" title="web3js 和 ethersjs 对比"></a>web3js 和 ethersjs 对比</h3><ul>
-<li><p>web3js 认为用户在本地部署以太坊节点，私钥和网络连接状态这个节点管理（事迹并不是这样）；ethersjs 中，provider 提供器管理网络连接状态，wallet 钱包类管理密钥，安全且灵活，原生支持 ens</p>
+<li><p><strong>局部变量（local variable）</strong></p>
 </li>
-<li><p>Ethers.js 提供的状态和密钥管理。Web3 的设计场景是 DApp 应该连接到一个本地节点，由这个节点负责保存密钥、签名交易并与以太坊区块链交互。<strong>现实并不是这样的</strong>，绝大多数用户不会在本地运行一个 geth 节点。Metamask 在浏览器 应用中有效地模拟了这种节点环境，因此绝大多数 web3 应用需要使用 Metamask 来保存密钥、签名交易并完成与以太坊的交互。</p>
-</li>
-<li><p>Ethers.js 采取了不同的设计思路，它提供给开发者更多的灵活性。Ethers.js 将“节点”拆分为两个不同的角色：</p>
-<p><strong>钱包</strong>：负责密钥保存和交易签名<br><strong>提供器</strong>：负责以太坊网络的匿名连接、状态检查和交易发送</p>
-</li>
-</ul>
-<h3 id="本地使用-ethersjs，如何配置环境"><a href="#本地使用-ethersjs，如何配置环境" class="headerlink" title="本地使用 ethersjs，如何配置环境"></a>本地使用 ethersjs，如何配置环境</h3><ol>
-<li>安装环境 nodejs</li>
-<li>安装 ethersjs 包—npm i –save ethers</li>
-<li>alchemy 申请一个 rpc 复制里面的 apikey</li>
-<li><a href="https://learnblockchain.cn/docs/ethers.js/api.html">查看官方文档</a></li>
-<li>当然单个网页也可以直接引入<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 会导出一个全局的变量: ethers --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://cdn.ethers.io/scripts/ethers-v4.min.js&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="本地如何使用使用呢？每一步到底做什么？"><a href="#本地如何使用使用呢？每一步到底做什么？" class="headerlink" title="本地如何使用使用呢？每一步到底做什么？"></a>本地如何使用使用呢？每一步到底做什么？</h3><blockquote>
-<p>本次测试的目录结构</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ethers-template</span><br><span class="line">    +compile.js</span><br><span class="line">    +contracts</span><br><span class="line">        -erc20.sol</span><br><span class="line">    +build</span><br><span class="line">        -ERC.json</span><br><span class="line">        -Context.json</span><br><span class="line">        -IERC20.sjon</span><br><span class="line">        -SafeMath.json</span><br><span class="line">   -package.json</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>初始化一个文件夹<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure></li>
-<li>创建一个 config.json 文件保存你的项目配置<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">//账户私钥，将使用这个私钥对应的账户在指定网络上部署智能合约</span></span><br><span class="line"> <span class="attr">&quot;private_key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;24C4FE6063E62710EAD956611B71825B778B041B18ED53118CE5DA5F02E494BA&quot;</span><span class="punctuation">,</span></span><br><span class="line"> &lt;!--要接入的以太坊网络，ethers.js支持以下网络：</span><br><span class="line">     homestead：主网</span><br><span class="line">     rinkeby</span><br><span class="line">     ropsten</span><br><span class="line">     kovan</span><br><span class="line">     goerli --&gt;</span><br><span class="line"> <span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kovan&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//声明要交互的已部署合约，可选</span></span><br><span class="line"> <span class="attr">&quot;ERC20&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0x0DEd9F7D82a24099F09AF7831CaB61B31Df10487&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="comment">//ERC20合约的参数</span></span><br><span class="line"> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fly&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;symbol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zhou&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;total_supply&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1000000000000000000000000&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;decimals&quot;</span><span class="punctuation">:</span> <span class="number">18</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-<li>为了编译合约，还需要安装solc和fs-extra<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">npm install <span class="built_in">fs</span>-extra@<span class="number">8</span>.<span class="number">1</span>.<span class="number">0</span> solc@<span class="number">0</span>.<span class="number">5</span>.<span class="number">11</span> --save</span><br></pre></td></tr></table></figure></li>
-<li>创建ERC20合约代码</li>
-<li>编写合约编译脚本,下面代码将读入并编译contracts目录中的所有合约文件，然后将编译得到的abi和字节码保存为json文件<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> solc = <span class="built_in">require</span>(<span class="string">&#x27;solc&#x27;</span>);</span><br><span class="line"><span class="comment">//这个读取的就是自己的配置文件</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sourceFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> buildFolderPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;build&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getContractSource</span> = contractFileName =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> contractPath = path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;contracts&#x27;</span>, contractFileName);</span><br><span class="line">  <span class="keyword">const</span> source = fs.<span class="title function_">readFileSync</span>(contractPath, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> source;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sources = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readdirSync</span>(sourceFolderPath).<span class="title function_">forEach</span>(<span class="function"><span class="params">contractFileName</span> =&gt;</span> &#123;</span><br><span class="line">  sources = &#123;</span><br><span class="line">    ...sources,</span><br><span class="line">    [contractFileName]: &#123;</span><br><span class="line">      <span class="attr">content</span>: <span class="title function_">getContractSource</span>(contractFileName)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = &#123;</span><br><span class="line">    <span class="attr">language</span>: <span class="string">&#x27;Solidity&#x27;</span>,</span><br><span class="line">    sources,</span><br><span class="line">    <span class="attr">settings</span>: &#123;</span><br><span class="line">        <span class="attr">outputSelection</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;*&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;*&#x27;</span>: [ <span class="string">&#x27;*&#x27;</span> ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nCompiling contracts...&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> output = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(solc.<span class="title function_">compile</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(input)));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Done&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> shouldBuild = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (output.<span class="property">errors</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(output.<span class="property">errors</span>);</span><br><span class="line">  <span class="comment">// throw &#x27;nError in compilation please check the contractn&#x27;;</span></span><br><span class="line">  <span class="keyword">for</span>(error <span class="keyword">of</span> output.<span class="property">errors</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(error.<span class="property">severity</span> === <span class="string">&#x27;error&#x27;</span>) &#123;</span><br><span class="line">      shouldBuild = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">&#x27;Error found&#x27;</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(shouldBuild) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuilding please wait...&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  fs.<span class="title function_">removeSync</span>(buildFolderPath);</span><br><span class="line">  fs.<span class="title function_">ensureDirSync</span>(buildFolderPath);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> contractFile <span class="keyword">in</span> output.<span class="property">contracts</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> output.<span class="property">contracts</span>[contractFile]) &#123;</span><br><span class="line">      fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">        path.<span class="title function_">resolve</span>(buildFolderPath, <span class="string">`<span class="subst">$&#123;key&#125;</span>.json`</span>),</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">abi</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;abi&quot;</span>],</span><br><span class="line">          <span class="attr">bytecode</span>: output.<span class="property">contracts</span>[contractFile][key][<span class="string">&quot;evm&quot;</span>][<span class="string">&quot;bytecode&quot;</span>][<span class="string">&quot;object&quot;</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">          <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Build finished successfully!n&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;nBuild failedn&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
- 运行node compile.js就可以对合约进行编译</li>
-<li>创建文件deploy.js<ul>
-<li>下面代码中的默认网络是<strong>configjs</strong>中的测试网</li>
-<li>在这个测试网中，需要一些<strong>以太币来支付部署交易的手续费</strong></li>
-<li>将使用config.json中的<strong>private_key</strong>来部署合约</li>
-<li>运行deploy.js脚本时，需要在命令行传入要部署的合约名称ERC20 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node deploy.js ERC20</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> startTimestamp = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">const</span> ethers = <span class="built_in">require</span>(<span class="string">&#x27;ethers&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">&#x27;./config.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(config[<span class="string">&quot;network&quot;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wallet = <span class="keyword">new</span> ethers.<span class="title class_">Wallet</span>(config[<span class="string">&quot;private_key&quot;</span>], provider);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Loaded wallet <span class="subst">$&#123;wallet.address&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> compiled = <span class="built_in">require</span>(<span class="string">`./build/<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>.json`</span>);</span><br><span class="line"></span><br><span class="line">(<span class="title function_">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`nDeploying <span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span> in <span class="subst">$&#123;config[<span class="string">&quot;network&quot;</span>]&#125;</span>...`</span>);</span><br><span class="line">  <span class="keyword">let</span> contract = <span class="keyword">new</span> ethers.<span class="title class_">ContractFactory</span>(</span><br><span class="line">    compiled.<span class="property">abi</span>,</span><br><span class="line">    compiled.<span class="property">bytecode</span>,</span><br><span class="line">    wallet</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> instance =  <span class="keyword">await</span> contract.<span class="title function_">deploy</span>(config[<span class="string">&quot;decimals&quot;</span>], config[<span class="string">&quot;symbol&quot;</span>], config[<span class="string">&quot;name&quot;</span>], config[<span class="string">&quot;total_supply&quot;</span>]);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`deployed at <span class="subst">$&#123;instance.address&#125;</span>`</span>)</span><br><span class="line">  config[<span class="string">`<span class="subst">$&#123;process.argv[<span class="number">2</span>]&#125;</span>`</span>] = instance.<span class="property">address</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Waiting for the contract to get mined...&quot;</span>)</span><br><span class="line">  <span class="keyword">await</span> instance.<span class="title function_">deployed</span>()</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed&quot;</span>)</span><br><span class="line">  fs.<span class="title function_">outputJsonSync</span>(</span><br><span class="line">    <span class="string">&#x27;config.json&#x27;</span>,</span><br><span class="line">    config,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">spaces</span>:<span class="number">2</span>,</span><br><span class="line">      <span class="attr">EOL</span>: <span class="string">&quot;n&quot;</span> </span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<h3 id="ethers-js-接口文档导读"><a href="#ethers-js-接口文档导读" class="headerlink" title="ethers.js 接口文档导读"></a>ethers.js 接口文档导读</h3><blockquote>
-<p>其实整个文档可以看出四个大类 我把它们按照学习的先后顺序分为：</p>
+<li><p><strong>全局变量（global variable）</strong></p>
 <ul>
-<li>provider（提供器：我习惯理解成提供给我信息的网络）</li>
-<li>wallet（钱包）</li>
-<li>contract（合约）</li>
-<li>utils（工具包）</li>
+<li><p><strong>状态变量</strong><br>状态变量是数据存储在链上的变量，所有合约内函数都可以访问 ，gas 消耗高。状态变量在合约内、函数外声明：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sol contract Variables &#123;</span><br><span class="line">     uint public x = 1;</span><br><span class="line">     uint public y;</span><br><span class="line">     string public z; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在函数里更改状态变量的值：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> function foo() external&#123;</span><br><span class="line">         // 可以在函数里更改状态变量的值</span><br><span class="line">         x = 5;</span><br><span class="line">         y = 2;</span><br><span class="line">         z = &quot;0xAA&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>局部变量</strong><br>局部变量是仅在函数执行过程中有效的变量，函数退出后，变量无效。局部变量的数据存储在内存里，不上链，gas 低。局部变量在函数内声明：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function bar() external pure returns(uint)&#123;</span><br><span class="line">uint xx = 1;</span><br><span class="line">uint yy = 3;</span><br><span class="line">uint zz = xx + yy;</span><br><span class="line">return(zz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>全局变量</strong><br>全局变量是全局范围工作的变量，都是 solidity 预留关键字。他们可以在函数内不声明直接使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function global() external view returns(address, uint, bytes memory)&#123;</span><br><span class="line">address sender = msg.sender;</span><br><span class="line">uint blockNum = block.number;</span><br><span class="line">bytes memory data = msg.data;</span><br><span class="line">return(sender, blockNum, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
+</li>
+</ul>
+<hr>
+<ol>
+<li><p>view 修饰的函数，是 constant 的别名，只能读取 storage 变量的值，不能写入。（不能改变状态）</p>
+<blockquote>
+<p>这里特别提到 <strong>状态变量</strong></p>
 </blockquote>
+</li>
+<li><p>pure 修饰的函数 ，不能对 storage 变量进行读写</p>
+</li>
+<li><p>payable 当一个函数被 payable 修饰，表示调用这个函数时，可以附加发送一些 ETH（当然也可以不发）。<br>没有加 payable 的函数，则没有方法接受 ETH， 附加 ETH 调用会出错。<br><strong>remix 的界面</strong><br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/01/payableShow.png" alt="支付展示"></p>
+</li>
+</ol>
+<h1 style="font-size:32px;text-align:center;color:red">计划</h1>
+
+<ol>
+<li><a href="https://solidity-cn.readthedocs.io/zh/develop/index.html">solidity 官方文档</a></li>
+<li><a href="https://search.bilibili.com/all?keyword=dapp&from_source=webtop_search&spm_id_from=333.1007&search_source=5">了解去中心化应用程序（DAPP）</a></li>
+<li><a href="https://www.zhihu.com/search?type=content&q=%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0">参考计划</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>区块链</category>
@@ -591,105 +641,6 @@
 </li>
 </ul>
 <h2 id="那具体代码是怎样的呢？如何工作？"><a href="#那具体代码是怎样的呢？如何工作？" class="headerlink" title="那具体代码是怎样的呢？如何工作？"></a>那具体代码是怎样的呢？如何工作？</h2><h3 id="provider的具体使用"><a href="#provider的具体使用" class="headerlink" title="provider的具体使用"></a>provider的具体使用</h3>  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 连接默认的provider</span></span><br><span class="line"><span class="comment">// 可以使用任何标准网络名称做参数：</span></span><br><span class="line"><span class="comment">//  - &quot;homestead&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;rinkeby&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;ropsten&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;kovan&quot;</span></span><br><span class="line"><span class="comment">//  - &quot;goerli&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> provider = ethers.<span class="title function_">getDefaultProvider</span>(<span class="string">&#x27;ropsten&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 连接metamask</span></span><br><span class="line"><span class="comment">// 将自动检测网络;</span></span><br><span class="line"><span class="comment">// 如果在MetaMask中更改了网络，则会导致页面刷新。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> provider = <span class="keyword">new</span> ethers.<span class="property">providers</span>.<span class="title class_">Web3Provider</span>(web3.<span class="property">currentProvider</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>区块链学习第六期</title>
-    <url>/2023/01/15/202_zyn_06/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
-<h1 style="font-size:32px;text-align:center;color:red">零知识证明基础</h1> 
-[toc] 
-<span id="more"></span>
---- 
-
-<h1 id="零知识证明（Zero-Knowledge-Proofs-ZKP）"><a href="#零知识证明（Zero-Knowledge-Proofs-ZKP）" class="headerlink" title="零知识证明（Zero-Knowledge Proofs  ZKP）"></a>零知识证明（Zero-Knowledge Proofs  ZKP）</h1><blockquote>
-<p>零知识证明技术是现代密码学三大基础之一，由 S.Goldwasser、S.Micali 及 C.Rackoff 在 20 世纪 80 年代初提出。早期的零知识证明由于其效率和可用性等限制，未得到很好的利用，仅停留在理论层面。直到近年来，零知识证明的理论研究才开始不断突破，同时区块链也为零知识证明创造了大展拳脚的机会，因而走进大众视野。<br>零知识证明这项“黑科技”随着它的热度逐渐增加，相关的学习资源也慢慢丰富起来了。但是由于，一方面零知识证明背后的原理颇为复杂，且内容繁多；另一方面，针对零知识证明的学习资源质量参差不齐，尚未形成系统。因此对绝大多数读者来说，学习零知识证明的难度依然很大。</p>
-</blockquote>
-<hr>
-<h2 id="简单理解ZKP"><a href="#简单理解ZKP" class="headerlink" title="简单理解ZKP"></a>简单理解ZKP</h2><blockquote>
-<p>通过间接方式证明某事物的存在。所谓的零知识，就是指验证方除了对论断判断的结果（错或对）之外，<strong>无法获取任何额外信息</strong>。</p>
-</blockquote>
-<h2 id="ZKP分类"><a href="#ZKP分类" class="headerlink" title="ZKP分类"></a>ZKP分类</h2><ul>
-<li><p>交互式<br>  需要通过反复确认（比如验证者问我问题我每次都可以答对）</p>
-</li>
-<li><p>非交互式<br>  区块链更常使用的是「非交互式zk」，简称「NIZK」。区块链上的一个交易会分发给多个矿工进行验证，如果每个矿工都进行交互式的验证，那耗时将是难以想象的。而NIZK在证明者进行一次证明之后，能够取信多个验证者，所以更加适合区块链上的场景</p>
-</li>
-</ul>
-<h2 id="零知识证明三大性质"><a href="#零知识证明三大性质" class="headerlink" title="零知识证明三大性质"></a>零知识证明三大性质</h2><ul>
-<li>完备性（Completeness）：若一个证明方确实掌握了某论断的答案，则他肯定能找到方法向验证方证明他手中掌握的数据的正确性，即真的假不了。（对应上面药丸的例子，就是拥有药丸的证明方肯定能想办法说服验证方，证明他手里真的有药丸。）</li>
-<li>可靠性（Soundness）：若一证明方根本不掌握某论断的答案，则他无法（或只能以极低概率）说服验证方他手中所谓答案的准确性，即假的真不了。（对应上面药丸的例子，就是证明方若手中无药丸则没法蒙混过关让验证方误以为他有药丸。）</li>
-<li>零知识性（Zero-knowledgeness）：验证方除了知道证明的结果外，对其他信息一无所知。</li>
-</ul>
-<h2 id="零知识证明构造方法的三段论"><a href="#零知识证明构造方法的三段论" class="headerlink" title="零知识证明构造方法的三段论"></a>零知识证明构造方法的三段论</h2><ol>
-<li>证明方先根据论断内容向验证方发个交底材料，这个样例论断需要是随机的或加密的；</li>
-<li>验证方随机生成一个试探（学术名词是挑战，challenge），发给证明方；</li>
-<li>证明方根据该试探和交底材料生成证明信息发给验证方。验证方自己将信息和交底材料一合计，判断证明方是否通过了该试探。</li>
-</ol>
-<h2 id="零知识证明的优点"><a href="#零知识证明的优点" class="headerlink" title="零知识证明的优点"></a>零知识证明的优点</h2><p><strong>安全</strong>，随着零知识证明的使用，安全性会大大提高。<br><strong>高效</strong>，零知识证明过程计算量小，双方交换的信息量会大大减少，因此较为高效。</p>
-<h2 id="零知识证明的应用"><a href="#零知识证明的应用" class="headerlink" title="零知识证明的应用"></a>零知识证明的应用</h2><ul>
-<li>身份验证</li>
-<li>数字签名</li>
-<li>认证协议</li>
-</ul>
-<h2 id="密码学常用公钥密码"><a href="#密码学常用公钥密码" class="headerlink" title="密码学常用公钥密码"></a>密码学常用公钥密码</h2><p>验证某人是否有<strong>私钥</strong></p>
-<ol>
-<li>用公钥加密某x</li>
-<li>让对方出示加密的内容</li>
-<li>如果正确则拥有公钥</li>
-</ol>
-<h2 id="零知识证明形象化举例"><a href="#零知识证明形象化举例" class="headerlink" title="零知识证明形象化举例"></a>零知识证明形象化举例</h2><p>A有一个开房间R的钥匙🔑，B怎么在不知道A有钥匙🔑的情况下相信A有钥匙呢？<br>答：A可以把门打开，拿出其中的一把椅子，B看了之后就知道，A肯定有钥匙，不然怎么开门呢。此时A并没有给B看到钥匙，仅仅是通过给出在有钥匙才能办到的事这个结果，让B相信有钥匙。</p>
-]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>区块链学习第七期</title>
-    <url>/2023/02/01/202_zyn_07/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
-<h1 style="font-size:32px;text-align:center;color:red">挖矿日常理解</h1> 
-[toc] 
-<span id="more"></span>
---- 
-
-<h1 id="挖矿初识"><a href="#挖矿初识" class="headerlink" title="挖矿初识"></a>挖矿初识</h1><h2 id="挖矿原理简介"><a href="#挖矿原理简介" class="headerlink" title="挖矿原理简介"></a>挖矿原理简介</h2><p>比特币如此神奇，很多人都想知道除了直接用钱购买之外，还有没有其他方法可以获得比特币？答案是肯定的。比特币存在于互联网数字空间中，隐藏在特定算法里，所以只要利用联网的计算机就能挖掘出来。大家口中所说的“挖矿”就是通过计算机设备运算挖掘比特币，那些专门通过“挖矿”寻找比特币的人就是比特币矿工。</p>
-<p>从表面上看，“挖矿”是一个非常简单的过程，只需要利用计算机下载比特币挖矿工具，然后让设备持续运行就能得到比特币，然后确定账户信息取得对比特币的拥有权。但是，比特币在设计之初已经制定好了规则，产生新比特币的算法难度会随着比特币产生速度的变化而变化。也就是说，矿工挖掘比特币的速度越快，算法难度就会越大；反之，难度越小。</p>
-<p>根据比特币挖矿原理可知，计算机的运算能力是挖掘比特币的关键。对于大多数矿工来说，只要打开挖矿客户端，然后挂机就可以坐等比特币的产生。目前，常用的“挖矿”工具有UfasoftCoin、Guiminer等。由于越来越多的人涌入“挖矿”行列中，比特币的产生也随着算力的增大而变得缓慢。</p>
-<h2 id="影响比特币收益的四大因素"><a href="#影响比特币收益的四大因素" class="headerlink" title="影响比特币收益的四大因素"></a>影响比特币收益的四大因素</h2><ol>
-<li><p><strong>算法因素</strong></p>
-<p>算法因素是比特币本身的特性，不会受到外部因素影响，但是会影响外部因素，包括算法难度调整周期、每区块收益等。</p>
-</li>
-<li><p><strong>矿机硬件</strong></p>
-<p>矿机硬件是矿工可以通过人力施加影响，从而提高收益的一个因素。一般来说，硬件因素在短期内几乎没有什么变化，而且可预见性、可操作性较高。例如，矿机速度、功耗、成本等，这些因素主要受上游芯片厂商、矿机组装厂商的影响。</p>
-</li>
-<li><p><strong>矿场部署</strong></p>
-<p>矿场指的是比特币矿工团队集体工作的环境。矿场部署是矿场和旷工可以通过人力施加影响，从而提高收益的另一个因素，同样受到上游芯片厂商、矿</p>
-<p>机组装厂商的影响，可预见性较高。矿场部署因素包括矿机部署时间、矿场电 费、运行保障能力等。</p>
-</li>
-<li><p><strong>市场因素</strong></p>
-<p>比起其他三大因素，市场因素的可预见性较低，但是对挖矿收益的影响非常大。比如，比特币的价格、全网算力增长率、难度增长率等。比特币的价格在短期内波动较小，但是在中长期内何时会出现暴涨暴跌是难以预测的。全网算力和难度增长率在短期内变化幅度会较大，中长期则是会增长趋势。</p>
-<p>在影响挖矿收益的四大因素中，算法因素是比特币自身特性，并制约着其他三种因素；矿机硬件的性能和功耗将随着技术升级不断优化；矿场部署的当前趋势是集中化和规模化，通过总量来降低挖矿成本，提升挖矿收益；市场因素受到宏观大环境影响，风险和机遇同时存在。</p>
-</li>
-</ol>
-<h1 id="矿池"><a href="#矿池" class="headerlink" title="矿池"></a>矿池</h1><h2 id="为什么要有矿池"><a href="#为什么要有矿池" class="headerlink" title="为什么要有矿池"></a>为什么要有矿池</h2><p>激烈竞争的环境下，单个矿工（也被称为“个体矿工”）独立工作基本没有机会赢得竞争。他们通过挖矿弥补电力和硬件成本的可能性非常低，基本上就等同于参加一场赌博或者买彩票。即使最快的消费型ASIC挖矿系统，也无法赶上那些安装了成千上万芯片的商业系统，那些系统通常建在水电站附近的巨大机房里。矿工们一般联合起来组成矿池，他们将算力集中起来，而奖励也在成员间共享。通过加入矿池，矿工可以得到全部奖励的一小部分，但是这种方式削减了不确定性，矿工们几乎每天都能分到奖励。</p>
-<blockquote>
-<p>假定一个矿工购买了一台矿机，其处理能力能达到6000G哈希每秒（GH/s），或者6TH/s。在2014年的8月份，这台设备的成本大概是1万美元。设备运行时的功率为3kW，每天72度（kWH）耗电，每天平均电力成本是7～8美元。在当前的比特币挖矿难度下，如果矿工单干的话，大概每155天或者5个月可以找到1个新区块。如果矿工在这个时间内真的找到了1个区块，那么他将得到25比特币的奖励，每个比特币兑换价格大概是600美元，总的奖励是1.5万美元。这笔钱扣除硬件和电力的全部成本后，大概还有3000美元的收益。但是，5个月内能否找到一个区块，完全凭矿工的运气。他可能5个月内找到2个区块，获得更多的收益；也有可能10个月也找不到1个区块，导致财务损失。更糟糕的是，比特币工作量证明的难度很可能在这段时间内已经显著提高了，以当前哈希算力的增长速度，矿工最多在6个月时间内必须达到收支平衡，否则硬件就将过时，需要被更强的挖矿硬件取代。如果矿工加入一个矿池，每周就能赚到500～700美元，而不用等待5个月一次的“横财”。矿池定期派发的奖励帮他摊销了硬件和电力成本，不再需要承担巨大的风险。硬件设备仍然会在6～9个月后过时，风险依然很高，但是至少在这个时间内的回报是定期发放，相对可靠的。</p>
-</blockquote>
-<h2 id="矿池的运行机制"><a href="#矿池的运行机制" class="headerlink" title="矿池的运行机制"></a>矿池的运行机制</h2><blockquote>
-<p>矿池通过专门的矿池协议，将成百上千的矿工集合在一起。个体矿工在矿池中创建账号后，通过设置把挖矿设备与矿池服务器相连。在挖矿的过程中，挖矿硬件保持与矿池服务器相连，与其他矿工同时进行挖矿工作。这样，矿池中的矿工共享挖矿的努力，也共享收获的奖励。</p>
-</blockquote>
-<h3 id="P2P矿池介绍"><a href="#P2P矿池介绍" class="headerlink" title="P2P矿池介绍"></a>P2P矿池介绍</h3><p>P2P矿池通过将矿池服务器的功能去中心化，实现了一个平行的类似区块链的系统，叫作份额链（share chain）。份额链是一条相比比特币区块链具有较低难度的区块链。份额链允许矿工在去中心化的矿池中协同工作，它们以每30秒一个份额区块的速度在份额链上进行份额挖矿。份额链上的每个区块记录着参与贡献的矿工的奖励份额，并且继承了之前份额区块上的份额记录。当某个份额区块同时达到比特币网络的难度目标时，这个区块就会被传播出去，并入比特币区块链，而区块奖励则根据每个矿工之前对份额的贡献度进行发放。本质上，份额链采用一种类似比特币区块链的去中心化共识机制，让所有矿池中的矿工都能跟踪所有贡献份额的记录，而不像矿池服务器一样，由一个中心节点保存矿工的份额和奖励记录。</p>
-<p>P2P矿池挖矿比托管矿池挖矿复杂得多，它要求矿工运行一台具有足够硬盘空间、内存和网络带宽的专用电脑，以支持完全节点和P2P矿池节点软件。P2P矿池矿工将他们的挖矿设备与本地的P2P矿池节点进行连接，P2P矿池节点通过向挖矿设备发送区块模板的方式，模拟矿池服务器的功能。在P2P矿池中，矿工构建他们自己的候选区块，归集交易，其行为与个体矿工很类似，但是P2P矿工是在份额链上合作挖矿。P2P矿池整合了个体矿工和矿池两者的优势，能够让个体矿工在支出上具有更加细粒度的优势，在控制层面，它不需要像托管矿池那样将控制权交给矿池管理人。</p>
-<p>当前，矿池中集中的算力已接近可发起51%攻击的能力，出于对此的担忧，P2P矿池的矿工数量有了显著增长。P2P矿池协议进一步的发展有望移除对完全节点的依赖，从而使这种去中心化的挖矿更加易用。</p>
-<h3 id="为什么要有P2P矿池"><a href="#为什么要有P2P矿池" class="headerlink" title="为什么要有P2P矿池"></a>为什么要有P2P矿池</h3><blockquote>
-<p>托管矿池有可能引发矿池管理员的欺诈行为，他可能将矿池的算力引导至双重支付交易或者无效区块（参见“共识攻击”）。此外，中心化的矿池服务器也存在单点故障的隐患。如果矿池服务器宕机或者因拒绝服务攻击而放慢运行速度，矿池中的矿工就无法挖矿。在2011年，为解决这个中心化问题，引进了一个新的矿池挖矿协议：<strong>P2P矿池，它是一个点对点的矿池，不需要中心管理员</strong>。</p>
-</blockquote>
-<h3 id="托管矿池"><a href="#托管矿池" class="headerlink" title="托管矿池"></a>托管矿池</h3><p>大多数矿池都是“托管矿池”，即公司或者个人运营着矿池服务器。矿池服务器的拥有者被称为矿池经营者，他按一定比例向加入矿池的矿工抽取奖励费用的佣金。</p>
-<p>矿池服务器运行着专用的软件，根据矿池挖矿协议来协调矿工们的工作。矿池服务器同时与一个或多个完全比特币节点相连（比特币节点类型与角色），可以直接访问区块链数据库的完整复制。这使得矿池服务器可以代表矿工对区块和交易进行验证，使他们从运行完全节点的负担中解脱出来。对于矿池中的矿工而言，这是一个重要的考虑因素，因为一个完全节点需要一台专用的计算机，配置至少15G~20G的硬盘，至少2G的内存（RAM）。此外，运行在完全节点上的比特币软件还需要时不时地监控、维护、升级。任何因为缺少维护或者资源而导致的宕机，都会损害矿工的收益。<strong>对于很多矿工来说，不用维护完全节点即能参与挖矿是加入托管矿池的另一大好处</strong>。</p>
-<h4 id="矿池服务器"><a href="#矿池服务器" class="headerlink" title="矿池服务器"></a>矿池服务器</h4><p>矿池矿工利用挖矿协议，比如Stratum（STM）或GetBlockTemplate（GBT）与矿池服务器相连。曾经有个旧标准，被称为GetWork（GWK），到2012年年底基本上已经作废了，因为这个标准难以支撑哈希速度超过4GH/s的挖矿工作。不管是STM还是GBT协议，都会创建一个包含候选区块头的区块模板（templates）。矿池服务器通过归集交易，添加铸币交易（包括扩展随机数空间），计算默克尔根（参见默克尔树），加入连接到前序区块的哈希引用，从而创建一个新的区块。候选区块的区块头作为模板，发送给矿池中的所有矿工。每个矿工基于区块模板，在一个低于比特币网络难度值的目标下进行挖矿；一旦找到满足矿池难度值的区块，就将其发回矿池服务器，赢得奖励份额。</p>
-]]></content>
       <categories>
         <category>区块链</category>
       </categories>
@@ -825,6 +776,55 @@
       </categories>
   </entry>
   <entry>
+    <title>区块链学习第七期</title>
+    <url>/2023/02/01/202_zyn_07/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a> </p>
+<h1 style="font-size:32px;text-align:center;color:red">挖矿日常理解</h1> 
+[toc] 
+<span id="more"></span>
+--- 
+
+<h1 id="挖矿初识"><a href="#挖矿初识" class="headerlink" title="挖矿初识"></a>挖矿初识</h1><h2 id="挖矿原理简介"><a href="#挖矿原理简介" class="headerlink" title="挖矿原理简介"></a>挖矿原理简介</h2><p>比特币如此神奇，很多人都想知道除了直接用钱购买之外，还有没有其他方法可以获得比特币？答案是肯定的。比特币存在于互联网数字空间中，隐藏在特定算法里，所以只要利用联网的计算机就能挖掘出来。大家口中所说的“挖矿”就是通过计算机设备运算挖掘比特币，那些专门通过“挖矿”寻找比特币的人就是比特币矿工。</p>
+<p>从表面上看，“挖矿”是一个非常简单的过程，只需要利用计算机下载比特币挖矿工具，然后让设备持续运行就能得到比特币，然后确定账户信息取得对比特币的拥有权。但是，比特币在设计之初已经制定好了规则，产生新比特币的算法难度会随着比特币产生速度的变化而变化。也就是说，矿工挖掘比特币的速度越快，算法难度就会越大；反之，难度越小。</p>
+<p>根据比特币挖矿原理可知，计算机的运算能力是挖掘比特币的关键。对于大多数矿工来说，只要打开挖矿客户端，然后挂机就可以坐等比特币的产生。目前，常用的“挖矿”工具有UfasoftCoin、Guiminer等。由于越来越多的人涌入“挖矿”行列中，比特币的产生也随着算力的增大而变得缓慢。</p>
+<h2 id="影响比特币收益的四大因素"><a href="#影响比特币收益的四大因素" class="headerlink" title="影响比特币收益的四大因素"></a>影响比特币收益的四大因素</h2><ol>
+<li><p><strong>算法因素</strong></p>
+<p>算法因素是比特币本身的特性，不会受到外部因素影响，但是会影响外部因素，包括算法难度调整周期、每区块收益等。</p>
+</li>
+<li><p><strong>矿机硬件</strong></p>
+<p>矿机硬件是矿工可以通过人力施加影响，从而提高收益的一个因素。一般来说，硬件因素在短期内几乎没有什么变化，而且可预见性、可操作性较高。例如，矿机速度、功耗、成本等，这些因素主要受上游芯片厂商、矿机组装厂商的影响。</p>
+</li>
+<li><p><strong>矿场部署</strong></p>
+<p>矿场指的是比特币矿工团队集体工作的环境。矿场部署是矿场和旷工可以通过人力施加影响，从而提高收益的另一个因素，同样受到上游芯片厂商、矿</p>
+<p>机组装厂商的影响，可预见性较高。矿场部署因素包括矿机部署时间、矿场电 费、运行保障能力等。</p>
+</li>
+<li><p><strong>市场因素</strong></p>
+<p>比起其他三大因素，市场因素的可预见性较低，但是对挖矿收益的影响非常大。比如，比特币的价格、全网算力增长率、难度增长率等。比特币的价格在短期内波动较小，但是在中长期内何时会出现暴涨暴跌是难以预测的。全网算力和难度增长率在短期内变化幅度会较大，中长期则是会增长趋势。</p>
+<p>在影响挖矿收益的四大因素中，算法因素是比特币自身特性，并制约着其他三种因素；矿机硬件的性能和功耗将随着技术升级不断优化；矿场部署的当前趋势是集中化和规模化，通过总量来降低挖矿成本，提升挖矿收益；市场因素受到宏观大环境影响，风险和机遇同时存在。</p>
+</li>
+</ol>
+<h1 id="矿池"><a href="#矿池" class="headerlink" title="矿池"></a>矿池</h1><h2 id="为什么要有矿池"><a href="#为什么要有矿池" class="headerlink" title="为什么要有矿池"></a>为什么要有矿池</h2><p>激烈竞争的环境下，单个矿工（也被称为“个体矿工”）独立工作基本没有机会赢得竞争。他们通过挖矿弥补电力和硬件成本的可能性非常低，基本上就等同于参加一场赌博或者买彩票。即使最快的消费型ASIC挖矿系统，也无法赶上那些安装了成千上万芯片的商业系统，那些系统通常建在水电站附近的巨大机房里。矿工们一般联合起来组成矿池，他们将算力集中起来，而奖励也在成员间共享。通过加入矿池，矿工可以得到全部奖励的一小部分，但是这种方式削减了不确定性，矿工们几乎每天都能分到奖励。</p>
+<blockquote>
+<p>假定一个矿工购买了一台矿机，其处理能力能达到6000G哈希每秒（GH/s），或者6TH/s。在2014年的8月份，这台设备的成本大概是1万美元。设备运行时的功率为3kW，每天72度（kWH）耗电，每天平均电力成本是7～8美元。在当前的比特币挖矿难度下，如果矿工单干的话，大概每155天或者5个月可以找到1个新区块。如果矿工在这个时间内真的找到了1个区块，那么他将得到25比特币的奖励，每个比特币兑换价格大概是600美元，总的奖励是1.5万美元。这笔钱扣除硬件和电力的全部成本后，大概还有3000美元的收益。但是，5个月内能否找到一个区块，完全凭矿工的运气。他可能5个月内找到2个区块，获得更多的收益；也有可能10个月也找不到1个区块，导致财务损失。更糟糕的是，比特币工作量证明的难度很可能在这段时间内已经显著提高了，以当前哈希算力的增长速度，矿工最多在6个月时间内必须达到收支平衡，否则硬件就将过时，需要被更强的挖矿硬件取代。如果矿工加入一个矿池，每周就能赚到500～700美元，而不用等待5个月一次的“横财”。矿池定期派发的奖励帮他摊销了硬件和电力成本，不再需要承担巨大的风险。硬件设备仍然会在6～9个月后过时，风险依然很高，但是至少在这个时间内的回报是定期发放，相对可靠的。</p>
+</blockquote>
+<h2 id="矿池的运行机制"><a href="#矿池的运行机制" class="headerlink" title="矿池的运行机制"></a>矿池的运行机制</h2><blockquote>
+<p>矿池通过专门的矿池协议，将成百上千的矿工集合在一起。个体矿工在矿池中创建账号后，通过设置把挖矿设备与矿池服务器相连。在挖矿的过程中，挖矿硬件保持与矿池服务器相连，与其他矿工同时进行挖矿工作。这样，矿池中的矿工共享挖矿的努力，也共享收获的奖励。</p>
+</blockquote>
+<h3 id="P2P矿池介绍"><a href="#P2P矿池介绍" class="headerlink" title="P2P矿池介绍"></a>P2P矿池介绍</h3><p>P2P矿池通过将矿池服务器的功能去中心化，实现了一个平行的类似区块链的系统，叫作份额链（share chain）。份额链是一条相比比特币区块链具有较低难度的区块链。份额链允许矿工在去中心化的矿池中协同工作，它们以每30秒一个份额区块的速度在份额链上进行份额挖矿。份额链上的每个区块记录着参与贡献的矿工的奖励份额，并且继承了之前份额区块上的份额记录。当某个份额区块同时达到比特币网络的难度目标时，这个区块就会被传播出去，并入比特币区块链，而区块奖励则根据每个矿工之前对份额的贡献度进行发放。本质上，份额链采用一种类似比特币区块链的去中心化共识机制，让所有矿池中的矿工都能跟踪所有贡献份额的记录，而不像矿池服务器一样，由一个中心节点保存矿工的份额和奖励记录。</p>
+<p>P2P矿池挖矿比托管矿池挖矿复杂得多，它要求矿工运行一台具有足够硬盘空间、内存和网络带宽的专用电脑，以支持完全节点和P2P矿池节点软件。P2P矿池矿工将他们的挖矿设备与本地的P2P矿池节点进行连接，P2P矿池节点通过向挖矿设备发送区块模板的方式，模拟矿池服务器的功能。在P2P矿池中，矿工构建他们自己的候选区块，归集交易，其行为与个体矿工很类似，但是P2P矿工是在份额链上合作挖矿。P2P矿池整合了个体矿工和矿池两者的优势，能够让个体矿工在支出上具有更加细粒度的优势，在控制层面，它不需要像托管矿池那样将控制权交给矿池管理人。</p>
+<p>当前，矿池中集中的算力已接近可发起51%攻击的能力，出于对此的担忧，P2P矿池的矿工数量有了显著增长。P2P矿池协议进一步的发展有望移除对完全节点的依赖，从而使这种去中心化的挖矿更加易用。</p>
+<h3 id="为什么要有P2P矿池"><a href="#为什么要有P2P矿池" class="headerlink" title="为什么要有P2P矿池"></a>为什么要有P2P矿池</h3><blockquote>
+<p>托管矿池有可能引发矿池管理员的欺诈行为，他可能将矿池的算力引导至双重支付交易或者无效区块（参见“共识攻击”）。此外，中心化的矿池服务器也存在单点故障的隐患。如果矿池服务器宕机或者因拒绝服务攻击而放慢运行速度，矿池中的矿工就无法挖矿。在2011年，为解决这个中心化问题，引进了一个新的矿池挖矿协议：<strong>P2P矿池，它是一个点对点的矿池，不需要中心管理员</strong>。</p>
+</blockquote>
+<h3 id="托管矿池"><a href="#托管矿池" class="headerlink" title="托管矿池"></a>托管矿池</h3><p>大多数矿池都是“托管矿池”，即公司或者个人运营着矿池服务器。矿池服务器的拥有者被称为矿池经营者，他按一定比例向加入矿池的矿工抽取奖励费用的佣金。</p>
+<p>矿池服务器运行着专用的软件，根据矿池挖矿协议来协调矿工们的工作。矿池服务器同时与一个或多个完全比特币节点相连（比特币节点类型与角色），可以直接访问区块链数据库的完整复制。这使得矿池服务器可以代表矿工对区块和交易进行验证，使他们从运行完全节点的负担中解脱出来。对于矿池中的矿工而言，这是一个重要的考虑因素，因为一个完全节点需要一台专用的计算机，配置至少15G~20G的硬盘，至少2G的内存（RAM）。此外，运行在完全节点上的比特币软件还需要时不时地监控、维护、升级。任何因为缺少维护或者资源而导致的宕机，都会损害矿工的收益。<strong>对于很多矿工来说，不用维护完全节点即能参与挖矿是加入托管矿池的另一大好处</strong>。</p>
+<h4 id="矿池服务器"><a href="#矿池服务器" class="headerlink" title="矿池服务器"></a>矿池服务器</h4><p>矿池矿工利用挖矿协议，比如Stratum（STM）或GetBlockTemplate（GBT）与矿池服务器相连。曾经有个旧标准，被称为GetWork（GWK），到2012年年底基本上已经作废了，因为这个标准难以支撑哈希速度超过4GH/s的挖矿工作。不管是STM还是GBT协议，都会创建一个包含候选区块头的区块模板（templates）。矿池服务器通过归集交易，添加铸币交易（包括扩展随机数空间），计算默克尔根（参见默克尔树），加入连接到前序区块的哈希引用，从而创建一个新的区块。候选区块的区块头作为模板，发送给矿池中的所有矿工。每个矿工基于区块模板，在一个低于比特币网络难度值的目标下进行挖矿；一旦找到满足矿池难度值的区块，就将其发回矿池服务器，赢得奖励份额。</p>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
     <title>区块链学习第九期</title>
     <url>/2023/03/15/202_zyn_09/</url>
     <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
@@ -940,6 +940,400 @@
       <categories>
         <category>区块链</category>
       </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第十一期</title>
+    <url>/2023/04/15/202_zyn_11/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">Contracts解读</h1>
+[toc]
+<span id="more"></span>
+---
+
+<h2 id="ERC721-导读"><a href="#ERC721-导读" class="headerlink" title="ERC721 导读"></a>ERC721 导读</h2><h3 id="什么是-ERC721"><a href="#什么是-ERC721" class="headerlink" title="什么是 ERC721"></a>什么是 ERC721</h3><blockquote>
+<p>Non-Fungible Tokens 非同质化代币</p>
+</blockquote>
+<p><strong>非同质代表独一无二</strong>，谜恋猫为例，每只猫都被赋予拥有基因，是独一无二的（一只猫就是一个 NFTs），猫之间是不能置换的。这种独特性使得某些稀有猫具有收藏价值，也因此受到追捧。</p>
+<p>ERC20 代币是可置换的，且可细分为 N 份（1 = 10 * 0.1）, 而 ERC721 的 Token 最小的单位为 1，无法再分割。</p>
+<blockquote>
+<p>如果同一个集合的两个物品具有不同的特征，这两个物品是非同质的，而同质是某个部分或数量可以被另一个同等部分或数量所代替。</p>
+</blockquote>
+<h3 id="有哪些特点"><a href="#有哪些特点" class="headerlink" title="有哪些特点"></a>有哪些特点</h3><blockquote>
+<p>非同质代币(NFT)是一种具有唯一性识别的代币 ，ERC-20 Token 可以无限细分为 10^18 份，而 ERC721 的 Token 最小的单位为 1，无法再分割<br>由于 ERC721 代币具有唯一性，不可分割的特点，所以很容易和一些具体的物品关联起来</p>
+</blockquote>
+<h3 id="有哪些方法"><a href="#有哪些方法" class="headerlink" title="有哪些方法"></a>有哪些方法</h3><h4 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface ERC721 /* is ERC165 */ &#123;</span><br><span class="line"></span><br><span class="line">    event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);</span><br><span class="line">    event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);</span><br><span class="line">    event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);</span><br><span class="line"></span><br><span class="line">    function name() external pure returns (string _name);</span><br><span class="line">    function symbol() external pure returns (string _symbol);</span><br><span class="line">    function tokenURI(uint256 _tokenId) external view returns (string)</span><br><span class="line"></span><br><span class="line">    function balanceOf(address _owner) external view returns (uint256);</span><br><span class="line">    function ownerOf(uint256 _tokenId) external view returns (address);</span><br><span class="line"></span><br><span class="line">    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;</span><br><span class="line">    function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;</span><br><span class="line">    function transferFrom(address _from, address _to, uint256 _tokenId) external payable;</span><br><span class="line"></span><br><span class="line">    function approve(address _approved, uint256 _tokenId) external payable;</span><br><span class="line">    function setApprovalForAll(address _operator, bool _approved) external;</span><br><span class="line">    function getApproved(uint256 _tokenId) external view returns (address);</span><br><span class="line">    function isApprovedForAll(address _owner, address _operator) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法解释"><a href="#方法解释" class="headerlink" title="方法解释"></a>方法解释</h4><ol>
+<li><p><strong>balanceOf</strong>(): 返回由_owner 持有的 NFTs 的数量。</p>
+</li>
+<li><p><strong>ownerOf</strong>(): 返回 tokenId 代币持有者的地址。</p>
+</li>
+<li><p><strong>approve</strong>(): 授予地址_to 具有_tokenId 的控制权，方法成功后需触发 Approval 事件。</p>
+</li>
+<li><p><strong>setApprovalForAll</strong>(): 授予地址_operator 具有所有 NFTs 的控制权，成功后需触发 ApprovalForAll 事件。</p>
+</li>
+<li><p><strong>getApproved</strong>()、<strong>isApprovedForAll</strong>(): 用来查询授权。</p>
+</li>
+<li><p><strong>safeTransferFrom</strong>(): 转移 NFT 所有权，一次成功的转移操作必须发起 Transer 事件。函数的实现需要做一下几种检查：</p>
+<ul>
+<li>调用者 msg.sender 应该是当前 tokenId 的所有者或被授权的地址</li>
+<li>_from 必须是 _tokenId 的所有者</li>
+<li>_tokenId 应该是当前合约正在监测的 NFTs 中的任何一个</li>
+<li>_to 地址不应该为 0</li>
+<li>如果_to 是一个合约应该调用其 onERC721Received 方法, 并且检查其返回值，如果返回值不为 bytes4(keccak256(“onERC721Received(address,uint256,bytes)”))抛出异常。</li>
+</ul>
+</li>
+<li><p><strong>transferFrom</strong>(): 用来转移 NFTs, 方法成功后需触发 Transfer 事件。调用者自己确认_to 地址能正常接收 NFT，否则将丢失此 NFT。此函数实现时需要检查上面条件的前 4 条。</p>
+</li>
+<li><p><strong>name</strong>(): 返回合约名字，尽管是可选，但强烈建议实现，即便是返回空字符串。</p>
+</li>
+<li><p><strong>symbol</strong>(): 返回合约代币符号，尽管是可选，但强烈建议实现，即便是返回空字符串。</p>
+</li>
+<li><p><strong>tokenURI</strong>(): 返回_tokenId 所对应的外部资源文件的 URI（通常是 IPFS 或 HTTP(S)路径）。外部资源文件需要包含名字、描述、图片，其格式的要求如下：</p>
+</li>
+</ol>
+<h4 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h4><p><strong>NTF IDs</strong><br>NTF ID，即 tokenId，在合约中用唯一的 uint265 进行标识，每个 NFT 的 ID 在智能合约的生命周期内不允许改变。推荐的实现方式有：</p>
+<ul>
+<li>从 0 开始，每新加一个 NFT，NTF ID 加 1</li>
+<li>使用 sha3 后 uuid 转换为 NTF ID</li>
+</ul>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>区块链学习第十期</title>
+    <url>/2023/03/31/202_zyn_10/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">Contracts解读</h1>
+[toc]
+<span id="more"></span>
+---
+
+<blockquote>
+<p>声明：此篇参照 openzepplin 的 Contracts，参杂了部分自己的理解 别说我抄袭球球了</p>
+</blockquote>
+<h2 id="EIP"><a href="#EIP" class="headerlink" title="EIP"></a>EIP</h2><blockquote>
+<p>EIP 代表“<strong>以太坊改进提案</strong>”，是为了更新以太坊网络而提出的标准。<br>人们提出来了很多 EIP 根据提交的顺序来定，比如 erc20 就是提交的并被采纳的第 20 个</p>
+</blockquote>
+<p>以下是一些重要的 EIP：</p>
+<ul>
+<li><strong>EIP-1559</strong>：引入基于市场的费用模型，以更好地管理区块链交易费用。</li>
+<li><strong>EIP-721</strong>：提供非同质化代币（NFT）标准，使得在以太坊上创造和交易独特的数字资产成为可能。</li>
+<li><strong>EIP-1474</strong>：引入一个新的智能合约标准，该标准将通过注册表和接口使以太坊网络中的智能合约更易于发现和使用。</li>
+<li><strong>EIP-1014</strong>：引入状态通道，允许用户进行高速、低费用的交易。</li>
+<li><strong>EIP-155</strong>：引入链 ID，增加了以太坊网络与其他网络之间的互操作性。</li>
+</ul>
+<hr>
+<h2 id="IERC-和-ERC"><a href="#IERC-和-ERC" class="headerlink" title="IERC 和 ERC"></a>IERC 和 ERC</h2><ul>
+<li><strong>IERC</strong> 是代币合约的接口。</li>
+<li><strong>ERC</strong> 是代币合约的实现。<blockquote>
+<p>接口就像蓝图，以确保类（在我们的例子中是合约）实现具有正确的方法，具有正确的方法可见性，参数和返回值。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="IERC-文件上的方法："><a href="#IERC-文件上的方法：" class="headerlink" title="IERC 文件上的方法："></a>IERC 文件上的方法：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function balanceOf(address account) external view returns (uint256);</span><br></pre></td></tr></table></figure>
+
+<p>它不保存代码，但有一些有价值的信息：</p>
+<ul>
+<li>它有名字.balanceOf</li>
+<li>它需要一个类型和名称的参数。addressaccount</li>
+<li>它是一种基于的“只读”方法。view</li>
+<li>它返回一个值。uint256</li>
+<li>它没有代码。</li>
+</ul>
+<h3 id="ERC-文件上的相同方法："><a href="#ERC-文件上的相同方法：" class="headerlink" title="ERC 文件上的相同方法："></a>ERC 文件上的相同方法：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function balanceOf(address account) public view virtual override returns (uint256) &#123;</span><br><span class="line">    return _balances[account];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它有代码。</p>
+<blockquote>
+<p>请注意，ERC20 文件导入 IERC20 文件，并在第 33 行定义该文件：。换句话说：“ERC20 应该实现接口 IERC20 的方法”。ERC20 is a IERC20</p>
+</blockquote>
+<hr>
+<h2 id="erc20-导读"><a href="#erc20-导读" class="headerlink" title="erc20 导读"></a>erc20 导读</h2><h3 id="什么是-erc20"><a href="#什么是-erc20" class="headerlink" title="什么是 erc20"></a>什么是 erc20</h3><blockquote>
+<p>ERC20 是以太坊上的代币标准，大多数基于以太坊的代币都使用 ERC20 标准。它规定了代币所需遵循的基本功能和接口，包括转账、余额查询等，为代币合约的开发提供了方便和统一性。因此，在 DeFi 热潮中，许多基于 ERC20 代币的项目也表现得非常火爆。</p>
+</blockquote>
+<h3 id="有什么特点"><a href="#有什么特点" class="headerlink" title="有什么特点"></a>有什么特点</h3><h4 id="预设-ERC20-合约"><a href="#预设-ERC20-合约" class="headerlink" title="预设 ERC20 合约"></a>预设 ERC20 合约</h4><blockquote>
+<p>预设 ERC20 合约可以通过 ERC20PresetMinterPauser 来实现。它可以预先设置，允许进行挖矿（create）,停止所有的转账操作(pause),允许用户销毁 token(destroy)。合约使用访问控制来限定挖矿和暂停合约的函数操作。合约的部署账号默认拥有挖矿和暂停的角色，也就是默认的管理员角色。<br>这个合约可以不编写任何 Solidity 代码直接部署。它可以用来做原型搭建和测试，同时在生产环境中也可以正常使用</p>
+</blockquote>
+<h4 id="生成-ERC20-供应"><a href="#生成-ERC20-供应" class="headerlink" title="生成 ERC20 供应"></a>生成 ERC20 供应</h4><h5 id="固定供应量"><a href="#固定供应量" class="headerlink" title="固定供应量"></a>固定供应量</h5><p>如果需要供应 1000 个 token，在部署合约时将这些 token 分配给部署者。使用 v1 版本合约，可以编写以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract ERC20FixedSupply is ERC20 &#123;</span><br><span class="line">constructor() &#123;</span><br><span class="line">totalSupply += 1000;</span><br><span class="line">balances[msg.sender] += 1000;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是从 v2 版本开始，上述的写法不仅不鼓励，而且是禁止的。<strong>totalSupply 和 balances 会作为 ERC20 实现中的私有元素</strong>，不能直接对他们进行写入操作，只能通过_mint 函数来完成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract ERC20FixedSupply is ERC20 &#123;</span><br><span class="line">constructor() ERC20(&quot;Fixed&quot;, &quot;FIX&quot;) &#123;</span><br><span class="line">\_mint(msg.sender, 1000);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<strong>继承</strong>合约时，这样包装状态会让它变得更加安全。例如，在第一个示例中，<strong>必须手动保持 totalSupply 与修改后的余额同步</strong>，这很容易忘记。事实上，我们还忽略了一些东西，它也很容易忘记：那就是 Transfer 事件，这也是在标准中要求的，并且客户端也会依赖这个事件。第二个例子中解决了这个问题，因为它是通过调用_mint 函数来完成的。</p>
+<h5 id="奖励矿工"><a href="#奖励矿工" class="headerlink" title="奖励矿工"></a>奖励矿工</h5><p><strong>内部函数</strong> _mint 是构建区块的关键，它可以让我们扩展 ERC20 的供应机制。<br>接下来是一个奖励挖矿者的奖励机制。在 Solidity 中我们可以通过全局变量** block.coinbase **获取到当前区块矿工的地址。有人调用 mintMinerReward()函数时，我们会奖励 token 给这个区块的矿工。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract ERC20WithMinerReward is ERC20 &#123;</span><br><span class="line">constructor() ERC20(&quot;Reward&quot;, &quot;RWD&quot;) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function mintMinerReward() public &#123;</span><br><span class="line">        _mint(block.coinbase, 1000);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>_mint 函数让这变得非常容易。</p>
+<h5 id="将机制模块化"><a href="#将机制模块化" class="headerlink" title="将机制模块化"></a>将机制模块化</h5><p>合约中已经包含了一种供应机制：ERC20PresetMinterPauser。这是一种通用机制，其中一组帐户被分配了 minter 角色，授予他们调用 mint 函数的权限，即 _mint 的外部版本。<br>这可以用于中心化挖矿，外部拥有的帐户（即拥有一对加密密钥的人）决定创建多少供应以及为谁创建。这是一种非常合理的供应机制，比如传统资产背书的稳定币。<br>这个有铸币权限的账户，也可以不是一个外部账户，它可以是一个实现了去信任机制的智能合约。我们可以像之前一样实现这个功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract MinerRewardMinter &#123;</span><br><span class="line">ERC20PresetMinterPauser \_token;</span><br><span class="line"></span><br><span class="line">    constructor(ERC20PresetMinterPauser token) &#123;</span><br><span class="line">        _token = token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mintMinerReward() public &#123;</span><br><span class="line">        _token.mint(block.coinbase, 1000);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个合约是通过 ERC20PresetMinterPauser 实例来初始化，然后把 minter 角色授权给这个合约，这样做也可以实现和之前例子一样的功能。这里比较有趣的是，我们使用了 ERC20PresetMinterPauser,我们可以通过将角色分配给多个合同来轻松组合多种供应机制，并且是动态的来实现。</p>
+<h5 id="自动化奖励机制"><a href="#自动化奖励机制" class="headerlink" title="自动化奖励机制"></a>自动化奖励机制</h5><p>目前为止我们讲诉的都是手工编写奖励机制，ERC20 也允许我们通过_beforeTokenTransfer 这个 hook 来扩展 token 的核心函数。<br>在之前的例子中加入这个功能，我们可以用这个 hook 为区块链中包含的每个代币转移铸造矿工奖励。</p>
+<p>solidity<br>contract ERC20WithAutoMinerReward is ERC20 {<br>constructor() ERC20(“Reward”, “RWD”) {}</p>
+<pre><code>function _mintMinerReward() internal &#123;
+    _mint(block.coinbase, 1000);
+&#125;
+
+function _beforeTokenTransfer(address from, address to, uint256 value) internal virtual override &#123;
+    if (!(from == address(0) &amp;&amp; to == block.coinbase)) &#123;
+    _mintMinerReward();
+    &#125;
+    super._beforeTokenTransfer(from, to, value);
+&#125;
+</code></pre>
+<p>}</p>
+<h3 id="有哪些方法-事件？怎么用？"><a href="#有哪些方法-事件？怎么用？" class="headerlink" title="有哪些方法/事件？怎么用？"></a>有哪些方法/事件？怎么用？</h3><blockquote>
+<p>以下部分方法会类比微信的亲属卡功能</p>
+</blockquote>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
+<li><p>totalSupply()</p>
+<blockquote>
+<p>返回总 token 数量</p>
+</blockquote>
+</li>
+<li><p>balanceOf(account)</p>
+<blockquote>
+<p>返回此 account 的 token 余额</p>
+</blockquote>
+</li>
+<li><p>transfer(to, amount)</p>
+<blockquote>
+<p>当前调用者给 to 打 amount 数量的 token</p>
+</blockquote>
+</li>
+<li><p>approve(spender, amount)</p>
+<blockquote>
+<p>当前调用者允许 spender 花的钱（钱在调用者身上）<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/10/approve.png" alt="approve"></p>
+</blockquote>
+</li>
+<li><p>allowance(owner, spender)</p>
+<blockquote>
+<p>查询 owner approve 给 spender 了多少 token</p>
+</blockquote>
+</li>
+<li><p>transferFrom(from, to, amount)</p>
+<blockquote>
+<p>从 from 给 to 转账 amount</p>
+</blockquote>
+</li>
+<li><p>increaseAllowance(spender, addedValue)</p>
+<blockquote>
+<p>给 spender 增加 token</p>
+</blockquote>
+</li>
+<li><p>decreaseAllowance(spender, subtractedValue)</p>
+<blockquote>
+<p>给 spender 减少 token</p>
+</blockquote>
+</li>
+<li><p>_transfer(from, to, amount)</p>
+<blockquote>
+<p>（内部的）该内部函数等同于 transfer，可用于实现自动代币费用、罚没机制等。<br>触发一个 transfer 事件。</p>
+</blockquote>
+</li>
+<li><p>_mint(account, amount)</p>
+<blockquote>
+<p>在 account 中生成 amount 数量的 token，一般用于初始化</p>
+</blockquote>
+</li>
+<li><p>_burn(account, amount)</p>
+<blockquote>
+<p>销毁 amount 的代币 account，减少总供应量。<br>触发一个设置 to 为零地址的 transfer 事件</p>
+</blockquote>
+</li>
+<li><p>_approve(owner, spender, amount)</p>
+</li>
+<li><p>_spendAllowance(owner, spender, amount)</p>
+</li>
+<li><p>_beforeTokenTransfer(from, to, amount)</p>
+</li>
+<li><p>_afterTokenTransfer(from, to, amount)</p>
+</li>
+</ol>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><ol>
+<li><p>Transfer(from, to, value)</p>
+</li>
+<li><p>Approval(owner, spender, value)</p>
+</li>
+</ol>
+<h4 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h4><ol>
+<li>name()<blockquote>
+<p>返回 token 的名字==》人民币</p>
+</blockquote>
+</li>
+<li>symbol()<blockquote>
+<p>返回 token 的符号==》￥</p>
+</blockquote>
+</li>
+<li>decimals()<blockquote>
+<p>当前代币支持的最小精度，也就是小数点后多少位<br>因为转账要求是整数，有了精度之后就可以把 token 分割为非整数<br>比如我发行一个币，精度为 2，查询到的结果就是 100，就这样实现了分割</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>区块链学习第十二期</title>
+    <url>/2023/05/01/202_zyn_12/</url>
+    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
+<h1 style="font-size:32px;text-align:center;color:red">Contracts解读</h1>
+[toc]
+<span id="more"></span>
+---
+
+<h2 id="ERC1155-导读"><a href="#ERC1155-导读" class="headerlink" title="ERC1155 导读"></a>ERC1155 导读</h2><h3 id="什么是-ERC1155"><a href="#什么是-ERC1155" class="headerlink" title="什么是 ERC1155"></a>什么是 ERC1155</h3><blockquote>
+<p>ERC-1155 是一种 Ethereum 代币标准，由 Enjin 首席技术官 Witek Radomski 等人开发,并于 2018 年 6 月 17 日将该标准的第一个版本放置到 Ethereum 的 github 库中。<strong>其主要可用于游戏行业中道具的生成和处理</strong>。该标准的提出对 nft 在游戏行业的应用起到了极大的提升。<strong>在一定程度上融合了 ERC-20 和 ERC-721 的功能。</strong></p>
+</blockquote>
+<p>其主要用途包括了发行同质化代币和非同质化代币。同质化代币即能像 ERC-20 一样发布各样的代币类型，但目前为止各钱包和交易所暂未支持 ERC-1155 标准代币；与此同时，ERC-1155 标准更是能够发行 NFT，且能基于一个合约同时发行多个 NFT。伴随现在区块链游戏的大火，ERC-1155 标准能够给基于以太坊的上的游戏开发运行提供大大的帮助。尤其在同质化道具的生成和处理上，该标准能够极大降低成本，提高效率。</p>
+<h3 id="有哪些特点"><a href="#有哪些特点" class="headerlink" title="有哪些特点"></a>有哪些特点</h3><blockquote>
+<p>允许使用者在同一个智能合约中无限量地重复使用同质化或者非同质化的代币。是可以一次性铸造多种多量同质化及非同质化资产的以太坊标准</p>
+</blockquote>
+<p><img src="https://pic4.zhimg.com/80/v2-c933e11e775a6dec3dd8572e9ef0f737_720w.webp" alt="fun"></p>
+<ol>
+<li><p>既可以发行同质化也可以发行非同质化代币，当对同质化和非同质代币都有需求时都可以在此标准上发行，无需切换别的标准。</p>
+</li>
+<li><p>可以批量转移代币资产(批量生成 比如一次性生成 1000 个 nft)，以及一次操作就可向不同对象转移多个代币资产，大大提高使用效率降低时间及 gasfee 成本。</p>
+</li>
+</ol>
+<h3 id="有哪些方法"><a href="#有哪些方法" class="headerlink" title="有哪些方法"></a>有哪些方法</h3><h4 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">interface ICryptoItems &#123;</span><br><span class="line">    // Events</span><br><span class="line">    event Transfer(uint256 indexed _itemId, address indexed _from, address indexed _to, uint256 _value);</span><br><span class="line">    event Approval(uint256 indexed _itemId, address indexed _owner, address indexed _spender, uint256 _value);</span><br><span class="line"></span><br><span class="line">    // Required Functions</span><br><span class="line">    function transfer(uint256[] _itemId, address[] _to, uint256[] _value) external returns (bool success);</span><br><span class="line">    function transferFrom(uint256[] _itemId, address[] _from, address[] _to, uint256[] _value) external returns (bool success);</span><br><span class="line">    function approve(uint256[] _itemId, address[] _spender, uint256[] _value) external returns (bool success);</span><br><span class="line">    function increaseApproval(uint256[] _itemId, address[] _spender, uint256[] _addedValue) external returns (bool success);</span><br><span class="line">    function decreaseApproval(uint256[] _itemId, address[] _spender, uint256[] _subtractedValue) external returns (bool success);</span><br><span class="line"></span><br><span class="line">    // Required View Functions</span><br><span class="line">    function totalSupply(uint256 _itemId) external view returns (uint256);</span><br><span class="line">    function balanceOf(uint256 _itemId, address _owner) external view returns (uint256);</span><br><span class="line">    function allowance(uint256 _itemId, address _owner, address _spender) external view returns (uint256);</span><br><span class="line"></span><br><span class="line">    // Optional View Functions</span><br><span class="line">    function name(uint256 _itemId) external view returns (string);</span><br><span class="line">    function symbol(uint256 _itemId) external view returns (string);</span><br><span class="line">    function decimals(uint256 _itemId) external view returns (uint8);</span><br><span class="line"></span><br><span class="line">    // Optional Functions for Non-Fungible Items</span><br><span class="line">    function ownerOf(uint256 _itemId) external view returns (address);</span><br><span class="line">    function itemURI(uint256 _itemId) external view returns (string);</span><br><span class="line">    function itemByIndex(uint256 _itemId, uint256 _index) external view returns (uint256);</span><br><span class="line">    function itemOfOwnerByIndex(uint256 _itemId, address _owner, uint256 _index) external view returns (uint256);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法解释"><a href="#方法解释" class="headerlink" title="方法解释"></a>方法解释</h4><p><a href="https://learnblockchain.cn/2019/12/27/37557032db96">ERC1155</a></p>
+<ul>
+<li><p><strong>transfer</strong><br>transfer(uint256[] _itemId, address[] _to, uint256[] _value)</p>
+<blockquote>
+<p>向目标地址 address[] _to 批量转账 uint256[] _itemId 资产。地址和资产数组的长度要一致，以便一一对应。<br>必须同时触发 Transfer 事件。</p>
+</blockquote>
+</li>
+<li><p><strong>transferFrom</strong><br>transferFrom(uint256[] _itemId, address[] _from, address[] _to, uint256[] _value)</p>
+<blockquote>
+<p>将把批量资产 _itemId[] 从一个或多个地址 _from[] 转移到指定的地址 _to[] 。地址和资产数组的长度要一致，以便一一对应。<br>必须触发 Transfer 事件。</p>
+</blockquote>
+</li>
+<li><p><strong>approve</strong><br>approve(uint256[] _itemId, address[] _spender, uint256[] _value)</p>
+<blockquote>
+<p>批准触发帐户能够代表另一个帐户 address[] _spender 转移批量资产 uint256[] _itemId （使用 transferFrom）。地址和资产数组的长度要一致，以便一一对应。<br>必须触发 Approval 事件。</p>
+</blockquote>
+</li>
+<li><p><strong>increaseApproval</strong><br>increaseApproval(uint256[] _itemId, address[] _spender, uint256[] _addedValue)</p>
+<blockquote>
+<p>增加一个或多个资产的授权量而不需要重置为 0.地址和资产数组的长度要一致，以便一一对应。<br>必须触发 Approval 事件。</p>
+</blockquote>
+</li>
+<li><p><strong>decreaseApproval</strong></p>
+<blockquote>
+<p>降低一个或多个资产的授权量而不需要重置为 0.地址和资产数组的长度要一致，以便一一对应。<br>必须触发 Approval 事件。</p>
+</blockquote>
+</li>
+<li><p><strong>name</strong><br>name(uint256 _itemId)</p>
+<blockquote>
+<p>返回每个 itemId 资产对应的名称，本函数是可选的，但强烈建议要有。</p>
+</blockquote>
+</li>
+<li><p><strong>symbol</strong></p>
+<blockquote>
+<p>返回每个 itemId 资产对应的标识符，简称，本函数可选的。</p>
+</blockquote>
+</li>
+<li><p><strong>decimals</strong><br>decimals(uint256 _itemId)</p>
+<blockquote>
+<p>返回每个 itemId 资产对应的精度，就是个位数后还有几位，本函数是可选的，但强烈建议要有。</p>
+</blockquote>
+</li>
+<li><p><strong>totalSupply</strong><br>totalSupply(uint256 _itemId)</p>
+<blockquote>
+<p>返回每个 itemId 资产对应的供给总量。</p>
+</blockquote>
+</li>
+<li><p><strong>balanceOf</strong><br>balanceOf(uint256 _itemId, address _owner)</p>
+<blockquote>
+<p>返回一个账号的 itemId 资产对应的余额量。</p>
+</blockquote>
+</li>
+<li><p><strong>allowance</strong><br>allowance(uint256 _itemId, address _owner, address _spender)</p>
+<blockquote>
+<p>返回 approve 授权函数的授权量，是指管理账号 address _owner 授予消费账号 address _spender 对资产 uint256 _itemId 的授权量。</p>
+</blockquote>
+</li>
+<li><p><strong>ownerOf</strong><br>ownerOf(uint256 _itemId)</p>
+<blockquote>
+<p>返回 NFT（非同质化）的特定资产 _itemId 对应的管理账号；<br>本函数是可选的。</p>
+</blockquote>
+</li>
+<li><p><strong>itemURI</strong></p>
+<p>itemURI(uint256 _itemId)</p>
+<blockquote>
+<p>返回一个特定的 _itemId 资产的独特统一资源标识符[ a distinct Uniform Resource Identifier (URI) ]<br>本函数是可选的。</p>
+</blockquote>
+</li>
+<li><p><strong>itemByIndex</strong><br>itemByIndex(uint256 _itemId, uint256 _index)</p>
+<blockquote>
+<p>返回非同质化资产 _itemId 的 _index 位置的？<br>本函数是可选的。</p>
+</blockquote>
+</li>
+<li><p><strong>itemOfOwnerByIndex</strong><br>itemOfOwnerByIndex(uint256 _itemId, address _owner, uint256 _index)</p>
+<blockquote>
+<p>返回一个特定管理账号 address _owner 下的资产 _itemId 的索引 uint256 _index 的？<br>本函数是可选的。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><p><img src="https://pic3.zhimg.com/80/v2-2a91c6634e9f80762b4dab267bfdd4e6_720w.webp" alt="differences"></p>
+<hr>
+<h2 id="手写梳理（临时学习记录）"><a href="#手写梳理（临时学习记录）" class="headerlink" title="手写梳理（临时学习记录）"></a>手写梳理（临时学习记录）</h2><table>
+<thead>
+<tr>
+<th>笔记</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic05.jpg"></td>
+<td>合约开发过程</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic01.jpg"></td>
+<td>思路</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic03.jpg"></td>
+<td>恒定积</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic02.jpg"></td>
+<td>uniswap1</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic07.jpg"></td>
+<td>uniswap2</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic04.jpg"></td>
+<td>cpi 指数</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic08.jpg"></td>
+<td>hardhat</td>
+</tr>
+<tr>
+<td><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/12/pic06.jpg"></td>
+<td>blockchain</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>区块链</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+      </tags>
   </entry>
   <entry>
     <title>APPilike</title>
@@ -1125,180 +1519,189 @@
       </tags>
   </entry>
   <entry>
-    <title>区块链学习第十期</title>
-    <url>/2023/03/31/202_zyn_10/</url>
-    <content><![CDATA[<p><a href="https://goodflyo.github.io/">myBlog</a></p>
-<h1 style="font-size:32px;text-align:center;color:red">Contracts解读</h1>
-[toc]
+    <title>前端路线</title>
+    <url>/2030/12/30/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<p>[toc]</p>
+<blockquote>
+<p><strong>学习方式各有不同，我只整理的自己的侧重点</strong></p>
+</blockquote>
 <span id="more"></span>
----
 
-<blockquote>
-<p>声明：此篇参照 openzepplin 的 Contracts，参杂了部分自己的理解 别说我抄袭球球了</p>
-</blockquote>
-<h2 id="EIP"><a href="#EIP" class="headerlink" title="EIP"></a>EIP</h2><blockquote>
-<p>EIP 代表“<strong>以太坊改进提案</strong>”，是为了更新以太坊网络而提出的标准。<br>人们提出来了很多 EIP 根据提交的顺序来定，比如 erc20 就是提交的并被采纳的第 20 个</p>
-</blockquote>
-<p>以下是一些重要的 EIP：</p>
-<ul>
-<li><strong>EIP-1559</strong>：引入基于市场的费用模型，以更好地管理区块链交易费用。</li>
-<li><strong>EIP-721</strong>：提供非同质化代币（NFT）标准，使得在以太坊上创造和交易独特的数字资产成为可能。</li>
-<li><strong>EIP-1474</strong>：引入一个新的智能合约标准，该标准将通过注册表和接口使以太坊网络中的智能合约更易于发现和使用。</li>
-<li><strong>EIP-1014</strong>：引入状态通道，允许用户进行高速、低费用的交易。</li>
-<li><strong>EIP-155</strong>：引入链 ID，增加了以太坊网络与其他网络之间的互操作性。</li>
+<h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> html、css 核心基础</li>
+<li><input checked="" disabled="" type="checkbox"> html5 语义化标签</li>
+<li><input checked="" disabled="" type="checkbox"> html5 新增标签属性</li>
+<li><input checked="" disabled="" type="checkbox"> 表单项新增属性</li>
+<li><input checked="" disabled="" type="checkbox"> css 选择器</li>
+<li><input checked="" disabled="" type="checkbox"> css3 伪类</li>
+<li><input checked="" disabled="" type="checkbox"> css 伪元素</li>
+<li><input disabled="" type="checkbox"> css 过渡</li>
+<li><input disabled="" type="checkbox"> 线性渐变、径向渐变</li>
+<li><input disabled="" type="checkbox"> css 都规划 animation</li>
+<li><input checked="" disabled="" type="checkbox"> 弹性盒模型</li>
+<li><input disabled="" type="checkbox"> 响应式布局</li>
 </ul>
 <hr>
-<h2 id="IERC-和-ERC"><a href="#IERC-和-ERC" class="headerlink" title="IERC 和 ERC"></a>IERC 和 ERC</h2><ul>
-<li><strong>IERC</strong> 是代币合约的接口。</li>
-<li><strong>ERC</strong> 是代币合约的实现。<blockquote>
-<p>接口就像蓝图，以确保类（在我们的例子中是合约）实现具有正确的方法，具有正确的方法可见性，参数和返回值。</p>
-</blockquote>
-</li>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> 基本语法</li>
+<li><input disabled="" type="checkbox"> 版本</li>
+<li><input checked="" disabled="" type="checkbox"> 对象</li>
+<li><input checked="" disabled="" type="checkbox"> 函数</li>
+<li><input disabled="" type="checkbox"> 类</li>
+<li><input checked="" disabled="" type="checkbox"> DOM</li>
+<li><input checked="" disabled="" type="checkbox"> BOM</li>
+<li><input disabled="" type="checkbox"> Web API</li>
+<li><input checked="" disabled="" type="checkbox"> AJAX</li>
+<li><input checked="" disabled="" type="checkbox"> JSON</li>
+<li><input checked="" disabled="" type="checkbox"> jQuery</li>
 </ul>
-<h3 id="IERC-文件上的方法："><a href="#IERC-文件上的方法：" class="headerlink" title="IERC 文件上的方法："></a>IERC 文件上的方法：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function balanceOf(address account) external view returns (uint256);</span><br></pre></td></tr></table></figure>
-
-<p>它不保存代码，但有一些有价值的信息：</p>
-<ul>
-<li>它有名字.balanceOf</li>
-<li>它需要一个类型和名称的参数。addressaccount</li>
-<li>它是一种基于的“只读”方法。view</li>
-<li>它返回一个值。uint256</li>
-<li>它没有代码。</li>
-</ul>
-<h3 id="ERC-文件上的相同方法："><a href="#ERC-文件上的相同方法：" class="headerlink" title="ERC 文件上的相同方法："></a>ERC 文件上的相同方法：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function balanceOf(address account) public view virtual override returns (uint256) &#123;</span><br><span class="line">    return _balances[account];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它有代码。</p>
-<blockquote>
-<p>请注意，ERC20 文件导入 IERC20 文件，并在第 33 行定义该文件：。换句话说：“ERC20 应该实现接口 IERC20 的方法”。ERC20 is a IERC20</p>
-</blockquote>
 <hr>
-<h2 id="erc20-导读"><a href="#erc20-导读" class="headerlink" title="erc20 导读"></a>erc20 导读</h2><h3 id="什么是-erc20"><a href="#什么是-erc20" class="headerlink" title="什么是 erc20"></a>什么是 erc20</h3><blockquote>
-<p>ERC20 是以太坊上的代币标准，大多数基于以太坊的代币都使用 ERC20 标准。它规定了代币所需遵循的基本功能和接口，包括转账、余额查询等，为代币合约的开发提供了方便和统一性。因此，在 DeFi 热潮中，许多基于 ERC20 代币的项目也表现得非常火爆。</p>
-</blockquote>
-<h3 id="有什么特点"><a href="#有什么特点" class="headerlink" title="有什么特点"></a>有什么特点</h3><h4 id="预设-ERC20-合约"><a href="#预设-ERC20-合约" class="headerlink" title="预设 ERC20 合约"></a>预设 ERC20 合约</h4><blockquote>
-<p>预设 ERC20 合约可以通过 ERC20PresetMinterPauser 来实现。它可以预先设置，允许进行挖矿（create）,停止所有的转账操作(pause),允许用户销毁 token(destroy)。合约使用访问控制来限定挖矿和暂停合约的函数操作。合约的部署账号默认拥有挖矿和暂停的角色，也就是默认的管理员角色。<br>这个合约可以不编写任何 Solidity 代码直接部署。它可以用来做原型搭建和测试，同时在生产环境中也可以正常使用</p>
-</blockquote>
-<h4 id="生成-ERC20-供应"><a href="#生成-ERC20-供应" class="headerlink" title="生成 ERC20 供应"></a>生成 ERC20 供应</h4><h5 id="固定供应量"><a href="#固定供应量" class="headerlink" title="固定供应量"></a>固定供应量</h5><p>如果需要供应 1000 个 token，在部署合约时将这些 token 分配给部署者。使用 v1 版本合约，可以编写以下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract ERC20FixedSupply is ERC20 &#123;</span><br><span class="line">constructor() &#123;</span><br><span class="line">totalSupply += 1000;</span><br><span class="line">balances[msg.sender] += 1000;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是从 v2 版本开始，上述的写法不仅不鼓励，而且是禁止的。<strong>totalSupply 和 balances 会作为 ERC20 实现中的私有元素</strong>，不能直接对他们进行写入操作，只能通过_mint 函数来完成：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract ERC20FixedSupply is ERC20 &#123;</span><br><span class="line">constructor() ERC20(&quot;Fixed&quot;, &quot;FIX&quot;) &#123;</span><br><span class="line">\_mint(msg.sender, 1000);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在<strong>继承</strong>合约时，这样包装状态会让它变得更加安全。例如，在第一个示例中，<strong>必须手动保持 totalSupply 与修改后的余额同步</strong>，这很容易忘记。事实上，我们还忽略了一些东西，它也很容易忘记：那就是 Transfer 事件，这也是在标准中要求的，并且客户端也会依赖这个事件。第二个例子中解决了这个问题，因为它是通过调用_mint 函数来完成的。</p>
-<h5 id="奖励矿工"><a href="#奖励矿工" class="headerlink" title="奖励矿工"></a>奖励矿工</h5><p><strong>内部函数</strong> _mint 是构建区块的关键，它可以让我们扩展 ERC20 的供应机制。<br>接下来是一个奖励挖矿者的奖励机制。在 Solidity 中我们可以通过全局变量** block.coinbase **获取到当前区块矿工的地址。有人调用 mintMinerReward()函数时，我们会奖励 token 给这个区块的矿工。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract ERC20WithMinerReward is ERC20 &#123;</span><br><span class="line">constructor() ERC20(&quot;Reward&quot;, &quot;RWD&quot;) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function mintMinerReward() public &#123;</span><br><span class="line">        _mint(block.coinbase, 1000);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>_mint 函数让这变得非常容易。</p>
-<h5 id="将机制模块化"><a href="#将机制模块化" class="headerlink" title="将机制模块化"></a>将机制模块化</h5><p>合约中已经包含了一种供应机制：ERC20PresetMinterPauser。这是一种通用机制，其中一组帐户被分配了 minter 角色，授予他们调用 mint 函数的权限，即 _mint 的外部版本。<br>这可以用于中心化挖矿，外部拥有的帐户（即拥有一对加密密钥的人）决定创建多少供应以及为谁创建。这是一种非常合理的供应机制，比如传统资产背书的稳定币。<br>这个有铸币权限的账户，也可以不是一个外部账户，它可以是一个实现了去信任机制的智能合约。我们可以像之前一样实现这个功能。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solidity</span><br><span class="line">contract MinerRewardMinter &#123;</span><br><span class="line">ERC20PresetMinterPauser \_token;</span><br><span class="line"></span><br><span class="line">    constructor(ERC20PresetMinterPauser token) &#123;</span><br><span class="line">        _token = token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mintMinerReward() public &#123;</span><br><span class="line">        _token.mint(block.coinbase, 1000);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个合约是通过 ERC20PresetMinterPauser 实例来初始化，然后把 minter 角色授权给这个合约，这样做也可以实现和之前例子一样的功能。这里比较有趣的是，我们使用了 ERC20PresetMinterPauser,我们可以通过将角色分配给多个合同来轻松组合多种供应机制，并且是动态的来实现。</p>
-<h5 id="自动化奖励机制"><a href="#自动化奖励机制" class="headerlink" title="自动化奖励机制"></a>自动化奖励机制</h5><p>目前为止我们讲诉的都是手工编写奖励机制，ERC20 也允许我们通过_beforeTokenTransfer 这个 hook 来扩展 token 的核心函数。<br>在之前的例子中加入这个功能，我们可以用这个 hook 为区块链中包含的每个代币转移铸造矿工奖励。</p>
-<p>solidity<br>contract ERC20WithAutoMinerReward is ERC20 {<br>constructor() ERC20(“Reward”, “RWD”) {}</p>
-<pre><code>function _mintMinerReward() internal &#123;
-    _mint(block.coinbase, 1000);
-&#125;
-
-function _beforeTokenTransfer(address from, address to, uint256 value) internal virtual override &#123;
-    if (!(from == address(0) &amp;&amp; to == block.coinbase)) &#123;
-    _mintMinerReward();
-    &#125;
-    super._beforeTokenTransfer(from, to, value);
-&#125;
-</code></pre>
-<p>}</p>
-<h3 id="有哪些方法-事件？怎么用？"><a href="#有哪些方法-事件？怎么用？" class="headerlink" title="有哪些方法/事件？怎么用？"></a>有哪些方法/事件？怎么用？</h3><blockquote>
-<p>以下部分方法会类比微信的亲属卡功能</p>
-</blockquote>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
-<li><p>totalSupply()</p>
-<blockquote>
-<p>返回总 token 数量</p>
-</blockquote>
-</li>
-<li><p>balanceOf(account)</p>
-<blockquote>
-<p>返回此 account 的 token 余额</p>
-</blockquote>
-</li>
-<li><p>transfer(to, amount)</p>
-<blockquote>
-<p>当前调用者给 to 打 amount 数量的 token</p>
-</blockquote>
-</li>
-<li><p>approve(spender, amount)</p>
-<blockquote>
-<p>当前调用者允许 spender 花的钱（钱在调用者身上）<br><img src="https://gitee.com/goodflyo/cdn_gitee/raw/master/10/approve.png" alt="approve"></p>
-</blockquote>
-</li>
-<li><p>allowance(owner, spender)</p>
-<blockquote>
-<p>查询 owner approve 给 spender 了多少 token</p>
-</blockquote>
-</li>
-<li><p>transferFrom(from, to, amount)</p>
-<blockquote>
-<p>从 from 给 to 转账 amount</p>
-</blockquote>
-</li>
-<li><p>increaseAllowance(spender, addedValue)</p>
-<blockquote>
-<p>给 spender 增加 token</p>
-</blockquote>
-</li>
-<li><p>decreaseAllowance(spender, subtractedValue)</p>
-<blockquote>
-<p>给 spender 减少 token</p>
-</blockquote>
-</li>
-<li><p>_transfer(from, to, amount)</p>
-<blockquote>
-<p>（内部的）该内部函数等同于 transfer，可用于实现自动代币费用、罚没机制等。<br>触发一个 transfer 事件。</p>
-</blockquote>
-</li>
-<li><p>_mint(account, amount)</p>
-<blockquote>
-<p>在 account 中生成 amount 数量的 token，一般用于初始化</p>
-</blockquote>
-</li>
-<li><p>_burn(account, amount)</p>
-<blockquote>
-<p>销毁 amount 的代币 account，减少总供应量。<br>触发一个设置 to 为零地址的 transfer 事件</p>
-</blockquote>
-</li>
-<li><p>_approve(owner, spender, amount)</p>
-</li>
-<li><p>_spendAllowance(owner, spender, amount)</p>
-</li>
-<li><p>_beforeTokenTransfer(from, to, amount)</p>
-</li>
-<li><p>_afterTokenTransfer(from, to, amount)</p>
-</li>
-</ol>
-<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><ol>
-<li><p>Transfer(from, to, value)</p>
-</li>
-<li><p>Approval(owner, spender, value)</p>
-</li>
-</ol>
-<h4 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h4><ol>
-<li>name()<blockquote>
-<p>返回 token 的名字==》人民币</p>
-</blockquote>
-</li>
-<li>symbol()<blockquote>
-<p>返回 token 的符号==》￥</p>
-</blockquote>
-</li>
-<li>decimals()<blockquote>
-<p>当前代币支持的最小精度，也就是小数点后多少位<br>因为转账要求是整数，有了精度之后就可以把 token 分割为非整数<br>比如我发行一个币，精度为 2，查询到的结果就是 100，就这样实现了分割</p>
-</blockquote>
-</li>
-</ol>
+<h1 id="ES6-Node-工程化"><a href="#ES6-Node-工程化" class="headerlink" title="ES6+Node+工程化"></a>ES6+Node+工程化</h1><ul>
+<li><input disabled="" type="checkbox"> ES6/7/8</li>
+<li><input checked="" disabled="" type="checkbox"> npm 常用命令</li>
+<li><input checked="" disabled="" type="checkbox"> git 基础</li>
+<li><input disabled="" type="checkbox"> git 高级</li>
+<li><input disabled="" type="checkbox"> http 协议 &amp; cookie &amp; session</li>
+<li><input disabled="" type="checkbox"> ES6+Node+工程化 MongoDB</li>
+<li><input checked="" disabled="" type="checkbox"> 模块化</li>
+<li><input disabled="" type="checkbox"> 构建工具 gulp</li>
+<li><input disabled="" type="checkbox"> webpack</li>
+<li><input checked="" disabled="" type="checkbox"> promise</li>
+<li><input checked="" disabled="" type="checkbox"> Node.js 基础</li>
+</ul>
+<hr>
+<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> React 基础语法</li>
+<li><input disabled="" type="checkbox"> react-router</li>
+<li><input disabled="" type="checkbox"> React React Antd 使用</li>
+<li><input disabled="" type="checkbox"> Redux</li>
+<li><input disabled="" type="checkbox"> React 移动端项目</li>
+</ul>
+<hr>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> Vue 基础</li>
+<li><input disabled="" type="checkbox"> VueRouter</li>
+<li><input disabled="" type="checkbox"> Vuex</li>
+<li><input checked="" disabled="" type="checkbox"> Vue</li>
+<li><input disabled="" type="checkbox"> Vue 源码</li>
+<li><input disabled="" type="checkbox"> VuePC 项目</li>
+<li><input disabled="" type="checkbox"> Vue 后台管理</li>
+</ul>
+<hr>
+<h1 id="参考提供"><a href="#参考提供" class="headerlink" title="参考提供"></a>参考提供</h1><p><a href="https://objtube.github.io/front-end-roadmap/#/">前端学习路线</a></p>
 ]]></content>
-      <categories>
-        <category>区块链</category>
-      </categories>
+  </entry>
+  <entry>
+    <title>加密货币</title>
+    <url>/2022/05/20/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</url>
+    <content><![CDATA[<h1 id="加密货币复习"><a href="#加密货币复习" class="headerlink" title="加密货币复习"></a>加密货币复习</h1><h2 id="区块链发展历程"><a href="#区块链发展历程" class="headerlink" title="区块链发展历程"></a>区块链发展历程</h2><h3 id="区块链1-0-可编程货币"><a href="#区块链1-0-可编程货币" class="headerlink" title="区块链1.0 可编程货币"></a>区块链1.0 可编程货币</h3><span id="more"></span>
+
+<p><strong>比特币为代表的货币区块链技术为1.0</strong></p>
+<p>08年，中本聪详细描述了如何创建一套去中心化的电子交易体系，且这种体系不需要创建在交易双方相互信任的基础之上。分布式账本技术的实施导致其第一个明显的应用：加密货币。比特币用作“互联网现金”，一种数字支付系统，可以被视为“货币互联网”的推动者。相关数字货币：比特币BTC、莱特币LTC、</p>
+<p>应用：利用密码学货币进行数字化支付，例如转账、汇款，起到公共账本的作用</p>
+<p><strong>区块链2.0 可编程金融</strong></p>
+<p>以太坊为代表的合同区块链技术为2.0</p>
+<p>自比特币诞生后，人们认识到比特币的底层技术区块链天生可以为智能合约提供可信的执行环境。数字货币开始与智能合约相结合，使得该区块链技术在金融领域有了更广泛的应用场景，同时该技术应用下的交易流程得到了优化。</p>
+<p>应用：可在以太坊中创建去中心化的程序、自治组织以及部署、使用智能合约</p>
+<p><strong>区块链3.0 可编程社会</strong></p>
+<p>实现完备权限控制和安全保障的Hyperledger项目代表3.0</p>
+<p>区块链3.0是智能化物联网时代，不同于区块链1.0和区块链2.0只在金融领域被应用，区块链3.0超出金融领域，为各种行业提供去中心化解决方案。区块链的应用领域扩展到人类生活的方方面面，不再依靠某个第三人或者机构获取信任，实现信息的共享，提高整个系统的运转效率。</p>
+<h3 id="为什么说区块链技术的应用是从信息互联网到价值互联网？"><a href="#为什么说区块链技术的应用是从信息互联网到价值互联网？" class="headerlink" title="为什么说区块链技术的应用是从信息互联网到价值互联网？"></a>为什么说区块链技术的应用是从信息互联网到价值互联网？</h3><p>区块链提供了一种加密安全的端到端支付流程，具有交易不变性和信息共享的一致性。价值互联网设想了一个价值移动和交换的世界。借助价值互联网，外币支付等价值交易可以立即发生。这不仅仅是金钱。价值互联网可以实现对某人有价值的任何资产的交换，包括证券、知识产权、音乐、科学发现等。区块链通过密码学、分布式共识、链式结构等机制实现了确权及允许任何类型的资产从一方直接转移到另一方，而无需中间人。转移是经过验证的、永久的并立即完成的。</p>
+<p>有了“确权”和“交换”，价值就能完成了。而区块链正是解决了这两个问题，才成为了第三代互联网价值互联网的基石，让价值互联网成为可能和现实。</p>
+<h3 id="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"><a href="#区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？" class="headerlink" title="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"></a>区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？</h3><p>公有链：全世界任何拥有联网计算机的用户都可以在任何时候加入或退出网络。</p>
+<p>任意读取区块数据、执行交易，参与网络共识过程。共识算法：PoW、PoS等。</p>
+<p>联盟链：由若干机构组成利益相关的联盟，共同参与并维护具有准入机制的多中心化区块链。区块数据读写、参与记账规则等需要由联盟成员节点共同决定。联盟链上的交易只需要少量节点达成共识即可，且节点间信任度比公有链要高。与公有链相比，其效率也有很大的提升。共识算法：PBFT、Raft等。</p>
+<p>私有链：写入权限仅在一个组织手里的区块链，而读取权限或者对外开放，或者被任意程度地进行了限制。</p>
+<p>国内区块链应用以联盟链为主。</p>
+<p>以区块链六层参考架构为例说明每层主要功能及用途。<br>应用层：可编程货币，可编程合约，可编程社会<br>合约层：脚本代码，算法机制，智能合约—&gt;智能合约<br>激励层：发行机制，分配机制—&gt;经济激励<br>共识层：PoW，PoS，DPoS，PBFT—&gt;分布式信任，众包协作<br>网络层：P2P网络，传播机制，验证机制—&gt;分布式自治<br>数据层：数据区块，链式结构，时间戳，哈希函数，默克尔树，非对称加密—&gt;数据安全</p>
+<h3 id="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。"><a href="#比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。" class="headerlink" title="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。"></a>比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。</h3><p>比特币是一种数字货币,而区块链是一种技术;区块链是比特币的底层技术,而比特币是区块链技术的第一个应用.</p>
+<p>区块数据结构参考下图，对区块头的每个字段意义要求记住。</p>
+<p>!</p>
+<h3 id="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"><a href="#简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？" class="headerlink" title="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"></a>简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？</h3><p>私钥生成:私钥其本质就是一个256位的由0和1组成的随机数，这个随机数是怎么产生的不重要，只要是不可预测和不可重复的都可以，私钥的格式是将这个256位的随机数以64位十六进制数显示。</p>
+<p>公钥生成:公钥是将私钥通过一个椭圆曲线乘法的算法计算得来，这是一个不可逆转的过程。</p>
+<p>地址生成:比特币地址是由公钥经过一系列单向的哈希算法得到。哈希算法是一种单向函数，可以接收任意长度的输入产生指纹或哈希。由公钥生成比特币地址时使用的算法是SHA256和RIPEMD160。公钥先进行SHA256和RIPEMD160后得到公钥哈希,在经过Base58check编码就可以得到比特币地址。将地址经过逆向变换就可以得公钥的哈希值.</p>
+<h3 id="简述比特币钱包的作用和种类？"><a href="#简述比特币钱包的作用和种类？" class="headerlink" title="简述比特币钱包的作用和种类？"></a>简述比特币钱包的作用和种类？</h3><p>广义上，钱包是一个应用程序，为用户提供交互界面。钱包控制用户访问权限，管理密钥和地址，跟踪余额以及创建和签名交易。</p>
+<p>简述比特币的交易流程，指出锁定脚本和解锁脚本放置的位置，并以P2PKH为例说明交易脚本的执行过程，并给出压栈出栈的顺序（可以手绘照相插入到word文档中）<br>1<strong>、比特币交易的创建：比特币交易可以被任何人在线上或线下创建，但要使交易有效，则需要由一个或多个私钥签名，表明具备交易中发送方地址所指向的比特币资金的所有权。2、比特币交易广播到整个P2P网络：一笔比特币交易数经过签名但不会泄露任何信息，可以被公开传播。每个节点都将从网络中收集交易数据并广播给相连接的其他节点。在传播交易前，节点均进行独立验证，确保有效性，异常交易无法传播。比特币网络是点对点网络，交易的扩散迅速，指数级扩散。3、比特币交易验证与挖矿：每个节点维护一个交易池，存放临时未经确认的交易。节点从交易池中选择一系列交易构成一个区块，基于自身算力找到一个具有足够难度的工作量证明，找到后向所有节点广播此区块。4、比特币交易确认：当包含在区块中的所有交易都是有效的且交易输入未动用，其他节点才会接受这个新的区块，链接到自己的区块链的尾部。5、交易记录：</strong>交易得到全网的6个确认之后，永久的记录在区块链中。</p>
+<p>下图中指出了解锁脚本在输入列表里，锁定脚本在输出列表里</p>
+<p>P2PKH脚本的执行指针执行过程和栈上变化如下：</p>
+<h3 id="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"><a href="#比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？" class="headerlink" title="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"></a>比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？</h3><p>比特币区块链采用了PoW共识机制。</p>
+<p>比特币每产生2016个区块调整一次挖矿难度，通过调整挖矿难度来调整出块时间，新难度值=旧难度值×（过去2016个区块花费时长/20160分钟），一个块10分钟，挖矿难度的计算公式：难度值= 最大目标值/难度目标值（或难度目标值 = 最大目标值/难度值），最大目标值= 0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF，难度目标值越小，区块生成难度值就越大。 这个难度目标值被保存在比特币的区块头中Bits字段中。</p>
+<p>SPV节点如何完成SPV验证（说明什么是Merkle Path Proof），Bloom Filter工作原理及SPV节点如何通过Bloom Filter完成指定交易的搜索。<br>Bloom过滤器数组里的每一个数的初始值为零。</p>
+<p>关键词被加到Bloom过滤器中之前，会依次通过每个哈希函数运算一次。</p>
+<p>关键词依次通过各哈希函数运算之后，相应的位变为1，Bloom过滤器则记录下该关键词。</p>
+<p>Bloom过滤器正匹配代表着“可能是”，负匹配代表着“一定不是”。所以SPV节点若只关心某个支付到自己比特币地址的交易，则可通过建立布隆过滤器（布隆过滤器是一种基于哈希的高效查找结构，能够快速确定某个元素是否在一个集合内）限制只接收含有目标比特币地址的交易。一旦比特币网络中其他当节点探测到某个交易符合SPV节点设置的布隆过滤器条件时，其它节点将以Merkleblock消息的形式发送该区块，Merkleblock消息包含区块头和一条连接目标交易与Merkle根的Merkle路径。</p>
+<p>SPV节点需要验证交易，需要做2个检查：交易的存在性检查和交易是否重花的检查。</p>
+<p>SPV节点通过该Merkle路径找到跟该交易相关的区块，并验证对应区块中是否存在目标交易（该过程被称为：Merkle Path Proof）。SPV节点所收到的Merkleblock数据量通常少于1KB，只有一个完整区块（大约1MB）大小的千分之一左右。</p>
+<p>现在通过Merkle Path Proof，SPV节点确认了交易确实存在于区块链中，但是这个还是无法保证这笔交易（Transaction）的Input（引用的上一笔UTXO）没有被重花（双重支付）。</p>
+<p>这时候SPV节点通过去看这笔交易所在区块之后的区块个数，Block个数越多说明该区块被全网更多节点共识，一般来说，一笔交易所属区块之后的区块个数达到6个时，就说明这笔交易是被大家核准过（达成共识）的，没有重花，而且被篡改的可能性也很低。</p>
+<p>Merkle Path Proof是指假设区块链系统中某个区块中存在A，B，C，D四笔交易，则为了确认交易C是否存在，需要得到交易C到Merkle Tree根节点上整条路径中的其余哈希值，以下图为例就是需要得到N3，N4哈希值，通过验证根节点的哈希一致性确认交易C存在于区块中。</p>
+<h3 id="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"><a href="#什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？" class="headerlink" title="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"></a>什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？</h3><p>比特币交易中的基础构建单元是交易输出。交易输出是比特币不可分割的基本组合，记录在区块上。比特币完整节点跟踪所有可找到的和可使用的输出，称为 “未花费的交易输出”即UTXO；所有UTXO的集合被称为UTXO集。比特币“余额”：用户钱包中可用UTXO总和，分散在多个交易和区块中。通过钱包所控制的密钥控制UTXO花费行为。UTXO是面值为“聪”的离散且不可分割的价值单元，一个UTXO只能在一次交易中作为一个整体被消耗。一笔比特币交易通过使用所有者的签名来解锁UTXO，并通过使用新的所有者的比特币地址来锁定并创建UTXO。</p>
+<p>UTXO 模型的优点：如果用户启用了新的地址用于转账和交易，新地址与原地址之间的关系很难被追踪，更好保证用户的隐私；UTXO 模型理论上来说可以并行地签发多笔交易，并广播到网络中；</p>
+<h3 id="比特币区块链有哪几种分叉，每种分叉的原因是什么？"><a href="#比特币区块链有哪几种分叉，每种分叉的原因是什么？" class="headerlink" title="比特币区块链有哪几种分叉，每种分叉的原因是什么？"></a>比特币区块链有哪几种分叉，每种分叉的原因是什么？</h3><p>临时分叉：算法导致的分叉，通过最大工作量证明保证最终收敛性。</p>
+<p>硬分叉：出现了旧规则禁止，新规则允许的行为。</p>
+<p>软分叉：出现了旧规则允许，新规则禁止的行为。</p>
+<p>举例说明比特币的链上扩容和链下扩容。<br>链上扩容是在区块链基层协议上实现的扩容解决方案，它需要通过改变区块容量或者数据结构来达到提高处理交易能力的目的。包括：比特币采用的隔离见证+2MB硬分叉，比特币现金升级区块容量，以及以太坊分片技术</p>
+<p>链下扩容是不改变公链基础协议的一种应用层上的扩展方案。它不改动区块链本身的规则。包括状态通道、侧链等解决方案。</p>
+<p>举例说明侧链的典型应用场景。<br>侧链技术就是为了方便数字资产在不同区块链间互相转移，在两条链完全独立的情况下，将不同的区块链互相连接在一起，以实现区块链的扩展，使两者能够“互相操作，实现交互”的一种跨区块链解决方案。</p>
+<p>BTC Relay是一个典型应用场景，本质上是在以太坊上用合约重写了比特币的spv验证规则。其主要原理是把以太坊网络与比特币网络以一种安全去中心化的方式连接起来。通过使用以太坊的智能合约功能来验证比特币交易。BTC Relay使用区块头创建一种小型版本的比特币区块链，以太坊DApp开发者可以从智能合约向BTC Relay进行API调用来验证比特币网络活动。</p>
+<h3 id="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"><a href="#说明闪电网络解决了比特币系统的什么问题及其如何解决的？" class="headerlink" title="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"></a>说明闪电网络解决了比特币系统的什么问题及其如何解决的？</h3><p>比特币的交易网络，全网每秒 7 笔的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认花费约 1 个小时的最终确认时间。闪电网络是将大量交易放到比特币区块链之外进行。闪电网络通过智能合约来完善链下的交易渠道。核心的概念主要有两个：RSMC和 HTLC。前者解决了链下交易的确认问题，后者解决了支付通道的问题。</p>
+<h3 id="以太坊解决了比特币的哪些问题？"><a href="#以太坊解决了比特币的哪些问题？" class="headerlink" title="以太坊解决了比特币的哪些问题？"></a>以太坊解决了比特币的哪些问题？</h3><p>1.缺少图灵完备性，比特币不能支持所有的计算，如循环控制等。2价值盲，UTXO的不可分割性，使得其不能为账户的取款额度提供精细的控制。3缺少状态， UTXO只能用于建立简单的、一次性的合约，没有给需要任何其它内部状态的多阶段合约或者脚本留出生存空间。4区块链盲，UTXO看不到区块链的数据5交易确认时间太长。</p>
+<p>以太坊的发展经历过那几个阶段，每个阶段进行了哪些重大升级？<br>以太坊的发展分成四个阶段：Frontier、Homestead、Metropolis和Serenity。</p>
+<h3 id="简述以太坊技术体系，每层提供哪些功能服务。"><a href="#简述以太坊技术体系，每层提供哪些功能服务。" class="headerlink" title="简述以太坊技术体系，每层提供哪些功能服务。"></a>简述以太坊技术体系，每层提供哪些功能服务。</h3><p>应用层：DApps，以太币钱包，以太币浏览器 合约层：Solidity，EVM，eWASM 激励层：以太币，Gas共识层：PoW，PoW和PoS混合，PoS 网络层：DEVp2p，RLPx，Discv4 数据层：数据结构，数据模型，分片技术，哈希函数，数字签名，非对称加密 存储层：LevelDB，ethdb模块，日志模块</p>
+<h3 id="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"><a href="#简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。" class="headerlink" title="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"></a>简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。</h3><p>交易树：树叶里是交易<br>收据树：树叶里是交易生成的收据<br>状态数：树叶里是交易影响到的账户状态<br>基于Merkle Patricia Trie/tree（MPT）构建三棵树，通过三棵树根哈希，分别建立于区块头相应字段的映射关系<br>交易树根哈希：交易字典树根的RLP hash值（key：交易编号；Value：交易内容）<br>收据树根哈希：收据字典树根的RLP hash值（key：索引编号；Value：收据内容）<br>状态树根哈希：状态字典树根的RLP hash值（key：账户地址；Value：账户内容）</p>
+<h3 id="什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"><a href="#什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？" class="headerlink" title="什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"></a>什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？</h3><p>Patricia Trie，又称基数树，是一种存储空间优化的Trie树。</p>
+<p>MPT（Merkle Patricia Trie/Tree）融合了Patricia Trie和Merkle Tree的优点。其中Merkle树用于交易存在和完整性的校验，Patricia树用于优化字典树的空间利用率，同时提升读写效率。</p>
+<p>如果直接将Merkle Tree来存放以太坊账户状态，那么存放全球账户数据太多，占内存和存储空间，账户状态多变，修改困难。</p>
+<p>以太坊对其进行了以下方面的优化：1）提高操作效率：引入多种类型节点和压缩前缀2）安全性：每节点利用其哈希被引用，可在LevelDB中查询；而非内存地址。</p>
+<p>Key：节点的RLP编码的SHA3哈希值。</p>
+<p>Value：节点的RLP编码。</p>
+<p>想获得一个非叶节点的子节点，只需要根据子节点的hash访问数据库获得节点的RLP编码，然后解码。</p>
+<h3 id="以太坊账户类型有哪些？它们之间有何区别？"><a href="#以太坊账户类型有哪些？它们之间有何区别？" class="headerlink" title="以太坊账户类型有哪些？它们之间有何区别？"></a>以太坊账户类型有哪些？它们之间有何区别？</h3><p>对比项 外部拥有账户 合约账户<br>以太币余额 有 有<br>输内容 交易 交易或消息<br>控制 私钥 合约代码<br>地址 公钥决定 由合约创建者地址和Nonce计算得<br>代码 不包含代码 包含代码</p>
+<h3 id="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"><a href="#什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？" class="headerlink" title="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"></a>什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？</h3><p>GHOST协议解决当前快速确认的区块链因区块高作废率而受到低安全性困扰的问题。GHOST协议是根据最重子树选择主链。</p>
+<p>相较比特币而言，以太坊产生区块的间隔时间更短，更易出现区块链分叉产生孤块，通过将产生孤块的算力也被包含进来，有效的增强了安全性。同时通过给叔区块奖励，避免出现像比特币那样计算力高度集中的矿池。 产生叔区块的矿工将获得的奖励为：（叔区块ID+8-当前区块ID）×区块奖励/8。将叔区块链接到区块链上的奖励为：每链接一个叔区块获得区块奖励/32个以太币的奖励，最多链接两个叔区块。</p>
+<h3 id="以太币和Gas有何关系？"><a href="#以太币和Gas有何关系？" class="headerlink" title="以太币和Gas有何关系？"></a>以太币和Gas有何关系？</h3><p>以太坊中两种不同的计量单位gas存在于EVM中；</p>
+<p>ether存在于以太坊账户中。</p>
+<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
+<p>用户可以通过向以太坊账户中充值以太币，由以太坊客户端自动购买用户指定操作最大支出的gas，同时在操作结束时将剩余的gas转换成以太币返还到用户的以太坊账户。gas与以太币两者分开，gas单位与具备自然成本的运算单位一致，而ether的价格通常会由于市场力量产生波动。</p>
+<h3 id="以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？"><a href="#以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？" class="headerlink" title="以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？"></a>以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？</h3><p>Storage<strong>（账户存储）</strong>每个账户有一块保存在区块链上的持久性存储，称为 storage。这是一个将256位字映射到256位字的 key-value 存储区，均为32字节；未使用Key-Value值为0，非0值代表已占用。永久储存在区块链中，读写的 gas 开销也最大。</p>
+<p>Memory<strong>（内存）</strong>每一次消息调用，会临时获取一块干净的内存空间。生命周期仅为整个方法执行期间，函数调用后回收，按照可寻址字节数组来存储，读写 gas 开销较小。</p>
+<p>Stack<strong>（栈）</strong>EVM是基于栈的，几乎免费使用的内存，但有数量限制。栈中每个元素是32字节，最多容1024个元素。</p>
+<h3 id="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？"><a href="#简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？" class="headerlink" title="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？"></a>简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？</h3><p>第一步：生成种子，根据区块块头信息计算出一个种子。</p>
+<p>第二步：伪随机数据集，根据种子生成一个大小为16M的伪随机数据集，每30000个区块进行一次更新，用于轻客户端存储缓存。</p>
+<p>第三步：DAG数据集，根据伪随机数据集生成大小1G的大规模数据集。该数据集中每项元素通过伪随机数据集中少量的几项计算得到。</p>
+<p>第四步：挖矿，通过header及nonce计算出一个初始的哈希值映射到初始位置A，然后读取A位置元素和A的相邻后一个位置A’的元素，再通过（A和A’）计算出位置（B和B’），以此类推，迭代64次后，一共读取出128个数，最后计算这128个数的哈希值与目标值target比较，若满足target，则挖矿成功；否则重新尝试nonce。ASIC芯片主要优势是算力强，但在内存访问的性能上没有那么大的优势，所以能设计出一个对内存要求很高的puzzle，就能起到遏制ASIC芯片的作用。</p>
+<h1 id="复习简化-from-confucian-e"><a href="#复习简化-from-confucian-e" class="headerlink" title="复习简化 from confucian-e"></a>复习简化 from confucian-e</h1><h3 id="BlockChian"><a href="#BlockChian" class="headerlink" title="BlockChian"></a>BlockChian</h3><p>为什么说区块链技术应用是从信息互联网到价值互联网</p>
+<p>（围绕“不可复制”、“确权”、“价值交换”）。</p>
+<p>区块链部署的三种形式，每种形式的特点，我国以哪种为主</p>
+<p>公有链：节点加入无需准许，人人都可参与网络共识，任意读取数据，执行交易；PoW、PoS等。<br>联盟链：节点加入需要准许，多个机构组成联盟，数据读写等操作由联盟成员决定，效率高，节点可信度高；PBFT、Raft等。<br>私有链：写入权限掌握在一个组织内部，读取或开放或限制。<br>国内以联盟链为主。</p>
+<p>区块链的六层架构</p>
+<p>应用层：dapp<br>合约层：智能合约<br>激励层：挖矿<br>共识层：共识机制<br>网络层：P2P<br>数据层：数据结构，数据库<br>公有链激励层中的分配机制和发行机制</p>
+<p>发行<br>ICO<br>IPO<br>IEO<br>公私募<br>分配<br>空投<br>流动性挖矿<br>质押挖矿<br>社区成员分配</p>
+<h3 id="Bitcoin"><a href="#Bitcoin" class="headerlink" title="Bitcoin"></a>Bitcoin</h3><p>比特币区块头数据结构，每个字段长度及意义</p>
+<p>区块头包含：上一个区块头哈希、默克尔树根哈希、版本号、时间戳、当前挖矿难度、随机数；共80个字节，前2个各32位，后4个各4位。</p>
+<p>比特币密钥和地址生成过程，为什么通过地址推导公钥哈希</p>
+<p>私钥：256位由0和1组成的随机数，以64位16进制显示。</p>
+<p>公钥：私钥通过一个椭圆曲线算法(ECDSA)计算而来，不可逆，即不能根据公钥倒推私钥。</p>
+<p>地址：公钥先通过单向哈希(SHA256, RIPEMD160)计算出公钥哈希，公钥哈希通过Base58check编码得到地址。</p>
+<p>因为地址是公钥哈希通过Base58check编码得来的，所以地址逆向变换可得公钥哈希。</p>
+<p>比特币交易流程</p>
+<p>交易的创建：线上线下都可。<br>广播交易：广播到P2P网络，全网节点收到验证。<br>交易验证与挖矿：从交易池中选一系列交易，矿工挖出区块。<br>交易确认：待新块中全部交易验证完成后，各节点将该块添加到区块链尾部（上链）。<br>确认有效：经过6个区块（1个小时）确认后即有效，永久保存于链上。<br>锁定脚本与解锁脚本位置</p>
+<p>锁定脚本在输入列表中，解锁脚本在输出列表中。</p>
+<p>P2PKH执行过程，出入栈变化</p>
+<p>签名(sig)入栈。<br>公钥(PubK)入栈。<br>复制栈顶的公钥(DUP)。<br>对栈顶的公钥进行哈希(HASH160)。<br>压入公钥哈希(PubKHash)。<br>判断栈顶的2个公钥哈希是否相等(EQUALVERIFY)，相等后这2个出栈。<br>根据公钥检验签名(CHECKSIG)，正确后都出栈，栈顶显示TRUE。<br>比特币分叉类型及原因</p>
+<p>临时分叉：算法导致，同时挖出2个甚至多个块。<br>硬分叉：升级系统，新规则无法向前兼容，旧节点无法认可新节点的区块。<br>软分叉：升级系统，可以向前兼容。</p>
+<h3 id="Ethereum"><a href="#Ethereum" class="headerlink" title="Ethereum"></a>Ethereum</h3><p>以太坊解决了比特币的哪些问题</p>
+<p>缺少图灵完备：比特币脚本语言非图灵完备。<br>价值盲：UTXO不可分割，转账金额不能精细控制。<br>缺少状态：UTXO只有是否花费，不能构建复杂合约。<br>区块链盲：看不到区块链的数据<br>速度慢：交易确认时间长，TPS低<br>以太坊发展的4个阶段</p>
+<p>前沿(Frontier)<br>家园(Homestead)<br>大都会(Metropolis)<br>宁静(Serenity)<br>以太坊区块头的三棵树及作用</p>
+<p>交易树：存交易<br>收据树：存交易生成的收据<br>状态树：存账户状态<br>以太坊账户类型</p>
+<p>外部拥有账户(EOA)和合约账户(CA)</p>
+<p>以太币(ether)与gas的区别</p>
+<p>以太坊中2种不同的计量单位。</p>
+<p>gas存在于EVM中；ether存在于以太坊账户中，最小货币单位为wei。</p>
+<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
+<p>以太坊虚拟机可访问存储数据的空间有哪些，各自特点</p>
+<p>Storage：链上永久存储，gas开销大。<br>Memory：临时存储，生命周期为方法执行期间，gas开销小。<br>Stack：EVM不是基于寄存器，而是基于栈。</p>
+]]></content>
   </entry>
   <entry>
     <title>mysql入门</title>
@@ -2098,191 +2501,6 @@ WHERE City LIKE ‘[!bsp]%’;
 <p>外模式 外模式又称子模式或用户模式，对应于用户级。它是某个或某几个用户所看到的数据库的数据视图，是与某一应用有关的数据的逻辑表示。外模式是从模式导出的一个子集，包含模式中允许特定用户使用的那部分数据。用户可以通过外模式描述语言来描述、定义对应于用户的数据记录(外模式)，也可以利用数据操纵语言(Data Manipulation Language，DML)对这些数据记录进行操作。外模式反映了数据库系统的用户观。</p>
 <p>概念模式 概念模式又称模式或逻辑模式，对应于概念级。它是由数据库设计者综合所有用户的数据，按照统一的观点构造的全局逻辑结构，是对数据库中全部数据的逻辑结构和特征的总体描述，是所有用户的公共数据视图(全局视图)。它是由数据库管理系统提供的数据模式描述语言(Data Description Language，DDL)来描述、定义的。概念模式反映了数据库系统的整体观。</p>
 <p>内模式 内模式又称存储模式，对应于物理级。它是数据库中全体数据的内部表示或底层描述，是数据库最低一级的逻辑描述，它描述了数据在存储介质上的存储方式和物理结构，对应着实际存储在外存储介质上的数据库。内模式由内模式描述语言来描述、定义的。内模式反映了数据库系统的存储观。 在一个数据库系统中，只有唯一的数据库， 因而作为定义 、描述数据库存储结构的内模式和定义、描述数据库逻辑结构的模式，也是唯一的，但建立在数据库系统之上的应用则是非常广泛、多样的，所以对应的外模式不是唯一的，也不可能是唯一的。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>加密货币</title>
-    <url>/2022/05/20/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</url>
-    <content><![CDATA[<h1 id="加密货币复习"><a href="#加密货币复习" class="headerlink" title="加密货币复习"></a>加密货币复习</h1><h2 id="区块链发展历程"><a href="#区块链发展历程" class="headerlink" title="区块链发展历程"></a>区块链发展历程</h2><h3 id="区块链1-0-可编程货币"><a href="#区块链1-0-可编程货币" class="headerlink" title="区块链1.0 可编程货币"></a>区块链1.0 可编程货币</h3><span id="more"></span>
-
-<p><strong>比特币为代表的货币区块链技术为1.0</strong></p>
-<p>08年，中本聪详细描述了如何创建一套去中心化的电子交易体系，且这种体系不需要创建在交易双方相互信任的基础之上。分布式账本技术的实施导致其第一个明显的应用：加密货币。比特币用作“互联网现金”，一种数字支付系统，可以被视为“货币互联网”的推动者。相关数字货币：比特币BTC、莱特币LTC、</p>
-<p>应用：利用密码学货币进行数字化支付，例如转账、汇款，起到公共账本的作用</p>
-<p><strong>区块链2.0 可编程金融</strong></p>
-<p>以太坊为代表的合同区块链技术为2.0</p>
-<p>自比特币诞生后，人们认识到比特币的底层技术区块链天生可以为智能合约提供可信的执行环境。数字货币开始与智能合约相结合，使得该区块链技术在金融领域有了更广泛的应用场景，同时该技术应用下的交易流程得到了优化。</p>
-<p>应用：可在以太坊中创建去中心化的程序、自治组织以及部署、使用智能合约</p>
-<p><strong>区块链3.0 可编程社会</strong></p>
-<p>实现完备权限控制和安全保障的Hyperledger项目代表3.0</p>
-<p>区块链3.0是智能化物联网时代，不同于区块链1.0和区块链2.0只在金融领域被应用，区块链3.0超出金融领域，为各种行业提供去中心化解决方案。区块链的应用领域扩展到人类生活的方方面面，不再依靠某个第三人或者机构获取信任，实现信息的共享，提高整个系统的运转效率。</p>
-<h3 id="为什么说区块链技术的应用是从信息互联网到价值互联网？"><a href="#为什么说区块链技术的应用是从信息互联网到价值互联网？" class="headerlink" title="为什么说区块链技术的应用是从信息互联网到价值互联网？"></a>为什么说区块链技术的应用是从信息互联网到价值互联网？</h3><p>区块链提供了一种加密安全的端到端支付流程，具有交易不变性和信息共享的一致性。价值互联网设想了一个价值移动和交换的世界。借助价值互联网，外币支付等价值交易可以立即发生。这不仅仅是金钱。价值互联网可以实现对某人有价值的任何资产的交换，包括证券、知识产权、音乐、科学发现等。区块链通过密码学、分布式共识、链式结构等机制实现了确权及允许任何类型的资产从一方直接转移到另一方，而无需中间人。转移是经过验证的、永久的并立即完成的。</p>
-<p>有了“确权”和“交换”，价值就能完成了。而区块链正是解决了这两个问题，才成为了第三代互联网价值互联网的基石，让价值互联网成为可能和现实。</p>
-<h3 id="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"><a href="#区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？" class="headerlink" title="区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？"></a>区块链的部署有哪三种形势，每种部署形式的特点，国内区块链应用以哪种部署形势为主？</h3><p>公有链：全世界任何拥有联网计算机的用户都可以在任何时候加入或退出网络。</p>
-<p>任意读取区块数据、执行交易，参与网络共识过程。共识算法：PoW、PoS等。</p>
-<p>联盟链：由若干机构组成利益相关的联盟，共同参与并维护具有准入机制的多中心化区块链。区块数据读写、参与记账规则等需要由联盟成员节点共同决定。联盟链上的交易只需要少量节点达成共识即可，且节点间信任度比公有链要高。与公有链相比，其效率也有很大的提升。共识算法：PBFT、Raft等。</p>
-<p>私有链：写入权限仅在一个组织手里的区块链，而读取权限或者对外开放，或者被任意程度地进行了限制。</p>
-<p>国内区块链应用以联盟链为主。</p>
-<p>以区块链六层参考架构为例说明每层主要功能及用途。<br>应用层：可编程货币，可编程合约，可编程社会<br>合约层：脚本代码，算法机制，智能合约—&gt;智能合约<br>激励层：发行机制，分配机制—&gt;经济激励<br>共识层：PoW，PoS，DPoS，PBFT—&gt;分布式信任，众包协作<br>网络层：P2P网络，传播机制，验证机制—&gt;分布式自治<br>数据层：数据区块，链式结构，时间戳，哈希函数，默克尔树，非对称加密—&gt;数据安全</p>
-<h3 id="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。"><a href="#比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block-header的每个字段长度及意义。" class="headerlink" title="比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。"></a>比特币与区块链的关系是什么？对比特币每个区块的数据结构进行说明，并给出block header的每个字段长度及意义。</h3><p>比特币是一种数字货币,而区块链是一种技术;区块链是比特币的底层技术,而比特币是区块链技术的第一个应用.</p>
-<p>区块数据结构参考下图，对区块头的每个字段意义要求记住。</p>
-<p>!</p>
-<h3 id="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"><a href="#简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？" class="headerlink" title="简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？"></a>简述比特币密钥和地址的生成过程，为什么能够从地址推导出公钥哈希值？</h3><p>私钥生成:私钥其本质就是一个256位的由0和1组成的随机数，这个随机数是怎么产生的不重要，只要是不可预测和不可重复的都可以，私钥的格式是将这个256位的随机数以64位十六进制数显示。</p>
-<p>公钥生成:公钥是将私钥通过一个椭圆曲线乘法的算法计算得来，这是一个不可逆转的过程。</p>
-<p>地址生成:比特币地址是由公钥经过一系列单向的哈希算法得到。哈希算法是一种单向函数，可以接收任意长度的输入产生指纹或哈希。由公钥生成比特币地址时使用的算法是SHA256和RIPEMD160。公钥先进行SHA256和RIPEMD160后得到公钥哈希,在经过Base58check编码就可以得到比特币地址。将地址经过逆向变换就可以得公钥的哈希值.</p>
-<h3 id="简述比特币钱包的作用和种类？"><a href="#简述比特币钱包的作用和种类？" class="headerlink" title="简述比特币钱包的作用和种类？"></a>简述比特币钱包的作用和种类？</h3><p>广义上，钱包是一个应用程序，为用户提供交互界面。钱包控制用户访问权限，管理密钥和地址，跟踪余额以及创建和签名交易。</p>
-<p>简述比特币的交易流程，指出锁定脚本和解锁脚本放置的位置，并以P2PKH为例说明交易脚本的执行过程，并给出压栈出栈的顺序（可以手绘照相插入到word文档中）<br>1<strong>、比特币交易的创建：比特币交易可以被任何人在线上或线下创建，但要使交易有效，则需要由一个或多个私钥签名，表明具备交易中发送方地址所指向的比特币资金的所有权。2、比特币交易广播到整个P2P网络：一笔比特币交易数经过签名但不会泄露任何信息，可以被公开传播。每个节点都将从网络中收集交易数据并广播给相连接的其他节点。在传播交易前，节点均进行独立验证，确保有效性，异常交易无法传播。比特币网络是点对点网络，交易的扩散迅速，指数级扩散。3、比特币交易验证与挖矿：每个节点维护一个交易池，存放临时未经确认的交易。节点从交易池中选择一系列交易构成一个区块，基于自身算力找到一个具有足够难度的工作量证明，找到后向所有节点广播此区块。4、比特币交易确认：当包含在区块中的所有交易都是有效的且交易输入未动用，其他节点才会接受这个新的区块，链接到自己的区块链的尾部。5、交易记录：</strong>交易得到全网的6个确认之后，永久的记录在区块链中。</p>
-<p>下图中指出了解锁脚本在输入列表里，锁定脚本在输出列表里</p>
-<p>P2PKH脚本的执行指针执行过程和栈上变化如下：</p>
-<h3 id="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"><a href="#比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？" class="headerlink" title="比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？"></a>比特币的共识机制是什么？比特币挖矿的难度值如何调整能满足每10分钟产生一个区块，并说明如何调整区块头中字段来调整挖矿难度？区块头当中的哪些字段能够调整用于生成满足当前难度目标值的区块头哈希值？</h3><p>比特币区块链采用了PoW共识机制。</p>
-<p>比特币每产生2016个区块调整一次挖矿难度，通过调整挖矿难度来调整出块时间，新难度值=旧难度值×（过去2016个区块花费时长/20160分钟），一个块10分钟，挖矿难度的计算公式：难度值= 最大目标值/难度目标值（或难度目标值 = 最大目标值/难度值），最大目标值= 0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF，难度目标值越小，区块生成难度值就越大。 这个难度目标值被保存在比特币的区块头中Bits字段中。</p>
-<p>SPV节点如何完成SPV验证（说明什么是Merkle Path Proof），Bloom Filter工作原理及SPV节点如何通过Bloom Filter完成指定交易的搜索。<br>Bloom过滤器数组里的每一个数的初始值为零。</p>
-<p>关键词被加到Bloom过滤器中之前，会依次通过每个哈希函数运算一次。</p>
-<p>关键词依次通过各哈希函数运算之后，相应的位变为1，Bloom过滤器则记录下该关键词。</p>
-<p>Bloom过滤器正匹配代表着“可能是”，负匹配代表着“一定不是”。所以SPV节点若只关心某个支付到自己比特币地址的交易，则可通过建立布隆过滤器（布隆过滤器是一种基于哈希的高效查找结构，能够快速确定某个元素是否在一个集合内）限制只接收含有目标比特币地址的交易。一旦比特币网络中其他当节点探测到某个交易符合SPV节点设置的布隆过滤器条件时，其它节点将以Merkleblock消息的形式发送该区块，Merkleblock消息包含区块头和一条连接目标交易与Merkle根的Merkle路径。</p>
-<p>SPV节点需要验证交易，需要做2个检查：交易的存在性检查和交易是否重花的检查。</p>
-<p>SPV节点通过该Merkle路径找到跟该交易相关的区块，并验证对应区块中是否存在目标交易（该过程被称为：Merkle Path Proof）。SPV节点所收到的Merkleblock数据量通常少于1KB，只有一个完整区块（大约1MB）大小的千分之一左右。</p>
-<p>现在通过Merkle Path Proof，SPV节点确认了交易确实存在于区块链中，但是这个还是无法保证这笔交易（Transaction）的Input（引用的上一笔UTXO）没有被重花（双重支付）。</p>
-<p>这时候SPV节点通过去看这笔交易所在区块之后的区块个数，Block个数越多说明该区块被全网更多节点共识，一般来说，一笔交易所属区块之后的区块个数达到6个时，就说明这笔交易是被大家核准过（达成共识）的，没有重花，而且被篡改的可能性也很低。</p>
-<p>Merkle Path Proof是指假设区块链系统中某个区块中存在A，B，C，D四笔交易，则为了确认交易C是否存在，需要得到交易C到Merkle Tree根节点上整条路径中的其余哈希值，以下图为例就是需要得到N3，N4哈希值，通过验证根节点的哈希一致性确认交易C存在于区块中。</p>
-<h3 id="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"><a href="#什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？" class="headerlink" title="什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？"></a>什么是UTXO账本模型？如果我需要获得某个地址上的余额总数，该怎么做？和传统的账户模型有什么差别？</h3><p>比特币交易中的基础构建单元是交易输出。交易输出是比特币不可分割的基本组合，记录在区块上。比特币完整节点跟踪所有可找到的和可使用的输出，称为 “未花费的交易输出”即UTXO；所有UTXO的集合被称为UTXO集。比特币“余额”：用户钱包中可用UTXO总和，分散在多个交易和区块中。通过钱包所控制的密钥控制UTXO花费行为。UTXO是面值为“聪”的离散且不可分割的价值单元，一个UTXO只能在一次交易中作为一个整体被消耗。一笔比特币交易通过使用所有者的签名来解锁UTXO，并通过使用新的所有者的比特币地址来锁定并创建UTXO。</p>
-<p>UTXO 模型的优点：如果用户启用了新的地址用于转账和交易，新地址与原地址之间的关系很难被追踪，更好保证用户的隐私；UTXO 模型理论上来说可以并行地签发多笔交易，并广播到网络中；</p>
-<h3 id="比特币区块链有哪几种分叉，每种分叉的原因是什么？"><a href="#比特币区块链有哪几种分叉，每种分叉的原因是什么？" class="headerlink" title="比特币区块链有哪几种分叉，每种分叉的原因是什么？"></a>比特币区块链有哪几种分叉，每种分叉的原因是什么？</h3><p>临时分叉：算法导致的分叉，通过最大工作量证明保证最终收敛性。</p>
-<p>硬分叉：出现了旧规则禁止，新规则允许的行为。</p>
-<p>软分叉：出现了旧规则允许，新规则禁止的行为。</p>
-<p>举例说明比特币的链上扩容和链下扩容。<br>链上扩容是在区块链基层协议上实现的扩容解决方案，它需要通过改变区块容量或者数据结构来达到提高处理交易能力的目的。包括：比特币采用的隔离见证+2MB硬分叉，比特币现金升级区块容量，以及以太坊分片技术</p>
-<p>链下扩容是不改变公链基础协议的一种应用层上的扩展方案。它不改动区块链本身的规则。包括状态通道、侧链等解决方案。</p>
-<p>举例说明侧链的典型应用场景。<br>侧链技术就是为了方便数字资产在不同区块链间互相转移，在两条链完全独立的情况下，将不同的区块链互相连接在一起，以实现区块链的扩展，使两者能够“互相操作，实现交互”的一种跨区块链解决方案。</p>
-<p>BTC Relay是一个典型应用场景，本质上是在以太坊上用合约重写了比特币的spv验证规则。其主要原理是把以太坊网络与比特币网络以一种安全去中心化的方式连接起来。通过使用以太坊的智能合约功能来验证比特币交易。BTC Relay使用区块头创建一种小型版本的比特币区块链，以太坊DApp开发者可以从智能合约向BTC Relay进行API调用来验证比特币网络活动。</p>
-<h3 id="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"><a href="#说明闪电网络解决了比特币系统的什么问题及其如何解决的？" class="headerlink" title="说明闪电网络解决了比特币系统的什么问题及其如何解决的？"></a>说明闪电网络解决了比特币系统的什么问题及其如何解决的？</h3><p>比特币的交易网络，全网每秒 7 笔的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认花费约 1 个小时的最终确认时间。闪电网络是将大量交易放到比特币区块链之外进行。闪电网络通过智能合约来完善链下的交易渠道。核心的概念主要有两个：RSMC和 HTLC。前者解决了链下交易的确认问题，后者解决了支付通道的问题。</p>
-<h3 id="以太坊解决了比特币的哪些问题？"><a href="#以太坊解决了比特币的哪些问题？" class="headerlink" title="以太坊解决了比特币的哪些问题？"></a>以太坊解决了比特币的哪些问题？</h3><p>1.缺少图灵完备性，比特币不能支持所有的计算，如循环控制等。2价值盲，UTXO的不可分割性，使得其不能为账户的取款额度提供精细的控制。3缺少状态， UTXO只能用于建立简单的、一次性的合约，没有给需要任何其它内部状态的多阶段合约或者脚本留出生存空间。4区块链盲，UTXO看不到区块链的数据5交易确认时间太长。</p>
-<p>以太坊的发展经历过那几个阶段，每个阶段进行了哪些重大升级？<br>以太坊的发展分成四个阶段：Frontier、Homestead、Metropolis和Serenity。</p>
-<h3 id="简述以太坊技术体系，每层提供哪些功能服务。"><a href="#简述以太坊技术体系，每层提供哪些功能服务。" class="headerlink" title="简述以太坊技术体系，每层提供哪些功能服务。"></a>简述以太坊技术体系，每层提供哪些功能服务。</h3><p>应用层：DApps，以太币钱包，以太币浏览器 合约层：Solidity，EVM，eWASM 激励层：以太币，Gas共识层：PoW，PoW和PoS混合，PoS 网络层：DEVp2p，RLPx，Discv4 数据层：数据结构，数据模型，分片技术，哈希函数，数字签名，非对称加密 存储层：LevelDB，ethdb模块，日志模块</p>
-<h3 id="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"><a href="#简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。" class="headerlink" title="简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。"></a>简述以太坊区块结构，并说明区块头中的三棵树是如何构建的？有哪些作用。</h3><p>交易树：树叶里是交易<br>收据树：树叶里是交易生成的收据<br>状态数：树叶里是交易影响到的账户状态<br>基于Merkle Patricia Trie/tree（MPT）构建三棵树，通过三棵树根哈希，分别建立于区块头相应字段的映射关系<br>交易树根哈希：交易字典树根的RLP hash值（key：交易编号；Value：交易内容）<br>收据树根哈希：收据字典树根的RLP hash值（key：索引编号；Value：收据内容）<br>状态树根哈希：状态字典树根的RLP hash值（key：账户地址；Value：账户内容）</p>
-<h3 id="什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"><a href="#什么是Merkle-Patricia-Tree-Trie？为什么不能用Merkle-Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？" class="headerlink" title="什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？"></a>什么是Merkle Patricia Tree/Trie？为什么不能用Merkle Tree来存放以太坊账户状态？以太坊对其进行了哪些方面的优化？</h3><p>Patricia Trie，又称基数树，是一种存储空间优化的Trie树。</p>
-<p>MPT（Merkle Patricia Trie/Tree）融合了Patricia Trie和Merkle Tree的优点。其中Merkle树用于交易存在和完整性的校验，Patricia树用于优化字典树的空间利用率，同时提升读写效率。</p>
-<p>如果直接将Merkle Tree来存放以太坊账户状态，那么存放全球账户数据太多，占内存和存储空间，账户状态多变，修改困难。</p>
-<p>以太坊对其进行了以下方面的优化：1）提高操作效率：引入多种类型节点和压缩前缀2）安全性：每节点利用其哈希被引用，可在LevelDB中查询；而非内存地址。</p>
-<p>Key：节点的RLP编码的SHA3哈希值。</p>
-<p>Value：节点的RLP编码。</p>
-<p>想获得一个非叶节点的子节点，只需要根据子节点的hash访问数据库获得节点的RLP编码，然后解码。</p>
-<h3 id="以太坊账户类型有哪些？它们之间有何区别？"><a href="#以太坊账户类型有哪些？它们之间有何区别？" class="headerlink" title="以太坊账户类型有哪些？它们之间有何区别？"></a>以太坊账户类型有哪些？它们之间有何区别？</h3><p>对比项 外部拥有账户 合约账户<br>以太币余额 有 有<br>输内容 交易 交易或消息<br>控制 私钥 合约代码<br>地址 公钥决定 由合约创建者地址和Nonce计算得<br>代码 不包含代码 包含代码</p>
-<h3 id="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"><a href="#什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？" class="headerlink" title="什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？"></a>什么是GHOST协议？相较比特币而言，为什么以太坊当中要奖励叔区块，如何奖励？</h3><p>GHOST协议解决当前快速确认的区块链因区块高作废率而受到低安全性困扰的问题。GHOST协议是根据最重子树选择主链。</p>
-<p>相较比特币而言，以太坊产生区块的间隔时间更短，更易出现区块链分叉产生孤块，通过将产生孤块的算力也被包含进来，有效的增强了安全性。同时通过给叔区块奖励，避免出现像比特币那样计算力高度集中的矿池。 产生叔区块的矿工将获得的奖励为：（叔区块ID+8-当前区块ID）×区块奖励/8。将叔区块链接到区块链上的奖励为：每链接一个叔区块获得区块奖励/32个以太币的奖励，最多链接两个叔区块。</p>
-<h3 id="以太币和Gas有何关系？"><a href="#以太币和Gas有何关系？" class="headerlink" title="以太币和Gas有何关系？"></a>以太币和Gas有何关系？</h3><p>以太坊中两种不同的计量单位gas存在于EVM中；</p>
-<p>ether存在于以太坊账户中。</p>
-<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
-<p>用户可以通过向以太坊账户中充值以太币，由以太坊客户端自动购买用户指定操作最大支出的gas，同时在操作结束时将剩余的gas转换成以太币返还到用户的以太坊账户。gas与以太币两者分开，gas单位与具备自然成本的运算单位一致，而ether的价格通常会由于市场力量产生波动。</p>
-<h3 id="以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？"><a href="#以太坊虚拟机可访问存储数据的空间有哪些？-各自有何特点？" class="headerlink" title="以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？"></a>以太坊虚拟机可访问存储数据的空间有哪些？ 各自有何特点？</h3><p>Storage<strong>（账户存储）</strong>每个账户有一块保存在区块链上的持久性存储，称为 storage。这是一个将256位字映射到256位字的 key-value 存储区，均为32字节；未使用Key-Value值为0，非0值代表已占用。永久储存在区块链中，读写的 gas 开销也最大。</p>
-<p>Memory<strong>（内存）</strong>每一次消息调用，会临时获取一块干净的内存空间。生命周期仅为整个方法执行期间，函数调用后回收，按照可寻址字节数组来存储，读写 gas 开销较小。</p>
-<p>Stack<strong>（栈）</strong>EVM是基于栈的，几乎免费使用的内存，但有数量限制。栈中每个元素是32字节，最多容1024个元素。</p>
-<h3 id="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？"><a href="#简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC-resistance？" class="headerlink" title="简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？"></a>简述以太坊挖矿算法Ethash的过程，并说明为何它可做到ASIC resistance？</h3><p>第一步：生成种子，根据区块块头信息计算出一个种子。</p>
-<p>第二步：伪随机数据集，根据种子生成一个大小为16M的伪随机数据集，每30000个区块进行一次更新，用于轻客户端存储缓存。</p>
-<p>第三步：DAG数据集，根据伪随机数据集生成大小1G的大规模数据集。该数据集中每项元素通过伪随机数据集中少量的几项计算得到。</p>
-<p>第四步：挖矿，通过header及nonce计算出一个初始的哈希值映射到初始位置A，然后读取A位置元素和A的相邻后一个位置A’的元素，再通过（A和A’）计算出位置（B和B’），以此类推，迭代64次后，一共读取出128个数，最后计算这128个数的哈希值与目标值target比较，若满足target，则挖矿成功；否则重新尝试nonce。ASIC芯片主要优势是算力强，但在内存访问的性能上没有那么大的优势，所以能设计出一个对内存要求很高的puzzle，就能起到遏制ASIC芯片的作用。</p>
-<h1 id="复习简化-from-confucian-e"><a href="#复习简化-from-confucian-e" class="headerlink" title="复习简化 from confucian-e"></a>复习简化 from confucian-e</h1><h3 id="BlockChian"><a href="#BlockChian" class="headerlink" title="BlockChian"></a>BlockChian</h3><p>为什么说区块链技术应用是从信息互联网到价值互联网</p>
-<p>（围绕“不可复制”、“确权”、“价值交换”）。</p>
-<p>区块链部署的三种形式，每种形式的特点，我国以哪种为主</p>
-<p>公有链：节点加入无需准许，人人都可参与网络共识，任意读取数据，执行交易；PoW、PoS等。<br>联盟链：节点加入需要准许，多个机构组成联盟，数据读写等操作由联盟成员决定，效率高，节点可信度高；PBFT、Raft等。<br>私有链：写入权限掌握在一个组织内部，读取或开放或限制。<br>国内以联盟链为主。</p>
-<p>区块链的六层架构</p>
-<p>应用层：dapp<br>合约层：智能合约<br>激励层：挖矿<br>共识层：共识机制<br>网络层：P2P<br>数据层：数据结构，数据库<br>公有链激励层中的分配机制和发行机制</p>
-<p>发行<br>ICO<br>IPO<br>IEO<br>公私募<br>分配<br>空投<br>流动性挖矿<br>质押挖矿<br>社区成员分配</p>
-<h3 id="Bitcoin"><a href="#Bitcoin" class="headerlink" title="Bitcoin"></a>Bitcoin</h3><p>比特币区块头数据结构，每个字段长度及意义</p>
-<p>区块头包含：上一个区块头哈希、默克尔树根哈希、版本号、时间戳、当前挖矿难度、随机数；共80个字节，前2个各32位，后4个各4位。</p>
-<p>比特币密钥和地址生成过程，为什么通过地址推导公钥哈希</p>
-<p>私钥：256位由0和1组成的随机数，以64位16进制显示。</p>
-<p>公钥：私钥通过一个椭圆曲线算法(ECDSA)计算而来，不可逆，即不能根据公钥倒推私钥。</p>
-<p>地址：公钥先通过单向哈希(SHA256, RIPEMD160)计算出公钥哈希，公钥哈希通过Base58check编码得到地址。</p>
-<p>因为地址是公钥哈希通过Base58check编码得来的，所以地址逆向变换可得公钥哈希。</p>
-<p>比特币交易流程</p>
-<p>交易的创建：线上线下都可。<br>广播交易：广播到P2P网络，全网节点收到验证。<br>交易验证与挖矿：从交易池中选一系列交易，矿工挖出区块。<br>交易确认：待新块中全部交易验证完成后，各节点将该块添加到区块链尾部（上链）。<br>确认有效：经过6个区块（1个小时）确认后即有效，永久保存于链上。<br>锁定脚本与解锁脚本位置</p>
-<p>锁定脚本在输入列表中，解锁脚本在输出列表中。</p>
-<p>P2PKH执行过程，出入栈变化</p>
-<p>签名(sig)入栈。<br>公钥(PubK)入栈。<br>复制栈顶的公钥(DUP)。<br>对栈顶的公钥进行哈希(HASH160)。<br>压入公钥哈希(PubKHash)。<br>判断栈顶的2个公钥哈希是否相等(EQUALVERIFY)，相等后这2个出栈。<br>根据公钥检验签名(CHECKSIG)，正确后都出栈，栈顶显示TRUE。<br>比特币分叉类型及原因</p>
-<p>临时分叉：算法导致，同时挖出2个甚至多个块。<br>硬分叉：升级系统，新规则无法向前兼容，旧节点无法认可新节点的区块。<br>软分叉：升级系统，可以向前兼容。</p>
-<h3 id="Ethereum"><a href="#Ethereum" class="headerlink" title="Ethereum"></a>Ethereum</h3><p>以太坊解决了比特币的哪些问题</p>
-<p>缺少图灵完备：比特币脚本语言非图灵完备。<br>价值盲：UTXO不可分割，转账金额不能精细控制。<br>缺少状态：UTXO只有是否花费，不能构建复杂合约。<br>区块链盲：看不到区块链的数据<br>速度慢：交易确认时间长，TPS低<br>以太坊发展的4个阶段</p>
-<p>前沿(Frontier)<br>家园(Homestead)<br>大都会(Metropolis)<br>宁静(Serenity)<br>以太坊区块头的三棵树及作用</p>
-<p>交易树：存交易<br>收据树：存交易生成的收据<br>状态树：存账户状态<br>以太坊账户类型</p>
-<p>外部拥有账户(EOA)和合约账户(CA)</p>
-<p>以太币(ether)与gas的区别</p>
-<p>以太坊中2种不同的计量单位。</p>
-<p>gas存在于EVM中；ether存在于以太坊账户中，最小货币单位为wei。</p>
-<p>gas用来衡量执行每一步操作所需要支付的费用，其价格由ether来表示。</p>
-<p>以太坊虚拟机可访问存储数据的空间有哪些，各自特点</p>
-<p>Storage：链上永久存储，gas开销大。<br>Memory：临时存储，生命周期为方法执行期间，gas开销小。<br>Stack：EVM不是基于寄存器，而是基于栈。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>前端路线</title>
-    <url>/2030/12/30/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<p>[toc]</p>
-<blockquote>
-<p><strong>学习方式各有不同，我只整理的自己的侧重点</strong></p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> html、css 核心基础</li>
-<li><input checked="" disabled="" type="checkbox"> html5 语义化标签</li>
-<li><input checked="" disabled="" type="checkbox"> html5 新增标签属性</li>
-<li><input checked="" disabled="" type="checkbox"> 表单项新增属性</li>
-<li><input checked="" disabled="" type="checkbox"> css 选择器</li>
-<li><input checked="" disabled="" type="checkbox"> css3 伪类</li>
-<li><input checked="" disabled="" type="checkbox"> css 伪元素</li>
-<li><input disabled="" type="checkbox"> css 过渡</li>
-<li><input disabled="" type="checkbox"> 线性渐变、径向渐变</li>
-<li><input disabled="" type="checkbox"> css 都规划 animation</li>
-<li><input checked="" disabled="" type="checkbox"> 弹性盒模型</li>
-<li><input disabled="" type="checkbox"> 响应式布局</li>
-</ul>
-<hr>
-<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> 基本语法</li>
-<li><input disabled="" type="checkbox"> 版本</li>
-<li><input checked="" disabled="" type="checkbox"> 对象</li>
-<li><input checked="" disabled="" type="checkbox"> 函数</li>
-<li><input disabled="" type="checkbox"> 类</li>
-<li><input checked="" disabled="" type="checkbox"> DOM</li>
-<li><input checked="" disabled="" type="checkbox"> BOM</li>
-<li><input disabled="" type="checkbox"> Web API</li>
-<li><input checked="" disabled="" type="checkbox"> AJAX</li>
-<li><input checked="" disabled="" type="checkbox"> JSON</li>
-<li><input checked="" disabled="" type="checkbox"> jQuery</li>
-</ul>
-<hr>
-<h1 id="ES6-Node-工程化"><a href="#ES6-Node-工程化" class="headerlink" title="ES6+Node+工程化"></a>ES6+Node+工程化</h1><ul>
-<li><input disabled="" type="checkbox"> ES6/7/8</li>
-<li><input checked="" disabled="" type="checkbox"> npm 常用命令</li>
-<li><input checked="" disabled="" type="checkbox"> git 基础</li>
-<li><input disabled="" type="checkbox"> git 高级</li>
-<li><input disabled="" type="checkbox"> http 协议 &amp; cookie &amp; session</li>
-<li><input disabled="" type="checkbox"> ES6+Node+工程化 MongoDB</li>
-<li><input checked="" disabled="" type="checkbox"> 模块化</li>
-<li><input disabled="" type="checkbox"> 构建工具 gulp</li>
-<li><input disabled="" type="checkbox"> webpack</li>
-<li><input checked="" disabled="" type="checkbox"> promise</li>
-<li><input checked="" disabled="" type="checkbox"> Node.js 基础</li>
-</ul>
-<hr>
-<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> React 基础语法</li>
-<li><input disabled="" type="checkbox"> react-router</li>
-<li><input disabled="" type="checkbox"> React React Antd 使用</li>
-<li><input disabled="" type="checkbox"> Redux</li>
-<li><input disabled="" type="checkbox"> React 移动端项目</li>
-</ul>
-<hr>
-<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> Vue 基础</li>
-<li><input disabled="" type="checkbox"> VueRouter</li>
-<li><input disabled="" type="checkbox"> Vuex</li>
-<li><input checked="" disabled="" type="checkbox"> Vue</li>
-<li><input disabled="" type="checkbox"> Vue 源码</li>
-<li><input disabled="" type="checkbox"> VuePC 项目</li>
-<li><input disabled="" type="checkbox"> Vue 后台管理</li>
-</ul>
-<hr>
-<h1 id="参考提供"><a href="#参考提供" class="headerlink" title="参考提供"></a>参考提供</h1><p><a href="https://objtube.github.io/front-end-roadmap/#/">前端学习路线</a></p>
 ]]></content>
   </entry>
   <entry>
