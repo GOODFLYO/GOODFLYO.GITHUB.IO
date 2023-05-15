@@ -144,7 +144,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -155,7 +155,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -232,7 +232,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-30 15:11:56" itemprop="dateModified" datetime="2023-03-30T15:11:56+08:00">2023-03-30</time>
+      <time title="修改时间：2023-04-14 17:14:35" itemprop="dateModified" datetime="2023-04-14T17:14:35+08:00">2023-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -355,6 +355,14 @@
 </ul>
 <hr>
 <h2 id="13：call-和-delegatecall"><a href="#13：call-和-delegatecall" class="headerlink" title="13：call 和 delegatecall"></a>13：call 和 delegatecall</h2><blockquote>
+<p>最根本的区别就是：<br>A 调用<strong>call</strong>改变的是 B 的变量<br>A 调用<strong>delegatecall</strong>改变的是 A 的变量</p>
+</blockquote>
+<blockquote>
+<p><strong>应用场景</strong>：当我部署 A 后，代码已经固定不能改变，我只有+1 的方法没有+2 的方法怎么办？ 在 B 中实现+2 的方法 在 A 中用 delegatecall 调用即可，这样数据就不会存储在另一个地方</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">contract A&#123;</span><br><span class="line">    uint public num;</span><br><span class="line"></span><br><span class="line">    function setNum(_num) public&#123;</span><br><span class="line">        num = _num+1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//1. 引用合约类型直接调用里面的函数  B里面的num改变 A不变</span><br><span class="line">    function bsetNum(address _baddress,uint _num) public&#123;</span><br><span class="line">        B b = B(_baddress);</span><br><span class="line">        b.setNum(_num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//2. B里面的num改变 A不变</span><br><span class="line">    function bsetNumCall(address _baddress,uint _num) public&#123;</span><br><span class="line">        (bool res,) = _bAddress.call(abi.encodeWithSignatrue(&quot;setNum(uint256)&quot;,_num));</span><br><span class="line">        if(!res) revert();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//2. A里面的num改变 B不变</span><br><span class="line">    function bsetNumDelegateCall(address _baddress,uint _num) public&#123;</span><br><span class="line">        (bool res,) = _bAddress.delegatecall(abi.encodeWithSignatrue(&quot;setNum(uint256)&quot;,_num));</span><br><span class="line">        if(!res) revert();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">contract B&#123;</span><br><span class="line">    uint publib num;</span><br><span class="line">    function setNum(_num) public&#123;</span><br><span class="line">        num = _num+2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
 </blockquote>
 <hr>
 <h2 id="14：create2-实际应用场景"><a href="#14：create2-实际应用场景" class="headerlink" title="14：create2 实际应用场景"></a>14：create2 实际应用场景</h2><blockquote>
@@ -403,6 +411,9 @@
   </div>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/solidity/" rel="tag"># solidity</a>
+          </div>
 
         
 
